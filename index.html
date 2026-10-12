@@ -263,6 +263,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 
 /* ================= Mapa ================= */
 .mapa{position:relative;width:100%;height:100%;overflow:hidden;background:#EEF0EA}
+.legal h2{font-size:1.15rem;margin:1.4rem 0 .4rem}.legal p{max-width:65ch}.legal-lista{display:grid;gap:.5rem;padding-left:1.2rem;max-width:65ch}.legal-aviso{background:var(--crema,#fff6e8);border-radius:12px;padding:.7rem 1rem;font-size:.92rem}
 .mapa-real{position:relative;width:100%;height:100%;min-height:220px;background:#EEF0EA;z-index:0;isolation:isolate;font-family:var(--f)}
 .mapa-cargando{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:var(--texto-2);font-size:14px}
 .wiz-mapa{height:260px;border-radius:var(--r-m);overflow:hidden;margin-top:8px}
@@ -1018,6 +1019,8 @@ function render(){
     else if(a[1]==='ficha'){html=vWizard('equipo',r.q.id,r.q.paso||'negocio');act='';pie=false}
     else{html=vEquipo(r.q.t||'fichas');act=''}}
   else if(a[0]==='como-ordenamos'){html=vComoOrdenamos();act=''}
+  else if(a[0]==='aviso-de-privacidad'){html=vLegal('privacidad');act=''}
+  else if(a[0]==='terminos'){html=vLegal('terminos');act=''}
   else if(a[0]==='guardados'){html=vGuardados();act=''}
   else {html=vFeed();barra=true}
   $('#nav').innerHTML=vNav(act);
@@ -1320,6 +1323,24 @@ function vParaNegocios(){
     <details><summary>¿Quién puede cambiar mi ficha?${ic('i-mas')}</summary><p>Solo tú, entrando con un código que te llega por WhatsApp, y nuestro equipo cuando nos pides ayuda.</p></details></div></section>
   <section class="seccion"><div class="promo-feed oscuro"><div><h3>¿Dudas? Te ayudamos.</h3><p>Escríbenos al ${WA_EQUIPO_TXT} y te respondemos.</p></div><button class="btn btn-blanco" data-soporte>${ic('i-chat')}Escribir por WhatsApp</button></div></section></div>`;
 }
+// Resúmenes públicos de los borradores de legal/ (en revisión del abogado)
+function vLegal(cual){
+  const li=xs=>'<ul class="legal-lista">'+xs.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  const aviso='<p class="legal-aviso">Borrador en revisión legal. Puede cambiar antes del lanzamiento.</p>';
+  if(cual==='privacidad')return `<div class="cont pagina legal">
+  <div class="pag-cab"><span class="eyebrow">Legal</span><h1>Aviso de privacidad.</h1><p>Cómo usamos tus datos, en palabras claras.</p></div>${aviso}
+  <h2>Quién es el responsable</h2><p>Mil y Una Fiestas, en Morelia, Michoacán. Contacto: WhatsApp ${WA_EQUIPO_TXT}.</p>
+  <h2>Qué datos usamos</h2>${li(['Tu número de WhatsApp o teléfono, cuando tú nos escribes.','Los datos de tu fiesta que decidas compartir: tipo, fecha, invitados, zona y presupuesto.','De los negocios: nombre de quien atiende, contacto, dirección (para el mapa), fotos y precios.','Conteos anónimos de toques a los botones de WhatsApp y llamar.'])}
+  <h2>Para qué</h2>${li(['Responderte y mandarte lo que pediste.','Organizar tu fiesta, si contratas un plan.','Publicar y administrar la ficha de un negocio.','Si quieres: ofrecerte el servicio de organización, guías y ofertas. Puedes negarte respondiendo «BAJA».'])}
+  <h2>Lo que no hacemos</h2><p>No vendemos ni rentamos tus datos. Cuando tocas WhatsApp en un negocio, tú mismo le escribes: no le pasamos tus datos.</p>
+  <h2>Lo que se guarda en tu teléfono</h2><p>Tus guardados y tus filtros se quedan en tu navegador. No los vemos.</p>
+  <h2>Tus derechos</h2><p>Puedes pedir acceso, corrección, cancelación u oposición al uso de tus datos, y retirar tu consentimiento, escribiéndonos por WhatsApp.</p></div>`;
+  return `<div class="cont pagina legal">
+  <div class="pag-cab"><span class="eyebrow">Legal</span><h1>Términos y condiciones.</h1><p>Las reglas de uso de la página.</p></div>${aviso}
+  <h2>Para familias</h2>${li(['Buscar, comparar y contactar negocios es gratis y no requiere registro.','Hablas directo con cada negocio. No cobramos comisión ni recibimos tu pago, salvo que contrates un plan de organización (con su propio contrato).','Los precios son de referencia: cada negocio confirma precio, fecha y condiciones.','«Verificado» significa que confirmamos sus datos en una fecha; no garantiza el servicio. «Destacado» es publicidad.','Lo que contrates con un negocio es entre tú y el negocio. Pide todo por escrito y comprobante de cada pago.'])}
+  <h2>Para negocios</h2>${li(['Publicar es gratis durante el lanzamiento. Tu ficha básica seguirá siendo gratis.','Solo publicas lo que es tuyo: fotos propias o con permiso, y datos reales.','Nuestro equipo revisa cada ficha antes de publicarla y puede pausar una con datos falsos.','Puedes editar, pausar o borrar tu ficha cuando quieras.'])}
+  <h2>Uso correcto</h2>${li(['No está permitido copiar la información o las fotos de la página de forma masiva.','Las leyes que aplican son las de México, con tribunales de Morelia, Michoacán.'])}</div>`;
+}
 function vComoOrdenamos(){
   if(lanz())return `<div class="cont pagina">
   <div class="pag-cab"><span class="eyebrow">Transparencia</span><h1>Cómo ordenamos los resultados.</h1><p>Durante el lanzamiento nadie paga por aparecer. Todos los negocios están en igualdad.</p></div>
@@ -1357,7 +1378,7 @@ function vPie(){
   const tabs=Object.keys(ideas);
   return `<div class="cont"><h2>Ideas para tu fiesta</h2><div class="pie-tabs" role="tablist">${tabs.map((t,i)=>`<button class="pie-tab" role="tab" aria-selected="${i===0}" data-tab="${t}">${t}</button>`).join('')}</div>
   ${tabs.map((t,i)=>`<div class="ideas" data-panel="${t}"${i?' hidden':''}>${ideas[t].map(x=>`<a href="${x[0]}">${x[1]}<span>${x[2]}</span></a>`).join('')}</div>`).join('')}
-  <div class="pie-cols"><div><h3>Para tu fiesta</h3><a href="#/organizamos">Organizamos tu fiesta</a><button data-asesoria>Asesoría gratis</button><a href="#/guias">Guías gratis</a><a href="#/guardados">Tus guardados</a></div><div><h3>Negocios</h3><a href="#/para-negocios">Publica tu negocio gratis</a><a href="#/panel">Mis negocios</a><button data-soporte>Ayuda para negocios</button></div><div><h3>Contacto</h3><button data-organiza>WhatsApp ${WA_EQUIPO_TXT}</button><a href="#/como-ordenamos">Cómo ordenamos</a></div><div><h3>Legal</h3><a href="#/">Aviso de privacidad</a><a href="#/">Términos</a><a href="#/equipo">Equipo (interno)</a></div></div>
+  <div class="pie-cols"><div><h3>Para tu fiesta</h3><a href="#/organizamos">Organizamos tu fiesta</a><button data-asesoria>Asesoría gratis</button><a href="#/guias">Guías gratis</a><a href="#/guardados">Tus guardados</a></div><div><h3>Negocios</h3><a href="#/para-negocios">Publica tu negocio gratis</a><a href="#/panel">Mis negocios</a><button data-soporte>Ayuda para negocios</button></div><div><h3>Contacto</h3><button data-organiza>WhatsApp ${WA_EQUIPO_TXT}</button><a href="#/como-ordenamos">Cómo ordenamos</a></div><div><h3>Legal</h3><a href="#/aviso-de-privacidad">Aviso de privacidad</a><a href="#/terminos">Términos</a><a href="#/equipo">Equipo (interno)</a></div></div>
   <div class="pie-legal"><span class="logo" style="font-size:16px;min-height:0">${picado(22,'#F7F6F3')}Mil y Una Fiestas</span><span>Todos los salones y servicios de Morelia. Sin comisiones.</span></div></div>`;
 }
 
