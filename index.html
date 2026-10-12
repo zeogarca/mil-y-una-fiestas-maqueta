@@ -783,7 +783,7 @@ const catNombre=c=>(CATS.find(x=>x[0]===c)||['','Servicio'])[1];
 /* ===================================================================
    ESTADO
    =================================================================== */
-let busq={inv:null,presup:0,zona:''};
+let busq={inv:null,presup:0,zona:'',q:''};
 const filt={};function limpiarFiltros(){AMEN.forEach(a=>filt[a[0]]=0);filt.ver=0;filt.tipo='';filt.turno='';filt.hasta=0;filt.publico=''}limpiarFiltros();
 let filtS={};const fS=cat=>filtS[cat]||(filtS[cat]={});
 let orden='recomendados',conMapa=false;
@@ -806,8 +806,14 @@ function publico(m){const sal=m.clase!=='servicio',xy=ZONA_XY[m.z]||[50,50],j=ha
   return {id:m.id,k:j%7,n:m.n||'Sin nombre',tipo:m.tipo||'Salón techado',z:sal?(m.z||'Centro'):(m.z||'Toda Morelia'),min:+m.min||0,max:+m.max||0,p:m.pTipo==='cotizar'?null:(+m.p||null),pHasta:+m.pHasta||null,pTipo:m.pTipo,u:m.u||'',a:m.a||{},at:m.at||{},hasta:m.hasta,publico:m.publico||'todos',turno:m.turno||[],ver:m.verFecha||null,ad:false,
     x:Math.max(6,Math.min(94,xy[0]+(j%9-4))),y:Math.max(6,Math.min(94,xy[1]+((j>>3)%9-4))),ev:m.ev||[],est:+m.est||0,fotos:(m.fotos||[]).map(imgSegura).filter(Boolean),nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha,cliente:true,prov:!sal,cat:sal?'salones':m.cat,wa:m.wa,propio:true}}
 const publicados=()=>mis.filter(m=>m.estado==='publicado').map(publico);
-function todos(){return EJ.concat(publicados().filter(s=>!s.prov))}
-function provDe(cat){return PROV.filter(p=>p.cat===cat).concat(publicados().filter(s=>s.prov&&s.cat===cat))}
+const reemplazado=id=>mis.some(m=>m.id===id);
+function todos(){return EJ.filter(s=>!reemplazado(s.id)).concat(publicados().filter(s=>!s.prov))}
+function provDe(cat){return PROV.filter(p=>p.cat===cat&&!reemplazado(p.id)).concat(publicados().filter(s=>s.prov&&s.cat===cat))}
+// Convierte un negocio de ejemplo en una ficha editable (la primera vez que el equipo lo ajusta)
+function desdeEjemplo(s){const m=nuevoNegocio(s.prov?'servicio':'salon','equipo');
+  Object.assign(m,{id:s.id,cat:s.prov?s.cat:'salones',n:s.n,tipo:s.tipo||'',z:s.z,min:s.min||'',max:s.max||'',pTipo:s.pTipo,p:s.p||'',pHasta:s.pHasta||'',u:s.u||'',a:Object.assign({},s.a),at:JSON.parse(JSON.stringify(s.at||{})),hasta:s.hasta??null,publico:s.publico||'todos',turno:(s.turno||[]).slice(),ev:(s.ev||[]).slice(),est:s.est||'',desc:s.desc||'',inc:(s.inc||[]).slice(),horario:s.horario||'',estado:'publicado',verFecha:s.ver||null,desdeEjemplo:true,
+    aprob:{nombre:'[Ejemplo] Dueño',wa:'4430000000',medio:'WhatsApp',fecha:new Date().toISOString().slice(0,10),ok:true,nota:'Ficha de ejemplo de la maqueta'}});
+  return m}
 const porId=id=>{const m=mis.find(x=>x.id===id);if(m)return publico(m);return EJ.find(s=>s.id===id)||PROV.find(s=>s.id===id)};
 
 /* ===================================================================
@@ -941,6 +947,7 @@ const guiaCard=g=>`<button type="button" class="guia" data-guia="${g[0]}" style=
    Con planes: destacados (rotan) → verificados → resto.
    =================================================================== */
 function cumple(s,ignorar){
+  if(busq.q&&!sinAcentos(s.n).includes(sinAcentos(busq.q)))return false;
   if(busq.inv&&s.max<busq.inv)return false;
   if(busq.presup&&ignorar!=='presup'&&(!s.p||s.p>busq.presup))return false;
   if(busq.zona&&s.z!==busq.zona)return false;
@@ -954,6 +961,7 @@ function cumple(s,ignorar){
 }
 // Servicios: cada categoría filtra con sus propios campos (CAMPOS)
 function cumpleServ(s,cat){const f=fS(cat);
+  if(f.q&&!sinAcentos(s.n).includes(sinAcentos(f.q)))return false;
   if(f.z&&s.z!=='Toda Morelia'&&s.z!==f.z)return false;
   for(const c of (CAMPOS[cat]||[])){const v=f[c.k];if(v==null||v===''||(Array.isArray(v)&&!v.length))continue;const a=(s.at||{})[c.k];
     if(c.tipo==='uno'&&a!==v)return false;
@@ -974,12 +982,13 @@ function ordenar(l){
   return ads.concat(l.filter(s=>!s.ad&&verificado(s)).sort(rel),l.filter(s=>!s.ad&&!verificado(s)).sort(rel));
 }
 const nFiltros=()=>AMEN.filter(a=>filt[a[0]]).length+(filt.ver?1:0)+(filt.tipo?1:0)+(filt.turno?1:0)+(filt.hasta?1:0)+(filt.publico?1:0)+(orden!=='recomendados'?1:0);
-const nActivos=()=>nFiltros()+(busq.inv?1:0)+(busq.presup?1:0)+(busq.zona?1:0);
+const nActivos=()=>nFiltros()+(busq.q?1:0)+(busq.inv?1:0)+(busq.presup?1:0)+(busq.zona?1:0);
 
 /* ===================================================================
    RUTAS
    =================================================================== */
 function ruta(){const h=location.hash.replace(/^#/,'')||'/';const [p,qs]=h.split('?');const q={};(qs||'').split('&').forEach(kv=>{if(kv){const [k,v]=kv.split('=');try{q[k]=decodeURIComponent(v||'')}catch(e){q[k]=''}}});return {q,a:p.split('/').filter(Boolean)}}
+const posiciones={};let hashPrevio=location.hash;
 function render(){
   cerrarCapa();
   const r=ruta(),a=r.a;let html,act='salones',pie=true,barra=false;
@@ -1008,6 +1017,7 @@ function render(){
   $('#pie').innerHTML=pie?vPie():'';$('#pie').hidden=!pie;
   window.scrollTo(0,0);
   montar(r);
+  const pv=posiciones[location.hash];if(pv&&/^#\/($|salones|servicios|guardados|guias)/.test(location.hash||'#/'))requestAnimationFrame(()=>window.scrollTo(0,pv));
   const cs=$('.cats');if(cs){cs.scrollLeft=catsX;const c=$('[aria-current]',cs);if(c){const ca=cs.getBoundingClientRect(),aa=c.getBoundingClientRect();if(aa.left<ca.left||aa.right>ca.right)cs.scrollLeft+=aa.left-ca.left-16}}
 }
 function aplicarQuery(q){if(q.inv)busq.inv=Math.min(2000,+q.inv||0)||null;if(q.presup)busq.presup=+q.presup||0;if(q.zona&&ZONAS.some(z=>z[0]===q.zona))busq.zona=q.zona;if(q.tipo&&TIPOS.includes(q.tipo))filt.tipo=q.tipo;AMEN.forEach(a=>{if(q[a[0]])filt[a[0]]=1})}
@@ -1031,7 +1041,7 @@ function vNav(act){
 function vCats(actual){return `<nav class="cats" aria-label="Qué buscas">${CATS.map(c=>`<a class="cat" href="${c[0]==='salones'?'#/':'#/servicios/'+c[0]}"${actual===c[0]?' aria-current="page"':''}><span class="pt" style="--c:var(${c[3]})">${ic(c[2])}</span>${c[1]}</a>`).join('')}</nav>`}
 function vBarra(actual){
   const esSalon=actual==='salones';
-  const res=[busq.inv?busq.inv+' invitados':'',busq.presup?presTxt():'',busq.zona||''].filter(Boolean);
+  const res=[busq.q?'«'+busq.q+'»':'',busq.inv?busq.inv+' invitados':'',busq.presup?presTxt():'',busq.zona||''].filter(Boolean);
   return `<div class="barra" id="barra"><div class="cont">
     ${esSalon?`<div class="barra-top">
       <button class="pildora-m" data-hoja-busca>${ic('i-buscar')}<span class="t"><b>${res.length?res.join(' · '):'Busca tu salón'}</b><span>${res.length?'Toca para cambiar':'Invitados, precio y zona · todo opcional'}</span></span></button>
@@ -1046,7 +1056,7 @@ function vBarra(actual){
     ${vCats(actual)}</div></div>`;
 }
 function vBarraServ(cat){const n=nFiltS(cat),f=fS(cat),nom=catNombre(cat).toLowerCase();
-  const res=[f.z?'Zona '+f.z:''].concat((CAMPOS[cat]||[]).map(c=>{const v=f[c.k];return Array.isArray(v)?v.join(', '):v!=null&&v!==''?opTxt(c,v):''})).filter(Boolean);
+  const res=[f.q?'«'+f.q+'»':'',f.z?'Zona '+f.z:''].concat((CAMPOS[cat]||[]).map(c=>{const v=f[c.k];return Array.isArray(v)?v.join(', '):v!=null&&v!==''?opTxt(c,v):''})).filter(Boolean);
   return `<div class="barra-top">
       <button class="pildora-m pildora-s" data-filtros-serv="${cat}">${ic('i-buscar')}<span class="t"><b>${res.length?esc(res.join(' · ')):'Busca '+nom}</b><span>${res.length?'Toca para cambiar':'Zona, precio y lo que necesitas · todo opcional'}</span></span></button>
       <button class="btn-filtros" data-filtros-serv="${cat}" aria-label="Filtros de ${nom}${n?' ('+n+' activos)':''}">${ic('i-filtros','i-l')}${n?`<span class="cnt-g">${n}</span>`:''}</button></div>`}
@@ -1124,10 +1134,10 @@ function refrescarServ(cat){const b=$('#barra');if(!b)return;const y=scrollY;b.o
 function hojaFiltrosServ(cat){
   const c=CATS.find(x=>x[0]===cat),f=fS(cat);
   const grupo=x=>`<section class="grupo"><h4>${x.t}</h4><div class="fila-chips" style="margin-top:12px">${(x.tipo==='varios'?[]:[['','Cualquiera']]).concat(x.op.map(o=>[o,opTxt(x,o)])).map(o=>{const on=x.tipo==='varios'?(f[x.k]||[]).includes(o[0]):(f[x.k]??'')===o[0];return `<button type="button" class="chip" data-fs="${x.k}" data-v="${esc(String(o[0]))}" aria-pressed="${on}">${esc(o[1])}</button>`}).join('')}</div>${x.tipo==='varios'?'<p class="nota" style="margin-top:8px">Marca todo lo que necesites.</p>':''}</section>`;
-  const cuerpo=()=>`<section class="grupo"><h4>¿Dónde es tu fiesta?</h4><p class="nota">Te mostramos quien atiende en esa zona o en toda Morelia.</p><div class="fila-chips" style="margin-top:4px">${[['','Toda Morelia']].concat(ZONAS.map(z=>[z[0],z[0]])).map(z=>`<button type="button" class="chip" data-fs-z="${z[0]}" aria-pressed="${(f.z||'')===z[0]}">${z[1]}</button>`).join('')}</div></section>${(CAMPOS[cat]||[]).map(grupo).join('')}`;
+  const cuerpo=()=>`<section class="grupo"><h4>¿Ya sabes cuál buscas?</h4><input class="input" type="search" id="fs-n" maxlength="60" placeholder="Nombre del negocio" value="${esc(f.q||'')}" aria-label="Buscar por nombre" style="margin-top:8px"></section><section class="grupo"><h4>¿Dónde es tu fiesta?</h4><p class="nota">Te mostramos quien atiende en esa zona o en toda Morelia.</p><div class="fila-chips" style="margin-top:4px">${[['','Toda Morelia']].concat(ZONAS.map(z=>[z[0],z[0]])).map(z=>`<button type="button" class="chip" data-fs-z="${z[0]}" aria-pressed="${(f.z||'')===z[0]}">${z[1]}</button>`).join('')}</div></section>${(CAMPOS[cat]||[]).map(grupo).join('')}`;
   abrirCapa(cab('Busca '+c[1].toLowerCase())+`<div class="hoja-cuerpo" data-c>${cuerpo()}</div><div class="hoja-pie"><button class="btn btn-texto" data-quitar>Quitar todo</button><button class="btn btn-pri" data-ver></button></div>`,'Filtros de '+c[1]);
   const box=$('#capa [data-c]');const cuenta=()=>{$('#capa [data-ver]').textContent='Ver '+provDe(cat).filter(s=>cumpleServ(s,cat)).length+' resultados'};
-  const m=()=>{$$('[data-fs-z]',box).forEach(b=>b.onclick=()=>{f.z=b.dataset.fsZ;re()});
+  const m=()=>{const i=$('#fs-n',box);if(i)i.oninput=()=>{f.q=i.value.trim().slice(0,60);cuenta()};$$('[data-fs-z]',box).forEach(b=>b.onclick=()=>{f.z=b.dataset.fsZ;re()});
     $$('[data-fs]',box).forEach(b=>b.onclick=()=>{const x=CAMPOS[cat].find(y=>y.k===b.dataset.fs),v=b.dataset.v===''?'':(x.tipo==='min'||x.tipo==='max'?+b.dataset.v:b.dataset.v);
       if(x.tipo==='varios'){const a=f[x.k]||[];f[x.k]=a.includes(v)?a.filter(y=>y!==v):a.concat(v)}else f[x.k]=v;re()})};
   const re=()=>{const y=box.scrollTop;box.innerHTML=cuerpo();box.scrollTop=y;m();cuenta()};
@@ -1164,6 +1174,7 @@ const botonFiesta=()=>{const r=resumenFiesta();return `<button class="mi-fiesta"
 function vFicha(id){
   const s=porId(id);if(!s)return `<div class="cont pagina"><div class="pag-cab"><h1>Esta ficha ya no está publicada.</h1><p><a class="lnk" href="#/">Ver todos los salones</a></p></div></div>`;
   const v=lanz()?null:verificado(s),sl=slidesHTML(s,20),total=sl.n;
+  const mm=mis.find(x=>x.id===s.id),oculto=mm&&mm.estado!=='publicado';
   const fav=`data-fav="${s.id}" aria-pressed="${!!guard[s.id]}"`;
   const nMos=s.propio?Math.min(5,s.fotos.length):5,clsMos=nMos>=5?'':nMos===4||nMos===3?' m3':nMos===2?' m2':' m1';
   const fotoG=i=>{const src=imgSegura(s.fotos[i]);return `<button class="g" data-galeria="${s.id}" data-i="${i}" aria-label="Ver foto ${i+1} en grande">${src?`<img src="${src}" alt="" decoding="async">`:ilus(s,i)}</button>`};
@@ -1180,6 +1191,7 @@ function vFicha(id){
     <div class="ficha-galeria"><div class="foto" data-abrir-galeria="${s.id}" role="button" tabindex="0" aria-label="Ver fotos en grande"><div class="slides" data-slides data-sid="${s.id}">${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
       <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir="${s.id}" aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
     <div class="cont">
+      ${oculto?`<div class="aviso-caja" style="margin-top:16px">${ic('i-info')}<span><b>Vista previa:</b> esta ficha está ${mm.estado==='pausado'?'pausada':'en borrador'} y las familias no la ven.</span></div>`:''}
       <div class="ficha-top-d"><a class="btn btn-sec" href="${s.prov?'#/servicios/'+s.cat:'#/'}" style="min-height:44px">${ic('i-izq')}${s.prov?cat:'Salones'}</a><div style="display:flex;gap:4px"><button class="btn btn-texto" data-compartir="${s.id}" style="min-height:44px">${ic('i-compartir')}Compartir</button><button class="btn btn-texto" ${fav} data-fav-txt style="min-height:44px">${ic('i-corazon')}${guard[s.id]?'Guardado':'Guardar'}</button></div></div>
       <div class="mosaico${clsMos}">${[...Array(Math.max(1,nMos)).keys()].map(fotoG).join('')}<button class="btn ver-todas" data-galeria="${s.id}" data-i="0">${ic('i-foto')}Ver ${total>1?'las '+total+' fotos':'la foto'}</button></div>
       <div class="ficha-grid"><div>
@@ -1361,7 +1373,7 @@ function validarPaso(m,paso,ctx){const e={},sal=m.clase!=='servicio';
   if(paso==='negocio'){if(!m.n.trim())e.n='Escribe el nombre del negocio';if(sal&&!m.tipo)e.tipo='Elige el tipo de lugar';if(!m.z)e.z='Elige la zona';if(!waValido(m.wa))e.wa='Escribe el WhatsApp a 10 dígitos'}
   if(paso==='precio'){if(sal){if(!(+m.max>0))e.max='¿Cuántas personas caben como máximo?';if(+m.min&&+m.max&&+m.min>+m.max)e.min='El mínimo no puede ser mayor que el máximo'}
     if(m.pTipo!=='cotizar'&&!(+m.p>0))e.p='Escribe el precio o elige «Prefiero cotizar»';if(m.pTipo==='rango'&&!(+m.pHasta>+m.p))e.pHasta='Debe ser mayor que el precio inicial'}
-  if(paso==='fotos'){if(m.fotos.length<1)e.fotos='Sube al menos una foto';if(ctx==='dueño'&&!m.ok)e.ok='Necesitamos esta confirmación para publicar'}
+  if(paso==='fotos'){if(m.fotos.length<1&&!m.desdeEjemplo)e.fotos='Sube al menos una foto';if(ctx==='dueño'&&!m.ok)e.ok='Necesitamos esta confirmación para publicar'}
   if(paso==='aprob'){const a=m.aprob||{};if(!(a.nombre||'').trim())e.ap_nombre='¿Quién es el dueño?';if(!waValido(a.wa))e.ap_wa='WhatsApp del dueño a 10 dígitos';if(!a.medio)e.ap_medio='¿Cómo lo aprobó?';if(!a.fecha)e.ap_fecha='¿Cuándo?';if(!a.ok)e.ap_ok='Sin aprobación del dueño no se publica'}
   return e}
 function vWizard(ctx,id,paso){
@@ -1425,7 +1437,7 @@ function vWizard(ctx,id,paso){
    PANEL DEL EQUIPO: fichas (socio y administrador), prospectos y ajustes (solo administrador)
    En la maqueta el acceso es de muestra. En la real: Supabase Auth + permisos por rol en la base de datos.
    =================================================================== */
-const ROLES={admin:{n:'Administrador',puede:['fichas','prospectos','ajustes'],borrar:true,verificar:true},socio:{n:'Socio · fichas',puede:['fichas'],borrar:false,verificar:false}};
+const ROLES={admin:{n:'Administrador',puede:['fichas','prospectos','ajustes'],borrar:true,verificar:true},socio:{n:'Equipo de fichas',puede:['fichas'],borrar:false,verificar:false}};
 const puede=t=>sesion&&ROLES[sesion.rol].puede.includes(t);
 function bitacora(accion,m){const b=ls.get('myuf-bitacora',[]);b.unshift({f:new Date().toISOString(),quien:sesion?sesion.nombre:'Dueño',accion,neg:m?m.n||'Sin nombre':''});ls.set('myuf-bitacora',b.slice(0,200))}
 const cuando=f=>new Date(f).toLocaleString('es-MX',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
@@ -1436,7 +1448,7 @@ function vLogin(){
     <form class="form" id="f-login" novalidate>
       <div class="campo"><label for="lg-wa">Tu WhatsApp</label><input class="input" id="lg-wa" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="10 dígitos"></div>
       <div class="campo" id="lg-paso2" hidden><label for="lg-cod">Código</label><input class="input" id="lg-cod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 dígitos"><span class="ayuda">Maqueta: escribe cualquier número de 6 dígitos.</span></div>
-      <div class="campo" id="lg-rol" hidden><span class="lbl">Entrar como (solo maqueta)</span><div class="opciones"><button type="button" class="op" data-rol="admin" aria-pressed="true"><span>Leo · Administrador<small>Todo: fichas, prospectos, ajustes y borrar</small></span></button><button type="button" class="op" data-rol="socio" aria-pressed="false"><span>Socio · Fichas<small>Sube y edita fichas de negocios aprobados</small></span></button></div></div>
+      <div class="campo" id="lg-rol" hidden><span class="lbl">Entrar como (solo maqueta)</span><div class="opciones"><button type="button" class="op" data-rol="admin" aria-pressed="true"><span>Leo · Administrador<small>Todo: fichas, prospectos, ajustes y borrar</small></span></button><button type="button" class="op" data-rol="socio" aria-pressed="false"><span>Alex · Equipo de fichas<small>Sube negocios y ajusta los datos de cualquier ficha</small></span></button></div></div>
       <button class="btn btn-pri btn-bloque" type="submit" id="lg-btn">Mandar código</button></form>
     <div class="aviso-caja">${ic('i-info')}<span><b>Esto es una maqueta:</b> aquí no hay seguridad real. En la página real el código llega de verdad, la sesión caduca y la base de datos solo deja a cada rol ver y cambiar lo suyo.</span></div></div></div>`;
 }
@@ -1446,7 +1458,11 @@ function vEquipo(t){
   const tabs=[['fichas','Fichas'],['prospectos','Prospectos'],['ajustes','Ajustes']].filter(x=>puede(x[0]));
   let cuerpo='';
   if(t==='fichas'){
-    const q=(sesionBusca||'').toLowerCase(),l=mis.filter(m=>(!q||(m.n||'').toLowerCase().includes(q))&&(!sesionEstado||m.estado===sesionEstado));
+    const q=sinAcentos(sesionBusca||''),okTipo=m=>!sesionTipo||(sesionTipo==='salones'?m.clase!=='servicio':m.clase==='servicio');
+    const l=mis.filter(m=>(!q||sinAcentos(m.n||'').includes(q))&&(!sesionEstado||m.estado===sesionEstado)&&okTipo(m));
+    const ej=sesionEstado&&sesionEstado!=='publicado'?[]:EJ.concat(PROV).filter(s=>!reemplazado(s.id)&&(!q||sinAcentos(s.n).includes(q))&&(!sesionTipo||(sesionTipo==='salones')===!s.prov));
+    const filaEj=s=>`<article class="neg"><div class="mini">${ilus(s,0)}</div><div class="neg-info"><div class="quien"><b class="neg-n">${esc(s.n)}</b><span class="pill ok">Publicado</span><span class="pill pau">Ejemplo</span></div><span class="nota">${s.prov?catNombre(s.cat):esc(s.tipo)} · ${esc(s.z)} · ${precioFicha(s)}</span></div>
+        <div class="acc"><button class="btn btn-sec" data-tomar="${s.id}">${ic('i-lapiz')}Ajustar datos</button><a class="btn btn-sec" href="#/${s.prov?'proveedor':'salon'}/${s.id}">${ic('i-ojo')}Ver</a></div></article>`;
     const k=e=>mis.filter(m=>m.estado===e).length;
     const fila=m=>{const s=publico(m),a=m.aprob;
       return `<article class="neg">${miniFoto(m)}<div class="neg-info"><div class="quien"><b class="neg-n">${esc(m.n||'Sin nombre')}</b>${pillEstado(m.estado)}<span class="pill ${m.origen==='equipo'?'eq':'du'}">${m.origen==='equipo'?'Equipo':'Dueño'}</span>${m.verFecha?'<span class="pill ok">Verificado</span>':''}</div>
@@ -1456,15 +1472,16 @@ function vEquipo(t){
           ${m.estado==='publicado'?`<a class="btn btn-sec" href="#/${s.prov?'proveedor':'salon'}/${m.id}">${ic('i-ojo')}Ver</a><button class="btn btn-texto" data-pausar="${m.id}">Pausar</button>`:m.estado==='pausado'?`<button class="btn btn-texto" data-pausar="${m.id}">Publicar</button>`:''}
           ${r.verificar&&m.estado==='publicado'&&!m.verFecha?`<button class="btn btn-texto" data-verificar="${m.id}">Registrar verificación</button>`:''}
           ${r.borrar?`<button class="btn btn-texto" data-eliminar="${m.id}" style="color:var(--error)">Eliminar</button>`:''}</div></article>`};
-    cuerpo=`<div class="kpis" style="margin-top:20px"><div class="kpi"><b>${k('publicado')}</b><span>publicadas</span></div><div class="kpi"><b>${k('borrador')}</b><span>borradores</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='equipo').length}</b><span>subidas por el equipo</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='dueño').length}</b><span>subidas por dueños</span></div></div>
-    <div class="herr"><a class="btn btn-pri" href="#/equipo/nueva">${ic('i-mas')}Subir negocio aprobado</a><input class="input" type="search" id="eq-busca" placeholder="Buscar por nombre" value="${esc(sesionBusca)}" aria-label="Buscar fichas" style="max-width:320px;min-height:48px">
-      <div class="fila-chips">${[['','Todas'],['publicado','Publicadas'],['borrador','Borradores'],['pausado','Pausadas']].map(x=>`<button type="button" class="chip" data-eq-estado="${x[0]}" aria-pressed="${sesionEstado===x[0]}">${x[1]}</button>`).join('')}</div></div>
-    <div class="neg-lista" style="margin-top:16px">${l.length?l.map(fila).join(''):`<div class="vacio"><h3>${mis.length?'Nada coincide':'Todavía no hay fichas'}</h3><p>Sube el primer negocio que ya te dio su aprobación.</p></div>`}</div>
-    <p class="nota" style="margin-top:12px">Además hay ${EJ.length+PROV.length} negocios de ejemplo que no se editan.</p>`}
+    cuerpo=`<div class="kpis" style="margin-top:20px"><div class="kpi"><b>${todos().length+CATS.slice(1).reduce((n,c)=>n+provDe(c[0]).length,0)}</b><span>negocios en la página</span></div><div class="kpi"><b>${k('publicado')}</b><span>fichas propias publicadas</span></div><div class="kpi"><b>${k('borrador')}</b><span>borradores</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='equipo').length}</b><span>subidas por el equipo</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='dueño').length}</b><span>subidas por dueños</span></div></div>
+    <div class="herr"><a class="btn btn-pri" href="#/equipo/nueva">${ic('i-mas')}Subir negocio</a><input class="input" type="search" id="eq-busca" placeholder="Buscar por nombre" value="${esc(sesionBusca)}" aria-label="Buscar fichas" style="max-width:320px;min-height:48px">
+      <div class="fila-chips">${[['','Todo'],['salones','Salones'],['servicios','Servicios']].map(x=>`<button type="button" class="chip" data-eq-tipo="${x[0]}" aria-pressed="${sesionTipo===x[0]}">${x[1]}</button>`).join('')}</div><div class="fila-chips">${[['','Todas'],['publicado','Publicadas'],['borrador','Borradores'],['pausado','Pausadas']].map(x=>`<button type="button" class="chip" data-eq-estado="${x[0]}" aria-pressed="${sesionEstado===x[0]}">${x[1]}</button>`).join('')}</div></div>
+    <div class="neg-lista" style="margin-top:16px">${l.length||ej.length?l.map(fila).join('')+ej.slice(0,sesionVerTodos?1e4:12).map(filaEj).join(''):`<div class="vacio"><h3>Nada coincide</h3><p>Prueba con otro nombre o sube el negocio.</p></div>`}</div>
+    ${ej.length>12&&!sesionVerTodos?`<button class="btn btn-sec" data-ver-todos style="margin-top:12px">Ver los ${ej.length} negocios de ejemplo</button>`:''}
+    <p class="nota" style="margin-top:12px">Los negocios de ejemplo se pueden ajustar: al guardar, tu versión reemplaza a la de ejemplo en toda la página.</p>`}
   if(t==='prospectos'){
     const sem=clics.filter(c=>(Date.now()-new Date(c.f))/864e5<=7),porF={};sem.forEach(c=>porF[c.fuente]=(porF[c.fuente]||0)+1);
     const top=Object.entries(porF).sort((a,b)=>b[1]-a[1]),max=top.length?top[0][1]:1;
-    const EJ_P=[{id:'e1',fecha:'2026-10-11T10:12:00',tipo:'familia',nombre:'[Ejemplo] Familia A',wa:'4430000001',quiere:'Organizar su fiesta',fiesta:'XV años · 20 de marzo · 150 invitados',estado:'Nuevo',ejemplo:true},{id:'e2',fecha:'2026-10-10T18:40:00',tipo:'familia',nombre:'[Ejemplo] Familia B',wa:'4430000002',quiere:'Ayuda para elegir',fiesta:'Primera comunión · 80 invitados · Sur',estado:'Contactado',ejemplo:true},{id:'e3',fecha:'2026-10-10T12:05:00',tipo:'negocio',nombre:'[Ejemplo] Salón C',wa:'4430000003',quiere:'Que le suban su negocio',fiesta:'',estado:'Propuesta enviada',ejemplo:true}];
+    const EJ_P=[{id:'e1',fecha:'2026-10-11T10:12:00',tipo:'familia',nombre:'[Ejemplo] Familia A',wa:'4430000001',quiere:'Organizar su fiesta',fiesta:'XV años · 20 de marzo · 150 invitados',estado:'Nuevo',ejemplo:true},{id:'e2',fecha:'2026-10-10T18:40:00',tipo:'familia',nombre:'[Ejemplo] Familia B',wa:'4430000002',quiere:'Ayuda para elegir',fiesta:'Primera comunión · 80 invitados · Sur',estado:'Contactado',ejemplo:true},{id:'e3',fecha:'2026-10-10T12:05:00',tipo:'negocio',nombre:'[Ejemplo] Salón C',wa:'4430000003',quiere:'Publicar su negocio',fiesta:'',estado:'Propuesta enviada',ejemplo:true}];
     const ESTADOS=['Nuevo','Contactado','Propuesta enviada','Cliente','No interesado'];
     const lista=prospectos.concat(EJ_P);
     cuerpo=`<p class="nota" style="margin-top:16px;font-size:15px">Las familias y los negocios te escriben directo al WhatsApp ${WA_EQUIPO_TXT}. Registra aquí a cada uno para darle seguimiento y no perder a nadie.</p>
@@ -1485,7 +1502,7 @@ function vEquipo(t){
         <button type="button" class="op" data-modo="lanzamiento" aria-pressed="${lanz()}"><span>Lanzamiento<small>Todo gratis. Sin etiquetas de Verificado ni Destacado. Orden por lo que mejor le queda a la familia.</small></span>${lanz()?ic('i-check'):''}</button>
         <button type="button" class="op" data-modo="planes" aria-pressed="${!lanz()}"><span>Con verificados y destacados<small>Se ven las etiquetas, la fila de Destacados y el orden pagado (siempre marcado).</small></span>${!lanz()?ic('i-check'):''}</button></div></div>
       <div class="caja borde"><h3>Equipo y permisos</h3>
-        <div class="pendientes"><div>${ic('i-usuario')}<span><b>Leo</b> · Administrador · todo</span></div><div>${ic('i-usuario')}<span><b>Socio</b> · Fichas · sube y edita; no borra ni ve prospectos</span></div></div>
+        <div class="pendientes"><div>${ic('i-usuario')}<span><b>Leo</b> · Administrador · todo</span></div><div>${ic('i-usuario')}<span><b>Alex</b> · Equipo de fichas · sube y ajusta negocios; no borra ni ve prospectos</span></div></div>
         <button class="btn btn-sec" data-invitar style="align-self:flex-start">${ic('i-mas')}Invitar a alguien</button>
         <p class="nota">WhatsApp del equipo: ${WA_EQUIPO_TXT}.</p></div></div>
     <section class="seccion" style="margin-top:28px"><h2 class="titulo-sec" style="font-size:22px">Registro de cambios</h2><p class="nota">Quién hizo qué y cuándo. En la real no se puede borrar.</p>
@@ -1494,7 +1511,8 @@ function vEquipo(t){
     <div class="quien" style="margin-top:12px"><span class="pill eq">${ic('i-candado','i-s')}${r.n}</span><button class="btn btn-texto" data-salir style="min-height:40px">${ic('i-salir')}Salir</button></div></div>
   <div class="tabs" role="tablist">${tabs.map(x=>`<a class="tab" role="tab" aria-selected="${t===x[0]}" href="#/equipo?t=${x[0]}">${x[1]}</a>`).join('')}</div>${cuerpo}</div>`;
 }
-let sesionBusca='',sesionEstado='';
+let sesionBusca='',sesionEstado='',sesionTipo='',sesionVerTodos=false;
+const sinAcentos=t=>String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 
 /* ===================================================================
    CAPAS (hojas)
@@ -1524,12 +1542,13 @@ function popDesk(seg){
   montarCtl(d,re);$('[data-borrar]',d).onclick=()=>{if(seg==='inv')busq.inv=null;if(seg==='presup')busq.presup=0;if(seg==='zona')busq.zona='';re()};
 }
 function hojaBusca(){
-  const cuerpo=()=>Object.keys(CTL).map(k=>`<section class="grupo"><h4>${CTL[k][0]}</h4><p class="nota">${CTL[k][1]}</p>${CTL[k][2]()}</section>`).join('');
+  const cuerpo=()=>`<section class="grupo"><h4>¿Ya sabes cuál buscas?</h4><input class="input" type="search" id="bq-n" maxlength="60" placeholder="Nombre del salón" value="${esc(busq.q)}" aria-label="Buscar salón por nombre" style="margin-top:8px"></section>`+Object.keys(CTL).map(k=>`<section class="grupo"><h4>${CTL[k][0]}</h4><p class="nota">${CTL[k][1]}</p>${CTL[k][2]()}</section>`).join('');
   abrirCapa(cab('Busca tu salón')+`<div class="hoja-cuerpo" data-c>${cuerpo()}</div><div class="hoja-pie"><button class="btn btn-texto" data-borrar>Borrar todo</button><button class="btn btn-pri" data-ver></button></div>`,'Busca tu salón');
   const c=$('#capa [data-c]');const cuenta=()=>{$('#capa [data-ver]').innerHTML=ic('i-buscar')+'Ver '+todos().filter(s=>cumple(s)).length+' salones'};
-  const re=()=>{const y=c.scrollTop;c.innerHTML=cuerpo();c.scrollTop=y;montarCtl(c,re);cuenta()};
-  montarCtl(c,re);cuenta();
-  $('#capa [data-borrar]').onclick=()=>{busq={inv:null,presup:0,zona:''};re()};
+  const nom=()=>{const i=$('#bq-n',c);if(i)i.oninput=()=>{busq.q=i.value.trim().slice(0,60);cuenta()}};
+  const re=()=>{const y=c.scrollTop;c.innerHTML=cuerpo();c.scrollTop=y;montarCtl(c,re);nom();cuenta()};
+  montarCtl(c,re);nom();cuenta();
+  $('#capa [data-borrar]').onclick=()=>{busq={inv:null,presup:0,zona:'',q:''};re()};
   $('#capa [data-ver]').onclick=()=>{cerrarCapa();irFeed()};
 }
 function hojaFiltros(){
@@ -1575,7 +1594,7 @@ function hojaMenu(){
     <div style="display:grid;gap:10px"><button class="btn btn-rosa btn-bloque" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button>
     <button class="btn btn-sec btn-bloque" data-asesoria>${ic('i-chispa')}Asesoría gratis</button></div>
     <nav class="menu-lista">
-    <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Planes de organización</a><a href="#/guias" data-cerrar-al-ir>${ic('i-chat','i-l')}Guías gratis</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados</a></nav>
+    <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Planes de organización</a><a href="#/guias" data-cerrar-al-ir>${ic('i-chat','i-l')}Guías gratis</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados${Object.keys(guard).length?' ('+Object.keys(guard).length+')':''}</a></nav>
     <a class="btn btn-sec btn-bloque" href="${tiene?'#/panel':'#/para-negocios'}" data-cerrar-al-ir>${ic('i-tienda')}${tiene?'Mis negocios':'¿Tienes un negocio? Publícalo gratis'}</a></div>`,'Menú');
 }
 function mapaCompleto(){
@@ -1616,7 +1635,7 @@ function hojaConfirmar(titulo,texto,boton,fn){
   $('#capa [data-confirmar]').onclick=()=>{cerrarCapa();fn()};
 }
 function irFeed(){const a=ruta().a;if(a.length&&a[0]!=='salones'){location.hash='#/';return}refrescarBarra();const c=$('#feed-cab');if(c)window.scrollTo(0,Math.max(0,c.getBoundingClientRect().top+scrollY-200))}
-function limpiar(){busq={inv:null,presup:0,zona:''};limpiarFiltros();orden='recomendados';if(location.hash.includes('?'))location.hash='#/';else refrescarBarra()}
+function limpiar(){busq={inv:null,presup:0,zona:'',q:''};limpiarFiltros();orden='recomendados';if(location.hash.includes('?'))location.hash='#/';else refrescarBarra()}
 
 /* ===================================================================
    MONTAJE DE EVENTOS
@@ -1651,7 +1670,8 @@ function montarTarjetas(c){
   $$('[data-fav]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.fav;if(guard[id])delete guard[id];else guard[id]=1;ls.set('myuf-guardados',guard);
     $$(`[data-fav="${id}"]`).forEach(x=>{x.setAttribute('aria-pressed',!!guard[id]);if(x.hasAttribute('data-fav-txt'))x.innerHTML=ic('i-corazon')+(guard[id]?'Guardado':'Guardar')});actualizarGuardNav();
     const n=Object.keys(guard).length;
-    if(guard[id]&&n===3)toast('Ya tienes 3 guardados','Compáralos lado a lado o pídenos ayuda.',['Comparar',()=>{location.hash='#/guardados'}]);else toast(guard[id]?'Guardado':'Quitado de guardados')});
+    if(ruta().a[0]==='guardados'){render();toast(guard[id]?'Guardado':'Quitado de tus guardados');return}
+    if(guard[id])toast(n>=2?'Guardado · ya tienes '+n:'Guardado en tus favoritos',n>=2?'Compáralos lado a lado o compártelos con tu familia.':'Lo encuentras en el corazón de arriba.',[n>=2?'Comparar':'Ver',()=>{location.hash='#/guardados'}]);else toast('Quitado de tus guardados')});
   $$('.tarjeta',c).forEach(t=>{if(t.closest('.sin-click'))return;t.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.hash='#/'+t.dataset.ruta+'/'+t.dataset.id})});
   montarComunes(c);
 }
@@ -1695,10 +1715,13 @@ function montar(r){
     $$('[data-rol]').forEach(b=>b.onclick=()=>{rol=b.dataset.rol;$$('[data-rol]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
     fl.onsubmit=e=>{e.preventDefault();if(paso===1){if(!waValido($('#lg-wa').value)){toast('Escribe tu WhatsApp a 10 dígitos');$('#lg-wa').focus();return}paso=2;$('#lg-paso2').hidden=false;$('#lg-rol').hidden=false;$('#lg-btn').textContent='Entrar';$('#lg-cod').focus();toast('Código enviado (maqueta)');return}
       if(!/^\d{6}$/.test($('#lg-cod').value)){toast('El código tiene 6 dígitos');$('#lg-cod').focus();return}
-      sesion={rol,nombre:rol==='admin'?'Leo':'Socio',desde:new Date().toISOString()};ls.set('myuf-sesion-equipo',sesion);bitacora('Entró al panel');render()}}
+      sesion={rol,nombre:rol==='admin'?'Leo':'Alex',desde:new Date().toISOString()};ls.set('myuf-sesion-equipo',sesion);bitacora('Entró al panel');render()}}
   $$('[data-salir]').forEach(b=>b.onclick=()=>{bitacora('Salió del panel');sesion=null;try{localStorage.removeItem('myuf-sesion-equipo')}catch(e){}location.hash='#/'});
   const eb=$('#eq-busca');if(eb){eb.oninput=()=>{sesionBusca=eb.value.slice(0,60);const p=eb.selectionStart;render();const n=$('#eq-busca');n.focus();n.setSelectionRange(p,p)}}
   $$('[data-eq-estado]').forEach(b=>b.onclick=()=>{sesionEstado=b.dataset.eqEstado;render()});
+  $$('[data-eq-tipo]').forEach(b=>b.onclick=()=>{sesionTipo=b.dataset.eqTipo;render()});
+  $$('[data-ver-todos]').forEach(b=>b.onclick=()=>{sesionVerTodos=true;render()});
+  $$('[data-tomar]').forEach(b=>b.onclick=()=>{const s=porId(b.dataset.tomar);if(!s)return;const m=desdeEjemplo(s);mis.push(m);guardarMis();bitacora('Empezó a ajustar',m);location.hash=rutaWiz('equipo',m.id,'negocio')});
   $$('[data-verificar]').forEach(b=>b.onclick=()=>{const m=mis.find(x=>x.id===b.dataset.verificar);m.verFecha=HOY.toISOString().slice(0,10);guardarMis();bitacora('Registró verificación',m);render();toast('Verificación registrada',lanz()?'Se verá cuando actives el modo con verificados.':'')});
   $$('[data-eliminar]').forEach(b=>b.onclick=()=>{if(!sesion||!ROLES[sesion.rol].borrar)return;const m=mis.find(x=>x.id===b.dataset.eliminar);hojaConfirmar('Eliminar ficha','¿Eliminar «'+esc(m.n||'Sin nombre')+'»? Deja de aparecer en la página.','Eliminar',()=>{bitacora('Eliminó',m);mis=mis.filter(x=>x!==m);guardarMis();render()})});
   $$('[data-modo]').forEach(b=>b.onclick=()=>{MODO=b.dataset.modo;ls.set('myuf-modo',MODO);bitacora('Cambió el modo a «'+(lanz()?'Lanzamiento':'Con verificados y destacados')+'»');render();toast('Modo cambiado')});
@@ -1754,7 +1777,7 @@ function reducir(file,max,q){return new Promise((ok,mal)=>{const r=new FileReade
 
 document.addEventListener('click',e=>{if(!document.contains(e.target))return;if($('.pop')&&!e.target.closest('.pop')&&!e.target.closest('[data-seg]')){$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'))}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarCapa();else if(lbTeclas)lbTeclas(e)});
-window.addEventListener('hashchange',()=>{const r=ruta();if(r.a[0]==='equipo'&&r.a[1]==='ficha'&&!sesion){location.replace('#/equipo');return}render()});
+window.addEventListener('hashchange',()=>{posiciones[hashPrevio]=scrollY;hashPrevio=location.hash;const r=ruta();if(r.a[0]==='equipo'&&r.a[1]==='ficha'&&!sesion){location.replace('#/equipo');return}render()});
 let anchoPrevio=innerWidth;window.addEventListener('resize',()=>{if((anchoPrevio<1024)!==(innerWidth<1024)&&$('#mapa-lado'))pintarFeed();anchoPrevio=innerWidth});
 render();
 })();
