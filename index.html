@@ -114,7 +114,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .nav-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:var(--r-p);text-decoration:none;color:var(--texto-2);font-size:15px;font-weight:500}
 .nav-links a:hover{color:var(--texto);background:var(--bg-2)}
 .nav-links a[aria-current="page"]{color:var(--texto)}
-.nav-links .org{color:var(--rosa)}
+.nav-links .org{color:#fff;background:var(--rosa);font-weight:600;margin-left:6px}
+.nav-links .org:hover,.nav-links .org[aria-current="page"]{color:#fff;background:#B80069}
 .nav-der{display:flex;align-items:center;gap:2px;margin-left:auto}
 .nav-publica{display:none}
 .cnt-g{position:absolute;top:4px;right:2px;background:var(--rosa);color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
@@ -158,14 +159,28 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .cat .pt::after{content:"";position:absolute;top:-1px;right:-5px;width:8px;height:8px;border-radius:50%;background:var(--c)}
 
 /* ================= Inicio ================= */
-.ayuda{margin-top:16px;border-radius:var(--r-l);background:var(--rosa-2);color:var(--rosa-3);padding:18px;display:grid;gap:14px}
-@media (min-width:768px){.ayuda{grid-template-columns:1fr auto;align-items:center;padding:28px 32px;margin-top:24px}}
-.ayuda h2{font-size:21px;font-weight:700;letter-spacing:-.025em;line-height:1.15;max-width:520px}
-@media (min-width:768px){.ayuda h2{font-size:26px}}
-.ayuda p{font-size:14.5px;margin-top:4px;max-width:520px}
-.ayuda .btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.ayuda .btns .btn{flex:1 1 auto}
-.ayuda .lnk-org{color:var(--rosa-3);font-size:14.5px;font-weight:600;background:none;border:0;padding:0 6px;min-height:48px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+/* Los dos servicios que dejan dinero, al frente: organización (pago) y asesoría (capta el número) */
+.servicio{margin-top:16px;display:grid;gap:10px}
+@media (min-width:768px){.servicio{grid-template-columns:1.35fr 1fr;gap:16px;margin-top:24px}}
+.srv{border-radius:var(--r-l);padding:20px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+@media (min-width:768px){.srv{padding:28px 32px;justify-content:space-between}}
+.srv.org{background:var(--texto);color:#fff}
+.srv.ase{background:var(--rosa-2);color:var(--rosa-3)}
+.srv .eti{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+.srv.org .eti{color:#FF8AC8}
+.srv h2{font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:1.12;margin-top:6px}
+@media (min-width:768px){.srv h2{font-size:28px}.srv.ase h2{font-size:23px}}
+.srv p{font-size:14.5px;margin-top:6px;max-width:460px}
+.srv.org p{color:#C7C7CC}
+.srv .btns{display:flex;gap:8px;align-items:center;width:100%}
+.srv .lnk-b{white-space:nowrap}
+.flotante .f-org{display:none}
+.flotante.con-org .f-org{display:inline-flex}
+.srv .btns .btn{flex:1 1 auto;min-height:48px}
+@media (min-width:768px){.srv .btns .btn{flex:0 1 auto}}
+.srv.org .lnk-b{color:#fff;font-size:14.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:48px;padding:0 6px}
+/* En celular, la asesoría va compacta para no empujar los salones hacia abajo */
+@media (max-width:767px){.srv.ase{flex-direction:row;align-items:center;padding:14px 16px;gap:12px}.srv.ase h2{font-size:16.5px;margin-top:0}.srv.ase p,.srv.ase .eti{display:none}.srv.ase .btns{width:auto;flex:none}.srv.ase>div:first-child{flex:1}}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:24px;padding-bottom:12px;flex-wrap:wrap}
 .sec-h h2{font-size:19px;font-weight:700;letter-spacing:-.02em}
 .sec-h h2 span{color:var(--texto-2);font-weight:400}
@@ -199,7 +214,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .vacio h3{font-size:21px;font-weight:700;letter-spacing:-.02em}
 .vacio p{color:var(--texto-2);max-width:380px}
 .aviso-precio{grid-column:1/-1;background:var(--bg-2);border-radius:var(--r-m);padding:12px 16px;font-size:14px;color:var(--texto-2);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.flotante{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:36;box-shadow:var(--sombra-2)}
+.flotante{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:36;display:flex;gap:8px;white-space:nowrap}
+.flotante .btn{box-shadow:var(--sombra-2)}
 
 /* ================= Tarjeta ================= */
 .tarjeta{display:flex;flex-direction:column;gap:10px;color:var(--texto);position:relative;min-width:0;cursor:pointer}
@@ -735,16 +751,18 @@ function vBarra(actual){
     ${vCats(actual)}</div></div>`;
 }
 // Bloque principal de negocio: ayuda gratis (capta el número) + organización (lo que deja dinero)
-const vAyuda=()=>`<section class="ayuda" aria-label="Te ayudamos">
-  <div><h2>¿Organizando una fiesta? Te ayudamos gratis a elegir.</h2><p>Dinos qué buscas y te mandamos por WhatsApp opciones a tu medida.</p></div>
-  <div class="btns"><button class="btn btn-rosa" data-asesoria>${ic('i-chispa')}Ayúdame a elegir</button><button class="lnk-org" data-organiza>O que lo organicen por mí</button></div></section>`;
+const vAyuda=()=>`<section class="servicio" aria-label="Nuestros servicios">
+  <div class="srv org"><div><span class="eti">${ic('i-organiza')}Organizamos tu fiesta</span><h2>Tú disfrutas. Nosotros nos encargamos de todo.</h2><p>Salón, banquete, música, decoración y el día del evento, coordinados por nuestro equipo en Morelia.</p></div>
+    <div class="btns"><button class="btn btn-rosa" data-organiza>Quiero que la organicen</button><a class="lnk-b" href="#/organizamos">Ver paquetes</a></div></div>
+  <div class="srv ase"><div><span class="eti">${ic('i-chispa')}Asesoría gratis</span><h2>¿No sabes cuál elegir? Te asesoramos gratis.</h2><p>Dinos qué buscas y te mandamos por WhatsApp opciones a tu medida.</p></div>
+    <div class="btns"><button class="btn btn-pri" data-asesoria>Ayúdame a elegir</button></div></div></section>`;
 function vFeed(){
   return vBarra('salones')+`<div class="cont">
     ${vAyuda()}
     <div id="bloque-dest"></div>
     <div class="sec-h" id="feed-cab"></div>
     <div class="feed-wrap" id="feed-wrap"><div><div class="feed" id="feed"></div></div><aside class="mapa-lado" id="mapa-lado" aria-label="Mapa"></aside></div></div>
-    <button class="btn btn-pri flotante" id="btn-mapa">${ic('i-mapa')}Mapa</button>`;
+    <div class="flotante"><button class="btn btn-pri" id="btn-mapa">${ic('i-mapa')}Mapa</button><button class="btn btn-rosa f-org" data-organiza>${ic('i-organiza')}Organizamos tu fiesta</button></div>`;
 }
 function pintarFeed(){
   const cab=$('#feed-cab');if(!cab)return;
@@ -760,9 +778,9 @@ function pintarFeed(){
   const promoOrg=`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-blanco" data-organiza>Que lo organicen</button></div>`;
   const promoNeg=`<div class="promo-feed claro"><div><h3>¿Tienes un salón o das un servicio?</h3><p>Publícalo gratis y recibe clientes por WhatsApp. Verifícate o destácate para salir primero.</p></div><a class="btn btn-pri" href="${mio?'#/panel':'#/para-negocios'}">${mio?'Ver mi negocio':'Conoce los planes'}</a></div>`;
   let h='';
-  lista.forEach((s,i)=>{h+=tarjeta(s);if(i===7)h+=promoComp;if(i===15)h+=promoOrg});
-  if(lista.length&&lista.length<8)h+=promoComp;
-  if(lista.length&&lista.length<16)h+=promoOrg;
+  lista.forEach((s,i)=>{h+=tarjeta(s);if(i===7)h+=promoOrg;if(i===15)h+=promoComp});
+  if(lista.length&&lista.length<8)h+=promoOrg;
+  if(lista.length&&lista.length<16)h+=promoComp;
   if(lista.length)h+=promoNeg;
   if(!l.length)h=`<div class="vacio">${picado(56,'#F7F6F3')}<h3>Ningún salón cumple todo</h3><p>Quita un filtro, o déjanos buscar por ti: te mandamos opciones por WhatsApp.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn btn-rosa" data-asesoria>Búsquenlo por mí</button><button class="btn btn-sec" data-limpiar>Quitar filtros</button></div></div>`;
   if(sinPrecio)h=`<div class="aviso-precio"><span>${sinPrecio} salón${sinPrecio>1?'es':''} más cumple${sinPrecio>1?'n':''} todo pero no publica${sinPrecio>1?'n':''} precio.</span><button class="lnk" style="min-height:44px" data-presup0>Mostrarlos</button></div>`+h;
@@ -820,7 +838,7 @@ function vFicha(id){
   const precioDato=s.p?`<b>${precioFicha(s)}</b>`:`<b>A cotizar</b><br><button class="lnk" data-pedir-precio="${s.id}">Te lo conseguimos</button>`;
   const datos=s.prov?`<div class="dato"><small>Servicio</small><b>${cat}</b></div><div class="dato"><small>Precio</small>${precioDato}</div><div class="dato"><small>Atiende</small><b>${s.z}</b></div><div class="dato"><small>Anticipo</small><b>[ANTICIPO]</b></div>`
     :`<div class="dato"><small>Capacidad</small><b>${s.min} a ${s.max}</b></div><div class="dato"><small>Renta</small>${precioDato}</div><div class="dato"><small>Estacionamiento</small><b>${s.est?s.est+' lugares':s.a.est?'Sí':'En la calle'}</b></div><div class="dato"><small>Horario</small><b>${esc(s.horario)||'[HORARIO]'}</b></div>`;
-  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿No sabes si es el indicado?</b><p>Te mandamos gratis 3 opciones parecidas para comparar. O, si prefieres, organizamos toda tu fiesta.</p><div class="btns"><button class="btn btn-rosa" data-asesoria style="min-height:44px">Ayúdame a elegir</button><button class="lnk-gris" data-organiza style="color:var(--rosa-3);min-height:44px">Que lo organicen</button></div></div>`;
+  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis con opciones parecidas.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
   return `<div class="ficha">
     <div class="ficha-galeria"><div class="foto"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
       <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
@@ -1198,7 +1216,8 @@ function hojaQueEs(){
 }
 function hojaMenu(){
   abrirCapa(cab('Menú')+`<div class="hoja-cuerpo" style="gap:20px">
-    <button class="btn btn-rosa btn-bloque" data-asesoria>${ic('i-chispa')}Ayúdame a elegir, gratis</button>
+    <div style="display:grid;gap:10px"><button class="btn btn-rosa btn-bloque" data-organiza>${ic('i-organiza')}Organizamos tu fiesta</button>
+    <button class="btn btn-sec btn-bloque" data-asesoria>${ic('i-chispa')}Asesoría gratis: ayúdame a elegir</button></div>
     <nav class="menu-lista">
     <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Organizamos tu fiesta</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados</a><a href="#/como-ordenamos" data-cerrar-al-ir>${ic('i-info','i-l')}Cómo ordenamos y etiquetas</a></nav>
     <a class="btn btn-sec btn-bloque" href="${mio?'#/panel':'#/para-negocios'}" data-cerrar-al-ir>${ic('i-tienda')}${mio?'Mi negocio':'¿Tienes un negocio? Publícalo'}</a></div>`,'Menú');
@@ -1261,7 +1280,11 @@ function montar(r){
   $$('[data-menu]').forEach(b=>b.onclick=hojaMenu);
   montarComunes(document);
   if($('#barra'))montarBarra();
-  if($('#feed-wrap')){pintarFeed();$('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}}
+  if($('#feed-wrap')){pintarFeed();$('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}
+    // «Organizamos tu fiesta» flota junto a Mapa en cuanto su tarjeta sale de la pantalla: siempre a un toque
+    const srv=$('.srv.org'),fl=$('.flotante');
+    if(srv&&fl&&'IntersectionObserver' in window)new IntersectionObserver(([e])=>fl.classList.toggle('con-org',!e.isIntersecting)).observe(srv);
+    else if(fl)fl.classList.add('con-org')}
   else if($('#feed'))montarTarjetas($('#feed'));
   if($('#feed-g'))montarTarjetas($('#feed-g'));
   $$('[data-mandar-lista]').forEach(b=>b.onclick=hojaLista);
