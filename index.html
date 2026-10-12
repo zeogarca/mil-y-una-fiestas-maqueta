@@ -586,8 +586,6 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .pill.ok{background:#EAF4EE;color:#0B3B22}.pill.bor{background:#FFF4D6;color:#5C3D00}.pill.pau{background:var(--bg-3);color:var(--texto-2)}.pill.eq{background:#E4ECF7;color:#123E6E}.pill.du{background:var(--rosa-2);color:var(--rosa-3)}
 .caja.verde{background:#EAF4EE;color:#0B3B22}
 .caja.verde .nota{color:#24543A}
-.ayuda-sub{display:flex;gap:10px;align-items:center;background:var(--bg-2);border-radius:var(--r-m);padding:12px 16px;margin-top:20px;font-size:14.5px}
-.ayuda-sub .lnk{font-size:14.5px;text-decoration:underline;min-height:32px}
 .herr{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
 .login{max-width:460px;margin:0 auto}
 .barras{display:grid;gap:10px}
@@ -860,13 +858,17 @@ function ilus(s,i){
 /* ===================================================================
    WHATSAPP: un toque, sin formularios. El mensaje ya va escrito.
    =================================================================== */
-const FUENTE_TXT={organizacion:'Organizar su fiesta',asesoria:'Ayuda para elegir',precio:'Pedir un precio',guardados:'Su lista de guardados',post_contacto:'Después de escribir a un negocio',negocio:'Escribir a un negocio',plan:'Plan de organización',reclamar:'Reclamar su ficha',soporte:'Soporte a negocios',subir:'Que le suban su negocio'};
+const FUENTE_TXT={organizacion:'Organizar su fiesta',asesoria:'Ayuda para elegir',precio:'Pedir un precio',guardados:'Su lista de guardados',post_contacto:'Después de escribir a un negocio',negocio:'Escribir a un negocio',plan:'Plan de organización',reclamar:'Reclamar su ficha',soporte:'Dudas de negocios'};
 const fuenteTxt=f=>FUENTE_TXT[f]||(f.startsWith('guia_')?'Guía: '+((GUIAS.find(g=>'guia_'+g[0]===f)||[])[1]||f.slice(5)):f);
 // Real: los botones pasan por /c/[origen] para contar el clic (sin datos personales) y redirigen a wa.me
 function registrarClic(fuente,negocio){clics.unshift({f:new Date().toISOString(),fuente,negocio:negocio||''});clics=clics.slice(0,300);ls.set('myuf-clics',clics)}
-function abrirWA(num,texto,fuente,negocio){registrarClic(fuente,negocio);
-  const url='https://wa.me/'+num+'?text='+encodeURIComponent(texto);
-  const w=window.open(url,'_blank');if(w)w.opener=null;else location.href=url}
+// En celular, «whatsapp://» abre la app sin pasar por la página de wa.me (que aparece al abrir otra pestaña).
+// Si en 1.5 s la página sigue a la vista (no tiene la app), se abre wa.me como respaldo.
+const esMovil=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
+function irWhatsApp(num,texto){const t=encodeURIComponent(texto),web='https://wa.me/'+(num||'')+'?text='+t;
+  if(esMovil){location.href='whatsapp://send?'+(num?'phone='+num+'&':'')+'text='+t;const ini=Date.now();setTimeout(()=>{if(document.visibilityState==='visible'&&Date.now()-ini<2500)location.href=web},1500);return}
+  const w=window.open(web,'_blank');if(w)w.opener=null;else location.href=web}
+function abrirWA(num,texto,fuente,negocio){registrarClic(fuente,negocio);irWhatsApp(num,texto)}
 const waEquipo=(fuente,texto)=>abrirWA(WA_EQUIPO,'Hola, Mil y Una Fiestas. '+texto,fuente);
 function contextoFiesta(extra){const inv=fiesta.inv||busq.inv;return [fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',inv?inv+' invitados':'',busq.zona?'zona '+busq.zona:''].concat(extra||[]).filter(Boolean).join(' · ')}
 function waOrganiza(paquete){const r=ruta(),s=(r.a[0]==='salon'||r.a[0]==='proveedor')?porId(r.a[1]):null;const c=contextoFiesta([paquete?'paquete '+paquete:'',s?'me gustó '+s.n:'']);
@@ -875,8 +877,7 @@ function waPrecio(id){const s=porId(id),c=contextoFiesta();waEquipo('precio','¿
 const guardadosLista=()=>todos().concat(PROV,publicados()).filter((s,i,a)=>guard[s.id]&&a.findIndex(x=>x.id===s.id)===i);
 function waLista(){const l=guardadosLista();waEquipo('guardados','Guardé estos lugares: '+l.map(s=>s.n).join(', ')+'. ¿Me ayudan a comparar y elegir?'+(contextoFiesta()?' Mi fiesta: '+contextoFiesta()+'.':''))}
 function waPlan(plan){const c=contextoFiesta();waEquipo('plan','Me interesa el plan «'+plan+'» para organizar mi fiesta.'+(c?' Mi fiesta: '+c+'.':'')+' ¿Me dan detalles?')}
-const waSubir=()=>waEquipo('subir','Quiero publicar mi negocio. ¿Me ayudan a subirlo? Les mando por aquí fotos, precios y datos.');
-const waSoporte=()=>waEquipo('soporte','Necesito ayuda con mi negocio en la página.');
+const waSoporte=()=>waEquipo('soporte','Tengo una duda sobre mi negocio en la página.');
 function waReclamar(id){const s=porId(id);waEquipo('reclamar','El negocio «'+s.n+'» es mío y quiero administrar su ficha.')}
 function mensaje(s){const inv=fiesta.inv||busq.inv;return 'Hola, los encontré en Mil y Una Fiestas. Busco '+(s.prov?catNombre(s.cat).toLowerCase():'salón')+' para '+(fiesta.ev?fiesta.ev.toLowerCase():'una fiesta')+(fiesta.fecha?' el '+fechaLarga(fiesta.fecha):'')+(inv?' para '+inv+' personas':'')+'. ¿Me dan informes?'}
 let yaOfrecido=false;
@@ -890,7 +891,7 @@ function compartir(s){const url=location.origin+location.pathname+'#/'+(s.prov?'
   if(navigator.share)navigator.share({title:s.n,text:s.n+' · Mil y Una Fiestas',url}).catch(()=>{});
   else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>toast('Enlace copiado'),()=>toast(url));else toast(url)}
 function compartirLista(){const l=guardadosLista(),base=location.origin+location.pathname;const t='Mira estos lugares para la fiesta:\n'+l.map(s=>'• '+s.n+' · '+precioFicha(s)+'\n  '+base+'#/'+(s.prov?'proveedor':'salon')+'/'+s.id).join('\n');
-  if(navigator.share)navigator.share({title:'Mis guardados',text:t}).catch(()=>{});else{const w=window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');if(w)w.opener=null}}
+  if(navigator.share)navigator.share({title:'Mis guardados',text:t}).catch(()=>{});else irWhatsApp('',t)}
 
 /* --- Guías gratis por WhatsApp: el gancho para que nos escriban --- */
 const GUIAS=[
@@ -1221,7 +1222,7 @@ function vParaNegocios(){
   const tiene=misDueno().length>0;
   return `<div class="cont pagina">
   <div class="pag-cab"><span class="eyebrow">Para salones y servicios de Morelia</span><h1>Si haces fiestas en Morelia, tienes que estar aquí.</h1><p>Aquí buscan las familias que van a celebrar. Publica tu negocio gratis en 3 pasos y recibe sus mensajes directo en tu WhatsApp, sin comisiones.</p>
-    <div class="acciones"><a class="btn btn-pri" href="${tiene?'#/panel':'#/panel/nuevo'}">${tiene?'Ir a mis negocios':'Publicar mi negocio gratis'}</a><button class="btn btn-sec" data-subir>${ic('i-chat')}Que me lo suban por WhatsApp</button></div></div>
+    <div class="acciones"><a class="btn btn-pri" href="${tiene?'#/panel':'#/panel/nuevo'}">${tiene?'Ir a mis negocios':'Publicar mi negocio gratis'}</a></div></div>
   <div class="tres">
     <div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Tu negocio y tu WhatsApp</h3><p>Nombre, tipo, zona y el número donde quieres recibir clientes.</p></div>
     <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Tus precios</h3><p>Capacidad y precio de renta, o precio de tu servicio.</p></div>
@@ -1235,9 +1236,8 @@ function vParaNegocios(){
   <section class="seccion"><h2 class="titulo-sec">Preguntas frecuentes.</h2><div class="faq">
     <details><summary>¿Cuánto cuesta?${ic('i-mas')}</summary><p>${lanz()?'Nada. Durante el lanzamiento todo es gratis. Más adelante habrá opciones para salir primero, siempre opcionales; tu ficha básica seguirá siendo gratis.':'Tu ficha es gratis. Si quieres salir primero o verificarte, escríbenos y te explicamos las opciones.'}</p></details>
     <details><summary>¿Puedo subir varios salones o servicios?${ic('i-mas')}</summary><p>Sí. Desde «Mis negocios» agregas los que tengas y los editas por separado.</p></details>
-    <details><summary>¿Quién puede cambiar mi ficha?${ic('i-mas')}</summary><p>Solo tú, entrando con un código que te llega por WhatsApp, y nuestro equipo cuando nos pides ayuda.</p></details>
-    <details><summary>No tengo tiempo, ¿me ayudan?${ic('i-mas')}</summary><p>Claro. Mándanos fotos, precios y datos por WhatsApp y nosotros lo subimos por ti.</p></details></div></section>
-  <section class="seccion"><div class="promo-feed oscuro"><div><h3>¿Dudas? Te ayudamos.</h3><p>Escríbenos al ${WA_EQUIPO_TXT}. Te contestamos nosotros, no un robot.</p></div><button class="btn btn-blanco" data-soporte>${ic('i-chat')}Escribir por WhatsApp</button></div></section></div>`;
+    <details><summary>¿Quién puede cambiar mi ficha?${ic('i-mas')}</summary><p>Solo tú, entrando con un código que te llega por WhatsApp, y nuestro equipo cuando nos pides ayuda.</p></details></div></section>
+  <section class="seccion"><div class="promo-feed oscuro"><div><h3>¿Dudas? Te ayudamos.</h3><p>Escríbenos al ${WA_EQUIPO_TXT} y te respondemos.</p></div><button class="btn btn-blanco" data-soporte>${ic('i-chat')}Escribir por WhatsApp</button></div></section></div>`;
 }
 function vComoOrdenamos(){
   if(lanz())return `<div class="cont pagina">
@@ -1296,7 +1296,7 @@ const miniFoto=m=>{const f=imgSegura(m.fotos[0]);return `<div class="mini">${f?`
 const msjSemana=n=>clics.filter(c=>c.negocio===n&&(Date.now()-new Date(c.f))/864e5<=7).length;
 function vPanel(){
   const l=misDueno();
-  if(!l.length)return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Mis negocios</span><h1>Publica tu negocio en 3 pasos.</h1><p>Tu negocio y WhatsApp, tus precios y tus fotos. Gratis${lanz()?' durante el lanzamiento':''}.</p><div class="acciones"><a class="btn btn-pri" href="#/panel/nuevo">Publicar mi negocio</a><button class="btn btn-sec" data-subir>${ic('i-chat')}Que me lo suban por WhatsApp</button></div></div></div>`;
+  if(!l.length)return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Mis negocios</span><h1>Publica tu negocio en 3 pasos.</h1><p>Tu negocio y WhatsApp, tus precios y tus fotos. Gratis${lanz()?' durante el lanzamiento':''}.</p><div class="acciones"><a class="btn btn-pri" href="#/panel/nuevo">Publicar mi negocio</a></div></div></div>`;
   const fila=m=>{const s=publico(m),pc=completo(m),e=m.estado;
     return `<article class="neg">${miniFoto(m)}
       <div class="neg-info"><div class="quien"><b class="neg-n">${esc(m.n||'Sin nombre')}</b>${pillEstado(e)}</div><span class="nota">${s.prov?catNombre(m.cat):esc(m.tipo||'Salón')} · ${esc(s.z)}</span>
@@ -1311,7 +1311,6 @@ function vPanel(){
     <aside style="display:flex;flex-direction:column;gap:12px">
       ${lanz()?`<div class="caja verde"><h3>${ic('i-chispa')}Todo gratis</h3><p class="nota">Durante el lanzamiento no pagas nada. Solo mantén tus precios y fotos al día.</p></div>`:`<div class="caja borde"><h3>${ic('i-estrella')}Sal primero</h3><p class="nota">Pregúntanos por verificación y destacados.</p><button class="btn btn-sec" data-soporte style="align-self:flex-start">Preguntar</button></div>`}
       <div class="caja"><h3>${ic('i-info')}Consejo</h3><p class="nota">Las familias filtran por precio y capacidad. Si los pones, apareces en más búsquedas.</p></div>
-      <div class="caja oscura"><h3>${ic('i-chat')}¿Necesitas ayuda?</h3><p class="nota">Te ayudamos a subir fotos, cambiar precios o lo que necesites.</p><button class="btn btn-blanco" data-soporte style="align-self:flex-start">Escribir por WhatsApp</button></div>
       <p class="nota">${ic('i-candado','i-s')} En la página real entras con un código que te llega por WhatsApp. Solo tú y nuestro equipo pueden editar tus negocios.</p></aside></div></div>`;
 }
 
@@ -1353,11 +1352,10 @@ function vWizard(ctx,id,paso){
     <div class="campo"><span class="lbl">¿Cómo quieres mostrar el precio?</span><div class="opciones">${ops.map(o=>`<button type="button" class="op" data-ptipo="${o[0]}" aria-pressed="${m.pTipo===o[0]}"><span>${o[1]}<small>${o[2]}</small></span>${m.pTipo===o[0]?ic('i-check'):''}</button>`).join('')}</div></div>
     ${m.pTipo!=='cotizar'?`<div class="par"><div class="campo"><label for="w-p">${m.pTipo==='rango'?'Desde':'Precio desde'} (MXN)</label><input class="input${mal('p')}" id="w-p" data-b="p" data-num inputmode="numeric" value="${esc(m.p)}" placeholder="${sal?'Ej. 8000':'Ej. 3000'}">${err('p')}</div>${m.pTipo==='rango'?`<div class="campo"><label for="w-ph">Hasta (MXN)</label><input class="input${mal('pHasta')}" id="w-ph" data-b="pHasta" data-num inputmode="numeric" value="${esc(m.pHasta)}" placeholder="Ej. 12000">${err('pHasta')}</div>`:''}</div>
     ${sal?'':`<div class="campo"><span class="lbl">El precio es…</span><div class="fila-chips">${UNIDADES.map(u=>`<button type="button" class="chip" data-unidad="${u[0]}" aria-pressed="${(m.u||'')===u[0]}">${u[1]}</button>`).join('')}</div></div>`}`:''}`}
-  if(paso==='fotos'){titulo='Tus mejores fotos.';intro='Horizontales y con buena luz se ven mejor. La primera es la portada. Las acomodamos solas para que todo se vea parejo.';
+  if(paso==='fotos'){titulo='Tus mejores fotos.';intro='Horizontales y con buena luz se ven mejor. La primera es la portada.';
     cuerpo=`<div class="fotos-grid">${m.fotos.map((f,i)=>`<div class="foto-item"><img src="${imgSegura(f)}" alt="Foto ${i+1}">${i===0?'<span class="portada">Portada</span>':''}<div class="acc">${i?`<button type="button" data-portada="${i}" aria-label="Hacer portada la foto ${i+1}">${ic('i-estrella')}</button>`:''}<button type="button" data-quitar="${i}" aria-label="Quitar la foto ${i+1}">${ic('i-basura')}</button></div></div>`).join('')}
       ${m.fotos.length<20?`<button type="button" class="subir${m.fotos.length?'':' grande'}" data-subir-foto>${ic('i-foto','i-l')}${m.fotos.length?'Agregar más':'Elegir fotos del celular o la computadora'}<small>${m.fotos.length} de 20 · JPG, PNG o WebP</small></button>`:''}</div>${err('fotos')}
-      ${ctx==='dueño'?`<div><label class="check"><input type="checkbox" data-okb="ok"${m.ok?' checked':''}><span>Las fotos son de mi negocio (o tengo permiso) y los datos son ciertos. Acepto los <a class="lnk" href="#/">términos</a> y el <a class="lnk" href="#/">aviso de privacidad</a>.</span></label>${err('ok')}</div>`:''}
-      <div class="aviso-caja">${ic('i-candado')}<span>Al subirlas les quitamos los datos ocultos (como la ubicación GPS del celular) y las hacemos más ligeras para que carguen rápido.</span></div>`}
+      ${ctx==='dueño'?`<div><label class="check"><input type="checkbox" data-okb="ok"${m.ok?' checked':''}><span>Las fotos son de mi negocio (o tengo permiso) y los datos son ciertos. Acepto los <a class="lnk" href="#/">términos</a> y el <a class="lnk" href="#/">aviso de privacidad</a>.</span></label>${err('ok')}</div>`:''}`}
   if(paso==='aprob'){titulo='Aprobación del dueño.';intro='Solo publicamos negocios cuyo dueño aceptó aparecer con estos datos y fotos. Queda registrado.';
     cuerpo=`<div class="dos-col"><div class="campo"><label for="ap-n">Nombre del dueño</label><input class="input${mal('ap_nombre')}" id="ap-n" data-ap="nombre" maxlength="60" value="${esc(a.nombre)}">${err('ap_nombre')}</div><div class="campo"><label for="ap-wa">WhatsApp del dueño</label><input class="input${mal('ap_wa')}" id="ap-wa" data-ap="wa" type="tel" inputmode="tel" maxlength="16" value="${esc(a.wa)}">${err('ap_wa')}</div></div>
     <div class="campo"><span class="lbl">¿Cómo lo aprobó?</span><div class="fila-chips">${['WhatsApp','Llamada','Visita','En persona'].map(x=>`<button type="button" class="chip" data-medio="${x}" aria-pressed="${a.medio===x}">${x}</button>`).join('')}</div>${err('ap_medio')}</div>
@@ -1385,7 +1383,6 @@ function vWizard(ctx,id,paso){
   const btnFin=esExtra?`<button type="button" class="btn btn-pri" data-guardar-extra>Guardar</button>`:ultimo?`<button type="button" class="btn btn-pri" data-publicar>${publicado?'Guardar cambios':'Publicar'}</button>`:`<button type="button" class="btn btn-pri" data-siguiente>Siguiente</button>`;
   return `<div class="wiz-prog"><div class="cont">${prog}</div></div>
   <div class="cont wiz"><div>
-    ${ctx==='dueño'&&paso==='negocio'&&!publicado?`<div class="ayuda-sub">${ic('i-chat')}<span>¿Sin tiempo? <button type="button" class="lnk" data-subir>Mándanos tus datos por WhatsApp</button> y lo subimos por ti.</span></div>`:''}
     <h2>${titulo}</h2><p class="intro">${intro}</p><form class="wiz-form" id="wiz-form" novalidate>${cuerpo}</form>
     <div class="wiz-pie"><div class="cont">${esExtra?`<a class="btn btn-texto" href="${volver}">Cancelar</a>`:idx>0?`<button type="button" class="btn btn-texto" data-ir-paso="${P[idx-1][0]}">Atrás</button>`:`<a class="btn btn-texto" href="${volver}">Cancelar</a>`}${btnFin}</div></div></div>
     <aside class="vista"><div class="etq">${ic('i-ojo','i-s')}Así te ven las familias</div><div id="vista-prev" class="sin-click">${tarjeta(publico(m))}</div></aside></div>`;
@@ -1529,24 +1526,9 @@ function hojaFiesta(alCerrar){
   $('#capa [data-borrar-f]').onclick=()=>{fiesta={ev:'',fecha:'',inv:''};ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
   $('#capa [data-listo]').onclick=()=>{fiesta=d;ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
 }
-const chipsSel=(attr,opciones,sel)=>`<div class="fila-chips">${opciones.map(o=>`<button type="button" class="chip" ${attr}="${o}" aria-pressed="${sel===o}">${o}</button>`).join('')}</div>`;
-function marcarUno(attr){$$(`#capa [${attr}]`).forEach(b=>b.onclick=()=>{const on=b.getAttribute('aria-pressed')!=='true';$$(`#capa [${attr}]`).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed',on)})}
-const elegido=attr=>{const b=$(`#capa [${attr}][aria-pressed="true"]`);return b?b.getAttribute(attr):''};
 // Asesoría gratis: todo opcional; el botón abre WhatsApp con lo que haya elegido
-function hojaAsesoria(fuente){
-  const invSel=busq.inv?(busq.inv<=80?'Hasta 80':busq.inv<=150?'80 a 150':busq.inv<=250?'150 a 250':'Más de 250'):'';
-  const preSel=busq.presup?(busq.presup<=5000?'Hasta $5,000':busq.presup<=10000?'$5,000 a $10,000':'Más de $10,000'):'';
-  abrirCapa(cab('Asesoría gratis')+`<div class="hoja-cuerpo">
-    <div><h2 class="gr">Te mandamos opciones a tu medida.</h2><p class="nota" style="margin-top:6px;font-size:15px">Todo es opcional. Toca el botón verde y nos llega tu mensaje por WhatsApp.</p></div>
-    <div class="campo"><span class="lbl">¿Qué vas a celebrar?</span>${chipsSel('data-a-ev',EVENTOS.slice(0,7),fiesta.ev)}</div>
-    <div class="campo"><span class="lbl">¿Cuántos invitados?</span>${chipsSel('data-a-inv',['Hasta 80','80 a 150','150 a 250','Más de 250'],invSel)}</div>
-    <div class="campo"><span class="lbl">¿Cuánto quieres gastar en el salón?</span>${chipsSel('data-a-pre',['Hasta $5,000','$5,000 a $10,000','Más de $10,000','No sé'],preSel)}</div>
-    <div class="campo"><label for="a-f">¿Cuándo es?</label><input class="input" id="a-f" type="date" value="${esc(fiesta.fecha||'')}"></div></div>
-    <div class="hoja-pie"><span class="nota">Sin registrarte</span><button class="btn btn-wa" data-a-enviar>${ic('i-chat')}Pedir por WhatsApp</button></div>`,'Asesoría gratis');
-  ['data-a-ev','data-a-inv','data-a-pre'].forEach(marcarUno);
-  $('#capa [data-a-enviar]').onclick=()=>{const f=$('#a-f').value;const d=[elegido('data-a-ev'),elegido('data-a-inv')?elegido('data-a-inv')+' invitados':'',elegido('data-a-pre')&&elegido('data-a-pre')!=='No sé'?'salón '+elegido('data-a-pre').toLowerCase():'',busq.zona?'zona '+busq.zona:'',f?fechaLarga(f):''].filter(Boolean).join(' · ');
-    waEquipo(fuente||'asesoria','¿Me ayudan a elegir salón y proveedores?'+(d?' Mi fiesta: '+d+'.':''));cerrarCapa()};
-}
+// Asesoría gratis: un toque a WhatsApp, con lo que la persona ya filtró o eligió
+function hojaAsesoria(fuente){const c=contextoFiesta([filt.tipo,filt.hasta?hastaTxt(filt.hasta).toLowerCase():'',filt.publico&&filt.publico!=='todos'?(PUBLICO.find(x=>x[0]===filt.publico)||[])[1]:''].filter(Boolean));waEquipo(fuente||'asesoria','¿Me ayudan a elegir salón y proveedores para mi fiesta?'+(c?' Lo que busco: '+c+(c.endsWith('.')?'':'.'):''))}
 function hojaQueEs(){
   abrirCapa(cab('Las etiquetas')+`<div class="hoja-cuerpo" style="gap:12px">
     <div class="etiqueta-fila" style="padding:16px"><span><span class="tag tag-dest">Destacado</span></span><p>Es publicidad: el negocio paga para aparecer entre los primeros.</p></div>
@@ -1618,7 +1600,6 @@ function montarComunes(c){
   on('[data-plan]',b=>waPlan(b.dataset.plan));
   on('[data-reclamar]',b=>waReclamar(b.dataset.reclamar));
   on('[data-soporte]',waSoporte);
-  on('[data-subir]',waSubir);
   on('[data-galeria]',b=>abrirGaleria(b.dataset.galeria,+b.dataset.i||0));
   on('[data-compartir]',b=>compartir(porId(b.dataset.compartir)));
   on('[data-que-es]',hojaQueEs);
@@ -1691,7 +1672,7 @@ function montar(r){
   const fp=$('#f-pros');if(fp)fp.onsubmit=e=>{e.preventDefault();if(!waValido($('#pr-wa').value)){toast('WhatsApp a 10 dígitos');$('#pr-wa').focus();return}
     prospectos.unshift({id:'p'+Date.now(),fecha:new Date().toISOString(),tipo:$('#pr-t').value,nombre:$('#pr-n').value.trim().slice(0,60),wa:soloDig($('#pr-wa').value),quiere:$('#pr-q').value,fiesta:$('#pr-f').value.trim().slice(0,140),estado:'Nuevo'});ls.set('myuf-prospectos',prospectos);render();toast('Prospecto guardado')};
   $$('[data-estado]').forEach(sel=>sel.onchange=()=>{const p=prospectos.find(x=>x.id===sel.dataset.estado);if(p){p.estado=sel.value;ls.set('myuf-prospectos',prospectos)}toast('Estado: '+sel.value)});
-  $$('[data-wa-lead]').forEach(b=>b.onclick=()=>{const d=b.dataset.waLead;if(d.length!==10||d.startsWith('443000')){toast('Prospecto de ejemplo','Con uno real se abre su WhatsApp.');return}const w=window.open('https://wa.me/52'+d+'?text='+encodeURIComponent('Hola '+(b.dataset.nombre||'')+', te escribimos de Mil y Una Fiestas.'),'_blank');if(w)w.opener=null});
+  $$('[data-wa-lead]').forEach(b=>b.onclick=()=>{const d=b.dataset.waLead;if(d.length!==10||d.startsWith('443000')){toast('Prospecto de ejemplo','Con uno real se abre su WhatsApp.');return}irWhatsApp('52'+d,'Hola '+(b.dataset.nombre||'')+', te escribimos de Mil y Una Fiestas.')});
   if($('#wiz-form')){const ctx=r.a[0]==='equipo'?'equipo':'dueño';montarWizard(ctx,r.q.id,r.q.paso||'negocio')}
 }
 function montarWizard(ctx,id,paso){
