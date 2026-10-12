@@ -36,7 +36,7 @@ img{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--azul);outline-offset:2px}
 .i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .i-s{width:16px;height:16px}.i-l{width:24px;height:24px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .cont{width:100%;max-width:var(--max);margin-left:auto;margin-right:auto;padding-left:var(--lado);padding-right:var(--lado)}
 .nota{font-size:14px;color:var(--texto-2)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
@@ -65,7 +65,7 @@ img{display:block;max-width:100%}
 .btn-ic.blanco{background:rgba(255,255,255,.94);box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .lnk{color:var(--acento);font-weight:500;text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font-size:inherit}
 .lnk:hover{text-decoration:underline}
-.lnk-gris{color:var(--texto-2);text-decoration:underline;text-underline-offset:2px;background:none;border:0;padding:0;cursor:pointer;font-size:13.5px}
+.lnk-gris{color:var(--texto-2);text-decoration:underline;text-underline-offset:2px;background:none;border:0;padding:0;cursor:pointer;font-size:13.5px;display:inline-flex;align-items:center;min-height:44px}
 .tag{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:var(--r-p);font-size:12.5px;font-weight:600;white-space:nowrap;border:0}
 .tag .i{width:14px;height:14px;stroke-width:2.25}
 .tag-dest{background:rgba(255,255,255,.94);color:var(--texto)}
@@ -253,6 +253,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .t-wa:hover{background:#EAF4EE;box-shadow:inset 0 0 0 1px #BFDCCB}
 .tarjeta.resalta .foto{box-shadow:0 0 0 3px var(--texto)}
 .sin-click .tarjeta{cursor:default}
+.feed>.tarjeta,.carr>.tarjeta{content-visibility:auto;contain-intrinsic-size:auto 400px}
 
 /* ================= Mapa ================= */
 .mapa{position:relative;width:100%;height:100%;overflow:hidden;background:#EEF0EA}
@@ -536,7 +537,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .pl.top li .i{color:#7EE2A8}
 @media (min-width:960px){.pl.top{transform:translateY(-14px);margin-bottom:-14px}}
 .insignia{position:absolute;top:-13px;left:24px;background:var(--rosa);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:5px 12px;border-radius:var(--r-p)}
-.tabla-wrap{overflow-x:auto;margin-top:16px;border-radius:var(--r-l);box-shadow:inset 0 0 0 1px var(--linea);-webkit-overflow-scrolling:touch}
+.tabla-wrap{position:relative;overflow-x:auto;margin-top:16px;border-radius:var(--r-l);box-shadow:inset 0 0 0 1px var(--linea);-webkit-overflow-scrolling:touch}
 .tabla-comp{width:100%;border-collapse:collapse;font-size:14.5px}
 .tabla-comp th,.tabla-comp td{padding:13px 16px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top;min-width:132px}
 .tabla-comp thead th{font-weight:700;font-size:15px;vertical-align:bottom}
@@ -1029,7 +1030,7 @@ function vServicios(cat){
     <div class="flotante"><button class="btn btn-rosa f-org" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button></div>`;
 }
 
-function slidesHTML(s,max){const n=Math.min(max,s.fotos.length||s.nFotos||5);let h='';for(let i=0;i<n;i++){const src=imgSegura(s.fotos[i]);h+=`<div class="slide">${src?`<img src="${src}" alt="Foto ${i+1} de ${esc(s.n)}" loading="lazy" decoding="async">`:ilus(s,i)}</div>`}return {h,n}}
+function slidesHTML(s,max){const n=Math.min(max,s.fotos.length||s.nFotos||5);let h='';for(let i=0;i<n;i++){const src=imgSegura(s.fotos[i]);h+=`<div class="slide"${!src&&i?` data-perezosa="${i}"`:''}>${src?`<img src="${src}" alt="Foto ${i+1} de ${esc(s.n)}"${i?' loading="lazy"':''} decoding="async">`:i?'':ilus(s,i)}</div>`}return {h,n}}
 function tagsDe(s,plano){if(lanz())return '';const v=verificado(s),p=plano?' plano':'',t=[];
   if(s.ad)t.push(`<span class="tag tag-dest${p}">Destacado</span>`);
   if(v)t.push(`<span class="tag tag-ver${p}">${ic('i-escudo')}Verificado</span>`);else if(s.nuevo)t.push(`<span class="tag tag-nuevo${p}">Nuevo</span>`);
@@ -1037,7 +1038,7 @@ function tagsDe(s,plano){if(lanz())return '';const v=verificado(s),p=plano?' pla
 function tarjeta(s){
   const sl=slidesHTML(s,5),ruta=s.prov?'proveedor':'salon',ppi=!s.prov&&s.p&&busq.inv?Math.round(s.p/busq.inv):0;
   return `<article class="tarjeta" data-id="${s.id}" data-ruta="${ruta}">
-    <div class="foto"><div class="slides" data-slides>${sl.h}</div><div class="tags">${tagsDe(s)}</div>
+    <div class="foto"><div class="slides" data-slides data-sid="${s.id}">${sl.h}</div><div class="tags">${tagsDe(s)}</div>
       <button class="fav" data-fav="${s.id}" aria-pressed="${!!guard[s.id]}" aria-label="Guardar ${esc(s.n)}">${ic('i-corazon')}</button>
       ${sl.n>1?`<button class="fl izq" data-paso-foto="-1" aria-label="Foto anterior">${ic('i-izq')}</button><button class="fl der" data-paso-foto="1" aria-label="Foto siguiente">${ic('i-der')}</button><div class="puntos" aria-hidden="true">${'<u></u>'.repeat(sl.n).replace('<u>','<u class="on">')}</div>`:''}</div>
     <div class="t-cuerpo"><a class="t-nombre" href="#/${ruta}/${s.id}">${esc(s.n)}</a>
@@ -1070,7 +1071,7 @@ function vFicha(id){
   const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">${ic('i-chat')}Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
   const tags=tagsDe(s,true);
   return `<div class="ficha">
-    <div class="ficha-galeria"><div class="foto" data-abrir-galeria="${s.id}" role="button" tabindex="0" aria-label="Ver fotos en grande"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
+    <div class="ficha-galeria"><div class="foto" data-abrir-galeria="${s.id}" role="button" tabindex="0" aria-label="Ver fotos en grande"><div class="slides" data-slides data-sid="${s.id}">${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
       <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir="${s.id}" aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
     <div class="cont">
       <div class="ficha-top-d"><a class="btn btn-sec" href="${s.prov?'#/servicios/'+s.cat:'#/'}" style="min-height:44px">${ic('i-izq')}${s.prov?cat:'Salones'}</a><div style="display:flex;gap:4px"><button class="btn btn-texto" data-compartir="${s.id}" style="min-height:44px">${ic('i-compartir')}Compartir</button><button class="btn btn-texto" ${fav} data-fav-txt style="min-height:44px">${ic('i-corazon')}${guard[s.id]?'Guardado':'Guardar'}</button></div></div>
@@ -1543,11 +1544,13 @@ function montarComunes(c){
   on('[data-compartir-lista]',compartirLista);
   $$('[data-cerrar-al-ir]',c).forEach(a=>a.addEventListener('click',()=>setTimeout(cerrarCapa,0)));
 }
+function llenarSlides(sl){if(sl.dataset.lleno)return;sl.dataset.lleno=1;const s=porId(sl.dataset.sid);if(!s)return;$$('[data-perezosa]',sl).forEach(d=>{d.innerHTML=ilus(s,+d.dataset.perezosa);d.removeAttribute('data-perezosa')})}
 function montarTarjetas(c){
   if(!c)return;
   $$('[data-slides]',c).forEach(sl=>{const pts=$$('.puntos u',sl.parentNode),cont=$('[data-cont]',sl.parentNode);
-    sl.addEventListener('scroll',()=>{const i=Math.round(sl.scrollLeft/sl.clientWidth);pts.forEach((u,k)=>u.classList.toggle('on',k===i));if(cont)cont.textContent=(i+1)+' / '+sl.children.length},{passive:true})});
-  $$('[data-paso-foto]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const sl=$('[data-slides]',b.parentNode);sl.scrollBy({left:sl.clientWidth*+b.dataset.pasoFoto,behavior:'smooth'})});
+    sl.parentNode.addEventListener('pointerenter',()=>llenarSlides(sl),{once:true});
+    sl.addEventListener('scroll',()=>{llenarSlides(sl);const i=Math.round(sl.scrollLeft/sl.clientWidth);pts.forEach((u,k)=>u.classList.toggle('on',k===i));if(cont)cont.textContent=(i+1)+' / '+sl.children.length},{passive:true})});
+  $$('[data-paso-foto]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const sl=$('[data-slides]',b.parentNode);llenarSlides(sl);sl.scrollBy({left:sl.clientWidth*+b.dataset.pasoFoto,behavior:'smooth'})});
   $$('[data-fav]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.fav;if(guard[id])delete guard[id];else guard[id]=1;ls.set('myuf-guardados',guard);
     $$(`[data-fav="${id}"]`).forEach(x=>{x.setAttribute('aria-pressed',!!guard[id]);if(x.hasAttribute('data-fav-txt'))x.innerHTML=ic('i-corazon')+(guard[id]?'Guardado':'Guardar')});actualizarGuardNav();
     const n=Object.keys(guard).length;
