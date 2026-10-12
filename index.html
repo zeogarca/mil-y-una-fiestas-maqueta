@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Maqueta de Mil y Una Fiestas: salones y servicios para fiestas en Morelia. Datos de ejemplo.">
+<title>Mil y Una Fiestas · maqueta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* ================= Tokens · Papel picado ================= */
+:root{
+  --bg:#FFFFFF;--bg-2:#F7F6F3;--bg-3:#EFEDE8;--texto:#1C1C1E;--texto-2:#6E6E73;--linea:#E8E6E1;--borde:#8E8A82;
+  --acento:#C2410C;--primario:#1C1C1E;--wa:#1D7A52;--ok:#1D7A52;--error:#B42318;--aviso:#8A5A00;
+  --rosa:#D6007A;--rosa-2:#FCE7F2;--naranja:#C2410C;--amarillo:#E8A400;--verde:#1D7A52;--azul:#0066CC;--morado:#7A3FC2;
+  --f:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-s:10px;--r-m:16px;--r-l:22px;--r-p:999px;
+  --sombra:0 6px 20px rgba(0,0,0,.08);--sombra-2:0 20px 60px rgba(0,0,0,.18);
+  --nav-h:60px;--lado:16px;--max:1440px;
+}
+@media (min-width:768px){:root{--lado:32px;--nav-h:72px}}
+@media (min-width:1280px){:root{--lado:48px}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--texto);font-family:var(--f);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4,h5,p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.i-s{width:16px;height:16px}.i-l{width:24px;height:24px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Contenedor único: TODAS las páginas usan el mismo margen lateral */
+.cont{width:100%;max-width:var(--max);margin-left:auto;margin-right:auto;padding-left:var(--lado);padding-right:var(--lado)}
+.nota{font-size:14px;color:var(--texto-2)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.banda{background:var(--texto);color:#fff;font-size:12px;text-align:center;padding:5px 12px}
+
+/* ================= Base ================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--r-p);border:0;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:transform .1s ease-out,background .15s;color:inherit}
+.btn:active{transform:scale(.97)}
+.btn-pri{background:var(--primario);color:#fff}
+.btn-pri:hover{background:#3A3A3C}
+.btn-sec{background:var(--bg-2)}
+.btn-sec:hover{background:var(--bg-3)}
+.btn-borde{background:var(--bg);box-shadow:inset 0 0 0 1px var(--borde)}
+.btn-borde:hover{box-shadow:inset 0 0 0 1.5px var(--texto)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:#17633F}
+.btn-texto{background:transparent;text-decoration:underline;padding:0 10px}
+.btn-bloque{width:100%}
+.btn-ic{width:44px;height:44px;border-radius:50%;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none;text-decoration:none;color:inherit;position:relative}
+.btn-ic:hover{background:var(--bg-2)}
+.btn-ic.borde{box-shadow:inset 0 0 0 1px var(--linea)}
+.btn-ic.blanco{background:rgba(255,255,255,.94);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.lnk{color:var(--acento);font-weight:500;text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font-size:inherit}
+.lnk:hover{text-decoration:underline}
+.lnk-gris{color:var(--texto-2);text-decoration:underline;text-underline-offset:2px;background:none;border:0;padding:0;cursor:pointer;font-size:13.5px}
+.tag{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:var(--r-p);font-size:12.5px;font-weight:600;white-space:nowrap;border:0}
+.tag .i{width:14px;height:14px;stroke-width:2.25}
+.tag-dest{background:rgba(255,255,255,.94);color:var(--texto)}
+.tag-dest::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--rosa)}
+.tag-ver{background:rgba(255,255,255,.94);color:var(--ok)}
+.tag-nuevo{background:rgba(255,255,255,.94);color:var(--texto)}
+.tag.plano{background:var(--bg-2)}
+.tag-ver.plano{background:#EAF4EE}
+.tag-pend{background:#FFF4D6;color:var(--aviso)}
+button.tag{cursor:pointer}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:var(--r-p);border:0;box-shadow:inset 0 0 0 1px var(--linea);background:var(--bg);font-size:14.5px;cursor:pointer;white-space:nowrap;flex:none;text-decoration:none;color:var(--texto);transition:background .15s}
+.chip:hover{box-shadow:inset 0 0 0 1.5px var(--texto)}
+.chip[aria-pressed="true"]{background:var(--texto);color:#fff;box-shadow:none}
+.chip .i{width:18px;height:18px}
+@media (pointer:coarse){.chip{min-height:44px}}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);font-weight:600;letter-spacing:-.03em;font-size:19px;min-height:44px;white-space:nowrap}
+.logo svg{flex:none}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo>label,.campo>.lbl{font-size:14.5px;font-weight:600}
+.campo .ayuda{font-size:13px;color:var(--texto-2)}
+.err{font-size:13px;color:var(--error)}
+.input{min-height:52px;width:100%;border-radius:var(--r-m);border:0;box-shadow:inset 0 0 0 1px var(--borde);padding:0 16px;font-size:16px;background:var(--bg)}
+textarea.input{padding:14px 16px;min-height:140px;resize:vertical;line-height:1.5}
+.input:hover{box-shadow:inset 0 0 0 1.5px var(--texto)}
+.input:focus{outline:none;box-shadow:inset 0 0 0 2px var(--texto)}
+.input.mal{box-shadow:inset 0 0 0 2px var(--error)}
+select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231C1C1E' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:44px}
+.check{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:10px 0;cursor:pointer;font-size:15px;line-height:1.45}
+.check input{appearance:none;flex:none;width:24px;height:24px;margin:0;border-radius:7px;box-shadow:inset 0 0 0 1.5px var(--borde);display:grid;place-content:center;cursor:pointer;background:var(--bg)}
+.check input::before{content:"";width:12px;height:7px;border:2.25px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.check input:checked{background:var(--texto);box-shadow:none}
+.check input:checked::before{opacity:1}
+.op{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:8px 16px;border-radius:var(--r-m);border:0;box-shadow:inset 0 0 0 1px var(--linea);background:var(--bg);cursor:pointer;text-align:left;font-size:15.5px}
+.op:hover{box-shadow:inset 0 0 0 1.5px var(--texto)}
+.op[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--texto);font-weight:600}
+.op small{display:block;font-weight:400;color:var(--texto-2);font-size:13px}
+.opciones{display:flex;flex-direction:column;gap:8px}
+.fila-chips{display:flex;flex-wrap:wrap;gap:8px}
+.dos-col{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:600px){.dos-col{grid-template-columns:1fr 1fr}}
+.par{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+
+/* ================= Navegación ================= */
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--linea)}
+.nav-in{height:var(--nav-h);display:flex;align-items:center;gap:8px}
+.nav-links{display:none;gap:2px;margin:0 auto}
+.nav-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:var(--r-p);text-decoration:none;color:var(--texto-2);font-size:15px;font-weight:500}
+.nav-links a:hover{color:var(--texto);background:var(--bg-2)}
+.nav-links a[aria-current="page"]{color:var(--texto)}
+.nav-der{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-publica{display:none}
+.cnt-g{position:absolute;top:4px;right:2px;background:var(--rosa);color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+@media (min-width:1024px){.nav-links{display:flex}.nav-publica{display:inline-flex}}
+.nav.sin-linea{border-bottom-color:transparent}
+
+/* ================= Barra pegajosa: buscador + categorías ================= */
+.barra{position:sticky;top:var(--nav-h);z-index:35;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--linea)}
+.barra-top{display:flex;align-items:center;gap:8px;padding-top:6px}
+.pildora-m{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:52px;padding:0 8px 0 16px;border-radius:var(--r-p);border:0;background:var(--bg);box-shadow:0 0 0 1px var(--linea),0 3px 12px rgba(0,0,0,.07);cursor:pointer;text-align:left}
+.pildora-m .t{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.pildora-m b{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pildora-m span{font-size:12.5px;color:var(--texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-filtros{width:52px;height:52px;border-radius:50%;border:0;background:var(--bg);box-shadow:inset 0 0 0 1px var(--linea);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none;position:relative}
+.btn-filtros .cnt-g{top:2px;right:0}
+.pildora-d{display:none}
+@media (min-width:768px){
+  .pildora-m{display:none}
+  .pildora-d{display:flex;align-items:center;flex:1;max-width:760px;background:var(--bg);border-radius:var(--r-p);padding:5px;box-shadow:0 0 0 1px var(--linea),0 4px 16px rgba(0,0,0,.07);position:relative}
+  .barra-top{justify-content:center;gap:12px;padding-top:12px}
+}
+.seg{flex:1;min-width:0;border:0;background:transparent;border-radius:var(--r-p);min-height:54px;padding:0 22px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;cursor:pointer;position:relative;text-align:left}
+.seg+.seg::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:1px;background:var(--linea)}
+.seg:hover{background:var(--bg-2)}
+.seg:hover::before,.seg:hover+.seg::before,.seg.on::before,.seg.on+.seg::before{opacity:0}
+.seg.on{background:var(--bg);box-shadow:0 0 0 1px var(--linea),var(--sombra)}
+.seg b{font-size:12.5px;font-weight:600}
+.seg span{font-size:15px;color:var(--texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.seg span.lleno{color:var(--texto)}
+.seg-ir{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--primario);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin-left:4px}
+.pop{position:absolute;top:calc(100% + 10px);background:var(--bg);border-radius:var(--r-l);box-shadow:0 0 0 1px var(--linea),var(--sombra-2);padding:22px;z-index:50;width:400px;max-width:calc(100vw - 32px)}
+.pop h4{font-size:15px;font-weight:600;margin-bottom:12px}
+.pop .pie-pop{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--linea)}
+/* Categorías (salones, servicios y organizamos) */
+.cats{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--lado)*-1);padding:6px var(--lado) 0}
+.cats::-webkit-scrollbar{display:none}
+@media (min-width:1024px){.cats{justify-content:center}}
+.cat{flex:none;display:inline-flex;flex-direction:column;align-items:center;gap:4px;min-width:74px;padding:6px 8px 10px;color:var(--texto-2);font-size:12.5px;font-weight:500;border-bottom:2px solid transparent;text-decoration:none;white-space:nowrap}
+.cat .i{width:24px;height:24px;color:var(--texto)}
+.cat:hover{color:var(--texto);border-bottom-color:var(--linea)}
+.cat[aria-current="page"]{color:var(--texto);border-bottom-color:var(--texto);font-weight:600}
+.cat .pt{position:relative}
+.cat .pt::after{content:"";position:absolute;top:-1px;right:-5px;width:8px;height:8px;border-radius:50%;background:var(--c)}
+button.cat{background:transparent;border-top:0;border-left:0;border-right:0;cursor:pointer;font-family:inherit}
+.cat.org{color:var(--rosa)}
+.cat.org .i{color:var(--rosa)}
+.cat-sep{width:1px;background:var(--linea);margin:10px 6px 14px;flex:none}
+
+/* ================= Inicio ================= */
+.chips-fila{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--lado)*-1);padding:14px var(--lado) 2px}
+.chips-fila::-webkit-scrollbar{display:none}
+@media (min-width:1280px){.chips-fila{justify-content:center}}
+.atajos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media (min-width:768px){.atajos{gap:16px;margin-top:20px}}
+.atajo{display:flex;flex-direction:column;gap:6px;border-radius:var(--r-m);padding:14px;text-decoration:none;border:0;text-align:left;cursor:pointer;min-height:118px;position:relative;overflow:hidden}
+@media (min-width:768px){.atajo{flex-direction:row;align-items:center;gap:16px;padding:20px 24px;min-height:96px;border-radius:var(--r-l)}}
+.atajo b{font-size:15px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.atajo span{font-size:12.5px;line-height:1.35}
+@media (min-width:768px){.atajo b{font-size:18px}.atajo span{font-size:14.5px}}
+.atajo .ic{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.atajo .txt{display:flex;flex-direction:column;gap:3px}
+.atajo .flecha{display:none}
+@media (min-width:768px){.atajo .flecha{display:block;margin-left:auto}}
+.atajo.oscuro{background:var(--texto);color:#fff}
+.atajo.oscuro span{color:#D1D1D6}
+.atajo.oscuro .ic{background:rgba(255,255,255,.12)}
+.atajo.rosa{background:var(--rosa-2);color:#5A0033}
+.atajo.rosa .ic{background:#fff;color:var(--rosa)}
+.feed-cab{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:22px;padding-bottom:12px;flex-wrap:wrap}
+.feed-cab h1{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.feed-cab h1 span{color:var(--texto-2);font-weight:400}
+.feed-cab .der{display:flex;gap:14px;align-items:center}
+@media (min-width:768px){.feed-cab{padding-top:28px;padding-bottom:16px}.feed-cab h1{font-size:20px}}
+.feed-wrap{display:grid;grid-template-columns:1fr}
+@media (min-width:1024px){.feed-wrap.con-mapa{grid-template-columns:minmax(0,1fr) 40%;gap:24px}}
+.feed{display:grid;grid-template-columns:1fr;gap:28px 20px;padding-bottom:40px}
+@media (min-width:600px){.feed{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1024px){.feed{grid-template-columns:repeat(3,1fr);gap:36px 24px}}
+@media (min-width:1280px){.feed{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1024px){.con-mapa .feed{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1440px){.con-mapa .feed{grid-template-columns:repeat(3,1fr)}}
+.mapa-lado{display:none}
+@media (min-width:1024px){.con-mapa .mapa-lado{display:block;position:sticky;top:calc(var(--nav-h) + 160px);height:calc(100vh - var(--nav-h) - 184px);border-radius:var(--r-l);overflow:hidden}}
+.promo-feed{grid-column:1/-1;border-radius:var(--r-l);padding:24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+@media (min-width:768px){.promo-feed{flex-direction:row;align-items:center;justify-content:space-between;padding:28px 32px}}
+.promo-feed h3{font-size:21px;font-weight:700;letter-spacing:-.025em;line-height:1.15}
+.promo-feed p{font-size:15px;margin-top:4px}
+.promo-feed.oscuro{background:var(--texto);color:#fff}
+.promo-feed.oscuro p{color:#C7C7CC}
+.promo-feed.oscuro .btn-pri{background:#fff;color:var(--texto)}
+.promo-feed.claro{background:var(--bg-2)}
+.promo-feed.claro p{color:var(--texto-2)}
+.promo-feed.rosa{background:var(--rosa-2);color:#5A0033}
+.vacio{grid-column:1/-1;text-align:center;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;background:var(--bg-2);border-radius:var(--r-l)}
+.vacio h3{font-size:21px;font-weight:700;letter-spacing:-.02em}
+.vacio p{color:var(--texto-2);max-width:360px}
+.aviso-precio{grid-column:1/-1;background:var(--bg-2);border-radius:var(--r-m);padding:12px 16px;font-size:14px;color:var(--texto-2);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.flotante{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:36;box-shadow:var(--sombra-2)}
+.como{display:grid;gap:12px;grid-template-columns:1fr;margin-top:16px}
+@media (min-width:768px){.como{grid-template-columns:repeat(3,1fr);gap:16px}}
+.paso{background:var(--bg-2);border-radius:var(--r-l);padding:22px;display:flex;flex-direction:column;gap:6px}
+.paso .n{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+.paso h3{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.paso p{color:var(--texto-2);font-size:15px}
+
+/* ================= Tarjeta ================= */
+.tarjeta{display:flex;flex-direction:column;gap:10px;color:var(--texto);position:relative;min-width:0;cursor:pointer}
+.foto{position:relative;aspect-ratio:4/3;border-radius:var(--r-m);overflow:hidden;background:var(--bg-3);isolation:isolate}
+@media (max-width:599px){.feed .foto{aspect-ratio:5/4}}
+.slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;height:100%;scroll-snap-align:center;scroll-snap-stop:always;background:var(--ft,#EFEDE8);display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.32);font-size:12px;letter-spacing:.1em}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide .ph-ic{display:flex;flex-direction:column;align-items:center;gap:6px}
+.slide .ph-ic .i{width:28px;height:28px;stroke-width:1.25;opacity:.6}
+.foto .tags{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;z-index:2;pointer-events:none}
+.foto .fav{position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3}
+.foto .fav .i{width:26px;height:26px;fill:rgba(0,0,0,.3);stroke:#fff;stroke-width:1.75;transition:transform .15s}
+.foto .fav:active .i{transform:scale(.8)}
+.fav[aria-pressed="true"] .i{fill:var(--rosa)!important}
+.puntos{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:2;pointer-events:none}
+.puntos u{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);text-decoration:none;transition:transform .2s,background .2s}
+.puntos u.on{background:#fff;transform:scale(1.15)}
+.foto .fl{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.94);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.foto .fl .i{width:16px;height:16px;stroke-width:2.25}
+.foto .fl.izq{left:8px}.foto .fl.der{right:8px}
+@media (hover:hover) and (pointer:fine){.tarjeta:hover .foto .fl{display:flex}}
+.t-cuerpo{display:flex;flex-direction:column;font-size:15px;gap:1px;position:relative;padding-right:56px}
+.t-nombre{font-weight:600;font-size:16px;letter-spacing:-.01em;text-decoration:none;color:inherit}
+.t-meta{color:var(--texto-2)}
+.t-caps{display:flex;flex-wrap:wrap;gap:2px 12px;color:var(--texto-2)}
+.t-caps span{display:inline-flex;align-items:center;gap:5px}
+.t-precio{margin-top:4px}
+.t-precio b{font-weight:600}
+.t-wa{position:absolute;right:0;bottom:0;width:46px;height:46px;border-radius:50%;border:0;background:var(--bg);box-shadow:inset 0 0 0 1px var(--linea);color:var(--wa);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,background .15s}
+.t-wa:active{transform:scale(.92)}
+.t-wa:hover{background:#EAF4EE;box-shadow:inset 0 0 0 1px #BFDCCB}
+.tarjeta.resalta .foto{box-shadow:0 0 0 3px var(--texto)}
+.sin-click .tarjeta{cursor:default}
+
+/* ================= Mapa de ejemplo ================= */
+.mapa{position:relative;width:100%;height:100%;overflow:hidden;background:#EEF0EA}
+.mapa svg.calles{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;transform:translate(-50%,-100%);border:0;background:var(--bg);color:var(--texto);font-weight:700;font-size:13px;padding:0 12px;height:32px;border-radius:var(--r-p);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.15);cursor:pointer;white-space:nowrap;transition:transform .15s}
+.pin:hover,.pin.on{background:var(--texto);color:#fff;transform:translate(-50%,-100%) scale(1.06);z-index:5}
+.mapa-nota{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.92);font-size:12px;color:var(--texto-2);padding:4px 10px;border-radius:var(--r-p)}
+.mapa-mini{position:absolute;left:12px;right:12px;bottom:84px;background:var(--bg);border-radius:var(--r-m);box-shadow:var(--sombra-2);display:flex;gap:12px;padding:10px;text-decoration:none;color:var(--texto);z-index:6}
+@media (min-width:1024px){.mapa-mini{bottom:12px}}
+.mapa-mini .f{width:100px;height:80px;flex:none;border-radius:12px;background:var(--ft);overflow:hidden}
+.mapa-mini .f img{width:100%;height:100%;object-fit:cover}
+.mapa-completo{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;flex-direction:column}
+.mapa-completo .top{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--linea)}
+/* Zonas */
+.zonas-mapa{width:100%;max-width:340px;margin:0 auto 14px;display:block}
+.zonas-mapa path,.zonas-mapa circle{cursor:pointer;transition:fill .15s}
+.zonas-mapa text{pointer-events:none;font-family:var(--f);font-size:11px;font-weight:600;fill:var(--texto)}
+.zonas-mapa text.sub{font-weight:400;font-size:9.5px;fill:var(--texto-2)}
+
+/* ================= Hojas y modales ================= */
+.velo{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:80;display:flex;align-items:flex-end;justify-content:center}
+@media (min-width:768px){.velo{align-items:center;padding:24px}}
+@keyframes aparece{from{opacity:0}to{opacity:1}}
+.hoja{background:var(--bg);width:100%;max-height:92vh;max-height:92dvh;border-radius:var(--r-l) var(--r-l) 0 0;display:flex;flex-direction:column;animation:sube .3s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:768px){.hoja{max-width:560px;border-radius:var(--r-l);max-height:86vh}}
+@keyframes sube{from{transform:translateY(40px)}to{transform:none}}
+.hoja-top{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid var(--linea)}
+.hoja-top h3{font-size:16px;font-weight:600;text-align:center}
+.hoja-cuerpo{padding:20px;overflow:auto;display:flex;flex-direction:column;gap:24px;flex:1;overscroll-behavior:contain}
+.hoja-pie{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--linea)}
+.grupo h4{font-size:17px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+.grupo .nota{margin-bottom:12px}
+.grid-checks{display:grid;grid-template-columns:1fr;gap:0 16px}
+@media (min-width:480px){.grid-checks{grid-template-columns:1fr 1fr}}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.stepper .n{font-size:34px;font-weight:700;letter-spacing:-.04em;min-width:120px;text-align:center}
+.stepper .n.vacio-n{font-size:17px;font-weight:500;color:var(--texto-2);letter-spacing:0}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--texto);color:#fff;padding:12px 18px;border-radius:var(--r-m);font-size:14px;z-index:120;width:max-content;max-width:calc(100vw - 32px);box-shadow:var(--sombra-2);animation:sube .25s ease-out;line-height:1.4}
+.toast small{display:block;color:#C7C7CC;font-size:13px;margin-top:4px}
+.menu-lista{display:flex;flex-direction:column}
+.menu-lista a{display:flex;align-items:center;gap:14px;min-height:56px;text-decoration:none;font-size:17px;font-weight:500;border-bottom:1px solid var(--linea)}
+.lista-ok{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.lista-ok li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.lista-ok .i{color:var(--ok);margin-top:2px}
+
+/* ================= Ficha ================= */
+.ficha{padding-bottom:110px}
+@media (min-width:1024px){.ficha{padding-bottom:64px}}
+.ficha-galeria{position:relative}
+.ficha-galeria .foto{border-radius:0;aspect-ratio:4/3}
+.ficha-galeria .acciones{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:4}
+.ficha-galeria .acciones div{display:flex;gap:8px}
+.ficha-galeria .fav .i{fill:none;stroke:var(--texto)}
+.contador{position:absolute;right:12px;bottom:12px;z-index:3;font-size:12.5px;padding:4px 10px;border-radius:var(--r-p);background:rgba(0,0,0,.6);color:#fff}
+.mosaico,.ficha-top-d{display:none}
+@media (min-width:768px){
+  .ficha-galeria{display:none}
+  .ficha-top-d{display:flex;align-items:center;justify-content:space-between;margin:16px 0}
+  .mosaico{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:210px 210px;gap:8px;border-radius:var(--r-l);overflow:hidden;position:relative}
+  .mosaico .g{background:var(--ft);display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.32);font-size:12px;letter-spacing:.1em;overflow:hidden;cursor:pointer;border:0;padding:0}
+  .mosaico .g img{width:100%;height:100%;object-fit:cover}
+  .mosaico .g:first-child{grid-row:span 2}
+  .mosaico .ver-todas{position:absolute;right:16px;bottom:16px;background:var(--bg);box-shadow:var(--sombra);min-height:40px;font-size:14px}
+}
+@media (min-width:1024px){.mosaico{grid-template-rows:240px 240px}}
+.ficha-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-top:20px}
+@media (min-width:1024px){.ficha-grid{grid-template-columns:minmax(0,1fr) 380px;gap:64px;margin-top:28px}}
+.ficha h1{font-size:clamp(1.625rem,4vw,2.375rem);font-weight:700;letter-spacing:-.04em;line-height:1.08;margin-top:10px}
+.ficha .donde{color:var(--texto-2);margin-top:4px}
+.datos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+@media (min-width:768px){.datos{grid-template-columns:repeat(4,1fr);gap:10px}}
+.dato{background:var(--bg-2);border-radius:var(--r-m);padding:12px 14px;min-width:0}
+.dato small{display:block;font-size:12.5px;color:var(--texto-2)}
+.dato b{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.mi-fiesta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:0;border:0;background:none;text-align:left;cursor:pointer;min-height:44px;font-size:14px;color:var(--texto-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--linea)}
+.mi-fiesta:hover{color:var(--texto)}
+.contacto .mi-fiesta{margin-top:-4px}
+.ficha-sec{padding-top:28px;margin-top:28px;border-top:1px solid var(--linea)}
+.ficha-sec h2{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-bottom:14px}
+.amen{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.amen div{display:flex;gap:10px;align-items:center;font-size:15px}
+.amen .no{color:var(--texto-2);text-decoration:line-through}
+.lista-inc{margin:0;padding-left:20px;display:grid;gap:6px}
+@media (min-width:600px){.lista-inc{grid-template-columns:1fr 1fr}}
+.desc{white-space:pre-line}
+.contacto{position:sticky;top:calc(var(--nav-h) + 24px);background:var(--bg);border-radius:var(--r-l);box-shadow:0 0 0 1px var(--linea),var(--sombra);padding:24px;display:none;flex-direction:column;gap:12px}
+@media (min-width:1024px){.contacto{display:flex}}
+.contacto .precio{font-size:28px;font-weight:700;letter-spacing:-.03em}
+.org-ficha{background:var(--bg-2);border-radius:var(--r-l);padding:20px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:16px}
+.org-ficha p{color:var(--texto-2);font-size:14.5px;margin-bottom:6px}
+.org-ficha .btn{background:var(--texto);color:#fff}
+.solo-m-org .org-ficha{margin-top:32px}
+.barra-m{position:fixed;left:0;right:0;bottom:0;z-index:36;background:rgba(255,255,255,.95);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--linea);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.barra-m .cont{display:flex;align-items:center;gap:10px}
+@media (min-width:1024px){.barra-m{display:none}}
+.barra-m .p{flex:1;min-width:0;line-height:1.25}
+.barra-m .p b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra-m .p span{font-size:13px;color:var(--texto-2)}
+.carr{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--lado);margin:0 calc(var(--lado)*-1)}
+.carr::-webkit-scrollbar{display:none}
+.carr>*{scroll-snap-align:start}
+@media (min-width:600px){.carr{grid-auto-columns:calc((100% - 32px)/2.3)}}
+@media (min-width:1024px){.carr{grid-auto-columns:calc((100% - 60px)/4);gap:20px;padding:0;margin:0}}
+
+/* ================= Páginas interiores (misma rejilla que el inicio) ================= */
+.pagina{padding-top:32px;padding-bottom:64px}
+@media (min-width:768px){.pagina{padding-top:56px;padding-bottom:80px}}
+.pag-cab{max-width:760px;margin-bottom:28px}
+@media (min-width:768px){.pag-cab{margin-bottom:40px}}
+.eyebrow{font-weight:600;font-size:15px;color:var(--acento)}
+.pag-cab h1{font-weight:700;letter-spacing:-.045em;font-size:clamp(2rem,6vw,3.5rem);line-height:1.04;margin-top:6px}
+.pag-cab p{color:var(--texto-2);font-size:clamp(1.0625rem,2vw,1.25rem);margin-top:12px;line-height:1.4}
+.pag-cab .acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.seccion{margin-top:48px}
+@media (min-width:768px){.seccion{margin-top:64px}}
+.titulo-sec{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.12}
+@media (min-width:768px){.titulo-sec{font-size:30px}}
+.tres{display:grid;gap:12px;grid-template-columns:1fr;margin-top:16px}
+@media (min-width:900px){.tres{grid-template-columns:repeat(3,1fr);gap:16px}}
+.cuatro{display:grid;gap:12px;grid-template-columns:1fr;margin-top:16px}
+@media (min-width:700px){.cuatro{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){.cuatro{grid-template-columns:repeat(4,1fr)}}
+.card-b{background:var(--bg-2);border-radius:var(--r-l);padding:24px;display:flex;flex-direction:column;gap:8px}
+.card-b h3{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.card-b p,.card-b li{color:var(--texto-2);font-size:15px}
+.card-b ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.card-b .precio{font-size:28px;font-weight:700;letter-spacing:-.035em}
+.card-b.marcado{background:var(--bg);box-shadow:inset 0 0 0 2px var(--texto)}
+.form-caja{display:grid;gap:24px;grid-template-columns:1fr;background:var(--bg-2);border-radius:var(--r-l);padding:24px}
+@media (min-width:900px){.form-caja{grid-template-columns:1fr 1.2fr;padding:40px;gap:40px}}
+.form{display:grid;gap:16px}
+.ok-caja{background:#EAF4EE;color:#0B3B22;border-radius:var(--r-m);padding:18px;display:flex;gap:12px;align-items:flex-start}
+.aviso-caja{background:#FFF4D6;color:#5C3D00;border-radius:var(--r-m);padding:16px 18px;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.etiquetas-lista{display:grid;gap:12px;margin-top:16px}
+.etiqueta-fila{display:grid;grid-template-columns:1fr;gap:8px;padding:20px;border-radius:var(--r-l);background:var(--bg-2)}
+@media (min-width:700px){.etiqueta-fila{grid-template-columns:220px 1fr;align-items:center;gap:24px}}
+.etiqueta-fila p{color:var(--texto-2);font-size:15px}
+
+/* ================= Panel del dueño ================= */
+.wiz{display:grid;grid-template-columns:1fr;gap:32px;padding-bottom:120px}
+@media (min-width:1024px){.wiz{grid-template-columns:minmax(0,1fr) 360px;gap:56px;padding-bottom:64px}}
+.wiz-prog{position:sticky;top:var(--nav-h);z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0 12px;border-bottom:1px solid var(--linea)}
+.wiz-prog .barra-p{height:4px;border-radius:2px;background:var(--linea);overflow:hidden;margin-top:8px}
+.wiz-prog .barra-p i{display:block;height:100%;background:var(--texto);transition:width .3s}
+.wiz-prog .meta{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--texto-2)}
+.wiz-prog .meta b{color:var(--texto);font-weight:600}
+.wiz-pasos{display:none;gap:4px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+@media (min-width:768px){.wiz-pasos{display:flex}}
+.wiz-pasos button{border:0;background:transparent;font-size:13.5px;color:var(--texto-2);padding:6px 10px;border-radius:var(--r-p);cursor:pointer;white-space:nowrap;min-height:36px}
+.wiz-pasos button[aria-current="step"]{background:var(--bg-2);color:var(--texto);font-weight:600}
+.wiz-pasos button.hecho{color:var(--ok)}
+.wiz h2{font-size:clamp(1.625rem,4vw,2.25rem);font-weight:700;letter-spacing:-.04em;line-height:1.08;margin-top:24px}
+.wiz .intro{color:var(--texto-2);margin-top:8px;margin-bottom:24px;max-width:560px}
+.wiz-form{display:grid;gap:22px;max-width:640px}
+.wiz-pie{position:fixed;left:0;right:0;bottom:0;z-index:36;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--linea);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.wiz-pie .cont{display:flex;justify-content:space-between;align-items:center;gap:12px}
+@media (min-width:1024px){.wiz-pie{position:static;background:transparent;border:0;padding:32px 0 0;backdrop-filter:none;-webkit-backdrop-filter:none}.wiz-pie .cont{padding:0;max-width:640px;margin:0}}
+.vista{display:none}
+@media (min-width:1024px){.vista{display:block;position:sticky;top:calc(var(--nav-h) + 110px);align-self:start}}
+.vista .etq{font-size:13px;color:var(--texto-2);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.fotos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:600px){.fotos-grid{grid-template-columns:repeat(3,1fr)}}
+.foto-item{position:relative;aspect-ratio:4/3;border-radius:var(--r-m);overflow:hidden;background:var(--bg-3)}
+.foto-item img{width:100%;height:100%;object-fit:cover}
+.foto-item .portada{position:absolute;top:8px;left:8px;background:var(--bg);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--r-p)}
+.foto-item .acc{position:absolute;right:6px;bottom:6px;display:flex;gap:6px}
+.foto-item .acc button{width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.foto-item .acc .i{width:18px;height:18px}
+.subir{aspect-ratio:4/3;border-radius:var(--r-m);border:1.5px dashed var(--borde);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;color:var(--texto);font-weight:600;font-size:15px;text-align:center;padding:12px;background:var(--bg)}
+.subir:hover{background:var(--bg-2)}
+.subir.grande{aspect-ratio:auto;min-height:200px;grid-column:1/-1}
+.subir small{font-weight:400;color:var(--texto-2);font-size:13px}
+.lista-edit{display:flex;flex-wrap:wrap;gap:8px}
+.item-edit{display:inline-flex;align-items:center;gap:4px;background:var(--bg-2);border-radius:var(--r-p);padding:0 4px 0 14px;min-height:40px;font-size:14.5px}
+.item-edit button{width:36px;height:36px;border:0;background:transparent;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.agregar{display:flex;gap:8px}
+.medidor{height:8px;border-radius:4px;background:var(--linea);overflow:hidden}
+.medidor i{display:block;height:100%;background:var(--verde)}
+.tablero{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:1024px){.tablero{grid-template-columns:360px minmax(0,1fr);gap:32px}}
+.caja{background:var(--bg-2);border-radius:var(--r-l);padding:22px;display:flex;flex-direction:column;gap:12px}
+.caja h3{font-size:18px;font-weight:600;letter-spacing:-.015em}
+.caja.borde{background:var(--bg);box-shadow:inset 0 0 0 1px var(--linea)}
+.estado{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px}
+.estado::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.pendientes{display:flex;flex-direction:column}
+.pendientes div{display:flex;align-items:center;gap:12px;min-height:52px;border-top:1px solid var(--linea);font-size:15px}
+.pendientes .ok{color:var(--ok)}
+.qr{width:120px;height:120px;border-radius:12px;background:var(--bg);display:grid;place-items:center;font-size:12px;color:var(--texto-2);box-shadow:inset 0 0 0 1px var(--linea);text-align:center}
+.precio-plan{font-size:26px;font-weight:700;letter-spacing:-.03em}
+.precio-plan small{font-size:14px;font-weight:400;color:var(--texto-2);letter-spacing:0}
+
+/* ================= Pie ================= */
+.pie{background:var(--bg-2);padding:36px 0 calc(32px + env(safe-area-inset-bottom))}
+.pie h2{font-size:20px;font-weight:700;letter-spacing:-.025em;margin-bottom:10px}
+.pie-tabs{display:flex;gap:4px;border-bottom:1px solid var(--linea);overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.pie-tab{min-height:44px;padding:0 12px;border:0;background:transparent;color:var(--texto-2);font-weight:500;font-size:15px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.pie-tab[aria-selected="true"]{color:var(--texto);border-bottom-color:var(--texto)}
+.ideas{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+@media (min-width:768px){.ideas{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1024px){.ideas{grid-template-columns:repeat(6,1fr)}}
+.ideas a{display:flex;flex-direction:column;justify-content:center;min-height:56px;text-decoration:none;font-size:15px;font-weight:500}
+.ideas a span{font-weight:400;color:var(--texto-2);font-size:13.5px}
+.pie-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid var(--linea);margin-top:20px;padding-top:20px}
+@media (min-width:768px){.pie-cols{grid-template-columns:repeat(4,1fr)}}
+.pie-cols h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.pie-cols a{display:flex;align-items:center;min-height:40px;color:var(--texto-2);text-decoration:none;font-size:15px}
+.pie-cols a:hover{color:var(--texto);text-decoration:underline}
+.pie-legal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--linea);margin-top:20px;padding-top:18px;font-size:13.5px;color:var(--texto-2)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-corazon" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.6 4.4-2.1 1.4a11 11 0 0 0 5.9 5.9l1.4-2.1 4.4 1.6v2.8a2 2 0 0 1-2.1 2A16 16 0 0 1 4.5 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.3 18.4z"/><path d="M9.6 9.3c0 2.7 2.4 5.1 5.1 5.1l.8-1.3-1.5-.8-.7.6a3.7 3.7 0 0 1-2.2-2.2l.6-.7-.8-1.5z" stroke-width="1.3"/></symbol>
+  <symbol id="i-izq" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-der" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-filtros" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M9 4.5L3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5zM9 4.5v13M15 6.5v13"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-invitados" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c0-3.2 2.7-5.5 6-5.5s6 2.3 6 5.5M15.5 5.5a3.2 3.2 0 0 1 0 6.2M17.5 14.3c2 .7 3.5 2.6 3.5 5.2"/></symbol>
+  <symbol id="i-arbol" viewBox="0 0 24 24"><path d="M12 21v-6M12 15c-4 0-6.5-2.3-6.5-5.3 0-2 1.3-3.6 3-4.2A3.8 3.8 0 0 1 12 3a3.8 3.8 0 0 1 3.5 2.5c1.7.6 3 2.2 3 4.2 0 3-2.5 5.3-6.5 5.3z"/></symbol>
+  <symbol id="i-techo" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-5h4v5"/></symbol>
+  <symbol id="i-alberca" viewBox="0 0 24 24"><path d="M3 17c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0M3 13c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0M8 11V5a2 2 0 0 1 4 0M14 11V5a2 2 0 0 1 4 0"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><path d="M4 16.5V12l1.8-4.6A1.5 1.5 0 0 1 7.2 6.5h9.6a1.5 1.5 0 0 1 1.4.9L20 12v4.5zM4 12h16M6.5 16.5V19M17.5 16.5V19"/></symbol>
+  <symbol id="i-nino" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M12 14.5l-1.2 1.8h2.4zM12 16.3c0 1.8 1.6 2.3 1.6 4.2"/></symbol>
+  <symbol id="i-cocina" viewBox="0 0 24 24"><path d="M4 10h16v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6zM2.5 10H4M20 10h1.5M9 7c0-1.5 1-1.5 1-3M13 7c0-1.5 1-1.5 1-3"/></symbol>
+  <symbol id="i-mesa" viewBox="0 0 24 24"><path d="M3 9h18M6 9v11M18 9v11M8 9V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V9"/></symbol>
+  <symbol id="i-musica" viewBox="0 0 24 24"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-accesible" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="1.5"/><path d="M6 8.5h12M12 8.5v5l-3 6.5M12 13.5l3 6.5"/></symbol>
+  <symbol id="i-proveedor" viewBox="0 0 24 24"><path d="M4 9.5h16v11H4zM12 9.5v11M4 14h16M12 9.5c-1.2-2.8-5-3.3-5-1.3 0 1.4 2.6 1.3 5 1.3zm0 0c1.2-2.8 5-3.3 5-1.3 0 1.4-2.6 1.3-5 1.3z"/></symbol>
+  <symbol id="i-dinero" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></symbol>
+  <symbol id="i-mas" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-menos" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-compartir" viewBox="0 0 24 24"><path d="M12 15V3.5M8 7.5l4-4 4 4M6 11H5v9.5h14V11h-1"/></symbol>
+  <symbol id="i-foto" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.5L9 5h6l1.5 2H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5z"/><circle cx="12" cy="12.8" r="3.4"/></symbol>
+  <symbol id="i-basura" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z"/></symbol>
+  <symbol id="i-salon" viewBox="0 0 24 24"><path d="M3 20.5h18M5 20.5V10a7 7 0 0 1 14 0v10.5M9.5 20.5V15a2.5 2.5 0 0 1 5 0v5.5"/></symbol>
+  <symbol id="i-banquete" viewBox="0 0 24 24"><path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 11V9M10.5 9h3"/></symbol>
+  <symbol id="i-dj" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><circle cx="12" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-pastel" viewBox="0 0 24 24"><path d="M4 20.5h16V15H4zM6.5 15v-4h11v4M12 11V8.5M12 5.5c.9.8.9 1.9 0 2.5-.9-.6-.9-1.7 0-2.5z"/></symbol>
+  <symbol id="i-camara" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.5L9 5h6l1.5 2H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5z"/><circle cx="12" cy="12.8" r="3.4"/></symbol>
+  <symbol id="i-deco" viewBox="0 0 24 24"><path d="M3 5c5 3.5 13 3.5 18 0M6 6.6l1.3 4.6 2.2-3.8M10.8 7.6l1.2 4.6 1.2-4.6M14.5 7.4l2.2 3.8L18 6.6"/></symbol>
+  <symbol id="i-silla" viewBox="0 0 24 24"><path d="M8 3v9h9M8 12v9M17 12v9M8 16h9"/></symbol>
+  <symbol id="i-inflable" viewBox="0 0 24 24"><path d="M3.5 20.5V10l2.5-2 2.5 2V7l3.5-3 3.5 3v3l2.5-2 2.5 2v10.5zM10 20.5v-3a2 2 0 0 1 4 0v3"/></symbol>
+  <symbol id="i-mesero" viewBox="0 0 24 24"><path d="M3 7.5l7.5 4.5L3 16.5zM21 7.5L13.5 12l7.5 4.5z"/></symbol>
+  <symbol id="i-organiza" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9 4.5V3h6v1.5M9 13l2.2 2.2L15.5 11"/></symbol>
+  <symbol id="i-tienda" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9c0 1.7 1.3 3 3 3s2.7-1.3 2.7-3c0 1.7 1.3 3 2.3 3s2.3-1.3 2.3-3c0 1.7 1 3 2.7 3s3-1.3 3-3M10 20v-5h4v5"/></symbol>
+  <symbol id="i-ojo" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-lapiz" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.01"/></symbol>
+  <symbol id="i-regalo" viewBox="0 0 24 24"><path d="M4 9.5h16v4H4zM5.5 13.5v7h13v-7M12 9.5v11M12 9.5c-1.2-2.8-5-3.3-5-1.3 0 1.4 2.6 1.3 5 1.3zm0 0c1.2-2.8 5-3.3 5-1.3 0 1.4-2.6 1.3-5 1.3z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+</defs></svg>
+
+<div class="banda">Maqueta · todos los datos son de ejemplo</div>
+<header class="nav" id="nav"></header>
+<main id="app"></main>
+<footer class="pie" id="pie"></footer>
+<div id="capa"></div>
+<input type="file" id="archivo" accept="image/*" multiple hidden>
+
+<script>
+(function(){
+'use strict';
+/* ===================================================================
+   DATOS DE EJEMPLO (no son negocios reales)
+   =================================================================== */
+// Zonas propuestas para Morelia, por salidas de la ciudad. Por validar en campo.
+// En la página real la zona se calcula sola con el punto del salón en el mapa.
+const ZONAS=[['Centro','Centro histórico y colonias cercanas'],['Norte','Salida a Salamanca y Tarímbaro'],['Oriente','Salida a Charo'],['Sur','Altozano y Tres Marías'],['Suroeste','Salida a Pátzcuaro'],['Poniente','Salida a Quiroga']];
+const zonaTxt=z=>{const r=ZONAS.find(x=>x[0]===z);return r?z+' · '+r[1]:z};
+const EVENTOS=['Primera comunión','Fiesta infantil','XV años','Boda','Bautizo','Graduación','Evento de empresa','Cumpleaños'];
+const TIPOS=['Jardín','Salón techado','Terraza','Quinta','Hacienda','Casa de eventos'];
+const TINTE={'Jardín':'#E3EBDD','Salón techado':'#ECE6DF','Terraza':'#E6E9EE','Quinta':'#E1EAE8','Hacienda':'#EDE3DA','Casa de eventos':'#EEE6EC'};
+const AMEN=[['aire','Aire libre','i-arbol'],['techo','Área techada','i-techo'],['alb','Alberca','i-alberca'],['est','Estacionamiento','i-auto'],['inf','Área infantil','i-nino'],['coc','Cocina','i-cocina'],['mob','Mesas y sillas incluidas','i-mesa'],['mus','Se permite música en vivo','i-musica'],['prov','Puedes llevar tus proveedores','i-proveedor'],['acc','Acceso sin escalones','i-accesible']];
+// [id, nombre, tipo, zona, mín, máx, precio (null = cotiza), lo que tiene, fecha de verificación, destacado, x, y, fiestas]
+const RAW=[
+ ['s01','Jardín Ejemplo Las Flores','Jardín','Sur',50,150,8500,'aire techo est inf coc mob mus prov acc','2026-09-20',1,58,74,'0 1 2 3 4 7'],
+ ['s02','Casa Ejemplo del Centro','Casa de eventos','Centro',20,70,3200,'techo coc mob mus acc','2026-09-02',0,49,46,'0 1 4 5 7'],
+ ['s03','Quinta Ejemplo El Ahuehuete','Quinta','Suroeste',80,200,null,'aire techo alb est inf coc mob mus prov','',0,22,72,'0 1 2 3 4 6'],
+ ['s04','Terraza Ejemplo Mirador','Terraza','Poniente',20,80,2900,'aire mob mus','2026-08-30',0,18,42,'1 4 5 6 7'],
+ ['s05','Salón Ejemplo Real','Salón techado','Norte',50,150,5000,'techo est coc mob mus acc','2026-09-28',0,50,16,'0 2 3 5 6'],
+ ['s06','Hacienda Ejemplo San Miguel','Hacienda','Oriente',100,400,15000,'aire techo alb est coc mob mus prov acc','2026-09-10',1,84,40,'2 3 6'],
+ ['s07','Jardín Ejemplo Los Pinos','Jardín','Oriente',50,120,6000,'aire alb est inf mus prov','',0,76,56,'0 1 4 7'],
+ ['s08','Salón Ejemplo Convenciones','Salón techado','Sur',150,500,null,'techo est coc mob mus acc','2026-09-15',0,66,84,'3 5 6'],
+ ['s09','Quinta Ejemplo La Huerta','Quinta','Norte',40,120,7000,'aire techo alb est inf coc mob mus prov','2026-09-25',0,38,22,'0 1 2 4 7'],
+ ['s10','Terraza Ejemplo Cantera','Terraza','Centro',30,90,4500,'aire techo coc mob acc','',0,55,52,'0 4 5 7'],
+ ['s11','Jardín Ejemplo Arboleda','Jardín','Suroeste',80,250,11000,'aire techo est inf coc mob mus prov acc','2026-07-20',0,12,80,'0 1 2 3 4'],
+ ['s12','Salón Ejemplo Brincos','Salón techado','Poniente',20,60,2500,'techo est inf mob mus acc','2026-09-18',0,24,30,'1 7'],
+ ['s13','Hacienda Ejemplo El Rosario','Hacienda','Sur',120,350,18000,'aire techo alb est inf coc mob mus prov','',0,44,90,'2 3 6'],
+ ['s14','Jardín Ejemplo Bugambilias','Jardín','Norte',60,180,9000,'aire alb est inf coc mus prov acc','2026-09-22',0,62,10,'0 1 2 3 4'],
+ ['s15','Quinta Ejemplo Los Sauces','Quinta','Norte',60,200,6500,'aire techo alb est inf mob mus prov','2026-09-12',0,70,6,'0 1 2 4 7'],
+ ['s16','Casa Ejemplo Jacarandas','Casa de eventos','Sur',30,100,4200,'aire techo inf coc mob mus acc','',0,52,78,'0 1 4 7'],
+ ['s17','Salón Ejemplo Imperial','Salón techado','Oriente',100,300,12000,'techo est coc mob mus acc','2026-08-25',0,88,52,'2 3 5 6'],
+ ['s18','Jardín Ejemplo El Manantial','Jardín','Poniente',70,220,null,'aire alb est inf mus prov','',0,10,36,'0 1 2 3 4'],
+ ['s19','Terraza Ejemplo Altozano','Terraza','Sur',40,120,7500,'aire techo est coc mob acc','2026-09-30',0,62,92,'3 5 6 7'],
+ ['s20','Quinta Ejemplo Santa Fe','Quinta','Suroeste',50,160,5800,'aire techo alb est inf coc mob mus prov','2026-09-08',0,8,62,'0 1 2 4 7']
+];
+const HOY=new Date('2026-10-11T12:00');
+const VIGENCIA=90; // días que dura «Verificado» (se renueva cada 3 meses)
+const EJ=RAW.map(r=>{const a={};r[7].split(' ').forEach(k=>a[k]=1);
+  return {id:r[0],n:r[1],tipo:r[2],z:r[3],min:r[4],max:r[5],p:r[6],pTipo:r[6]?'desde':'cotizar',a,ver:r[8]||null,ad:!!r[9],x:r[10],y:r[11],ev:r[12].split(' ').map(Number),est:a.est?Math.round(r[5]/5):0,fotos:[],nFotos:8,desc:'',inc:[],horario:''}});
+
+// Categorías: salones + servicios + organizamos
+const CATS=[['salones','Salones','i-salon','--rosa'],['banquete','Banquete','i-banquete','--naranja'],['dj','DJ y sonido','i-dj','--verde'],['pasteles','Pasteles','i-pastel','--amarillo'],['foto','Foto y video','i-camara','--azul'],['decoracion','Decoración','i-deco','--morado'],['mobiliario','Mobiliario','i-silla','--naranja'],['inflables','Inflables','i-inflable','--rosa'],['meseros','Meseros','i-mesero','--azul']];
+// Precios «desde» de ejemplo tomados de los rangos nacionales del estudio; sin dato = a cotizar
+const PREC_SERV={banquete:[250,' por persona'],dj:[2500,''],pasteles:[3000,''],foto:[8000,''],decoracion:[5000,''],mobiliario:[null,''],inflables:[null,''],meseros:[null,'']};
+const TINTE_SERV={banquete:'#F3E4DA',dj:'#DDEBE4',pasteles:'#F6EBD3',foto:'#DCE6F2',decoracion:'#E9E0F3',mobiliario:'#EFE6DC',inflables:'#F4DCE8',meseros:'#DFE6F0'};
+const PROV=[];CATS.slice(1).forEach(c=>{for(let i=1;i<=5;i++){const b=PREC_SERV[c[0]];PROV.push({id:c[0]+i,cat:c[0],n:c[1]+' Ejemplo '+i,z:i%2?'Toda Morelia':ZONAS[i%6][0],p:b[0]?Math.round(b[0]*(1+(i-1)*.35)/50)*50:null,u:b[1],ver:i<=2?'2026-09-1'+i:null,ad:i===1,nFotos:6,fotos:[],prov:true})}});
+
+/* ===================================================================
+   ESTADO
+   =================================================================== */
+let busq={inv:null,presup:0,zona:''};
+const filt={};
+function limpiarFiltros(){AMEN.forEach(a=>filt[a[0]]=0);filt.ver=0;filt.tipo=''}
+limpiarFiltros();
+let orden='recomendados',conMapa=false;
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+let guard=ls.get('myuf-guardados',{});
+let mio=ls.get('myuf-mi-salon',null);
+let fiesta=ls.get('myuf-mi-fiesta',{ev:'',fecha:'',inv:''}); // datos opcionales para prellenar el mensaje
+function publico(m){return {id:'mio',n:m.n||'Mi salón',tipo:m.tipo||'Salón techado',z:m.z||'Centro',min:+m.min||0,max:+m.max||0,p:m.pTipo==='cotizar'?null:(+m.p||null),pHasta:+m.pHasta||null,pTipo:m.pTipo,a:m.a||{},ver:m.verFecha||null,ad:false,x:46,y:60,ev:m.ev||[],est:+m.est||0,fotos:m.fotos||[],nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha}}
+function todos(){const l=EJ.slice();if(mio&&mio.estado==='publicado')l.push(publico(mio));return l}
+const porId=id=>id==='mio'&&mio?publico(mio):(EJ.find(s=>s.id===id)||PROV.find(s=>s.id===id));
+
+/* ===================================================================
+   UTILIDADES
+   =================================================================== */
+const $=(s,c)=>(c||document).querySelector(s);
+const $$=(s,c)=>Array.from((c||document).querySelectorAll(s));
+const ic=(id,c)=>`<svg class="i ${c||''}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const mesCorto=f=>{const d=new Date(f+'T12:00');return MESES[d.getMonth()].slice(0,3)+' '+d.getFullYear()};
+const fechaLarga=f=>new Date(f+'T12:00').toLocaleDateString('es-MX',{day:'numeric',month:'long'});
+const verificado=s=>s.ver&&(HOY-new Date(s.ver+'T12:00'))/864e5<=VIGENCIA?s.ver:null;
+function precioLargo(s){if(s.prov)return s.p?`Desde <b>${fmt.format(s.p)}</b>${s.u}`:'<b>Precio a cotizar</b>';if(s.pTipo==='rango'&&s.p&&s.pHasta)return `<b>${fmt.format(s.p)} a ${fmt.format(s.pHasta)}</b> por evento`;return s.p?`Desde <b>${fmt.format(s.p)}</b> por evento`:'<b>Precio a cotizar</b>'}
+const precioCorto=s=>s.p?fmt.format(s.p):'Cotizar';
+const precioFicha=s=>!s.p?'Precio a cotizar':s.pTipo==='rango'&&s.pHasta?fmt.format(s.p)+' a '+fmt.format(s.pHasta):'Desde '+fmt.format(s.p)+(s.u||'');
+function picado(s,hueco){const c=['#D6007A','#E8A400','#0066CC'],w=s,h=s*.9,fw=w/3.2;let g='';hueco=hueco||'#fff';
+  for(let i=0;i<3;i++){const x=i*(fw+w*.06);
+    g+=`<path d="M${x} ${h*.12}h${fw}v${h*.66}l-${fw/4} ${h*.12}-${fw/4}-${h*.12}-${fw/4} ${h*.12}-${fw/4}-${h*.12}z" fill="${c[i]}"/><circle cx="${x+fw/2}" cy="${h*.38}" r="${fw*.16}" fill="${hueco}"/><path d="M${x+fw/2} ${h*.56}l${fw*.14} ${fw*.14}-${fw*.14} ${fw*.14}-${fw*.14}-${fw*.14}z" fill="${hueco}"/>`}
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">${g}</svg>`}
+function toast(t,sub){$$('.toast').forEach(x=>x.remove());const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.innerHTML=esc(t)+(sub?`<small>${esc(sub)}</small>`:'');document.body.appendChild(d);setTimeout(()=>d.remove(),sub?5200:3400)}
+const PRESUP=[[0,'Cualquier precio'],[5000,'Hasta $5,000'],[8000,'Hasta $8,000'],[12000,'Hasta $12,000'],[20000,'Hasta $20,000']];
+const presTxt=()=>busq.presup?PRESUP.find(p=>p[0]===busq.presup)[1]:'Cualquier precio';
+const MES_ACTUAL=MESES[HOY.getMonth()];
+
+/* ===================================================================
+   FILTRADO Y ORDEN
+   Reglas: 1) destacados (pagan; rotan entre sí) · 2) verificados vigentes · 3) el resto.
+   Dentro de cada grupo: donde caben mejor tus invitados y fichas más completas.
+   =================================================================== */
+function cumple(s,ignorar){
+  if(busq.inv&&s.max<busq.inv)return false;
+  if(busq.presup&&ignorar!=='presup'&&(!s.p||s.p>busq.presup))return false;
+  if(busq.zona&&s.z!==busq.zona)return false;
+  if(filt.tipo&&s.tipo!==filt.tipo)return false;
+  if(filt.ver&&!verificado(s))return false;
+  for(const a of AMEN)if(filt[a[0]]&&!s.a[a[0]])return false;
+  return true;
+}
+const completitud=s=>(s.p?1:0)+(s.est?1:0)+((s.nFotos||0)>=5?1:0);
+function ordenar(l){
+  if(orden==='precio')return l.slice().sort((a,b)=>(a.p||1e9)-(b.p||1e9));
+  if(orden==='capacidad')return l.slice().sort((a,b)=>(b.max||0)-(a.max||0));
+  const rel=(a,b)=>{if(busq.inv&&a.max&&b.max){const d=(a.max-busq.inv)-(b.max-busq.inv);if(d)return d}return completitud(b)-completitud(a)};
+  let ads=l.filter(s=>s.ad);const r=HOY.getDate()%Math.max(ads.length,1);ads=ads.slice(r).concat(ads.slice(0,r));
+  const ver=l.filter(s=>!s.ad&&verificado(s)).sort(rel),resto=l.filter(s=>!s.ad&&!verificado(s)).sort(rel);
+  return ads.concat(ver,resto);
+}
+const nFiltros=()=>AMEN.filter(a=>filt[a[0]]).length+(filt.ver?1:0)+(filt.tipo?1:0)+(orden!=='recomendados'?1:0);
+const nActivos=()=>nFiltros()+(busq.inv?1:0)+(busq.presup?1:0)+(busq.zona?1:0);
+
+/* ===================================================================
+   RUTAS
+   =================================================================== */
+function ruta(){const h=location.hash.replace(/^#/,'')||'/';const [p,qs]=h.split('?');const q={};(qs||'').split('&').forEach(kv=>{if(kv){const [k,v]=kv.split('=');q[k]=decodeURIComponent(v||'')}});return {q,a:p.split('/').filter(Boolean)}}
+function render(){
+  cerrarCapa();
+  const r=ruta(),a=r.a;let html,act='salones',pie=true,barra=false;
+  if(!a.length||a[0]==='salones'){aplicarQuery(r.q);html=vFeed();barra=true}
+  else if(a[0]==='servicios'){html=vServicios(a[1]||'banquete');act='servicios';barra=true}
+  else if(a[0]==='salon'||a[0]==='proveedor')html=vFicha(a[1]);
+  else if(a[0]==='organizamos'){html=vOrganizamos();act='organizamos'}
+  else if(a[0]==='para-negocios'){html=vParaNegocios();act='publica'}
+  else if(a[0]==='panel'&&a[1]==='editar'){html=vWizard(+r.q.paso||1);act='publica';pie=false}
+  else if(a[0]==='panel'){html=vPanel();act='publica'}
+  else if(a[0]==='como-ordenamos'){html=vComoOrdenamos();act=''}
+  else if(a[0]==='guardados'){html=vGuardados();act=''}
+  else {html=vFeed();barra=true}
+  $('#nav').innerHTML=vNav(act);
+  $('#nav').classList.toggle('sin-linea',barra);
+  $('#app').innerHTML=html;
+  $('#pie').innerHTML=pie?vPie():'';$('#pie').hidden=!pie;
+  window.scrollTo(0,0);
+  montar(r);
+}
+function aplicarQuery(q){
+  if(q.inv)busq.inv=+q.inv;if(q.presup)busq.presup=+q.presup;if(q.zona)busq.zona=q.zona;
+  AMEN.forEach(a=>{if(q[a[0]])filt[a[0]]=1});if(q.ver)filt.ver=1;
+}
+
+/* ===================================================================
+   VISTAS · público
+   =================================================================== */
+function vNav(act){
+  const n=Object.keys(guard).length;
+  return `<div class="cont nav-in">
+    <a class="logo" href="#/" aria-label="Mil y Una Fiestas, inicio">${picado(28)}<span>Mil y Una Fiestas</span></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#/"${act==='salones'?' aria-current="page"':''}>${ic('i-salon')}Salones</a>
+      <a href="#/servicios"${act==='servicios'?' aria-current="page"':''}>${ic('i-proveedor')}Servicios</a>
+      <a href="#/organizamos"${act==='organizamos'?' aria-current="page"':''}>${ic('i-organiza')}Organizamos tu evento</a></nav>
+    <div class="nav-der">
+      <a class="btn btn-sec nav-publica" href="${mio?'#/panel':'#/para-negocios'}" style="min-height:44px;font-size:15px">${mio?'Mi negocio':'Publica tu negocio gratis'}</a>
+      <a class="btn-ic" href="#/guardados" aria-label="Guardados (${n})" data-nav-guard>${ic('i-corazon','i-l')}${n?`<span class="cnt-g">${n}</span>`:''}</a>
+      <button class="btn-ic" data-menu aria-label="Abrir menú">${ic('i-menu','i-l')}</button></div></div>`;
+}
+function vCats(actual){
+  return `<nav class="cats" aria-label="Qué buscas">${CATS.map(c=>`<a class="cat" href="${c[0]==='salones'?'#/':'#/servicios/'+c[0]}"${actual===c[0]?' aria-current="page"':''}><span class="pt" style="--c:var(${c[3]})">${ic(c[2])}</span>${c[1]}</a>`).join('')}<span class="cat-sep" aria-hidden="true"></span><button type="button" class="cat org" data-organiza><span>${ic('i-organiza')}</span>Lo organizamos</button></nav>`;
+}
+function vBarra(actual){
+  const esSalon=actual==='salones';
+  const resumen=[busq.inv?busq.inv+' invitados':'',busq.presup?presTxt():'',busq.zona||''].filter(Boolean);
+  return `<div class="barra" id="barra"><div class="cont">
+    ${esSalon?`<div class="barra-top">
+      <button class="pildora-m" data-hoja-busca>${ic('i-buscar')}<span class="t"><b>${resumen.length?resumen.join(' · '):'Busca tu salón'}</b><span>${resumen.length?'Toca para cambiar':'Invitados, precio y zona · todo opcional'}</span></span></button>
+      <div class="pildora-d" id="pildora">
+        <button type="button" class="seg" data-seg="inv"><b>Invitados</b><span class="${busq.inv?'lleno':''}">${busq.inv?busq.inv+' invitados':'Cualquier cantidad'}</span></button>
+        <button type="button" class="seg" data-seg="presup"><b>Presupuesto de renta</b><span class="${busq.presup?'lleno':''}">${presTxt()}</span></button>
+        <button type="button" class="seg" data-seg="zona"><b>Zona</b><span class="${busq.zona?'lleno':''}">${busq.zona||'Toda Morelia'}</span></button>
+        <button type="button" class="seg-ir" data-ir-feed aria-label="Ver salones">${ic('i-buscar')}</button></div>
+      <button class="btn-filtros" data-filtros aria-label="Más filtros${nFiltros()?' ('+nFiltros()+' activos)':''}">${ic('i-filtros','i-l')}${nFiltros()?`<span class="cnt-g">${nFiltros()}</span>`:''}</button>
+    </div>`:''}
+    ${vCats(actual)}</div></div>`;
+}
+function vAtajos(){
+  return `<div class="atajos">
+    <a class="atajo oscuro" href="#/organizamos"><span class="ic">${ic('i-organiza')}</span><span class="txt"><b>Lo organizamos por ti</b><span>Escríbenos y nos encargamos de todo</span></span>${ic('i-der','flecha')}</a>
+    <button class="atajo rosa" data-comparativa><span class="ic">${ic('i-regalo')}</span><span class="txt"><b>Comparativa de ${MES_ACTUAL}, gratis</b><span>Los mejores salones y precios en tu WhatsApp</span></span>${ic('i-der','flecha')}</button>
+  </div>`;
+}
+function vFeed(){
+  const chip=(k,lbl,i)=>`<button class="chip" data-f="${k}" aria-pressed="${!!filt[k]}">${ic(i)}${lbl}</button>`;
+  return vBarra('salones')+`<div class="cont">
+    <div class="chips-fila" role="group" aria-label="Filtros rápidos">${chip('aire','Aire libre','i-arbol')}${chip('alb','Alberca','i-alberca')}${chip('techo','Techado','i-techo')}${chip('est','Estacionamiento','i-auto')}${chip('inf','Área infantil','i-nino')}${chip('mob','Mesas incluidas','i-mesa')}${chip('prov','Lleva tus proveedores','i-proveedor')}${chip('ver','Verificado','i-escudo')}</div>
+    <div class="feed-cab" id="feed-cab"></div>
+    <div class="feed-wrap" id="feed-wrap"><div><div class="feed" id="feed"></div></div><aside class="mapa-lado" id="mapa-lado" aria-label="Mapa"></aside></div></div>
+    <button class="btn btn-pri flotante" id="btn-mapa">${ic('i-mapa')}Mapa</button>`;
+}
+function pintarFeed(){
+  const cab=$('#feed-cab');if(!cab)return;
+  const base=todos(),l=ordenar(base.filter(s=>cumple(s)));
+  const sinPrecio=busq.presup?base.filter(s=>cumple(s,'presup')&&!s.p).length:0;
+  cab.innerHTML=`<h1>${l.length} salones <span>en Morelia</span></h1><div class="der">${nActivos()?'<button class="lnk" data-limpiar style="min-height:44px">Limpiar filtros</button>':''}<a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>`;
+  const promoComp=`<div class="promo-feed rosa"><div><h3>¿Te ayudamos a decidir?</h3><p>Te mandamos gratis por WhatsApp la comparativa de ${MES_ACTUAL}: los salones con mejor precio por invitado.</p></div><button class="btn btn-pri" data-comparativa>Mándamela</button></div>`;
+  const promoOrg=`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-pri" data-organiza>Que lo organicen</button></div>`;
+  const promoNeg=`<div class="promo-feed claro"><div><h3>¿Tienes un salón o das un servicio?</h3><p>Publícalo gratis. Las familias te escriben directo.</p></div><a class="btn btn-pri" href="${mio?'#/panel':'#/para-negocios'}">${mio?'Ver mi negocio':'Publicar mi negocio'}</a></div>`;
+  let h='';
+  // Avisos después de 8 y 16 tarjetas (8 y 16 caben parejo en 1, 2 y 4 columnas)
+  l.forEach((s,i)=>{h+=tarjeta(s);if(i===7)h+=promoComp;if(i===15)h+=promoOrg});
+  if(l.length&&l.length<8)h+=promoComp;
+  if(l.length&&l.length<16)h+=promoOrg;
+  if(l.length)h+=promoNeg;
+  if(!l.length)h=`<div class="vacio">${picado(56,'#F7F6F3')}<h3>Ningún salón cumple todo</h3><p>Quita un filtro o sube el presupuesto. O deja que nosotros te busquemos opciones.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn btn-pri" data-limpiar>Quitar filtros</button><button class="btn btn-sec" data-organiza>Búsquenlo por mí</button></div></div>`;
+  if(sinPrecio)h=`<div class="aviso-precio"><span>${sinPrecio} salón${sinPrecio>1?'es':''} más cumple${sinPrecio>1?'n':''} todo pero no publica${sinPrecio>1?'n':''} precio.</span><button class="lnk" style="min-height:44px" data-presup0>Mostrarlos</button></div>`+h;
+  $('#feed').innerHTML=h;
+  $('#feed-wrap').classList.toggle('con-mapa',conMapa);
+  $('#mapa-lado').innerHTML=conMapa?mapa(l):'';
+  const bm=$('#btn-mapa');if(bm)bm.innerHTML=conMapa&&innerWidth>=1024?ic('i-lista')+'Ocultar mapa':ic('i-mapa')+'Mapa';
+  montarTarjetas($('#feed'));montarPins($('#mapa-lado'));montarComunes($('#feed'));
+  $$('[data-limpiar]').forEach(b=>b.onclick=limpiar);
+  $$('[data-presup0]').forEach(b=>b.onclick=()=>{busq.presup=0;refrescarBarra()});
+}
+function refrescarBarra(){const b=$('#barra');if(!b)return;const y=scrollY;b.outerHTML=vBarra('salones');$$('.chips-fila [data-f]').forEach(c=>c.setAttribute('aria-pressed',!!filt[c.dataset.f]));montarBarra();pintarFeed();window.scrollTo(0,y)}
+
+function vServicios(cat){
+  const c=CATS.find(x=>x[0]===cat)||CATS[1];const l=ordenar(PROV.filter(p=>p.cat===c[0]));
+  return vBarra(c[0])+`<div class="cont">
+    <div class="feed-cab"><h1>${l.length} de ${c[1].toLowerCase()} <span>en Morelia</span></h1><a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>
+    <div class="feed" id="feed">${l.map(tarjeta).join('')}
+      <div class="promo-feed claro"><div><h3>¿Das servicio de ${c[1].toLowerCase()}?</h3><p>Publícate gratis. Estamos sumando proveedores de Morelia cada semana.</p></div><a class="btn btn-pri" href="${mio?'#/panel':'#/para-negocios'}">Publicar mi negocio</a></div></div></div>`;
+}
+
+function slidesHTML(s,max){
+  const n=Math.min(max,s.fotos.length||s.nFotos||5),t=s.prov?TINTE_SERV[s.cat]:TINTE[s.tipo];let h='';
+  for(let i=0;i<n;i++)h+=s.fotos[i]?`<div class="slide"><img src="${s.fotos[i]}" alt="Foto ${i+1} de ${esc(s.n)}" loading="lazy"></div>`:`<div class="slide" style="--ft:${t}"><span class="ph-ic">${ic('i-foto')}FOTO ${i+1}</span></div>`;
+  return {h,n};
+}
+// Etiquetas: «Destacado» discreto (su significado está en «Cómo ordenamos»), «Verificado», «Nuevo»
+// En la tarjeta va UNA sola etiqueta (la más importante); en la ficha, todas
+function tagsDe(s,plano){
+  const v=verificado(s),p=plano?' plano':'';const t=[];
+  if(s.ad)t.push(`<span class="tag tag-dest${p}">Destacado</span>`);
+  if(v)t.push(`<span class="tag tag-ver${p}">${ic('i-escudo')}Verificado</span>`);
+  else if(s.nuevo)t.push(`<span class="tag tag-nuevo${p}">Nuevo</span>`);
+  return plano?t.join(''):(t[0]||'');
+}
+function tarjeta(s){
+  const sl=slidesHTML(s,5),ruta=s.prov?'proveedor':'salon';
+  return `<article class="tarjeta" data-id="${s.id}" data-ruta="${ruta}">
+    <div class="foto"><div class="slides" data-slides>${sl.h}</div><div class="tags">${tagsDe(s)}</div>
+      <button class="fav" data-fav="${s.id}" aria-pressed="${!!guard[s.id]}" aria-label="Guardar ${esc(s.n)}">${ic('i-corazon')}</button>
+      ${sl.n>1?`<button class="fl izq" data-paso-foto="-1" aria-label="Foto anterior">${ic('i-izq')}</button><button class="fl der" data-paso-foto="1" aria-label="Foto siguiente">${ic('i-der')}</button><div class="puntos" aria-hidden="true">${'<u></u>'.repeat(sl.n).replace('<u>','<u class="on">')}</div>`:''}</div>
+    <div class="t-cuerpo"><a class="t-nombre" href="#/${ruta}/${s.id}">${esc(s.n)}</a>
+      <span class="t-meta">${s.prov?CATS.find(c=>c[0]===s.cat)[1]+' · '+s.z:s.tipo+' · '+s.z}</span>
+      ${s.prov?'':`<span class="t-meta">${s.min} a ${s.max} personas</span>`}
+      <span class="t-precio">${precioLargo(s)}</span>
+      <button class="t-wa" data-wa="${s.id}" data-origen="lista" aria-label="Escribir por WhatsApp a ${esc(s.n)}">${ic('i-chat','i-l')}</button></div></article>`;
+}
+function mapa(l,sinNota){
+  const calles=`<svg class="calles" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 Q30 40 50 46 T100 44" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M48 0 Q44 30 50 50 T54 100" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M0 74 L100 64M0 20 L100 28" stroke="#fff" stroke-width="1.4" fill="none"/><path d="M20 0 L30 100M78 0 L70 100" stroke="#fff" stroke-width="1.2" fill="none"/><ellipse cx="42" cy="60" rx="9" ry="5" fill="#DCE8D4"/><ellipse cx="80" cy="84" rx="12" ry="7" fill="#DCE8D4"/><path d="M60 0 Q66 20 62 40" stroke="#CFE0EA" stroke-width="3" fill="none"/></svg>`;
+  return `<div class="mapa">${calles}${l.map(s=>`<button class="pin" style="left:${s.x}%;top:${s.y}%" data-pin="${s.id}" aria-label="${esc(s.n)}, ${precioCorto(s)}">${precioCorto(s)}</button>`).join('')}${sinNota?'':'<span class="mapa-nota">Mapa de ejemplo · real: OpenStreetMap</span>'}</div>`;
+}
+
+/* ---------- Ficha (salón o proveedor) ---------- */
+function resumenFiesta(){const p=[fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',fiesta.inv||busq.inv?(fiesta.inv||busq.inv)+' invitados':''].filter(Boolean);return p.join(' · ')}
+function botonFiesta(){const r=resumenFiesta();return `<button class="mi-fiesta" data-mi-fiesta>${ic('i-cal','i-s')}<span>${r?'Tu mensaje dirá: '+esc(r)+' · cambiar':'Agregar fecha e invitados al mensaje (opcional)'}</span></button>`}
+function vFicha(id){
+  const s=porId(id);if(!s)return `<div class="cont pagina"><div class="pag-cab"><h1>Esta ficha ya no está publicada.</h1><p><a class="lnk" href="#/">Ver todos los salones</a></p></div></div>`;
+  const v=verificado(s),sl=slidesHTML(s,12),total=sl.n,t=s.prov?TINTE_SERV[s.cat]:TINTE[s.tipo];
+  const fav=`data-fav="${s.id}" aria-pressed="${!!guard[s.id]}"`;
+  const fotoG=i=>s.fotos[i]?`<button class="g" data-galeria aria-label="Ver fotos"><img src="${s.fotos[i]}" alt=""></button>`:`<button class="g" data-galeria style="--ft:${t}" aria-label="Ver fotos">${s.fotos.length&&i>=s.fotos.length?'':'FOTO '+(i+1)}</button>`;
+  const cat=s.prov?CATS.find(c=>c[0]===s.cat)[1]:'';
+  const sim=s.prov?ordenar(PROV.filter(x=>x.cat===s.cat&&x.id!==s.id)):ordenar(todos().filter(x=>x.id!==s.id&&Math.abs(x.max-s.max)<=100)).slice(0,8);
+  const inc=s.inc&&s.inc.length?s.inc:['[INCLUYE 1]','[INCLUYE 2]','[INCLUYE 3]','[INCLUYE 4]'];
+  const datos=s.prov?`<div class="dato"><small>Servicio</small><b>${cat}</b></div><div class="dato"><small>Precio</small><b>${precioFicha(s)}</b></div><div class="dato"><small>Atiende</small><b>${s.z}</b></div><div class="dato"><small>Anticipo</small><b>[ANTICIPO]</b></div>`
+    :`<div class="dato"><small>Capacidad</small><b>${s.min} a ${s.max}</b></div><div class="dato"><small>Renta</small><b>${precioFicha(s)}</b></div><div class="dato"><small>Estacionamiento</small><b>${s.est?s.est+' lugares':s.a.est?'Sí':'En la calle'}</b></div><div class="dato"><small>Horario</small><b>${esc(s.horario)||'[HORARIO]'}</b></div>`;
+  const orgCaja=`<div class="org-ficha"><b style="font-size:16px">¿Prefieres que alguien más lo organice?</b><p>Nos cuentas tu fiesta y nosotros nos encargamos.</p><button class="btn" data-organiza style="min-height:44px">Que lo organicen</button></div>`;
+  return `<div class="ficha">
+    <div class="ficha-galeria"><div class="foto"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
+      <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
+    <div class="cont">
+      <div class="ficha-top-d"><a class="btn btn-sec" href="${s.prov?'#/servicios/'+s.cat:'#/'}" style="min-height:44px">${ic('i-izq')}${s.prov?cat:'Salones'}</a><div style="display:flex;gap:4px"><button class="btn btn-texto" data-compartir style="min-height:44px">${ic('i-compartir')}Compartir</button><button class="btn btn-texto" ${fav} data-fav-txt style="min-height:44px">${ic('i-corazon')}${guard[s.id]?'Guardado':'Guardar'}</button></div></div>
+      <div class="mosaico">${[0,1,2,3,4].map(fotoG).join('')}<button class="btn ver-todas" data-galeria>Ver las ${total} fotos</button></div>
+      <div class="ficha-grid"><div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">${tagsDe(s,true)}${s.ad||v||s.nuevo?`<button class="lnk-gris" data-que-es style="min-height:28px">¿Qué significa?</button>`:''}</div>
+        <h1>${esc(s.n)}</h1><p class="donde">${s.prov?cat+' · '+s.z:s.tipo+' · Zona '+zonaTxt(s.z)}</p>
+        <div class="datos">${datos}</div>
+        <div class="solo-m">${botonFiesta()}</div>
+        ${s.prov?'':`<section class="ficha-sec"><h2>Lo que tiene</h2><div class="amen">${AMEN.map(a=>{const si=!!s.a[a[0]];return `<div class="${si?'':'no'}">${ic(a[2],'i-l')}${a[1]}${si?'':'<span class="sr"> (no tiene)</span>'}</div>`}).join('')}</div></section>
+        <section class="ficha-sec"><h2>Qué incluye la renta</h2><ul class="lista-inc">${inc.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`}
+        <section class="ficha-sec"><h2>Sobre ${s.prov?'el servicio':'el lugar'}</h2><p class="desc">${esc(s.desc)||'[DESCRIPCIÓN QUE ESCRIBE EL DUEÑO]'}</p>
+          <p class="nota" style="margin-top:14px">${v?`Datos del negocio, verificados por nuestro equipo el ${fechaLarga(v)}.`:'Datos que publicó el negocio. Todavía no los verificamos.'} Confirma precio y fecha antes de apartar.</p></section>
+        ${s.prov?'':`<section class="ficha-sec"><h2>Fiestas que recibe</h2><div class="fila-chips">${s.ev.map(e=>`<span class="chip" style="cursor:default;box-shadow:none;background:var(--bg-2)">${EVENTOS[e]}</span>`).join('')||'<span class="nota">El salón no lo indicó.</span>'}</div></section>
+        <section class="ficha-sec"><h2>Ubicación aproximada</h2><div style="height:240px;border-radius:var(--r-l);overflow:hidden">${mapa([s],true)}</div><p class="nota" style="margin-top:8px">Zona ${zonaTxt(s.z)}, Morelia. La dirección exacta te la da el salón.</p></section>`}
+        <div class="solo-m-org">${orgCaja}</div>
+      </div>
+      <aside><div class="contacto"><div><span class="nota">${s.prov?'Precio':'Renta'}</span><div class="precio">${precioFicha(s)}</div><span class="nota">Precio de referencia. ${s.prov?'El proveedor':'El salón'} confirma fecha y total.</span></div>
+        <button class="btn btn-wa btn-bloque" data-wa="${s.id}" data-origen="ficha">${ic('i-chat')}Escribir por WhatsApp</button>
+        <button class="btn btn-borde btn-bloque" data-tel="${s.id}">${ic('i-tel')}Llamar</button>
+        ${botonFiesta()}
+        <p class="nota">Hablas directo con ${s.prov?'el proveedor':'el salón'}. No cobramos comisión ni recibimos tu pago.</p></div>
+        <div class="solo-d">${orgCaja}</div></aside></div>
+      ${sim.length>=4?`<section class="ficha-sec"><h2>${s.prov?'Otros de '+cat.toLowerCase():'Salones parecidos'}</h2><div class="carr">${sim.map(tarjeta).join('')}</div></section>`:''}
+    </div>
+    <div class="barra-m"><div class="cont"><div class="p"><b>${precioFicha(s)}</b><span>${s.prov?s.z:s.min+' a '+s.max+' personas'}</span></div><button class="btn-ic borde" style="width:50px;height:50px" data-tel="${s.id}" aria-label="Llamar">${ic('i-tel')}</button><button class="btn btn-wa" data-wa="${s.id}" data-origen="ficha">${ic('i-chat')}WhatsApp</button></div></div>
+  </div>`;
+}
+
+/* ---------- Páginas interiores (todas con .cont .pagina) ---------- */
+function vOrganizamos(){
+  const paq=[['Coordinación del día','$3,500 a $6,000','Tú contratas todo; nosotros cuidamos que el día salga bien.',['Llamada previa y cronograma','Coordinación presencial durante la fiesta','Contacto con proveedores ese día']],
+    ['Organización parcial','$6,000 a $10,000','Te ayudamos a elegir y coordinar lo más importante.',['Todo lo de coordinación del día','Elegir salón y 2 o 3 proveedores','Cotizaciones comparables','Seguimiento cada semana']],
+    ['Servicio completo','$12,000 a $18,000','Nos encargamos de la planeación de principio a fin.',['Todo lo de organización parcial','Todos los proveedores y la decoración','Visitas contigo','Equipo de apoyo el día de la fiesta']]];
+  return `<div class="cont pagina">
+  <div class="pag-cab"><span class="eyebrow">Organizamos tu evento</span><h1>Tú nos cuentas tu fiesta. Nosotros nos encargamos.</h1><p>Una persona de nuestro equipo te acompaña con el salón, los proveedores y el día del evento. Tú le pagas directo a cada proveedor; nosotros solo cobramos el servicio.</p>
+    <div class="acciones"><button class="btn btn-wa" data-wa-nosotros>${ic("i-chat")}Escríbenos por WhatsApp</button><button class="btn btn-sec" data-organiza>Que me escriban ustedes</button></div></div>
+  <h2 class="titulo-sec">Así funciona.</h2>
+  <div class="tres"><div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Nos cuentas tu fiesta</h3><p>Por WhatsApp, en una plática corta: tipo de fiesta, fecha, invitados y presupuesto.</p></div>
+    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Te proponemos opciones</h3><p>Salones y proveedores que te quedan, con precios comparables.</p></div>
+    <div class="paso"><span class="n" style="--c:var(--azul)">3</span><h3>Nosotros coordinamos</h3><p>Hablamos con los proveedores y estamos contigo el día de la fiesta.</p></div></div>
+  <section class="seccion"><h2 class="titulo-sec">Paquetes.</h2><div class="tres">${paq.map((p,i)=>`<div class="card-b${i===1?' marcado':''}"><h3>${p[0]}</h3><div class="precio">${p[1]}</div><p>${p[2]}</p><ul>${p[3].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>
+  <p class="nota" style="margin-top:12px">Precios piloto. El alcance de cada paquete se acuerda por escrito antes de empezar.</p></section>
+  <section class="seccion"><div class="form-caja"><div><h2 class="titulo-sec">¿Prefieres que te escribamos?</h2><p class="nota" style="margin-top:6px;font-size:16px">Déjanos tu WhatsApp y te contactamos para platicar de tu fiesta, sin compromiso.</p></div>
+  ${formCorto("fo-p","Que me contacten","Acepto que me contacten por WhatsApp para organizar mi fiesta.")}</div></section></div>`;
+}
+function vParaNegocios(){
+  return `<div class="cont pagina">
+  <div class="pag-cab"><span class="eyebrow">Para salones y proveedores</span><h1>Publica tu negocio tú mismo. Gratis.</h1><p>Sube tus fotos, tu capacidad, tu precio y lo que tienes. Las familias te encuentran y te escriben directo a tu WhatsApp. Sin comisiones.</p>
+    <div class="acciones"><a class="btn btn-pri" href="${mio?'#/panel':'#/panel/editar?paso=1'}">${mio?'Ir a mi negocio':'Empezar ahora'}</a><span class="nota" style="align-self:center">Unos 10 minutos desde tu celular.</span></div></div>
+  <h2 class="titulo-sec">Cómo funciona.</h2>
+  <div class="cuatro">
+    <div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Llena tu ficha</h3><p>Datos, capacidad, precio, fotos y lo que tiene tu salón.</p></div>
+    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Publícala</h3><p>Aparece de inmediato con la etiqueta «Nuevo».</p></div>
+    <div class="paso"><span class="n" style="--c:var(--verde)">3</span><h3>Verifícate</h3><p>Confirmamos tus datos por llamada o visita y ganas «Verificado».</p></div>
+    <div class="paso"><span class="n" style="--c:var(--azul)">4</span><h3>Recibe clientes</h3><p>Te escriben a tu WhatsApp con su fecha y número de invitados.</p></div></div>
+  <section class="seccion"><h2 class="titulo-sec">Lo que obtienes.</h2>
+  <div class="tres">
+    <div class="card-b"><h3>Tu ficha, gratis</h3><p>Fotos, capacidad, precio y lo que tienes. Las familias te contactan directo a tu WhatsApp.</p></div>
+    <div class="card-b"><h3>Verificación</h3><p>Confirmamos tus datos con una llamada o visita y tu ficha muestra «Verificado». Las familias confían más.</p></div>
+    <div class="card-b"><h3>Sin comisiones</h3><p>El trato y el pago son entre tú y la familia. Nosotros no cobramos por tus reservas.</p></div></div></section></div>`;
+}
+function vComoOrdenamos(){
+  return `<div class="cont pagina">
+  <div class="pag-cab"><span class="eyebrow">Transparencia</span><h1>Cómo ordenamos y qué significan las etiquetas.</h1><p>Estas son las reglas, sin letra chiquita.</p></div>
+  <h2 class="titulo-sec">El orden.</h2>
+  <div class="tres"><div class="card-b"><h3>1. Destacados</h3><p>Negocios que pagan una cuota mensual para aparecer primero. Rotan entre ellos para que ninguno se quede siempre arriba.</p></div>
+  <div class="card-b"><h3>2. Verificados</h3><p>Negocios cuyos datos confirmamos por llamada o visita en los últimos 3 meses.</p></div>
+  <div class="card-b"><h3>3. Todos los demás</h3><p>Dentro de cada grupo, primero los que mejor le quedan a tus invitados y las fichas más completas.</p></div></div>
+  <section class="seccion"><h2 class="titulo-sec">Las etiquetas.</h2>
+  <div class="etiquetas-lista">
+    <div class="etiqueta-fila"><span><span class="tag tag-dest plano">Destacado</span></span><p><b style="color:var(--texto)">Es publicidad.</b> El negocio paga para aparecer entre los primeros. No significa que sea mejor ni que lo recomendemos.</p></div>
+    <div class="etiqueta-fila"><span><span class="tag tag-ver plano">${ic('i-escudo')}Verificado</span></span><p>Confirmamos por llamada o visita que el negocio existe y que sus datos son ciertos. Dura 3 meses y se renueva con una nueva revisión. No garantiza el resultado de tu fiesta.</p></div>
+    <div class="etiqueta-fila"><span><span class="tag tag-nuevo plano">Nuevo</span></span><p>El negocio se publicó hace poco y todavía no lo verificamos. Los datos son los que él escribió.</p></div>
+  </div></section>
+  <section class="seccion"><h2 class="titulo-sec">Lo que nunca hacemos.</h2><div class="tres" style="margin-top:16px"><div class="card-b"><p>Cobrar comisión por tus reservas.</p></div><div class="card-b"><p>Dar «Verificado» sin revisar los datos.</p></div><div class="card-b"><p>Dejar que un negocio pague para ocultar a otro.</p></div></div>
+  <p class="nota" style="margin-top:16px">También puedes ordenar por menor precio o mayor capacidad desde «Filtros».</p></section></div>`;
+}
+function vGuardados(){
+  const l=todos().concat(PROV).filter(s=>guard[s.id]);
+  return `<div class="cont pagina"><div class="pag-cab"><h1>Tus guardados.</h1><p>Se guardan solo en este navegador. No necesitas cuenta.</p></div>
+  <div class="feed" id="feed-g">${l.length?l.map(tarjeta).join(''):`<div class="vacio">${ic('i-corazon','i-l')}<h3>Todavía no guardas nada</h3><p>Toca el corazón en cualquier salón o proveedor para tenerlo a la mano aquí.</p><a class="btn btn-pri" href="#/">Ver salones</a></div>`}</div></div>`;
+}
+function vPie(){
+  const ideas={'Por capacidad':[[50,'Para 50 personas','Reuniones'],[80,'Para 80 personas','Fiestas familiares'],[100,'Para 100 personas','Lo más buscado'],[150,'Para 150 personas','Bodas y XV'],[200,'Para 200 personas','Fiestas grandes'],[300,'Para 300 personas','Haciendas']].map(x=>['#/salones?inv='+x[0],x[1],x[2]]),
+    'Por tipo de fiesta':EVENTOS.slice(0,6).map(e=>['#/',e,'Salones que la reciben']),
+    'Por zona':ZONAS.map(z=>['#/salones?zona='+encodeURIComponent(z[0]),z[0],z[1]])};
+  const tabs=Object.keys(ideas);
+  return `<div class="cont"><h2>Ideas para tu fiesta</h2><div class="pie-tabs" role="tablist">${tabs.map((t,i)=>`<button class="pie-tab" role="tab" aria-selected="${i===0}" data-tab="${t}">${t}</button>`).join('')}</div>
+  ${tabs.map((t,i)=>`<div class="ideas" data-panel="${t}"${i?' hidden':''}>${ideas[t].map(x=>`<a href="${x[0]}">${x[1]}<span>${x[2]}</span></a>`).join('')}</div>`).join('')}
+  <div class="pie-cols"><div><h3>Ayuda</h3><a href="#/como-ordenamos">Cómo ordenamos y etiquetas</a><a href="#/guardados">Tus guardados</a></div><div><h3>Negocios</h3><a href="#/para-negocios">Publica tu negocio gratis</a><a href="#/panel">Mi negocio</a></div><div><h3>Mil y Una Fiestas</h3><a href="#/organizamos">Organizamos tu evento</a><a href="#/" data-comparativa>Comparativa del mes</a></div><div><h3>Legal</h3><a href="#/">Aviso de privacidad</a><a href="#/">Términos</a></div></div>
+  <div class="pie-legal"><span class="logo" style="font-size:16px;min-height:0">${picado(22,'#F7F6F3')}Mil y Una Fiestas</span><span>Directorio sin comisiones. <a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos y qué es «Destacado»</a></span></div></div>`;
+}
+
+/* ===================================================================
+   VISTAS · panel del negocio
+   =================================================================== */
+const PASOS=['Lo básico','Capacidad y precio','Fotos','Lo que tiene','Descripción','Contacto','Revisar y publicar'];
+let borrador=null,avisoPeso=false;
+const nuevoBorrador=()=>({n:'',tipo:'',z:'',dir:'',min:'',max:'',pTipo:'desde',p:'',pHasta:'',fotos:[],a:{},est:'',ev:[],desc:'',inc:[],horario:'',resp:'',wa:'',tel:'',ok1:false,ok2:false,estado:'borrador',verSolicitada:false});
+function guardarBorrador(){const d=Object.assign({},borrador);delete d._e;if(!ls.set('myuf-mi-salon',d)&&!avisoPeso){avisoPeso=true;toast('Tus fotos pesan mucho para guardarse en este navegador.','No cierres la página hasta publicar.')}mio=d}
+function validar(p,b){const e={};
+  if(p===1){if(!b.n.trim())e.n='Escribe el nombre de tu salón';if(!b.tipo)e.tipo='Elige el tipo de espacio';if(!b.z)e.z='Elige la zona'}
+  if(p===2){if(!(+b.max>0))e.max='¿Cuántas personas caben como máximo?';if(+b.min&&+b.max&&+b.min>+b.max)e.min='El mínimo no puede ser mayor que el máximo';if(b.pTipo!=='cotizar'&&!(+b.p>0))e.p='Escribe el precio o elige «Prefiero cotizar»';if(b.pTipo==='rango'&&!(+b.pHasta>+b.p))e.pHasta='Debe ser mayor que el precio inicial'}
+  if(p===3){if(b.fotos.length<1)e.fotos='Sube al menos una foto'}
+  if(p===6){if(!/^\d{10}$/.test(String(b.wa).replace(/\D/g,'')))e.wa='Escribe tu WhatsApp a 10 dígitos';if(!b.resp.trim())e.resp='¿Con quién hablamos?'}
+  if(p===7){if(!b.ok1)e.ok1='Necesitamos esta confirmación';if(!b.ok2)e.ok2='Necesitamos esta confirmación'}
+  return e}
+function completo(b){const it=[!!b.n,!!b.tipo,!!b.z,+b.max>0,b.pTipo==='cotizar'||+b.p>0,b.fotos.length>=1,b.fotos.length>=5,Object.keys(b.a).length>=3,(b.desc||'').length>=80,(b.inc||[]).length>=2,!!b.horario,/^\d{10}$/.test(String(b.wa||'').replace(/\D/g,''))];return Math.round(it.filter(Boolean).length/it.length*100)}
+const vistaPrevia=b=>tarjeta(publico(b));
+function zonaSelector(sel,attr){
+  // Mapa esquemático por salidas de la ciudad + lista accesible
+  const R=100,cx=170,cy=112,ang={Norte:[225,315],Oriente:[315,405],Sur:[45,115],Suroeste:[115,170],Poniente:[170,225]};
+  const pt=(a,r)=>[cx+r*Math.cos(a*Math.PI/180),cy+r*.95*Math.sin(a*Math.PI/180)];
+  let g='';Object.keys(ang).forEach(z=>{const [a0,a1]=ang[z],[x0,y0]=pt(a0,R),[x1,y1]=pt(a1,R),[i0,j0]=pt(a1,38),[i1,j1]=pt(a0,38),m=(a0+a1)/2,[tx,ty]=pt(m,72),on=sel===z;
+    g+=`<path d="M${i1} ${j1}L${x0} ${y0}A${R} ${R*.95} 0 0 1 ${x1} ${y1}L${i0} ${j0}A38 36 0 0 0 ${i1} ${j1}z" fill="${on?'#D6007A':'#F2EFEA'}" stroke="#fff" stroke-width="3" ${attr}="${z}"/><text x="${tx}" y="${ty-3}" text-anchor="middle" style="fill:${on?'#fff':''}">${z}</text><text class="sub" x="${tx}" y="${ty+9}" text-anchor="middle" style="fill:${on?'#FCE7F2':''}">${ZONAS.find(x=>x[0]===z)[1].split(' y ')[0].replace('Salida a ','a ')}</text>`});
+  g+=`<circle cx="${cx}" cy="${cy}" r="36" fill="${sel==='Centro'?'#D6007A':'#E8E6E1'}" stroke="#fff" stroke-width="3" ${attr}="Centro"/><text x="${cx}" y="${cy+4}" text-anchor="middle" style="fill:${sel==='Centro'?'#fff':''}">Centro</text>`;
+  return `<svg class="zonas-mapa" viewBox="60 2 220 220" role="img" aria-label="Mapa de zonas de Morelia por salidas de la ciudad">${g}</svg>`;
+}
+
+function vWizard(p){
+  if(!borrador)borrador=mio?JSON.parse(JSON.stringify(mio)):nuevoBorrador();
+  const b=borrador,e=b._e||{};delete b._e;
+  const err=k=>e[k]?`<span class="err" role="alert">${e[k]}</span>`:'';
+  const mal=k=>e[k]?' mal':'';
+  let cuerpo='',titulo='',intro='';
+  if(p===1){titulo='Empecemos por lo básico.';intro='Así te van a encontrar las familias.';
+    cuerpo=`<div class="campo"><label for="w-n">Nombre del salón</label><input class="input${mal('n')}" id="w-n" data-b="n" value="${esc(b.n)}" placeholder="Ej. Jardín Las Rosas" maxlength="60" autocomplete="organization">${err('n')}</div>
+    <div class="campo"><span class="lbl">Tipo de espacio</span><div class="fila-chips">${TIPOS.map(t=>`<button type="button" class="chip" data-tipo-b="${t}" aria-pressed="${b.tipo===t}">${t}</button>`).join('')}</div>${err('tipo')}</div>
+    <div class="campo"><span class="lbl">¿En qué zona de Morelia está?</span><span class="ayuda">Toca tu zona en el mapa. En la página real la calculamos sola con tu ubicación.</span>${zonaSelector(b.z,'data-zona-b')}<div class="fila-chips">${ZONAS.map(z=>`<button type="button" class="chip" data-zona-b="${z[0]}" aria-pressed="${b.z===z[0]}">${z[0]}</button>`).join('')}</div>${err('z')}</div>
+    <div class="campo"><label for="w-dir">Dirección</label><input class="input" id="w-dir" data-b="dir" value="${esc(b.dir)}" placeholder="Calle, número y colonia" autocomplete="street-address"><span class="ayuda">En la página solo mostramos la zona. La dirección la usamos para verificarte.</span></div>`}
+  if(p===2){titulo='¿Cuántos caben y cuánto cuesta?';intro='Es lo primero que buscan las familias. Un precio claro te trae más mensajes que «cotización».';
+    cuerpo=`<div class="par"><div class="campo"><label for="w-min">Mínimo de personas</label><input class="input${mal('min')}" id="w-min" data-b="min" inputmode="numeric" value="${esc(b.min)}" placeholder="Ej. 50">${err('min')}</div><div class="campo"><label for="w-max">Máximo de personas</label><input class="input${mal('max')}" id="w-max" data-b="max" inputmode="numeric" value="${esc(b.max)}" placeholder="Ej. 150">${err('max')}</div></div>
+    <div class="campo"><span class="lbl">¿Cómo quieres mostrar el precio de renta?</span><div class="opciones">${[['desde','Precio desde','«Desde $8,000 por evento»'],['rango','Rango de precio','«$8,000 a $12,000 por evento»'],['cotizar','Prefiero cotizar','No apareces cuando filtran por precio']].map(o=>`<button type="button" class="op" data-ptipo="${o[0]}" aria-pressed="${b.pTipo===o[0]}"><span>${o[1]}<small>${o[2]}</small></span>${b.pTipo===o[0]?ic('i-check'):''}</button>`).join('')}</div></div>
+    ${b.pTipo!=='cotizar'?`<div class="par"><div class="campo"><label for="w-p">${b.pTipo==='rango'?'Desde':'Precio desde'} (MXN)</label><input class="input${mal('p')}" id="w-p" data-b="p" inputmode="numeric" value="${esc(b.p)}" placeholder="Ej. 8000">${err('p')}</div>${b.pTipo==='rango'?`<div class="campo"><label for="w-ph">Hasta (MXN)</label><input class="input${mal('pHasta')}" id="w-ph" data-b="pHasta" inputmode="numeric" value="${esc(b.pHasta)}" placeholder="Ej. 12000">${err('pHasta')}</div>`:''}</div>`:''}`}
+  if(p===3){titulo='Sube tus mejores fotos.';intro='Las fichas con 5 fotos o más llaman más la atención. La primera es la portada.';
+    cuerpo=`<div class="fotos-grid">${b.fotos.map((f,i)=>`<div class="foto-item"><img src="${f}" alt="Foto ${i+1}">${i===0?'<span class="portada">Portada</span>':''}<div class="acc">${i?`<button type="button" data-portada="${i}" aria-label="Hacer portada la foto ${i+1}">${ic('i-estrella')}</button>`:''}<button type="button" data-quitar="${i}" aria-label="Quitar la foto ${i+1}">${ic('i-basura')}</button></div></div>`).join('')}
+      ${b.fotos.length<20?`<button type="button" class="subir${b.fotos.length?'':' grande'}" data-subir>${ic('i-foto','i-l')}${b.fotos.length?'Agregar más':'Elegir fotos de tu celular o computadora'}<small>${b.fotos.length} de 20</small></button>`:''}</div>${err('fotos')}
+      <div class="aviso-caja">${ic('i-ojo')}<span>Sube solo fotos de tu salón, tomadas por ti o con permiso. No uses fotos de otras páginas: las revisamos al verificarte.</span></div>`}
+  if(p===4){titulo='¿Qué tiene tu salón?';intro='Con esto te encuentran las familias cuando filtran. Marca solo lo que de verdad tienes.';
+    cuerpo=`<div class="grid-checks">${AMEN.map(a=>`<label class="check"><input type="checkbox" data-am="${a[0]}"${b.a[a[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(a[2])}${a[1]}</span></label>`).join('')}</div>
+    ${b.a.est?`<div class="campo" style="max-width:320px"><label for="w-est">¿Cuántos lugares de estacionamiento?</label><input class="input" id="w-est" data-b="est" inputmode="numeric" value="${esc(b.est)}" placeholder="Ej. 30"></div>`:''}
+    <div class="campo"><span class="lbl">¿Qué fiestas recibes?</span><span class="ayuda">Te ayuda a aparecer en búsquedas como «salón para XV años en Morelia».</span><div class="fila-chips" style="margin-top:6px">${EVENTOS.map((ev,i)=>`<button type="button" class="chip" data-ev="${i}" aria-pressed="${b.ev.includes(i)}">${ev}</button>`).join('')}</div></div>`}
+  if(p===5){titulo='Cuéntales cómo es.';intro='Escríbelo como se lo platicarías a una familia que te visita.';
+    cuerpo=`<div class="campo"><label for="w-desc">Descripción</label><textarea class="input" id="w-desc" data-b="desc" maxlength="1000" placeholder="Qué hace especial a tu salón, cómo es el espacio, qué fiestas se hacen mejor ahí…">${esc(b.desc)}</textarea><span class="ayuda" data-cuenta-desc>${b.desc.length} de 1000 · recomendamos 80 o más</span></div>
+    <div class="campo"><label for="w-inc">¿Qué incluye la renta?</label><div class="agregar"><input class="input" id="w-inc" placeholder="Ej. Mesas y sillas para 150" maxlength="60"><button type="button" class="btn btn-sec" data-agregar style="flex:none">Agregar</button></div>
+      <div class="lista-edit">${b.inc.map((x,i)=>`<span class="item-edit">${esc(x)}<button type="button" data-quitar-inc="${i}" aria-label="Quitar ${esc(x)}">${ic('i-cerrar','i-s')}</button></span>`).join('')}</div></div>
+    <div class="campo"><label for="w-hor">Horario para eventos</label><input class="input" id="w-hor" data-b="horario" value="${esc(b.horario)}" placeholder="Ej. 2:00 p. m. a 2:00 a. m."></div>`}
+  if(p===6){titulo='¿Cómo te contactan?';intro='Los botones de WhatsApp y llamar de tu ficha llevan a estos números.';
+    cuerpo=`<div class="campo"><label for="w-resp">Nombre de quien atiende</label><input class="input${mal('resp')}" id="w-resp" data-b="resp" value="${esc(b.resp)}" autocomplete="name">${err('resp')}</div>
+    <div class="dos-col"><div class="campo"><label for="w-wa">WhatsApp del salón</label><input class="input${mal('wa')}" id="w-wa" data-b="wa" type="tel" inputmode="tel" value="${esc(b.wa)}" placeholder="443 123 4567" autocomplete="tel">${err('wa')}</div><div class="campo"><label for="w-tel">Teléfono para llamadas (opcional)</label><input class="input" id="w-tel" data-b="tel" type="tel" inputmode="tel" value="${esc(b.tel)}"></div></div>
+    <p class="nota">En la página real entras con un código que te mandamos por WhatsApp, así solo tú puedes editar tu negocio.</p>`}
+  if(p===7){titulo='Así se verá tu salón.';intro='Revisa que todo esté bien. Puedes cambiarlo cuando quieras.';
+    const pc=completo(b),falta=[b.fotos.length<5?'sube 5 fotos o más':'',Object.keys(b.a).length<3?'marca lo que tiene tu salón':'',b.desc.length<80?'escribe una descripción más larga':'',b.inc.length<2?'agrega qué incluye la renta':'',!b.horario?'pon tu horario':''].filter(Boolean);
+    cuerpo=`<div style="max-width:380px" class="sin-click">${vistaPrevia(b)}</div>
+    <div class="caja"><div style="display:flex;justify-content:space-between;gap:12px"><b>Tu ficha está ${pc}% completa</b><span class="nota">${pc<100?'Más completa, más arriba':'¡Excelente!'}</span></div><div class="medidor"><i style="width:${pc}%"></i></div>
+      ${falta.length?`<div class="nota">Para mejorarla: ${falta.join(', ')}.</div>`:''}</div>
+    <div class="aviso-caja">${ic('i-escudo')}<span><b>Tu salón aparece en cuanto lo publiques, con la etiqueta «Nuevo».</b> Para tener «Verificado» lo solicitas en tu panel y confirmamos tus datos por llamada o visita.</span></div>
+    <div><label class="check"><input type="checkbox" data-okb="ok1"${b.ok1?' checked':''}><span>Las fotos son de mi salón y tengo derecho a usarlas.</span></label>${err('ok1')}
+    <label class="check"><input type="checkbox" data-okb="ok2"${b.ok2?' checked':''}><span>Los datos son ciertos y acepto los <a class="lnk" href="#/">términos</a> y el <a class="lnk" href="#/">aviso de privacidad</a>.</span></label>${err('ok2')}</div>`}
+  const pct=Math.round(p/PASOS.length*100);
+  return `<div class="wiz-prog"><div class="cont"><div class="meta"><span>Paso ${p} de ${PASOS.length} · <b>${PASOS[p-1]}</b></span><a class="lnk" href="#/panel" style="font-size:13.5px;min-height:32px;display:inline-flex;align-items:center">Guardar y salir</a></div><div class="barra-p"><i style="width:${pct}%"></i></div>
+    <div class="wiz-pasos">${PASOS.map((t,i)=>`<button type="button" data-ir-paso="${i+1}"${i+1===p?' aria-current="step"':''} class="${i+1<p?'hecho':''}">${i+1<p?'✓ ':''}${t}</button>`).join('')}</div></div></div>
+  <div class="cont wiz"><div><h2>${titulo}</h2><p class="intro">${intro}</p><form class="wiz-form" id="wiz-form" novalidate onsubmit="return false">${cuerpo}</form>
+    <div class="wiz-pie"><div class="cont">${p>1?`<button type="button" class="btn btn-texto" data-ir-paso="${p-1}">Atrás</button>`:'<span></span>'}<button type="button" class="btn btn-pri" data-siguiente>${p===7?(mio&&mio.estado==='publicado'?'Guardar cambios':'Publicar mi salón'):'Siguiente'}</button></div></div></div>
+    <aside class="vista"><div class="etq">${ic('i-ojo','i-s')}Así te ven las familias</div><div id="vista-prev" class="sin-click">${vistaPrevia(b)}</div></aside></div>`;
+}
+function vPanel(){
+  if(!mio)return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Mi negocio</span><h1>Todavía no tienes un negocio publicado.</h1><p>Súbelo tú mismo en unos 10 minutos.</p><div class="acciones"><a class="btn btn-pri" href="#/panel/editar?paso=1">Publicar mi salón</a></div></div></div>`;
+  const m=mio,pub=m.estado==='publicado',pausado=m.estado==='pausado',pc=completo(m);
+  const verEstado=m.verFecha?`<span class="estado" style="--c:var(--verde)">Verificado hasta ${fechaLarga(new Date(new Date(m.verFecha+'T12:00').getTime()+VIGENCIA*864e5).toISOString().slice(0,10))}</span>`:m.verSolicitada?'<span class="estado" style="--c:var(--amarillo)">Verificación solicitada · te contactamos por WhatsApp</span>':'<span class="estado" style="--c:var(--borde)">Sin verificar</span>';
+  return `<div class="cont pagina"><div class="pag-cab" style="margin-bottom:24px"><span class="eyebrow">Mi negocio</span><h1 style="font-size:clamp(1.875rem,5vw,2.75rem)">${esc(m.n||'Mi salón')}</h1></div>
+  <div class="tablero">
+    <div><div class="sin-click">${vistaPrevia(m)}</div>
+      <div class="par" style="margin-top:16px"><a class="btn btn-sec" href="#/panel/editar?paso=1">${ic('i-lapiz')}Editar</a>${pub?`<a class="btn btn-sec" href="#/salon/mio">${ic('i-ojo')}Ver ficha</a>`:`<a class="btn btn-sec" href="#/panel/editar?paso=7">${ic('i-ojo')}Revisar</a>`}</div></div>
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <div class="caja"><h3>Estado</h3>
+        ${pub?'<span class="estado" style="--c:var(--verde)">Publicado · ya aparece en los resultados</span>':pausado?'<span class="estado" style="--c:var(--borde)">Pausado · no aparece en los resultados</span>':'<span class="estado" style="--c:var(--amarillo)">Borrador · todavía no se publica</span>'}
+        ${pub||pausado?`<button class="btn btn-sec" data-pausar style="align-self:flex-start">${pub?ic('i-pausa')+'Pausar mi salón':ic('i-check')+'Volver a publicar'}</button>`:`<a class="btn btn-pri" href="#/panel/editar?paso=1" style="align-self:flex-start">Terminar mi ficha</a>`}</div>
+      <div class="caja borde"><h3>${ic('i-escudo')} Verificación</h3>${verEstado}
+        <p class="nota">Confirmamos por llamada o visita que tus datos son ciertos. Ganas la etiqueta «Verificado» por 3 meses y apareces antes que los negocios sin verificar.</p>
+        
+        ${!m.verSolicitada&&!m.verFecha?`<button class="btn btn-pri" data-solicitar-ver style="align-self:flex-start"${pub?'':' disabled title="Publica tu salón primero"'}>Solicitar verificación</button>`:''}
+        ${m.verSolicitada&&!m.verFecha?`<button class="lnk-gris" data-simular-ver style="align-self:flex-start">Simular que ya te verificamos (solo maqueta)</button>`:''}</div>
+      <div class="caja borde"><h3>${ic('i-estrella')} Destacado</h3><p class="nota">¿Quieres aparecer entre los primeros de tu categoría? Escríbenos y te contamos cómo.</p><button class="btn btn-sec" data-destacar style="align-self:flex-start">Quiero saber más</button></div>
+      <div class="caja"><h3>Tu ficha está ${pc}% completa</h3><div class="medidor"><i style="width:${pc}%"></i></div>
+        <div class="pendientes">
+          <div class="${m.fotos.length>=5?'ok':''}">${ic(m.fotos.length>=5?'i-check':'i-foto')}${m.fotos.length>=5?m.fotos.length+' fotos':'Sube al menos 5 fotos (llevas '+m.fotos.length+')'}</div>
+          <div class="${(m.desc||'').length>=80?'ok':''}">${ic((m.desc||'').length>=80?'i-check':'i-lapiz')}${(m.desc||'').length>=80?'Descripción lista':'Escribe una descripción de 80 letras o más'}</div>
+          <div class="${m.pTipo!=='cotizar'?'ok':''}">${ic(m.pTipo!=='cotizar'?'i-check':'i-dinero')}${m.pTipo!=='cotizar'?'Precio publicado':'Publica un precio para aparecer cuando filtran por precio'}</div>
+        </div></div>
+      <div class="caja"><h3>Contactos</h3><p style="font-size:28px;font-weight:700;letter-spacing:-.03em">0 <span class="nota" style="font-size:15px;font-weight:400;letter-spacing:0">esta semana</span></p><p class="nota">Aquí ves cada vez que una familia te escribe o te llama desde Mil y Una Fiestas. Su mensaje empieza con «Los encontré en Mil y Una Fiestas».</p></div>
+      <div class="caja"><h3>Comparte tu ficha</h3><div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="qr">[CÓDIGO QR]</div><div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:8px"><p class="nota">Ponlo en tu Instagram o Facebook, o imprímelo para tu salón.</p><button class="btn btn-pri" data-copiar style="align-self:flex-start">${ic('i-compartir')}Copiar enlace</button></div></div></div>
+    </div></div></div>`;
+}
+
+/* ===================================================================
+   CAPAS
+   =================================================================== */
+function abrirCapa(html,label){$('#capa').innerHTML=`<div class="velo" data-velo><div class="hoja" role="dialog" aria-modal="true" aria-label="${label}">${html}</div></div>`;document.body.style.overflow='hidden';const f=$('#capa .hoja-top button');if(f)f.focus();
+  $$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);const v=$('#capa [data-velo]');v.onclick=e=>{if(e.target===v)cerrarCapa()}}
+function cerrarCapa(){$('#capa').innerHTML='';document.body.style.overflow='';$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'))}
+const cab=(t)=>`<div class="hoja-top"><button class="btn-ic" data-cerrar aria-label="Cerrar">${ic('i-cerrar')}</button><h3>${t}</h3><span style="width:44px"></span></div>`;
+const ctlInv=()=>`<div class="stepper"><button type="button" class="btn-ic borde" data-inv="-10" aria-label="Menos invitados">${ic('i-menos')}</button><span class="n${busq.inv?'':' vacio-n'}" aria-live="polite">${busq.inv||'Cualquier cantidad'}</span><button type="button" class="btn-ic borde" data-inv="10" aria-label="Más invitados">${ic('i-mas')}</button></div><div class="fila-chips" style="margin-top:14px"><button type="button" class="chip" data-inv-set="0" aria-pressed="${!busq.inv}">No sé aún</button>${[50,80,100,150,200,300].map(n=>`<button type="button" class="chip" data-inv-set="${n}" aria-pressed="${busq.inv===n}">${n}</button>`).join('')}</div>`;
+const ctlPresup=()=>`<div class="opciones">${PRESUP.map(p=>`<button type="button" class="op" data-presup="${p[0]}" aria-pressed="${busq.presup===p[0]}">${p[1]}${busq.presup===p[0]?ic('i-check'):''}</button>`).join('')}</div><p class="nota" style="margin-top:10px">Solo la renta del salón.</p>`;
+const ctlZona=()=>`${zonaSelector(busq.zona,'data-zona')}<div class="opciones"><button type="button" class="op" data-zona="" aria-pressed="${!busq.zona}">Toda Morelia${!busq.zona?ic('i-check'):''}</button>${ZONAS.map(z=>`<button type="button" class="op" data-zona="${z[0]}" aria-pressed="${busq.zona===z[0]}"><span>${z[0]}<small>${z[1]}</small></span>${busq.zona===z[0]?ic('i-check'):''}</button>`).join('')}</div><p class="nota" style="margin-top:10px">Zonas por salidas de la ciudad. También puedes usar el mapa.</p>`;
+const CTL={inv:['¿Cuántos invitados?','Opcional. Solo te mostramos salones donde caben.',ctlInv],presup:['¿Cuánto quieres gastar en la renta?','Opcional.',ctlPresup],zona:['¿En qué zona?','Opcional.',ctlZona]};
+function montarCtl(c,re){
+  $$('[data-inv]',c).forEach(b=>b.onclick=()=>{busq.inv=Math.max(10,Math.min(1000,(busq.inv||90)+ +b.dataset.inv));re()});
+  $$('[data-inv-set]',c).forEach(b=>b.onclick=()=>{busq.inv=+b.dataset.invSet||null;re()});
+  $$('[data-presup]',c).forEach(b=>b.onclick=()=>{busq.presup=+b.dataset.presup;re(true)});
+  $$('[data-zona]',c).forEach(b=>b.onclick=()=>{busq.zona=b.getAttribute('data-zona');re(true)});
+}
+function popDesk(seg){
+  $$('.pop').forEach(p=>p.remove());$$('.seg').forEach(s=>s.classList.toggle('on',s.dataset.seg===seg));
+  const pl=$('#pildora'),btn=$(`[data-seg="${seg}"]`,pl),d=document.createElement('div');d.className='pop';
+  d.innerHTML=`<h4>${CTL[seg][0]}</h4><div>${CTL[seg][2]()}</div><div class="pie-pop"><button class="btn btn-texto" style="min-height:40px" data-borrar>Borrar</button><span class="nota">${todos().filter(s=>cumple(s)).length} salones</span></div>`;
+  d.style.left=Math.max(0,Math.min(btn.offsetLeft,pl.clientWidth-400))+'px';pl.appendChild(d);
+  const re=cerrar=>{refrescarBarra();if(!cerrar)popDesk(seg)};
+  montarCtl(d,re);$('[data-borrar]',d).onclick=()=>{if(seg==='inv')busq.inv=null;if(seg==='presup')busq.presup=0;if(seg==='zona')busq.zona='';re()};
+}
+function hojaBusca(){
+  const cuerpo=()=>Object.keys(CTL).map(k=>`<section class="grupo"><h4>${CTL[k][0]}</h4><p class="nota">${CTL[k][1]}</p>${CTL[k][2]()}</section>`).join('');
+  abrirCapa(cab('Busca tu salón')+`<div class="hoja-cuerpo" data-c>${cuerpo()}</div><div class="hoja-pie"><button class="btn btn-texto" data-borrar>Borrar todo</button><button class="btn btn-pri" data-ver></button></div>`,'Busca tu salón');
+  const c=$('#capa [data-c]');
+  const cuenta=()=>{$('#capa [data-ver]').innerHTML=ic('i-buscar')+'Ver '+todos().filter(s=>cumple(s)).length+' salones'};
+  const re=()=>{const y=c.scrollTop;c.innerHTML=cuerpo();c.scrollTop=y;montarCtl(c,re);cuenta()};
+  montarCtl(c,re);cuenta();
+  $('#capa [data-borrar]').onclick=()=>{busq={inv:null,presup:0,zona:''};re()};
+  $('#capa [data-ver]').onclick=()=>{cerrarCapa();irFeed()};
+}
+function hojaFiltros(){
+  const cuerpo=()=>`<section class="grupo"><h4>Ordenar por</h4><div class="opciones" style="margin-top:12px">${[['recomendados','Recomendados'],['precio','Menor precio'],['capacidad','Mayor capacidad']].map(o=>`<button type="button" class="op" data-orden="${o[0]}" aria-pressed="${orden===o[0]}">${o[1]}${orden===o[0]?ic('i-check'):''}</button>`).join('')}</div></section>
+    <section class="grupo"><h4>Tipo de espacio</h4><div class="fila-chips" style="margin-top:12px">${[''].concat(TIPOS).map(t=>`<button type="button" class="chip" data-tipo="${t}" aria-pressed="${filt.tipo===t}">${t||'Todos'}</button>`).join('')}</div></section>
+    <section class="grupo"><h4>Lo que debe tener</h4><div class="grid-checks">${AMEN.map(a=>`<label class="check"><input type="checkbox" data-am="${a[0]}"${filt[a[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(a[2])}${a[1]}</span></label>`).join('')}</div></section>
+    <section class="grupo"><h4>Confianza</h4><label class="check"><input type="checkbox" data-am="ver"${filt.ver?' checked':''}><span>Solo verificados por nuestro equipo</span></label></section>`;
+  abrirCapa(cab('Filtros')+`<div class="hoja-cuerpo" data-c>${cuerpo()}</div><div class="hoja-pie"><button class="btn btn-texto" data-quitar>Quitar todo</button><button class="btn btn-pri" data-ver></button></div>`,'Filtros');
+  const c=$('#capa [data-c]');
+  const cuenta=()=>{$('#capa [data-ver]').textContent='Ver '+todos().filter(s=>cumple(s)).length+' salones'};
+  const m=()=>{$$('[data-tipo]',c).forEach(b=>b.onclick=()=>{filt.tipo=b.dataset.tipo;re()});$$('[data-orden]',c).forEach(b=>b.onclick=()=>{orden=b.dataset.orden;re()});$$('[data-am]',c).forEach(i=>i.onchange=()=>{filt[i.dataset.am]=i.checked?1:0;cuenta()})};
+  const re=()=>{const y=c.scrollTop;c.innerHTML=cuerpo();c.scrollTop=y;m();cuenta()};
+  m();cuenta();
+  $('#capa [data-quitar]').onclick=()=>{limpiarFiltros();orden='recomendados';re()};
+  $('#capa [data-ver]').onclick=()=>{cerrarCapa();irFeed()};
+}
+/* --- Contacto en UN toque: abre WhatsApp directo con el mensaje armado --- */
+function mensaje(s){const inv=fiesta.inv||busq.inv;return 'Hola, los encontré en Mil y Una Fiestas. Busco '+(s.prov?CATS.find(c=>c[0]===s.cat)[1].toLowerCase():'salón')+' para '+(fiesta.ev?fiesta.ev.toLowerCase():'una fiesta')+(fiesta.fecha?' el '+fechaLarga(fiesta.fecha):'')+(inv?' para '+inv+' personas':'')+'. ¿Me dan informes?'}
+function enviarWA(id,origen){const s=porId(id);
+  // En la página real: location.href = '/c/'+id+'?canal=whatsapp&origen='+origen  → registra y redirige a wa.me con el texto
+  toast('Abriendo WhatsApp de '+s.n+'…','«'+mensaje(s)+'»');}
+function hojaFiesta(alCerrar){
+  const d=Object.assign({},fiesta);if(!d.inv&&busq.inv)d.inv=busq.inv;
+  abrirCapa(cab('Tu fiesta')+`<div class="hoja-cuerpo" style="gap:20px"><p class="nota">Todo es opcional. Lo agregamos a tu mensaje para que te contesten más rápido. Se guarda solo en este navegador.</p>
+    <div class="campo"><span class="lbl">¿Qué vas a celebrar?</span><div class="fila-chips">${EVENTOS.map(e=>`<button type="button" class="chip" data-evf="${e}" aria-pressed="${d.ev===e}">${e}</button>`).join('')}</div></div>
+    <div class="par"><div class="campo"><label for="f2">Fecha</label><input class="input" id="f2" type="date" value="${d.fecha||''}" data-wf="fecha"></div><div class="campo"><label for="f3">Invitados</label><input class="input" id="f3" inputmode="numeric" value="${d.inv||''}" data-wf="inv"></div></div></div>
+    <div class="hoja-pie"><button class="btn btn-texto" data-borrar-f>Borrar</button><button class="btn btn-pri" data-listo>Listo</button></div>`,'Tu fiesta');
+  $$('#capa [data-wf]').forEach(i=>i.oninput=i.onchange=()=>{d[i.dataset.wf]=i.value});
+  $$('#capa [data-evf]').forEach(b=>b.onclick=()=>{d.ev=d.ev===b.dataset.evf?'':b.dataset.evf;$$('#capa [data-evf]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.evf===d.ev))});
+  $('#capa [data-borrar-f]').onclick=()=>{fiesta={ev:'',fecha:'',inv:''};ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
+  $('#capa [data-listo]').onclick=()=>{fiesta=d;ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
+}
+/* --- Captura de contacto: comparativa del mes (lo mínimo: WhatsApp) --- */
+function formCorto(id,boton,consent){
+  return `<form class="form" id="${id}" novalidate>
+      <div class="campo"><label for="${id}-wa">Tu WhatsApp</label><input class="input" id="${id}-wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="10 dígitos" required></div>
+      <div class="campo"><label for="${id}-n">Tu nombre <span class="nota" style="font-weight:400">(opcional)</span></label><input class="input" id="${id}-n" autocomplete="given-name"></div>
+      <label class="check"><input type="checkbox" required><span>${consent} <a class="lnk" href="#/">Aviso de privacidad</a>.</span></label>
+      <button class="btn btn-pri btn-bloque" type="submit">${boton}</button></form>`;
+}
+function validarCorto(f){const wa=$('input[type=tel]',f),ck=$('input[type=checkbox]',f);
+  if(!/^\d{10}$/.test(wa.value.replace(/\D/g,''))){wa.focus();toast('Escribe tu WhatsApp a 10 dígitos');return false}
+  if(!ck.checked){ck.focus();toast('Falta aceptar el aviso de privacidad');return false}
+  return true}
+function hojaComparativa(){
+  abrirCapa(cab('Te ayudamos a decidir')+`<div class="hoja-cuerpo" style="gap:18px">
+    <div><h3 style="font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:1.15">La comparativa de ${MES_ACTUAL}, gratis en tu WhatsApp.</h3>
+    <ul class="lista-ok" style="margin-top:14px"><li>${ic('i-check')}Los salones con mejor precio por invitado</li><li>${ic('i-check')}Qué incluye cada uno, lado a lado</li><li>${ic('i-check')}Proveedores recomendados</li></ul></div>
+    ${formCorto('fc','Mándamela','Acepto que me escriban por WhatsApp para enviarme la comparativa.')}</div>`,'Te ayudamos a decidir');
+  $('#fc').onsubmit=e=>{e.preventDefault();if(!validarCorto(e.target))return;
+    $('#capa .hoja-cuerpo').innerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo!</b><p style="margin-top:4px">Te la mandamos por WhatsApp. (En la maqueta no se envía nada.)</p></div></div><button class="btn btn-sec btn-bloque" data-cerrar>Seguir viendo salones</button>`;$('#capa .hoja-cuerpo [data-cerrar]').onclick=cerrarCapa};
+}
+/* --- Lo organizamos: un toque a WhatsApp, o dejar solo el número --- */
+function hojaOrganiza(){
+  abrirCapa(cab('Lo organizamos por ti')+`<div class="hoja-cuerpo" style="gap:18px">
+    <div><h3 style="font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:1.15">Nos cuentas tu fiesta y nosotros nos encargamos.</h3>
+    <p class="nota" style="margin-top:8px;font-size:15px">Salón, proveedores y el día del evento. Sin compromiso.</p></div>
+    <button class="btn btn-wa btn-bloque" data-wa-nosotros>${ic('i-chat')}Escríbenos por WhatsApp</button>
+    <div style="display:flex;align-items:center;gap:12px;color:var(--texto-2);font-size:14px"><span style="flex:1;height:1px;background:var(--linea)"></span>o te escribimos nosotros<span style="flex:1;height:1px;background:var(--linea)"></span></div>
+    ${formCorto('fo','Que me contacten','Acepto que me contacten por WhatsApp para organizar mi fiesta.')}
+    <a class="lnk" href="#/organizamos" style="align-self:center;min-height:44px;display:inline-flex;align-items:center">Ver paquetes y precios</a></div>`,'Lo organizamos por ti');
+  $('#capa [data-wa-nosotros]').onclick=waNosotros;
+  $('#capa a[href="#/organizamos"]').onclick=()=>setTimeout(cerrarCapa,0);
+  $('#fo').onsubmit=e=>{e.preventDefault();if(!validarCorto(e.target))return;
+    $('#capa .hoja-cuerpo').innerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo!</b><p style="margin-top:4px">Te escribimos por WhatsApp para platicar de tu fiesta. (En la maqueta no se envía nada.)</p></div></div><button class="btn btn-sec btn-bloque" data-cerrar>Seguir viendo salones</button>`;$('#capa .hoja-cuerpo [data-cerrar]').onclick=cerrarCapa};
+}
+function waNosotros(){toast('Abriendo WhatsApp de Mil y Una Fiestas…','«Hola, quiero que me ayuden a organizar mi fiesta.»')}
+function hojaQueEs(){
+  abrirCapa(cab('Las etiquetas')+`<div class="hoja-cuerpo" style="gap:16px">
+    <div class="etiqueta-fila" style="padding:16px"><span><span class="tag tag-dest">Destacado</span></span><p>Es publicidad: el negocio paga para aparecer entre los primeros.</p></div>
+    <div class="etiqueta-fila" style="padding:16px"><span><span class="tag tag-ver">${ic('i-escudo')}Verificado</span></span><p>Confirmamos sus datos por llamada o visita en los últimos 3 meses.</p></div>
+    <div class="etiqueta-fila" style="padding:16px"><span><span class="tag tag-nuevo">Nuevo</span></span><p>Se publicó hace poco y aún no lo verificamos.</p></div>
+    <a class="lnk" href="#/como-ordenamos">Ver cómo ordenamos los resultados</a></div>`,'Las etiquetas');
+  $('#capa a').onclick=()=>setTimeout(cerrarCapa,0);
+}
+function hojaMenu(){
+  abrirCapa(cab('Menú')+`<div class="hoja-cuerpo" style="gap:20px"><nav class="menu-lista">
+    <a href="#/">${ic('i-salon','i-l')}Salones</a><a href="#/servicios">${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos">${ic('i-organiza','i-l')}Organizamos tu evento</a><a href="#/" data-comparativa>${ic('i-regalo','i-l')}Comparativa del mes</a><a href="#/guardados">${ic('i-corazon','i-l')}Guardados</a><a href="#/como-ordenamos">${ic('i-info','i-l')}Cómo ordenamos y etiquetas</a></nav>
+    <a class="btn btn-pri btn-bloque" href="${mio?'#/panel':'#/para-negocios'}">${ic('i-tienda')}${mio?'Mi negocio':'Publica tu negocio gratis'}</a></div>`,'Menú');
+  $$('#capa a').forEach(a=>{if(a.hasAttribute('data-comparativa'))a.onclick=e=>{e.preventDefault();hojaComparativa()};else a.addEventListener('click',()=>setTimeout(cerrarCapa,0))});
+}
+function mapaCompleto(){
+  const l=ordenar(todos().filter(s=>cumple(s)));
+  $('#capa').innerHTML=`<div class="mapa-completo" role="dialog" aria-modal="true" aria-label="Mapa de salones"><div class="top"><button class="btn-ic" data-cerrar aria-label="Cerrar mapa">${ic('i-izq')}</button><b>${l.length} salones</b></div><div style="flex:1;position:relative">${mapa(l)}</div><button class="btn btn-pri flotante" data-cerrar>${ic('i-lista')}Lista</button></div>`;
+  document.body.style.overflow='hidden';$$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);montarPins($('#capa'));
+}
+function irFeed(){const a=ruta().a;if(a.length&&a[0]!=='salones'){location.hash='#/';return}refrescarBarra();const c=$('#feed-cab');if(c&&scrollY>c.offsetTop)window.scrollTo(0,c.offsetTop-200)}
+function limpiar(){busq={inv:null,presup:0,zona:''};limpiarFiltros();orden='recomendados';if(location.hash.includes('?'))location.hash='#/';else refrescarBarra()}
+
+/* ===================================================================
+   MONTAJE
+   =================================================================== */
+function actualizarGuardNav(){const n=Object.keys(guard).length,g=$('[data-nav-guard]');if(!g)return;g.setAttribute('aria-label','Guardados ('+n+')');const cg=$('.cnt-g',g);if(n){if(cg)cg.textContent=n;else g.insertAdjacentHTML('beforeend',`<span class="cnt-g">${n}</span>`)}else if(cg)cg.remove()}
+function montarComunes(c){
+  $$('[data-comparativa]',c).forEach(b=>b.onclick=e=>{e.preventDefault();hojaComparativa()});
+  $$('[data-organiza]',c).forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();hojaOrganiza()});
+  $$('[data-wa]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();enviarWA(b.dataset.wa,b.dataset.origen)});
+}
+function montarTarjetas(c){
+  if(!c)return;
+  $$('[data-slides]',c).forEach(sl=>{const pts=$$('.puntos u',sl.parentNode),cont=$('[data-cont]',sl.parentNode);
+    sl.addEventListener('scroll',()=>{const i=Math.round(sl.scrollLeft/sl.clientWidth);pts.forEach((u,k)=>u.classList.toggle('on',k===i));if(cont)cont.textContent=(i+1)+' / '+sl.children.length},{passive:true})});
+  $$('[data-paso-foto]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const sl=$('[data-slides]',b.parentNode);sl.scrollBy({left:sl.clientWidth*+b.dataset.pasoFoto,behavior:'smooth'})});
+  $$('[data-fav]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.fav;if(guard[id])delete guard[id];else guard[id]=1;ls.set('myuf-guardados',guard);
+    $$(`[data-fav="${id}"]`).forEach(x=>{x.setAttribute('aria-pressed',!!guard[id]);if(x.hasAttribute('data-fav-txt'))x.innerHTML=ic('i-corazon')+(guard[id]?'Guardado':'Guardar')});actualizarGuardNav();
+    toast(guard[id]?'Guardado en este navegador':'Quitado de guardados')});
+  $$('.tarjeta',c).forEach(t=>{if(t.closest('.sin-click'))return;t.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.hash='#/'+t.dataset.ruta+'/'+t.dataset.id})});
+  montarComunes(c);
+}
+function montarPins(c){
+  if(!c)return;
+  $$('[data-pin]',c).forEach(p=>p.onclick=()=>{
+    const id=p.dataset.pin,s=porId(id);$$('[data-pin]',c).forEach(x=>x.classList.toggle('on',x===p));
+    const card=$(`#feed [data-id="${id}"]`);
+    if(card&&c.id==='mapa-lado'){$$('.tarjeta.resalta').forEach(t=>t.classList.remove('resalta'));card.classList.add('resalta');card.scrollIntoView({behavior:'smooth',block:'center'});return}
+    if(c.classList&&c.classList.contains('ficha'))return;
+    const mm=$('.mapa-mini',p.parentNode);if(mm)mm.remove();
+    p.parentNode.insertAdjacentHTML('beforeend',`<a class="mapa-mini" href="#/salon/${id}"><span class="f" style="--ft:${TINTE[s.tipo]}">${s.fotos[0]?`<img src="${s.fotos[0]}" alt="">`:''}</span><span style="min-width:0"><b style="display:block">${esc(s.n)}</b><span class="nota">${s.min} a ${s.max} personas · ${s.z}</span><br><span style="font-size:15px">${precioLargo(s)}</span></span></a>`);
+  });
+}
+function montarBarra(){
+  $$('[data-hoja-busca]').forEach(b=>b.onclick=hojaBusca);
+  $$('[data-seg]').forEach(b=>b.onclick=e=>{e.stopPropagation();b.classList.contains('on')?cerrarCapa():popDesk(b.dataset.seg)});
+  $$('[data-ir-feed]').forEach(b=>b.onclick=()=>{cerrarCapa();irFeed()});
+  $$('[data-filtros]').forEach(b=>b.onclick=hojaFiltros);
+}
+function montar(r){
+  $$('.pie-tab').forEach(b=>b.onclick=()=>{$$('.pie-tab').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.tab)});
+  $$('[data-menu]').forEach(b=>b.onclick=hojaMenu);
+  montarComunes(document);
+  if($('#barra'))montarBarra();
+  if($('#feed-cab')&&$('#mapa-lado')){
+    $$('.chips-fila [data-f]').forEach(b=>b.onclick=()=>{const k=b.dataset.f;filt[k]=filt[k]?0:1;b.setAttribute('aria-pressed',!!filt[k]);refrescarBarra()});
+    pintarFeed();
+    $('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}}
+  else if($('#feed'))montarTarjetas($('#feed'));
+  if($('#feed-g'))montarTarjetas($('#feed-g'));
+  if($('.ficha')){const f=$('.ficha');montarTarjetas(f);montarPins(f);
+    const refrescarFiesta=()=>{$$('[data-mi-fiesta]').forEach(b=>{b.outerHTML=botonFiesta()});$$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescarFiesta))};
+    $$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescarFiesta));
+    $$('[data-tel]').forEach(b=>b.onclick=()=>toast('Llamando a '+porId(b.dataset.tel).n+'…','En la página real se registra el contacto y se abre el teléfono.'));
+    $$('[data-compartir]').forEach(b=>b.onclick=()=>toast('En la página real se abre el menú de compartir del teléfono.'));
+    $$('[data-galeria]').forEach(b=>b.onclick=()=>toast('En la página real se abre la galería a pantalla completa.'));
+    $$('[data-que-es]').forEach(b=>b.onclick=hojaQueEs);
+  }
+  $$('[data-wa-nosotros]').forEach(b=>b.onclick=waNosotros);
+  const fop=$('#fo-p');if(fop)fop.onsubmit=e=>{e.preventDefault();if(!validarCorto(fop))return;fop.outerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo!</b><p style="margin-top:4px">Te escribimos por WhatsApp para platicar de tu fiesta. (En la maqueta no se envía nada.)</p></div></div>`};
+  if($('.tablero')){
+    $$('[data-pausar]').forEach(b=>b.onclick=()=>{mio.estado=mio.estado==='publicado'?'pausado':'publicado';ls.set('myuf-mi-salon',mio);render();toast(mio.estado==='publicado'?'Tu salón aparece otra vez':'Tu salón está pausado')});
+    $$('[data-copiar]').forEach(b=>b.onclick=()=>toast('Enlace copiado (ejemplo): milyunafiestas.mx/salon/tu-salon'));
+    $$('[data-solicitar-ver]').forEach(b=>b.onclick=()=>{mio.verSolicitada=true;ls.set('myuf-mi-salon',mio);render();toast('Solicitud enviada','Te escribimos por WhatsApp para agendar la llamada o visita.')});
+    $$('[data-simular-ver]').forEach(b=>b.onclick=()=>{mio.verFecha=HOY.toISOString().slice(0,10);ls.set('myuf-mi-salon',mio);render();toast('Tu salón ya muestra «Verificado» por 3 meses')});
+    $$('[data-destacar]').forEach(b=>b.onclick=()=>toast('¡Gracias! Te contactamos para activarlo.','En la página real no se cobra nada desde aquí.'));
+  }
+  if($('#wiz-form'))montarWizard(+r.q.paso||1);
+  $$('[data-form]').forEach(f=>f.onsubmit=e=>{e.preventDefault();const bad=$$('[required]',f).filter(i=>i.type==='checkbox'?!i.checked:!i.value.trim());
+    if(bad.length){bad[0].focus();toast('Falta: '+(bad[0].type==='checkbox'?'aceptar el aviso de privacidad':$(`label[for="${bad[0].id}"]`).textContent.toLowerCase()));return}
+    f.outerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo! Recibimos tus datos.</b><p style="margin-top:4px">Te escribimos por WhatsApp para seguir. (En la maqueta no se envía nada.)</p></div></div>`});
+}
+function montarWizard(p){
+  const b=borrador,f=$('#wiz-form');
+  const prev=()=>{const v=$('#vista-prev');if(v)v.innerHTML=vistaPrevia(b)};
+  const re=()=>{const y=scrollY;$('#app').innerHTML=vWizard(p);window.scrollTo(0,y);montarWizard(p)};
+  $$('[data-b]',f).forEach(i=>i.oninput=i.onchange=()=>{b[i.dataset.b]=i.value;if(i.dataset.b==='desc')$('[data-cuenta-desc]').textContent=i.value.length+' de 1000 · recomendamos 80 o más';guardarBorrador();prev()});
+  $$('[data-tipo-b]',f).forEach(x=>x.onclick=()=>{b.tipo=x.dataset.tipoB;guardarBorrador();re()});
+  $$('[data-zona-b]',f).forEach(x=>x.onclick=()=>{b.z=x.getAttribute('data-zona-b');guardarBorrador();re()});
+  $$('[data-ptipo]',f).forEach(x=>x.onclick=()=>{b.pTipo=x.dataset.ptipo;guardarBorrador();re()});
+  $$('[data-am]',f).forEach(x=>x.onchange=()=>{if(x.checked)b.a[x.dataset.am]=1;else delete b.a[x.dataset.am];guardarBorrador();if(x.dataset.am==='est')re();else prev()});
+  $$('[data-ev]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.ev;b.ev=b.ev.includes(i)?b.ev.filter(v=>v!==i):b.ev.concat(i);x.setAttribute('aria-pressed',b.ev.includes(i));guardarBorrador()});
+  $$('[data-okb]',f).forEach(x=>x.onchange=()=>{b[x.dataset.okb]=x.checked;guardarBorrador()});
+  const ag=$('[data-agregar]',f);
+  if(ag){const add=()=>{const v=$('#w-inc').value.trim();if(!v)return;b.inc.push(v);guardarBorrador();re();$('#w-inc').focus()};ag.onclick=add;$('#w-inc').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}}}
+  $$('[data-quitar-inc]',f).forEach(x=>x.onclick=()=>{b.inc.splice(+x.dataset.quitarInc,1);guardarBorrador();re()});
+  // Fotos: se reducen a 1200 px aquí; en la página real se suben a Storage
+  $$('[data-subir]',f).forEach(x=>x.onclick=()=>{const a=$('#archivo');a.value='';a.onchange=async()=>{const files=Array.from(a.files).slice(0,20-b.fotos.length);if(!files.length)return;toast('Preparando '+files.length+' foto'+(files.length>1?'s':'')+'…');for(const fl of files){try{b.fotos.push(await reducir(fl,1200,.78))}catch(err){toast('No pudimos leer '+fl.name)}}guardarBorrador();re()};a.click()});
+  $$('[data-quitar]',f).forEach(x=>x.onclick=()=>{b.fotos.splice(+x.dataset.quitar,1);guardarBorrador();re()});
+  $$('[data-portada]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.portada;b.fotos.unshift(b.fotos.splice(i,1)[0]);guardarBorrador();re();toast('Nueva portada')});
+  $$('[data-ir-paso]').forEach(x=>x.onclick=()=>{location.hash='#/panel/editar?paso='+x.dataset.irPaso});
+  $$('[data-siguiente]').forEach(x=>x.onclick=()=>{
+    const e=validar(p,b);
+    if(Object.keys(e).length){b._e=e;re();const m=$('.mal,.err');if(m)m.scrollIntoView({behavior:'smooth',block:'center'});return}
+    if(p<7){location.hash='#/panel/editar?paso='+(p+1);return}
+    for(let k=1;k<7;k++){const ek=validar(k,b);if(Object.keys(ek).length){b._e=ek;toast('Falta completar: '+PASOS[k-1]);location.hash='#/panel/editar?paso='+k;return}}
+    const primera=b.estado!=='publicado';b.estado='publicado';guardarBorrador();borrador=null;location.hash='#/panel';
+    setTimeout(()=>toast(primera?'¡Publicado! Tu salón ya aparece como «Nuevo».':'Cambios guardados'),300)});
+}
+function reducir(file,max,q){return new Promise((ok,mal)=>{const r=new FileReader();r.onerror=mal;r.onload=()=>{const im=new Image();im.onerror=mal;im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(file)})}
+
+document.addEventListener('click',e=>{if(!document.contains(e.target))return;if($('.pop')&&!e.target.closest('.pop')&&!e.target.closest('[data-seg]')){$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'))}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarCapa()});
+window.addEventListener('hashchange',()=>{if(!location.hash.startsWith('#/panel/editar'))borrador=null;render()});
+let anchoPrevio=innerWidth;window.addEventListener('resize',()=>{if((anchoPrevio<1024)!==(innerWidth<1024)&&$('#mapa-lado'))pintarFeed();anchoPrevio=innerWidth});
+render();
+})();
+</script>
+<style>
+/* Bloques que cambian de lugar entre celular y computadora */
+.solo-d{display:none}
+@media (min-width:1024px){.solo-m,.solo-m-org{display:none}.solo-d{display:block}}
+</style>
+</body>
+</html>
