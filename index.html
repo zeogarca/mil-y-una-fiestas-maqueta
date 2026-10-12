@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="robots" content="noindex, nofollow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://unpkg.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src data: blob: https://tile.openstreetmap.org; connect-src https://nominatim.openstreetmap.org; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Maqueta de Mil y Una Fiestas: todos los salones y servicios para fiestas en Morelia, y quien te organiza la fiesta. Datos de ejemplo.">
 <title>Mil y Una Fiestas · maqueta</title>
@@ -263,6 +263,16 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 
 /* ================= Mapa ================= */
 .mapa{position:relative;width:100%;height:100%;overflow:hidden;background:#EEF0EA}
+.mapa-real{position:relative;width:100%;height:100%;min-height:220px;background:#EEF0EA;z-index:0;isolation:isolate;font-family:var(--f)}
+.mapa-cargando{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:var(--texto-2);font-size:14px}
+.wiz-mapa{height:260px;border-radius:var(--r-m);overflow:hidden;margin-top:8px}
+.pin-precio-caja{background:none;border:0}
+.pin-precio{display:inline-block;transform:translate(-50%,-100%);background:#fff;color:var(--texto);font-weight:700;font-size:13px;padding:5px 11px;border-radius:999px;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.18);white-space:nowrap}
+.leaflet-marker-icon:focus .pin-precio,.leaflet-marker-icon:hover .pin-precio{background:var(--texto);color:#fff}
+.pin-gota-caja{background:none;border:0}
+.pin-gota{display:block;width:30px;height:30px;margin-top:2px;background:var(--rosa);border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.leaflet-popup-content{font-family:var(--f);font-size:14px;line-height:1.45}
+.leaflet-popup-content a{color:var(--acento);font-weight:600}
 .mapa svg.calles{position:absolute;inset:0;width:100%;height:100%}
 .pin{position:absolute;transform:translate(-50%,-100%);border:0;background:var(--bg);color:var(--texto);font-weight:700;font-size:13px;padding:0 12px;height:32px;border-radius:var(--r-p);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.15);cursor:pointer;white-space:nowrap;transition:transform .15s}
 .pin:hover,.pin.on{background:var(--texto);color:#fff;transform:translate(-50%,-100%) scale(1.06);z-index:5}
@@ -797,14 +807,14 @@ let prospectos=ls.get('myuf-prospectos',[]);    // los registra el equipo a part
 let sesion=ls.get('myuf-sesion-equipo',null);   // maqueta: en la real, Supabase Auth
 // Negocios creados en esta maqueta, por dueños o por el equipo. En la real: tabla «negocios» con permisos por fila.
 let mis=ls.get('myuf-negocios',[]);
-function nuevoNegocio(clase,origen){const t=new Date().toISOString();return {id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),clase:clase||'salon',cat:clase==='servicio'?'':'salones',n:'',tipo:'',z:'',dir:'',min:'',max:'',pTipo:'desde',p:'',pHasta:'',u:'',fotos:[],a:{},at:{},hasta:null,publico:'todos',turno:['dia','noche'],ev:[],est:'',desc:'',inc:[],horario:'',resp:'',wa:'',ok:false,estado:'borrador',origen:origen||'dueño',aprob:null,verFecha:null,creado:t,actualizado:t}}
+function nuevoNegocio(clase,origen){const t=new Date().toISOString();return {id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),clase:clase||'salon',cat:clase==='servicio'?'':'salones',n:'',tipo:'',z:'',dir:'',min:'',max:'',pTipo:'desde',p:'',pHasta:'',u:'',fotos:[],a:{},at:{},lat:null,lng:null,hasta:null,publico:'todos',turno:['dia','noche'],ev:[],est:'',desc:'',inc:[],horario:'',resp:'',wa:'',ok:false,estado:'borrador',origen:origen||'dueño',aprob:null,verFecha:null,creado:t,actualizado:t}}
 (function migrar(){const v=ls.get('myuf-mi-salon',null);if(v&&!mis.length){const m=Object.assign(nuevoNegocio('salon','dueño'),v);m.id='m'+Date.now().toString(36);mis.push(m);ls.set('myuf-negocios',mis)}try{localStorage.removeItem('myuf-mi-salon')}catch(e){}})();
 function guardarMis(){if(!ls.set('myuf-negocios',mis))toast('Las fotos pesan mucho para este navegador.','En la página real se suben a un almacenamiento seguro.')}
 const misDueno=()=>mis.filter(m=>m.origen==='dueño');
 function hashN(t){let h=0;for(const c of String(t))h=(h*31+c.charCodeAt(0))|0;return Math.abs(h)}
 function publico(m){const sal=m.clase!=='servicio',xy=ZONA_XY[m.z]||[50,50],j=hashN(m.id);
   return {id:m.id,k:j%7,n:m.n||'Sin nombre',tipo:m.tipo||'Salón techado',z:sal?(m.z||'Centro'):(m.z||'Toda Morelia'),min:+m.min||0,max:+m.max||0,p:m.pTipo==='cotizar'?null:(+m.p||null),pHasta:+m.pHasta||null,pTipo:m.pTipo,u:m.u||'',a:m.a||{},at:m.at||{},hasta:m.hasta,publico:m.publico||'todos',turno:m.turno||[],ver:m.verFecha||null,ad:false,
-    x:Math.max(6,Math.min(94,xy[0]+(j%9-4))),y:Math.max(6,Math.min(94,xy[1]+((j>>3)%9-4))),ev:m.ev||[],est:+m.est||0,fotos:(m.fotos||[]).map(imgSegura).filter(Boolean),nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha,cliente:true,prov:!sal,cat:sal?'salones':m.cat,wa:m.wa,propio:true}}
+    lat:m.lat??null,lng:m.lng??null,x:Math.max(6,Math.min(94,xy[0]+(j%9-4))),y:Math.max(6,Math.min(94,xy[1]+((j>>3)%9-4))),ev:m.ev||[],est:+m.est||0,fotos:(m.fotos||[]).map(imgSegura).filter(Boolean),nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha,cliente:true,prov:!sal,cat:sal?'salones':m.cat,wa:m.wa,propio:true}}
 const publicados=()=>mis.filter(m=>m.estado==='publicado').map(publico);
 const reemplazado=id=>mis.some(m=>m.id===id);
 function todos(){return EJ.filter(s=>!reemplazado(s.id)).concat(publicados().filter(s=>!s.prov))}
@@ -1096,9 +1106,9 @@ function pintarFeed(){
   if(sinPrecio)h=`<div class="aviso-precio"><span>${sinPrecio} salón${sinPrecio>1?'es':''} más cumple${sinPrecio>1?'n':''} todo pero no publica${sinPrecio>1?'n':''} precio.</span><button class="lnk" style="min-height:44px" data-presup0>Mostrarlos</button></div>`+h;
   $('#feed').innerHTML=h;
   $('#feed-wrap').classList.toggle('con-mapa',conMapa);
-  $('#mapa-lado').innerHTML=conMapa?mapa(l):'';
+  $('#mapa-lado').innerHTML=conMapa?mapa(l):'';if(conMapa)montarMapas($('#mapa-lado'));
   const bm=$('#btn-mapa');if(bm)bm.innerHTML=conMapa&&innerWidth>=1024?ic('i-lista')+'Ocultar mapa':ic('i-mapa')+'Mapa';
-  montarTarjetas($('#bloque-dest'));montarTarjetas($('#feed'));montarPins($('#mapa-lado'));
+  montarTarjetas($('#bloque-dest'));montarTarjetas($('#feed'));
   $$('[data-limpiar]').forEach(b=>b.onclick=limpiar);
   $$('[data-presup0]').forEach(b=>b.onclick=()=>{busq.presup=0;refrescarBarra()});
   $$('[data-buscar-por-mi]').forEach(b=>b.onclick=()=>{const f=[busq.inv?busq.inv+' invitados':'',busq.presup?presTxt():'',busq.zona?'zona '+busq.zona:'',filt.tipo,filt.turno?TURNOS.find(t=>t[0]===filt.turno)[1].toLowerCase():''].concat(AMEN.filter(a=>filt[a[0]]).map(a=>a[1].toLowerCase())).filter(Boolean).join(', ');waEquipo('asesoria','No encontré salón con esto: '+f+'. ¿Me ayudan a buscar?')});
@@ -1163,10 +1173,35 @@ function tarjeta(s){
       ${s.p?`<span class="t-precio">${precioLargo(s)}</span>${ppi?`<span class="t-ppi">≈ ${fmt.format(ppi)} por invitado</span>`:''}`:`<span class="t-precio"><b>Precio a cotizar</b></span><button class="t-pedir" data-pedir-precio="${s.id}">Te conseguimos el precio</button>`}
       <button class="t-wa" data-wa="${s.id}" aria-label="Escribir por WhatsApp a ${esc(s.n)}">${ic('i-chat','i-l')}</button></div></article>`;
 }
-function mapa(l,sinNota){
-  const calles=`<svg class="calles" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 Q30 40 50 46 T100 44" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M48 0 Q44 30 50 50 T54 100" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M0 74 L100 64M0 20 L100 28" stroke="#fff" stroke-width="1.4" fill="none"/><path d="M20 0 L30 100M78 0 L70 100" stroke="#fff" stroke-width="1.2" fill="none"/><ellipse cx="42" cy="60" rx="9" ry="5" fill="#DCE8D4"/><ellipse cx="80" cy="84" rx="12" ry="7" fill="#DCE8D4"/><path d="M60 0 Q66 20 62 40" stroke="#CFE0EA" stroke-width="3" fill="none"/></svg>`;
-  return `<div class="mapa">${calles}${l.map(s=>`<button class="pin" style="left:${+s.x}%;top:${+s.y}%" data-pin="${s.id}" aria-label="${esc(s.n)}, ${precioCorto(s)}">${precioCorto(s)}</button>`).join('')}${sinNota?'':'<span class="mapa-nota">Mapa de ejemplo · real: OpenStreetMap</span>'}</div>`;
-}
+// Mapa real: Leaflet + OpenStreetMap. Leaflet se descarga solo cuando hay un mapa en pantalla.
+const CENTRO_MORELIA=[19.7030,-101.1925];
+function coordsDe(s){if(s.lat!=null&&s.lng!=null)return [+s.lat,+s.lng];return [+(19.765-(s.y??50)/100*0.13).toFixed(5),+(-101.275+(s.x??50)/100*0.16).toFixed(5)]}
+let leafletP=null;
+function cargarLeaflet(){if(window.L)return Promise.resolve(window.L);if(leafletP)return leafletP;
+  leafletP=new Promise((ok,mal)=>{const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';css.integrity='sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';css.crossOrigin='';document.head.appendChild(css);
+    const sc=document.createElement('script');sc.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';sc.integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';sc.crossOrigin='';sc.onload=()=>ok(window.L);sc.onerror=()=>{leafletP=null;mal(new Error('No cargó el mapa'))};document.head.appendChild(sc)});
+  return leafletP}
+const capaOSM=L=>L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'});
+const pinGota=L=>L.divIcon({className:'pin-gota-caja',html:'<span class="pin-gota"></span>',iconSize:[30,40],iconAnchor:[15,40],popupAnchor:[0,-36]});
+function mapa(l,uno){return `<div class="mapa-real" data-ids="${l.map(s=>s.id).join(',')}"${uno?' data-uno="1"':''}><span class="mapa-cargando">Cargando mapa…</span></div>`}
+async function montarMapas(c){const cajas=$$('.mapa-real[data-ids]',c||document).filter(x=>!x.dataset.listo);if(!cajas.length)return;
+  let L;try{L=await cargarLeaflet()}catch(e){cajas.forEach(x=>{x.innerHTML='<span class="mapa-cargando">No se pudo cargar el mapa. Revisa tu conexión.</span>'});return}
+  cajas.forEach(caja=>{if(!document.contains(caja)||caja.dataset.listo)return;caja.dataset.listo='1';caja.innerHTML='';
+    const l=caja.dataset.ids.split(',').filter(Boolean).map(porId).filter(Boolean),uno=!!caja.dataset.uno;
+    const m=L.map(caja,{scrollWheelZoom:false,tap:true});capaOSM(L).addTo(m);const pts=[];
+    l.forEach(s=>{const p=coordsDe(s);pts.push(p);
+      if(uno){L.marker(p,{icon:pinGota(L),title:s.n,keyboard:true}).addTo(m);return}
+      const mk=L.marker(p,{icon:L.divIcon({className:'pin-precio-caja',html:`<span class="pin-precio">${precioCorto(s)}</span>`,iconSize:[0,0]}),title:s.n,keyboard:true}).addTo(m);
+      mk.bindPopup(`<b>${esc(s.n)}</b><br>${s.min?s.min+' a ':'Hasta '}${s.max} personas · ${esc(s.z)}<br>${precioLargo(s)}<br><a href="#/salon/${s.id}">Ver ficha</a>`);
+      mk.on('click',()=>{const card=$(`#feed [data-id="${s.id}"]`);if(card&&caja.closest('#mapa-lado')){$$('.tarjeta.resalta').forEach(t=>t.classList.remove('resalta'));card.classList.add('resalta');card.scrollIntoView({behavior:'smooth',block:'center'})}})});
+    if(uno&&pts[0])m.setView(pts[0],15);else if(pts.length>1)m.fitBounds(pts,{padding:[36,36]});else m.setView(pts[0]||CENTRO_MORELIA,13);
+    // el contenedor puede medir 0 al crearse: se vuelve a medir y a encuadrar
+    setTimeout(()=>{m.invalidateSize();if(!uno&&pts.length>1)m.fitBounds(pts,{padding:[36,36],maxZoom:15})},120)})}
+// Zona a partir del punto: Centro si está cerca; si no, por la salida de la ciudad (mismos sectores que el selector)
+function zonaDeCoords(lat,lng){const dy=-(lat-CENTRO_MORELIA[0])*111,dx=(lng-CENTRO_MORELIA[1])*104.7;if(Math.hypot(dx,dy)<2.3)return 'Centro';
+  let a=Math.atan2(dy,dx)*180/Math.PI;if(a<0)a+=360;if(a>=225&&a<315)return 'Norte';if(a>=315||a<45)return 'Oriente';if(a<115)return 'Sur';if(a<170)return 'Suroeste';return 'Poniente'}
+async function buscarDireccion(dir){const u='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=mx&viewbox=-101.33,19.81,-101.07,19.60&bounded=1&accept-language=es&q='+encodeURIComponent(dir+', Morelia, Michoacán');
+  const res=await fetch(u);if(!res.ok)throw new Error('búsqueda');const j=await res.json();return j[0]?{lat:+j[0].lat,lng:+j[0].lon,txt:j[0].display_name}:null}
 
 /* ---------- Ficha ---------- */
 const resumenFiesta=()=>[fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',fiesta.inv||busq.inv?(fiesta.inv||busq.inv)+' invitados':''].filter(Boolean).join(' · ');
@@ -1205,7 +1240,8 @@ function vFicha(id){
         <section class="ficha-sec"><h2>Sobre ${s.prov?'el servicio':'el lugar'}</h2><p class="desc">${esc(s.desc)||(s.propio?'El negocio todavía no escribe su descripción. Pregúntale lo que necesites por WhatsApp.':'[DESCRIPCIÓN QUE ESCRIBE EL DUEÑO]')}</p>
           <p class="nota" style="margin-top:14px">${v?`Datos verificados por nuestro equipo el ${fechaLarga(v)}.`:'Datos que publicó el negocio.'} Confirma precio y fecha antes de apartar.</p></section>
         ${s.prov?'':`${s.ev.length?`<section class="ficha-sec"><h2>Fiestas que recibe</h2><div class="fila-chips">${s.ev.map(e=>`<span class="chip" style="cursor:default;box-shadow:none;background:var(--bg-2)">${EVENTOS[e]}</span>`).join('')}</div></section>`:''}
-        <section class="ficha-sec"><h2>Ubicación aproximada</h2><div style="height:240px;border-radius:var(--r-l);overflow:hidden">${mapa([s],true)}</div><p class="nota" style="margin-top:8px">Zona ${esc(zonaTxt(s.z))}. La dirección exacta te la da el salón.</p></section>`}
+        <section class="ficha-sec"><h2>Ubicación</h2><div style="height:260px;border-radius:var(--r-l);overflow:hidden">${mapa([s],true)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px"><p class="nota">Zona ${esc(zonaTxt(s.z))}${s.propio&&s.lat!=null?'':' · ubicación de ejemplo'}</p><a class="lnk" style="min-height:44px;display:inline-flex;align-items:center" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${coordsDe(s).join(',')}">Cómo llegar</a></div></section>`}
         <div class="solo-m">${ayuda}</div>
         ${s.cliente?'':`<div class="reclamar"><span>¿Es tu ${s.prov?'negocio':'salón'}? Adminístralo gratis: cambia fotos y precios cuando quieras.</span><button class="lnk" data-reclamar="${s.id}" style="min-height:44px">Es mío</button></div>`}
       </div>
@@ -1390,7 +1426,11 @@ function vWizard(ctx,id,paso){
     <div class="campo"><span class="lbl">${sal?'¿En qué zona de Morelia está?':'¿Dónde das servicio?'}</span>${sal?zonaSelector(m.z,'data-zona-b'):''}<div class="fila-chips">${zonasOp.map(z=>`<button type="button" class="chip" data-zona-b="${z}" aria-pressed="${m.z===z}">${z}</button>`).join('')}</div>${err('z')}</div>
     <div class="dos-col"><div class="campo"><label for="w-wa">WhatsApp ${ctx==='equipo'?'del negocio':'donde recibes clientes'}</label><input class="input${mal('wa')}" id="w-wa" data-b="wa" type="tel" inputmode="tel" maxlength="16" value="${esc(m.wa)}" placeholder="443 123 4567" autocomplete="tel">${err('wa')}</div>
       <div class="campo"><label for="w-resp">¿Quién atiende? <span class="opc">(opcional)</span></label><input class="input" id="w-resp" data-b="resp" maxlength="40" value="${esc(m.resp)}" autocomplete="name"></div></div>
-    ${sal?`<div class="campo"><label for="w-dir">Dirección <span class="opc">(opcional)</span></label><input class="input" id="w-dir" data-b="dir" maxlength="120" value="${esc(m.dir)}" placeholder="Calle, número y colonia" autocomplete="street-address"><span class="ayuda">No la mostramos, solo la zona. Nos sirve para ubicarte en el mapa.</span></div>`:''}`}
+    ${sal?`<div class="campo"><label for="w-dir">Dirección del lugar</label><div class="agregar"><input class="input" id="w-dir" data-b="dir" maxlength="120" value="${esc(m.dir)}" placeholder="Calle, número y colonia" autocomplete="street-address"><button type="button" class="btn btn-sec" data-ubicar style="flex:none">Ubicar</button></div>
+      <span class="ayuda">Con tu dirección te ponemos en el mapa para que las familias lleguen fácil. Si el pin no quedó exacto, muévelo o toca el mapa.</span>
+      <div class="fila-chips" style="margin-top:4px"><button type="button" class="chip" data-mi-ubic>Estoy en mi negocio: usar mi ubicación</button></div>
+      <div class="wiz-mapa mapa-real" id="wiz-mapa"><span class="mapa-cargando">${m.lat!=null?'Cargando mapa…':'Escribe la dirección y toca «Ubicar»'}</span></div>
+      <span class="ayuda" id="wiz-ubic-txt">${m.lat!=null?'Ubicado. Zona: '+esc(m.z||'—')+'. Puedes mover el pin.':''}</span></div>`:''}`}
   if(paso==='precio'){titulo=sal?'¿Cuántos caben y cuánto cuesta?':'¿Cuánto cuesta tu servicio?';intro='Es lo primero que buscan las familias. Con precio apareces cuando filtran por presupuesto.';
     const ops=sal?[['desde','Precio desde','«Desde $8,000 por evento»'],['rango','Rango de precio','«$8,000 a $12,000 por evento»'],['cotizar','Prefiero cotizar','No apareces cuando filtran por precio']]:[['desde','Precio desde','«Desde $3,000»'],['cotizar','Prefiero cotizar','Te escriben para pedirte precio']];
     cuerpo=`${sal?`<div class="par"><div class="campo"><label for="w-min">Mínimo de personas <span class="opc">(opc.)</span></label><input class="input${mal('min')}" id="w-min" data-b="min" data-num inputmode="numeric" value="${esc(m.min)}" placeholder="Ej. 50">${err('min')}</div><div class="campo"><label for="w-max">Máximo de personas</label><input class="input${mal('max')}" id="w-max" data-b="max" data-num inputmode="numeric" value="${esc(m.max)}" placeholder="Ej. 150">${err('max')}</div></div>`:''}
@@ -1600,7 +1640,7 @@ function hojaMenu(){
 function mapaCompleto(){
   const l=ordenar(todos().filter(s=>cumple(s)));capaFoco=document.activeElement;
   $('#capa').innerHTML=`<div class="mapa-completo" role="dialog" aria-modal="true" aria-label="Mapa de salones"><div class="top"><button class="btn-ic" data-cerrar aria-label="Cerrar mapa">${ic('i-izq')}</button><b>${l.length} salones</b></div><div style="flex:1;position:relative">${mapa(l)}</div><button class="btn btn-pri flotante" data-cerrar>${ic('i-lista')}Lista</button></div>`;
-  document.body.style.overflow='hidden';$$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);montarPins($('#capa'));
+  document.body.style.overflow='hidden';$$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);montarMapas($('#capa'));
 }
 /* --- Galería a pantalla completa: deslizar, flechas, teclado, miniaturas, zoom --- */
 let lbTeclas=null;
@@ -1675,17 +1715,6 @@ function montarTarjetas(c){
   $$('.tarjeta',c).forEach(t=>{if(t.closest('.sin-click'))return;t.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.hash='#/'+t.dataset.ruta+'/'+t.dataset.id})});
   montarComunes(c);
 }
-function montarPins(c){
-  if(!c)return;
-  $$('[data-pin]',c).forEach(p=>p.onclick=()=>{
-    const id=p.dataset.pin,s=porId(id);$$('[data-pin]',c).forEach(x=>x.classList.toggle('on',x===p));
-    const card=$(`#feed [data-id="${id}"]`)||$(`#bloque-dest [data-id="${id}"]`);
-    if(card&&c.id==='mapa-lado'){$$('.tarjeta.resalta').forEach(t=>t.classList.remove('resalta'));card.classList.add('resalta');card.scrollIntoView({behavior:'smooth',block:'center'});return}
-    if(c.classList&&c.classList.contains('ficha'))return;
-    const mm=$('.mapa-mini',p.parentNode);if(mm)mm.remove();const f=imgSegura(s.fotos[0]);
-    p.parentNode.insertAdjacentHTML('beforeend',`<a class="mapa-mini" href="#/salon/${s.id}"><span class="f">${f?`<img src="${f}" alt="" style="width:100%;height:100%;object-fit:cover">`:ilus(s,0)}</span><span style="min-width:0"><b style="display:block">${esc(s.n)}</b><span class="nota">${s.min?s.min+' a ':'Hasta '}${s.max} personas · ${esc(s.z)}</span><br><span style="font-size:15px">${precioLargo(s)}</span></span></a>`);
-  });
-}
 function montarBarra(){
   $$('[data-hoja-busca]').forEach(b=>b.onclick=hojaBusca);
   $$('[data-seg]').forEach(b=>b.onclick=e=>{e.stopPropagation();b.classList.contains('on')?cerrarCapa():popDesk(b.dataset.seg)});
@@ -1703,7 +1732,7 @@ function montar(r){
   else if($('#feed'))montarTarjetas($('#feed'));
   if($('#feed-s'))pintarServ($('#feed-s').dataset.cat);
   if($('#feed-g'))montarTarjetas($('#feed-g'));
-  if($('.ficha')){const f=$('.ficha');montarTarjetas(f);montarPins(f);
+  if($('.ficha')){const f=$('.ficha');montarTarjetas(f);montarMapas(f);
     const refrescar=()=>{$$('[data-mi-fiesta]').forEach(b=>{b.outerHTML=botonFiesta()});$$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescar))};
     $$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescar));
     $$('[data-abrir-galeria]').forEach(g=>{const abrir=()=>{const sl=$('[data-slides]',g);abrirGaleria(g.dataset.abrirGaleria,Math.round(sl.scrollLeft/sl.clientWidth))};g.onclick=abrir;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir()}}});
@@ -1740,6 +1769,21 @@ function montarWizard(ctx,id,paso){
   $$('[data-b]',f).forEach(i=>i.oninput=i.onchange=()=>{let v=i.value;if(i.hasAttribute('data-num')){v=soloDig(v).slice(0,7);if(i.value!==v)i.value=v}m[i.dataset.b]=v;if(i.dataset.b==='desc')$('[data-cuenta-desc]').textContent=v.length+' de 1000 · recomendamos 80 o más';guardar();prev()});
   $$('[data-ofrece]',f).forEach(x=>x.onclick=()=>{const k=x.dataset.ofrece;if(k==='salones'){m.clase='salon';m.cat='salones';if(m.z==='Toda Morelia')m.z=''}else{m.clase='servicio';m.cat=k}if(m.pTipo==='rango'&&m.clase==='servicio')m.pTipo='desde';guardar();re()});
   $$('[data-tipo-b]',f).forEach(x=>x.onclick=()=>{m.tipo=x.dataset.tipoB;guardar();re()});
+  // Mapa del alta: pin arrastrable; tocar el mapa también mueve el pin; la zona se calcula sola
+  const fijar=(lat,lng,txt)=>{m.lat=+(+lat).toFixed(6);m.lng=+(+lng).toFixed(6);m.z=zonaDeCoords(m.lat,m.lng);guardar();
+    $$('[data-zona-b]',f).forEach(b=>b.setAttribute('aria-pressed',b.getAttribute('data-zona-b')===m.z));const t=$('#wiz-ubic-txt');if(t)t.textContent=(txt?'Encontramos: '+txt.split(',').slice(0,3).join(',')+'. ':'')+'Zona: '+m.z+'. Si no es exacto, mueve el pin.';prev()};
+  const caja=$('#wiz-mapa',f);
+  const dibujar=async()=>{if(!caja||m.lat==null)return;let L;try{L=await cargarLeaflet()}catch(e){caja.innerHTML='<span class="mapa-cargando">No se pudo cargar el mapa.</span>';return}
+    if(!document.contains(caja))return;if(caja._mapa){caja._pin.setLatLng([m.lat,m.lng]);caja._mapa.setView([m.lat,m.lng],17);return}
+    caja.innerHTML='';const mp=L.map(caja,{scrollWheelZoom:false});capaOSM(L).addTo(mp);mp.setView([m.lat,m.lng],17);
+    const pin=L.marker([m.lat,m.lng],{draggable:true,icon:pinGota(L),title:'Arrástrame a la entrada de tu negocio'}).addTo(mp);
+    pin.on('dragend',()=>{const q=pin.getLatLng();fijar(q.lat,q.lng)});mp.on('click',e=>{pin.setLatLng(e.latlng);fijar(e.latlng.lat,e.latlng.lng)});
+    caja._mapa=mp;caja._pin=pin;setTimeout(()=>mp.invalidateSize(),60)};
+  dibujar();
+  $$('[data-ubicar]',f).forEach(x=>x.onclick=async()=>{const d=($('#w-dir').value||'').trim();if(d.length<5){toast('Escribe la calle, el número y la colonia');$('#w-dir').focus();return}
+    x.disabled=true;x.textContent='Buscando…';try{const r=await buscarDireccion(d);if(r){fijar(r.lat,r.lng,r.txt);await dibujar()}else{toast('No encontramos esa dirección','Revisa la colonia, o usa tu ubicación o toca el mapa.');if(m.lat==null){fijar(CENTRO_MORELIA[0],CENTRO_MORELIA[1]);await dibujar()}}}catch(e){toast('No pudimos buscar la dirección','Revisa tu conexión e intenta otra vez.')}x.disabled=false;x.textContent='Ubicar'});
+  $$('[data-mi-ubic]',f).forEach(x=>x.onclick=()=>{if(!navigator.geolocation){toast('Tu navegador no comparte la ubicación');return}x.textContent='Buscando tu ubicación…';
+    navigator.geolocation.getCurrentPosition(async p=>{fijar(p.coords.latitude,p.coords.longitude);await dibujar();x.textContent='Estoy en mi negocio: usar mi ubicación'},()=>{toast('No nos diste permiso de ubicación','Puedes escribir la dirección o tocar el mapa.');x.textContent='Estoy en mi negocio: usar mi ubicación'},{enableHighAccuracy:true,timeout:10000})});
   $$('[data-zona-b]',f).forEach(x=>x.onclick=()=>{m.z=x.getAttribute('data-zona-b');guardar();re()});
   $$('[data-ptipo]',f).forEach(x=>x.onclick=()=>{m.pTipo=x.dataset.ptipo;guardar();re()});
   $$('[data-unidad]',f).forEach(x=>x.onclick=()=>{m.u=x.dataset.unidad;guardar();re()});
