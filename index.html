@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Maqueta de Mil y Una Fiestas: salones y servicios para fiestas en Morelia. Datos de ejemplo.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="Maqueta de Mil y Una Fiestas: todos los salones y servicios para fiestas en Morelia, y quien te organiza la fiesta. Datos de ejemplo.">
 <title>Mil y Una Fiestas · maqueta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -494,6 +496,140 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .pie-cols a,.pie-cols button{display:flex;align-items:center;min-height:40px;color:var(--texto-2);text-decoration:none;font-size:15px;background:none;border:0;padding:0;cursor:pointer;text-align:left}
 .pie-cols a:hover,.pie-cols button:hover{color:var(--texto);text-decoration:underline}
 .pie-legal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--linea);margin-top:20px;padding-top:18px;font-size:13.5px;color:var(--texto-2)}
+
+/* ================= v7 ================= */
+.t-nombre{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-ppi{font-size:13.5px;color:var(--texto-2)}
+/* Filtros de un toque */
+.rapidos{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:16px calc(var(--lado)*-1) 0;padding:2px var(--lado)}
+.rapidos::-webkit-scrollbar{display:none}
+@media (min-width:1024px){.rapidos{flex-wrap:wrap;margin:20px 0 0;padding:0}}
+/* Guías gratis */
+.promo-guias{grid-column:1/-1;min-width:0}
+.guia{all:unset;box-sizing:border-box;cursor:pointer;background:var(--g1);color:var(--g2);border-radius:var(--r-l);padding:20px;min-height:178px;display:flex;flex-direction:column;gap:6px;transition:transform .12s ease-out}
+.guia:active{transform:scale(.98)}
+.guia:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.guia b{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-top:6px}
+.guia span{font-size:14.5px;opacity:.85}
+.guia .ir{margin-top:auto;padding-top:10px;font-weight:600;font-size:14px;display:flex;gap:6px;align-items:center;opacity:1}
+.carr-g{grid-auto-columns:74%}
+@media (min-width:600px){.carr-g{grid-auto-columns:calc((100% - 32px)/2.4)}}
+@media (min-width:1024px){.carr-g{grid-auto-columns:calc((100% - 60px)/4)}}
+.guias-grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:600px){.guias-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.guias-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+/* Planes de organización */
+.planes{display:grid;gap:16px;grid-template-columns:1fr;margin-top:24px}
+@media (min-width:960px){.planes{grid-template-columns:repeat(3,1fr);align-items:stretch;margin-top:36px}}
+.pl{position:relative;border-radius:var(--r-l);padding:28px 24px;background:var(--bg-2);display:flex;flex-direction:column;gap:12px}
+.pl h3{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.pl .lema{font-size:15px;color:var(--texto-2)}
+.pl .monto{font-size:44px;font-weight:700;letter-spacing:-.045em;line-height:1;margin:6px 0 2px}
+.pl .monto small{font-size:15px;font-weight:500;letter-spacing:0;color:var(--texto-2)}
+.pl .antes{font-size:14px;font-weight:600}
+.pl ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.pl li{display:flex;gap:9px;font-size:15px;line-height:1.4}
+.pl li .i{color:var(--ok);flex:none;margin-top:1px}
+.pl .btn{margin-top:auto}
+.pl.top{background:var(--texto);color:#fff;box-shadow:var(--sombra-2);padding-top:34px}
+.pl.top .lema,.pl.top .monto small,.pl.top li{color:#D1D1D6}
+.pl.top li .i{color:#7EE2A8}
+@media (min-width:960px){.pl.top{transform:translateY(-14px);margin-bottom:-14px}}
+.insignia{position:absolute;top:-13px;left:24px;background:var(--rosa);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:5px 12px;border-radius:var(--r-p)}
+.tabla-wrap{overflow-x:auto;margin-top:16px;border-radius:var(--r-l);box-shadow:inset 0 0 0 1px var(--linea);-webkit-overflow-scrolling:touch}
+.tabla-comp{width:100%;border-collapse:collapse;font-size:14.5px}
+.tabla-comp th,.tabla-comp td{padding:13px 16px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top;min-width:132px}
+.tabla-comp thead th{font-weight:700;font-size:15px;vertical-align:bottom}
+.tabla-comp thead th small{display:block;font-weight:500;color:var(--texto-2);font-size:13px}
+.tabla-comp tbody th{font-weight:500;color:var(--texto-2)}
+.tabla-comp th:first-child{position:sticky;left:0;background:var(--bg);min-width:150px;z-index:1;box-shadow:1px 0 0 var(--linea)}
+.tabla-comp tr:last-child>*{border-bottom:0}
+.tabla-comp td small{display:block;color:var(--texto-2);font-size:12.5px}
+.tabla-comp .col-top{background:#FBF8F3}
+.tabla-comp a{font-weight:600;text-decoration:none}
+.si{color:var(--ok);display:inline-flex}
+.no-c{color:var(--borde)}
+.valor-caja{background:#EAF4EE;color:#0B3B22;border-radius:var(--r-l);padding:24px;display:grid;gap:8px}
+@media (min-width:768px){.valor-caja{padding:32px 40px}}
+.valor-caja h3{font-size:21px;font-weight:700;letter-spacing:-.02em}
+.valor-caja p{max-width:760px;font-size:16px}
+.faq{margin-top:12px;border-top:1px solid var(--linea);max-width:820px}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;font-weight:600;font-size:16.5px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .i{transition:transform .2s;color:var(--texto-2)}
+.faq details[open] summary .i{transform:rotate(45deg)}
+.faq details p{color:var(--texto-2);padding:0 0 18px;max-width:680px}
+.card-b h3{display:flex;align-items:center;gap:8px}
+/* Mis negocios y fichas del equipo */
+.tablero2{display:grid;gap:20px;grid-template-columns:1fr}
+@media (min-width:1024px){.tablero2{grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start}}
+.neg-lista{display:grid;gap:12px}
+.neg{display:grid;grid-template-columns:84px minmax(0,1fr);gap:14px;padding:14px;border-radius:var(--r-l);box-shadow:inset 0 0 0 1px var(--linea);background:var(--bg);align-items:center}
+.neg .mini{width:84px;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--bg-3)}
+.neg .mini img{width:100%;height:100%;object-fit:cover}
+.neg-info{min-width:0;display:flex;flex-direction:column;gap:2px}
+.neg-n{font-size:16.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.neg .acc{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.neg .acc .btn{min-height:44px;padding:0 16px;font-size:15px}
+@media (min-width:900px){.neg{grid-template-columns:110px minmax(0,1fr) auto}.neg .mini{width:110px}.neg .acc{grid-column:auto;justify-content:flex-end;max-width:360px}}
+.quien{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.pill{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:var(--r-p);font-size:12.5px;font-weight:600;background:var(--bg-2);white-space:nowrap}
+.pill .i{width:14px;height:14px}
+.pill.ok{background:#EAF4EE;color:#0B3B22}.pill.bor{background:#FFF4D6;color:#5C3D00}.pill.pau{background:var(--bg-3);color:var(--texto-2)}.pill.eq{background:#E4ECF7;color:#123E6E}.pill.du{background:var(--rosa-2);color:var(--rosa-3)}
+.caja.verde{background:#EAF4EE;color:#0B3B22}
+.caja.verde .nota{color:#24543A}
+.ayuda-sub{display:flex;gap:10px;align-items:center;background:var(--bg-2);border-radius:var(--r-m);padding:12px 16px;margin-top:20px;font-size:14.5px}
+.ayuda-sub .lnk{font-size:14.5px;text-decoration:underline;min-height:32px}
+.herr{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.login{max-width:460px;margin:0 auto}
+.barras{display:grid;gap:10px}
+.barras div{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 28px;gap:10px;align-items:center;font-size:14px}
+.barras span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barras i{display:block;height:10px;border-radius:5px;background:var(--rosa)}
+.barras b{text-align:right}
+.bitacora{display:grid;margin-top:12px;border-top:1px solid var(--linea)}
+.bitacora div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:14.5px}
+.bitacora .q{color:var(--texto-2);font-size:13.5px}
+/* Mosaico que se adapta a pocas fotos */
+@media (min-width:768px){
+  .mosaico.m1{grid-template-columns:1fr;grid-template-rows:440px}
+  .mosaico.m2{grid-template-columns:1fr 1fr;grid-template-rows:440px}
+  .mosaico.m1 .g:first-child,.mosaico.m2 .g:first-child{grid-row:auto}
+  .mosaico.m3{grid-template-columns:2fr 1fr}
+  .mosaico.m3 .g:nth-child(n+4){display:none}
+  .mosaico .g svg{width:100%;height:100%}
+}
+.ficha-galeria .foto{cursor:zoom-in}
+/* Galería a pantalla completa */
+.lb{position:fixed;inset:0;z-index:100;background:#0B0B0C;color:#fff;display:flex;flex-direction:column;animation:lbEntra .2s ease-out}
+@keyframes lbEntra{from{opacity:0}to{opacity:1}}
+.lb-top{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 4px;padding-top:calc(8px + env(safe-area-inset-top))}
+.lb-cont{font-size:14.5px;font-weight:600;color:#D1D1D6;font-variant-numeric:tabular-nums}
+.lb-btn{width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.lb-btn:hover{background:rgba(255,255,255,.16)}
+.lb-pista{flex:1;min-height:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior:contain}
+.lb-pista::-webkit-scrollbar{display:none}
+.lb-slide{flex:0 0 100%;height:100%;margin:0;scroll-snap-align:center;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;padding:8px 0;overflow:hidden}
+.lb-slide img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;transition:transform .25s ease-out;cursor:zoom-in}
+.lb-slide.zoom img{transform:scale(2.2);transform-origin:var(--ox,50%) var(--oy,50%);cursor:zoom-out}
+.lb-ilus{width:min(100%,calc((100dvh - 230px)*4/3));aspect-ratio:4/3;border-radius:6px;overflow:hidden}
+.lb-flecha{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#1C1C1E;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.lb-flecha:disabled{opacity:0;pointer-events:none}
+.lb-flecha.izq{left:20px}.lb-flecha.der{right:20px}
+@media (hover:hover) and (pointer:fine){.lb-flecha{display:flex}}
+.lb-pie{padding:8px 12px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px}
+.lb-ths{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;justify-content:safe center}
+.lb-ths::-webkit-scrollbar{display:none}
+.lb-th{flex:none;width:64px;height:48px;border-radius:8px;overflow:hidden;border:0;padding:0;background:#222;cursor:pointer;opacity:.5;transition:opacity .15s;box-shadow:0 0 0 2px transparent}
+.lb-th img,.lb-th svg{width:100%;height:100%;object-fit:cover}
+.lb-th[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px #fff}
+.lb-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:720px;width:100%;margin:0 auto}
+.lb-cta span{min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.lb-cta b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-cta small{color:#C7C7CC;font-size:13px}
+@media (max-width:599px){.lb-ths{display:none}}
+@media (prefers-reduced-motion:reduce){.lb-pista{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -546,6 +682,9 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.01"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
   <symbol id="i-chispa" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></symbol>
+  <symbol id="i-candado" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></symbol>
+  <symbol id="i-salir" viewBox="0 0 24 24"><path d="M14 4.5h4.5v15H14M10.5 8l-4 4 4 4M6.5 12h10"/></symbol>
+  <symbol id="i-usuario" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></symbol>
 </defs></svg>
 
 <div class="banda">Maqueta · todos los datos son de ejemplo</div>
@@ -553,7 +692,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <main id="app"></main>
 <footer class="pie" id="pie"></footer>
 <div id="capa"></div>
-<input type="file" id="archivo" accept="image/*" multiple hidden>
+<input type="file" id="archivo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple hidden>
 
 <script>
 (function(){
@@ -593,27 +732,51 @@ const RAW=[
 const HOY=new Date('2026-10-11T12:00');
 const VIGENCIA=90;
 const EJ=RAW.map((r,k)=>{const a={};r[7].split(' ').forEach(x=>a[x]=1);
-  return {id:r[0],k,n:r[1],tipo:r[2],z:r[3],min:r[4],max:r[5],p:r[6],pTipo:r[6]?'desde':'cotizar',a,ver:r[8]||null,ad:!!r[9],x:r[10],y:r[11],ev:r[12].split(' ').map(Number),est:a.est?Math.round(r[5]/5):0,fotos:[],nFotos:6,desc:'',inc:[],horario:'',cliente:!!r[8]||!!r[9]}});
+  return {id:r[0],k,n:r[1],tipo:r[2],z:r[3],min:r[4],max:r[5],p:r[6],pTipo:r[6]?'desde':'cotizar',a,ver:r[8]||null,ad:!!r[9],x:r[10],y:r[11],ev:r[12].split(' ').map(Number),est:a.est?Math.round(r[5]/5):0,fotos:[],nFotos:6,desc:'',inc:[],horario:'',cliente:!!r[8]||!!r[9],turno:r[2]==='Jardín'||r[2]==='Quinta'?(k%2?['dia']:['dia','noche']):r[2]==='Salón techado'?(k%3?['noche']:['dia','noche']):['dia','noche']}});
 const CATS=[['salones','Salones','i-salon','--rosa'],['banquete','Banquete','i-banquete','--naranja'],['dj','DJ y sonido','i-dj','--verde'],['pasteles','Pasteles','i-pastel','--amarillo'],['foto','Foto y video','i-camara','--azul'],['decoracion','Decoración','i-deco','--morado'],['mobiliario','Mobiliario','i-silla','--naranja'],['inflables','Inflables','i-inflable','--rosa'],['meseros','Meseros','i-mesero','--azul']];
 const PREC_SERV={banquete:[250,' por persona'],dj:[2500,''],pasteles:[3000,''],foto:[8000,''],decoracion:[5000,''],mobiliario:[null,''],inflables:[null,''],meseros:[null,'']};
 const TINTE_SERV={banquete:['#F3E4DA','#C2410C'],dj:['#DDEBE4','#1D7A52'],pasteles:['#F6EBD3','#9A6B00'],foto:['#DCE6F2','#0066CC'],decoracion:['#E9E0F3','#7A3FC2'],mobiliario:['#EFE6DC','#8A5A2B'],inflables:['#F4DCE8','#D6007A'],meseros:['#DFE6F0','#2B4C7E']};
 const PROV=[];CATS.slice(1).forEach(c=>{for(let i=1;i<=5;i++){const b=PREC_SERV[c[0]];PROV.push({id:c[0]+i,k:i,cat:c[0],n:c[1]+' Ejemplo '+i,z:i%2?'Toda Morelia':ZONAS[i%6][0],p:b[0]?Math.round(b[0]*(1+(i-1)*.35)/50)*50:null,u:b[1],pTipo:b[0]?'desde':'cotizar',ver:i<=2?'2026-09-1'+i:null,ad:i===1,nFotos:4,fotos:[],prov:true,a:{},ev:[],cliente:i<=2})}});
 
 /* ===================================================================
+   CONFIGURACIÓN
+   =================================================================== */
+// WhatsApp del equipo: aquí llegan organización, asesoría, guías, precios, planes y soporte a negocios.
+const WA_EQUIPO='524436830494',WA_EQUIPO_TXT='443 683 0494';
+const ZONA_XY={Centro:[50,48],Norte:[50,14],Oriente:[84,46],Sur:[56,86],Suroeste:[16,70],Poniente:[16,36]};
+const TURNOS=[['dia','De día'],['noche','De noche']];
+const UNIDADES=[['','por evento'],[' por persona','por persona'],[' por hora','por hora'],[' por pieza','por pieza']];
+const OFRECE=[['salones','Salón o jardín','i-salon']].concat(CATS.slice(1).map(c=>[c[0],c[1],c[2]]));
+const catNombre=c=>(CATS.find(x=>x[0]===c)||['','Servicio'])[1];
+
+/* ===================================================================
    ESTADO
    =================================================================== */
 let busq={inv:null,presup:0,zona:''};
-const filt={};function limpiarFiltros(){AMEN.forEach(a=>filt[a[0]]=0);filt.ver=0;filt.tipo=''}limpiarFiltros();
+const filt={};function limpiarFiltros(){AMEN.forEach(a=>filt[a[0]]=0);filt.ver=0;filt.tipo='';filt.turno=''}limpiarFiltros();
 let orden='recomendados',conMapa=false;
 const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 let guard=ls.get('myuf-guardados',{});
-let mio=ls.get('myuf-mi-salon',null);
 let fiesta=ls.get('myuf-mi-fiesta',{ev:'',fecha:'',inv:''});
-let prospectos=ls.get('myuf-prospectos',[]);          // familias que dejaron su WhatsApp
-let negocios=ls.get('myuf-prospectos-negocio',[]);    // negocios interesados en verificación, destacado o reclamar ficha
-function publico(m){return {id:'mio',k:3,n:m.n||'Mi salón',tipo:m.tipo||'Salón techado',z:m.z||'Centro',min:+m.min||0,max:+m.max||0,p:m.pTipo==='cotizar'?null:(+m.p||null),pHasta:+m.pHasta||null,pTipo:m.pTipo,a:m.a||{},ver:m.verFecha||null,ad:false,x:46,y:60,ev:m.ev||[],est:+m.est||0,fotos:m.fotos||[],nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha,cliente:true}}
-function todos(){const l=EJ.slice();if(mio&&mio.estado==='publicado')l.push(publico(mio));return l}
-const porId=id=>id==='mio'&&mio?publico(mio):(EJ.find(s=>s.id===id)||PROV.find(s=>s.id===id));
+// Modo de la página: «lanzamiento» (todo gratis, sin etiquetas pagadas) o «planes»
+let MODO=ls.get('myuf-modo','lanzamiento');const lanz=()=>MODO!=='planes';
+let clics=ls.get('myuf-clics',[]);              // clics a WhatsApp (anónimos): de dónde llegan los mensajes
+let prospectos=ls.get('myuf-prospectos',[]);    // los registra el equipo a partir de los chats
+let sesion=ls.get('myuf-sesion-equipo',null);   // maqueta: en la real, Supabase Auth
+// Negocios creados en esta maqueta, por dueños o por el equipo. En la real: tabla «negocios» con permisos por fila.
+let mis=ls.get('myuf-negocios',[]);
+function nuevoNegocio(clase,origen){const t=new Date().toISOString();return {id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),clase:clase||'salon',cat:clase==='servicio'?'':'salones',n:'',tipo:'',z:'',dir:'',min:'',max:'',pTipo:'desde',p:'',pHasta:'',u:'',fotos:[],a:{},turno:['dia','noche'],ev:[],est:'',desc:'',inc:[],horario:'',resp:'',wa:'',ok:false,estado:'borrador',origen:origen||'dueño',aprob:null,verFecha:null,creado:t,actualizado:t}}
+(function migrar(){const v=ls.get('myuf-mi-salon',null);if(v&&!mis.length){const m=Object.assign(nuevoNegocio('salon','dueño'),v);m.id='m'+Date.now().toString(36);mis.push(m);ls.set('myuf-negocios',mis)}try{localStorage.removeItem('myuf-mi-salon')}catch(e){}})();
+function guardarMis(){if(!ls.set('myuf-negocios',mis))toast('Las fotos pesan mucho para este navegador.','En la página real se suben a un almacenamiento seguro.')}
+const misDueno=()=>mis.filter(m=>m.origen==='dueño');
+function hashN(t){let h=0;for(const c of String(t))h=(h*31+c.charCodeAt(0))|0;return Math.abs(h)}
+function publico(m){const sal=m.clase!=='servicio',xy=ZONA_XY[m.z]||[50,50],j=hashN(m.id);
+  return {id:m.id,k:j%7,n:m.n||'Sin nombre',tipo:m.tipo||'Salón techado',z:sal?(m.z||'Centro'):(m.z||'Toda Morelia'),min:+m.min||0,max:+m.max||0,p:m.pTipo==='cotizar'?null:(+m.p||null),pHasta:+m.pHasta||null,pTipo:m.pTipo,u:m.u||'',a:m.a||{},turno:m.turno||[],ver:m.verFecha||null,ad:false,
+    x:Math.max(6,Math.min(94,xy[0]+(j%9-4))),y:Math.max(6,Math.min(94,xy[1]+((j>>3)%9-4))),ev:m.ev||[],est:+m.est||0,fotos:(m.fotos||[]).map(imgSegura).filter(Boolean),nFotos:(m.fotos||[]).length,desc:m.desc,inc:m.inc||[],horario:m.horario,nuevo:!m.verFecha,cliente:true,prov:!sal,cat:sal?'salones':m.cat,wa:m.wa,propio:true}}
+const publicados=()=>mis.filter(m=>m.estado==='publicado').map(publico);
+function todos(){return EJ.concat(publicados().filter(s=>!s.prov))}
+function provDe(cat){return PROV.filter(p=>p.cat===cat).concat(publicados().filter(s=>s.prov&&s.cat===cat))}
+const porId=id=>{const m=mis.find(x=>x.id===id);if(m)return publico(m);return EJ.find(s=>s.id===id)||PROV.find(s=>s.id===id)};
 
 /* ===================================================================
    UTILIDADES
@@ -621,15 +784,22 @@ const porId=id=>id==='mio'&&mio?publico(mio):(EJ.find(s=>s.id===id)||PROV.find(s
 const $=(s,c)=>(c||document).querySelector(s);
 const $$=(s,c)=>Array.from((c||document).querySelectorAll(s));
 const ic=(id,c)=>`<svg class="i ${c||''}" aria-hidden="true"><use href="#${id}"/></svg>`;
-const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Todo lo que escribe un usuario pasa por esc() antes de llegar al HTML
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Solo aceptamos fotos que nosotros mismos recodificamos (JPEG en data:), nunca URLs externas
+const imgSegura=u=>typeof u==='string'&&u.length<4e6&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(u)?u:'';
+const soloDig=t=>String(t||'').replace(/\D/g,'');
+const waValido=t=>/^\d{10}$/.test(soloDig(t));
+const waBonito=t=>{const d=soloDig(t);return d.length===10?d.slice(0,3)+' '+d.slice(3,6)+' '+d.slice(6):t};
 const fmt=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
 const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const MES_ACTUAL=MESES[HOY.getMonth()];
 const fechaLarga=f=>new Date(f+'T12:00').toLocaleDateString('es-MX',{day:'numeric',month:'long'});
 const verificado=s=>s.ver&&(HOY-new Date(s.ver+'T12:00'))/864e5<=VIGENCIA?s.ver:null;
-function precioLargo(s){if(s.prov)return s.p?`Desde <b>${fmt.format(s.p)}</b>${s.u}`:'<b>Precio a cotizar</b>';if(s.pTipo==='rango'&&s.p&&s.pHasta)return `<b>${fmt.format(s.p)} a ${fmt.format(s.pHasta)}</b> por evento`;return s.p?`Desde <b>${fmt.format(s.p)}</b> por evento`:'<b>Precio a cotizar</b>'}
+function precioLargo(s){if(s.prov)return s.p?`Desde <b>${fmt.format(s.p)}</b>${esc(s.u)}`:'<b>Precio a cotizar</b>';if(s.pTipo==='rango'&&s.p&&s.pHasta)return `<b>${fmt.format(s.p)} a ${fmt.format(s.pHasta)}</b> por evento`;return s.p?`Desde <b>${fmt.format(s.p)}</b> por evento`:'<b>Precio a cotizar</b>'}
 const precioCorto=s=>s.p?fmt.format(s.p):'Cotizar';
 const precioFicha=s=>!s.p?'Precio a cotizar':s.pTipo==='rango'&&s.pHasta?fmt.format(s.p)+' a '+fmt.format(s.pHasta):'Desde '+fmt.format(s.p)+(s.u||'');
+const turnoTxt=s=>{const t=s.turno||[];return t.includes('dia')&&t.includes('noche')?'De día y de noche':t.includes('dia')?'De día':t.includes('noche')?'De noche':''};
 function picado(s,hueco){const c=['#D6007A','#E8A400','#0066CC'],w=s,h=s*.9,fw=w/3.2;let g='';hueco=hueco||'#fff';
   for(let i=0;i<3;i++){const x=i*(fw+w*.06);
     g+=`<path d="M${x} ${h*.12}h${fw}v${h*.66}l-${fw/4} ${h*.12}-${fw/4}-${h*.12}-${fw/4} ${h*.12}-${fw/4}-${h*.12}z" fill="${c[i]}"/><circle cx="${x+fw/2}" cy="${h*.38}" r="${fw*.16}" fill="${hueco}"/><path d="M${x+fw/2} ${h*.56}l${fw*.14} ${fw*.14}-${fw*.14} ${fw*.14}-${fw*.14}-${fw*.14}z" fill="${hueco}"/>`}
@@ -660,51 +830,84 @@ function ilus(s,i){
 }
 
 /* ===================================================================
-   PROSPECTOS: la base de datos que alimenta el servicio de organización
+   WHATSAPP: un toque, sin formularios. El mensaje ya va escrito.
    =================================================================== */
-const FUENTES={asesoria:'Ayuda para elegir',organizacion:'Quiere que lo organicemos',precio:'Pidió precio de un salón',guardados:'Mandar su lista',comparativa:'Comparativa del mes',post_contacto:'Después de escribir a un salón'};
-function guardarProspecto(fuente,datos){
-  const p=Object.assign({id:'p'+Date.now(),fecha:new Date().toISOString(),fuente,estado:'Nuevo',consentimiento:true},datos);
-  prospectos.unshift(p);ls.set('myuf-prospectos',prospectos);
-  // Real: INSERT en «prospectos» (Supabase) + aviso al equipo por WhatsApp
-  return p;
-}
-// Un toque: abre WhatsApp con el mensaje armado (paquete, salón e invitados si ya los sabemos). Al escribirnos, ya tenemos su número.
-function waOrganiza(paquete){
-  const r=ruta(),s=(r.a[0]==='salon'||r.a[0]==='proveedor')?todos().concat(PROV).find(x=>x.id===r.a[1]):null;
-  const extra=[paquete?'el paquete «'+paquete+'»':'',s?'en '+s.n:'',busq.inv?'para '+busq.inv+' invitados':''].filter(Boolean).join(', ');
-  toast('Abriendo WhatsApp de Mil y Una Fiestas…','«Hola, quiero que me ayuden a organizar mi fiesta'+(extra?' ('+extra+')':'')+'.»');
-  // Real: registrar el clic (fuente «organizacion») y abrir https://wa.me/52XXXXXXXXXX?text=…
-}
-function guardarNegocio(interes,datos){const p=Object.assign({id:'n'+Date.now(),fecha:new Date().toISOString(),interes,estado:'Nuevo'},datos);negocios.unshift(p);ls.set('myuf-prospectos-negocio',negocios);return p}
+const FUENTE_TXT={organizacion:'Organizar su fiesta',asesoria:'Ayuda para elegir',precio:'Pedir un precio',guardados:'Su lista de guardados',post_contacto:'Después de escribir a un negocio',negocio:'Escribir a un negocio',plan:'Plan de organización',reclamar:'Reclamar su ficha',soporte:'Soporte a negocios',subir:'Que le suban su negocio'};
+const fuenteTxt=f=>FUENTE_TXT[f]||(f.startsWith('guia_')?'Guía: '+((GUIAS.find(g=>'guia_'+g[0]===f)||[])[1]||f.slice(5)):f);
+// Real: los botones pasan por /c/[origen] para contar el clic (sin datos personales) y redirigen a wa.me
+function registrarClic(fuente,negocio){clics.unshift({f:new Date().toISOString(),fuente,negocio:negocio||''});clics=clics.slice(0,300);ls.set('myuf-clics',clics)}
+function abrirWA(num,texto,fuente,negocio){registrarClic(fuente,negocio);
+  const url='https://wa.me/'+num+'?text='+encodeURIComponent(texto);
+  const w=window.open(url,'_blank');if(w)w.opener=null;else location.href=url}
+const waEquipo=(fuente,texto)=>abrirWA(WA_EQUIPO,'Hola, Mil y Una Fiestas. '+texto,fuente);
+function contextoFiesta(extra){const inv=fiesta.inv||busq.inv;return [fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',inv?inv+' invitados':'',busq.zona?'zona '+busq.zona:''].concat(extra||[]).filter(Boolean).join(' · ')}
+function waOrganiza(paquete){const r=ruta(),s=(r.a[0]==='salon'||r.a[0]==='proveedor')?porId(r.a[1]):null;const c=contextoFiesta([paquete?'paquete '+paquete:'',s?'me gustó '+s.n:'']);
+  waEquipo('organizacion','Quiero que me ayuden a organizar mi fiesta'+(c?' ('+c+')':'')+'.')}
+function waPrecio(id){const s=porId(id),c=contextoFiesta();waEquipo('precio','¿Me consiguen el precio de «'+s.n+'»?'+(c?' Mi fiesta: '+c+'.':''))}
+const guardadosLista=()=>todos().concat(PROV,publicados()).filter((s,i,a)=>guard[s.id]&&a.findIndex(x=>x.id===s.id)===i);
+function waLista(){const l=guardadosLista();waEquipo('guardados','Guardé estos lugares: '+l.map(s=>s.n).join(', ')+'. ¿Me ayudan a comparar y elegir?'+(contextoFiesta()?' Mi fiesta: '+contextoFiesta()+'.':''))}
+function waPlan(plan){const c=contextoFiesta();waEquipo('plan','Me interesa el plan «'+plan+'» para organizar mi fiesta.'+(c?' Mi fiesta: '+c+'.':'')+' ¿Me dan detalles?')}
+const waSubir=()=>waEquipo('subir','Quiero publicar mi negocio. ¿Me ayudan a subirlo? Les mando por aquí fotos, precios y datos.');
+const waSoporte=()=>waEquipo('soporte','Necesito ayuda con mi negocio en la página.');
+function waReclamar(id){const s=porId(id);waEquipo('reclamar','El negocio «'+s.n+'» es mío y quiero administrar su ficha.')}
+function mensaje(s){const inv=fiesta.inv||busq.inv;return 'Hola, los encontré en Mil y Una Fiestas. Busco '+(s.prov?catNombre(s.cat).toLowerCase():'salón')+' para '+(fiesta.ev?fiesta.ev.toLowerCase():'una fiesta')+(fiesta.fecha?' el '+fechaLarga(fiesta.fecha):'')+(inv?' para '+inv+' personas':'')+'. ¿Me dan informes?'}
+let yaOfrecido=false;
+function enviarWA(id){const s=porId(id);
+  if(s.propio&&waValido(s.wa))abrirWA('52'+soloDig(s.wa),mensaje(s),'negocio',s.n);
+  // Negocios de ejemplo: el mensaje llega a nuestro WhatsApp para que la maqueta funcione de verdad
+  else abrirWA(WA_EQUIPO,mensaje(s)+' [Maqueta: «'+s.n+'» es un negocio de ejemplo]','negocio',s.n);
+  if(!yaOfrecido){yaOfrecido=true;setTimeout(()=>{if(!$('#capa .velo'))toast('¿Te ayudamos a comparar opciones?','Gratis, por WhatsApp.',['Sí, ayúdenme',()=>hojaAsesoria('post_contacto')])},4000)}}
+function llamar(id){const s=porId(id);if(s.propio&&waValido(s.wa)){registrarClic('llamada',s.n);location.href='tel:+52'+soloDig(s.wa)}else toast('Negocio de ejemplo','En la página real se abre tu teléfono para llamarle.')}
+function compartir(s){const url=location.origin+location.pathname+'#/'+(s.prov?'proveedor':'salon')+'/'+s.id;
+  if(navigator.share)navigator.share({title:s.n,text:s.n+' · Mil y Una Fiestas',url}).catch(()=>{});
+  else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>toast('Enlace copiado'),()=>toast(url));else toast(url)}
+function compartirLista(){const l=guardadosLista(),base=location.origin+location.pathname;const t='Mira estos lugares para la fiesta:\n'+l.map(s=>'• '+s.n+' · '+precioFicha(s)+'\n  '+base+'#/'+(s.prov?'proveedor':'salon')+'/'+s.id).join('\n');
+  if(navigator.share)navigator.share({title:'Mis guardados',text:t}).catch(()=>{});else{const w=window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');if(w)w.opener=null}}
+
+/* --- Guías gratis por WhatsApp: el gancho para que nos escriban --- */
+const GUIAS=[
+ ['salones','Los mejores salones de '+MES_ACTUAL,'Mejor precio por invitado, lado a lado.','i-salon','#FCE7F2','#5A0033'],
+ ['banquetes','Banquetes más baratos','Precio por persona y qué incluye cada uno.','i-banquete','#F6E3D6','#6B2A0A'],
+ ['meseros','Meseros de confianza','Cuánto cobran y cuántos necesitas.','i-mesero','#E1E8F2','#1F3A63'],
+ ['ofertas','Ofertas del mes','Fechas libres con descuento en salones y servicios.','i-estrella','#F6EBD3','#5C3D00'],
+ ['ideal','Cómo hacer tu fiesta ideal','Paso a paso: tiempos, presupuesto y proveedores.','i-organiza','#ECE4F5','#45207A'],
+ ['presupuesto','¿Cuánto cuesta tu fiesta?','Ejemplos para 50, 100 y 200 invitados.','i-dinero','#E0EEE6','#0B3B22']];
+function waGuia(id){const g=GUIAS.find(x=>x[0]===id),c=contextoFiesta();waEquipo('guia_'+id,'Quiero que me manden gratis: «'+g[1]+'».'+(c?' Mi fiesta: '+c+'.':''))}
+const guiaCard=g=>`<button type="button" class="guia" data-guia="${g[0]}" style="--g1:${g[4]};--g2:${g[5]}">${ic(g[3],'i-l')}<b>${g[1]}</b><span>${g[2]}</span><span class="ir">${ic('i-chat','i-s')}Recíbela gratis</span></button>`;
 
 /* ===================================================================
-   FILTRADO Y ORDEN: destacados → verificados → resto
+   FILTRADO Y ORDEN
+   Lanzamiento: nadie paga, se ordena por lo que mejor te queda.
+   Con planes: destacados (rotan) → verificados → resto.
    =================================================================== */
 function cumple(s,ignorar){
   if(busq.inv&&s.max<busq.inv)return false;
   if(busq.presup&&ignorar!=='presup'&&(!s.p||s.p>busq.presup))return false;
   if(busq.zona&&s.z!==busq.zona)return false;
   if(filt.tipo&&s.tipo!==filt.tipo)return false;
-  if(filt.ver&&!verificado(s))return false;
+  if(filt.turno&&!(s.turno||[]).includes(filt.turno))return false;
+  if(filt.ver&&!lanz()&&!verificado(s))return false;
   for(const a of AMEN)if(filt[a[0]]&&!s.a[a[0]])return false;
   return true;
 }
-const completitud=s=>(s.p?1:0)+(s.est?1:0)+((s.nFotos||0)>=5?1:0);
+const completitud=s=>(s.p?1:0)+(s.est?1:0)+((s.nFotos||0)>=5?1:0)+((s.desc||'').length>=80?1:0);
+const porInvitado=s=>s.p&&!s.prov?s.p/(busq.inv||s.max||1):1e9;
 function ordenar(l){
   if(orden==='precio')return l.slice().sort((a,b)=>(a.p||1e9)-(b.p||1e9));
+  if(orden==='ppi')return l.slice().sort((a,b)=>porInvitado(a)-porInvitado(b));
   if(orden==='capacidad')return l.slice().sort((a,b)=>(b.max||0)-(a.max||0));
   const rel=(a,b)=>{if(busq.inv&&a.max&&b.max){const d=(a.max-busq.inv)-(b.max-busq.inv);if(d)return d}return completitud(b)-completitud(a)};
+  if(lanz())return l.slice().sort(rel);
   let ads=l.filter(s=>s.ad);const r=HOY.getDate()%Math.max(ads.length,1);ads=ads.slice(r).concat(ads.slice(0,r));
   return ads.concat(l.filter(s=>!s.ad&&verificado(s)).sort(rel),l.filter(s=>!s.ad&&!verificado(s)).sort(rel));
 }
-const nFiltros=()=>AMEN.filter(a=>filt[a[0]]).length+(filt.ver?1:0)+(filt.tipo?1:0)+(orden!=='recomendados'?1:0);
+const nFiltros=()=>AMEN.filter(a=>filt[a[0]]).length+(filt.ver?1:0)+(filt.tipo?1:0)+(filt.turno?1:0)+(orden!=='recomendados'?1:0);
 const nActivos=()=>nFiltros()+(busq.inv?1:0)+(busq.presup?1:0)+(busq.zona?1:0);
 
 /* ===================================================================
    RUTAS
    =================================================================== */
-function ruta(){const h=location.hash.replace(/^#/,'')||'/';const [p,qs]=h.split('?');const q={};(qs||'').split('&').forEach(kv=>{if(kv){const [k,v]=kv.split('=');q[k]=decodeURIComponent(v||'')}});return {q,a:p.split('/').filter(Boolean)}}
+function ruta(){const h=location.hash.replace(/^#/,'')||'/';const [p,qs]=h.split('?');const q={};(qs||'').split('&').forEach(kv=>{if(kv){const [k,v]=kv.split('=');try{q[k]=decodeURIComponent(v||'')}catch(e){q[k]=''}}});return {q,a:p.split('/').filter(Boolean)}}
 function render(){
   cerrarCapa();
   const r=ruta(),a=r.a;let html,act='salones',pie=true,barra=false;
@@ -712,10 +915,17 @@ function render(){
   else if(a[0]==='servicios'){html=vServicios(a[1]||'banquete');act='servicios';barra=true}
   else if(a[0]==='salon'||a[0]==='proveedor')html=vFicha(a[1]);
   else if(a[0]==='organizamos'){html=vOrganizamos();act='organizamos'}
+  else if(a[0]==='guias'){html=vGuias();act=''}
   else if(a[0]==='para-negocios'){html=vParaNegocios();act='publica'}
-  else if(a[0]==='panel'&&a[1]==='editar'){html=vWizard(+r.q.paso||1);act='publica';pie=false}
+  else if(a[0]==='planes'){location.replace('#/organizamos');return}
+  else if(a[0]==='panel'&&a[1]==='nuevo'){const m=nuevoNegocio(r.q.clase==='servicio'?'servicio':'salon','dueño');mis.push(m);guardarMis();location.replace(rutaWiz('dueño',m.id,'negocio'));return}
+  else if(a[0]==='panel'&&a[1]==='editar'){html=vWizard('dueño',r.q.id,r.q.paso||'negocio');act='publica';pie=false}
   else if(a[0]==='panel'){html=vPanel();act='publica'}
-  else if(a[0]==='equipo'){html=vEquipo(r.q.t||'familias');act=''}
+  else if(a[0]==='equipo'){
+    if(!sesion){html=vLogin();act='';pie=false}
+    else if(a[1]==='nueva'){const m=nuevoNegocio('salon','equipo');mis.push(m);guardarMis();bitacora('Creó un borrador',m);location.replace(rutaWiz('equipo',m.id,'negocio'));return}
+    else if(a[1]==='ficha'){html=vWizard('equipo',r.q.id,r.q.paso||'negocio');act='';pie=false}
+    else{html=vEquipo(r.q.t||'fichas');act=''}}
   else if(a[0]==='como-ordenamos'){html=vComoOrdenamos();act=''}
   else if(a[0]==='guardados'){html=vGuardados();act=''}
   else {html=vFeed();barra=true}
@@ -726,15 +936,15 @@ function render(){
   $('#pie').innerHTML=pie?vPie():'';$('#pie').hidden=!pie;
   window.scrollTo(0,0);
   montar(r);
-  const cs=$('.cats');if(cs){cs.scrollLeft=catsX;const a=$('[aria-current]',cs);if(a){const ca=cs.getBoundingClientRect(),aa=a.getBoundingClientRect();if(aa.left<ca.left||aa.right>ca.right)cs.scrollLeft+=aa.left-ca.left-16}}
+  const cs=$('.cats');if(cs){cs.scrollLeft=catsX;const c=$('[aria-current]',cs);if(c){const ca=cs.getBoundingClientRect(),aa=c.getBoundingClientRect();if(aa.left<ca.left||aa.right>ca.right)cs.scrollLeft+=aa.left-ca.left-16}}
 }
-function aplicarQuery(q){if(q.inv)busq.inv=+q.inv;if(q.presup)busq.presup=+q.presup;if(q.zona)busq.zona=q.zona;AMEN.forEach(a=>{if(q[a[0]])filt[a[0]]=1});if(q.ver)filt.ver=1}
+function aplicarQuery(q){if(q.inv)busq.inv=Math.min(2000,+q.inv||0)||null;if(q.presup)busq.presup=+q.presup||0;if(q.zona&&ZONAS.some(z=>z[0]===q.zona))busq.zona=q.zona;if(q.tipo&&TIPOS.includes(q.tipo))filt.tipo=q.tipo;AMEN.forEach(a=>{if(q[a[0]])filt[a[0]]=1})}
 
 /* ===================================================================
    VISTAS · público
    =================================================================== */
 function vNav(act){
-  const n=Object.keys(guard).length;
+  const n=Object.keys(guard).length,tiene=misDueno().length>0;
   return `<div class="cont nav-in">
     <a class="logo" href="#/" aria-label="Mil y Una Fiestas, inicio">${picado(28)}<span>Mil y Una Fiestas</span></a>
     <nav class="nav-links" aria-label="Principal">
@@ -742,7 +952,7 @@ function vNav(act){
       <a href="#/servicios"${act==='servicios'?' aria-current="page"':''}>${ic('i-proveedor')}Servicios</a>
       <a href="#/organizamos" class="org"${act==='organizamos'?' aria-current="page"':''}>${ic('i-organiza')}Organizamos tu fiesta</a></nav>
     <div class="nav-der">
-      <a class="btn btn-sec nav-publica" href="${mio?'#/panel':'#/para-negocios'}" style="min-height:44px;font-size:15px">${mio?'Mi negocio':'¿Tienes un negocio?'}</a>
+      <a class="btn btn-sec nav-publica" href="${tiene?'#/panel':'#/para-negocios'}" style="min-height:44px;font-size:15px">${tiene?'Mis negocios':'¿Tienes un negocio?'}</a>
       <a class="btn-ic" href="#/guardados" aria-label="Guardados (${n})" data-nav-guard>${ic('i-corazon','i-l')}${n?`<span class="cnt-g">${n}</span>`:''}</a>
       <button class="btn-ic" data-menu aria-label="Abrir menú">${ic('i-menu','i-l')}</button></div></div>`;
 }
@@ -762,36 +972,39 @@ function vBarra(actual){
     </div>`:''}
     ${vCats(actual)}</div></div>`;
 }
-// Bloque principal de negocio: ayuda gratis (capta el número) + organización (lo que deja dinero)
 const vAyuda=()=>`<section class="srv ase" aria-label="Asesoría gratis"><div><h2>¿No sabes cuál elegir? Te asesoramos gratis.</h2></div>
     <div class="btns"><button class="btn btn-pri" data-asesoria>Ayúdame a elegir</button></div></section>`;
+// Filtros de un toque: la «biblioteca» se recorre sin abrir ninguna hoja
+const RAPIDOS=TIPOS.map(t=>['tipo',t,t]).concat([['turno','dia','De día'],['turno','noche','De noche'],['am','alb','Alberca'],['am','inf','Área infantil'],['am','est','Estacionamiento'],['am','aire','Aire libre']]);
+const vRapidos=()=>RAPIDOS.map(r=>{const on=r[0]==='tipo'?filt.tipo===r[1]:r[0]==='turno'?filt.turno===r[1]:!!filt[r[1]];return `<button type="button" class="chip" data-rapido="${r[0]}|${r[1]}" aria-pressed="${on}">${r[2]}</button>`}).join('');
 function vFeed(){
   return vBarra('salones')+`<div class="cont">
     ${vAyuda()}
+    <div class="rapidos" id="rapidos" role="group" aria-label="Filtros rápidos"></div>
     <div id="bloque-dest"></div>
     <div class="sec-h" id="feed-cab"></div>
     <div class="feed-wrap" id="feed-wrap"><div><div class="feed" id="feed"></div></div><aside class="mapa-lado" id="mapa-lado" aria-label="Mapa"></aside></div></div>
     <div class="flotante"><button class="btn btn-pri" id="btn-mapa">${ic('i-mapa')}Mapa</button><button class="btn btn-rosa f-org" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button></div>`;
 }
+const promoOrg=()=>`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-blanco" data-organiza>${ic('i-chat')}Que lo organicen</button></div>`;
+const promoGuias=()=>`<div class="promo-guias"><div class="sec-h" style="padding-top:4px"><h2>Recibe gratis por WhatsApp <span>· ${MES_ACTUAL}</span></h2><a class="lnk-gris" href="#/guias">Ver todas</a></div><div class="carr carr-g">${GUIAS.map(guiaCard).join('')}</div></div>`;
+const promoNeg=()=>`<div class="promo-feed claro"><div><h3>¿Tienes un salón o das un servicio?</h3><p>Publícalo gratis en 3 pasos y recibe clientes directo en tu WhatsApp.</p></div><a class="btn btn-pri" href="${misDueno().length?'#/panel':'#/para-negocios'}">${misDueno().length?'Ver mis negocios':'Publicar gratis'}</a></div>`;
 function pintarFeed(){
   const cab=$('#feed-cab');if(!cab)return;
   const filtrando=nActivos()>0;
   const base=todos(),l=ordenar(base.filter(s=>cumple(s)));
-  // Sin filtros, los destacados van en su propia fila arriba: es lo que se le vende al negocio
-  const dest=filtrando?[]:l.filter(s=>s.ad);
-  const lista=filtrando?l:l.filter(s=>!s.ad);
-  $('#bloque-dest').innerHTML=dest.length?`<div class="sec-h"><h2>Destacados en Morelia</h2><a class="lnk-gris" href="#/como-ordenamos">¿Qué es?</a></div><div class="carr">${dest.map(tarjeta).join('')}</div>`:'';
+  const dest=(!lanz()&&!filtrando)?l.filter(s=>s.ad):[];
+  const lista=dest.length?l.filter(s=>!s.ad):l;
+  const rp=$('#rapidos');if(rp){const x=rp.scrollLeft;rp.innerHTML=vRapidos();rp.scrollLeft=x}
+  $('#bloque-dest').innerHTML=dest.length?`<div class="sec-h"><h2>Destacados en Morelia</h2><button class="lnk-gris" data-que-es>¿Qué es?</button></div><div class="carr">${dest.map(tarjeta).join('')}</div>`:'';
   const sinPrecio=busq.presup?base.filter(s=>cumple(s,'presup')&&!s.p).length:0;
-  cab.innerHTML=`<h2>${filtrando?l.length+' salones':'Todos los salones'} <span>en Morelia</span></h2><div class="der">${filtrando?'<button class="lnk" data-limpiar style="min-height:44px">Limpiar filtros</button>':''}<a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>`;
-  const promoComp=`<div class="promo-feed rosa"><div><h3>¿Te ayudamos a decidir?</h3><p>Te mandamos gratis por WhatsApp la comparativa de ${MES_ACTUAL}: los salones con mejor precio por invitado.</p></div><button class="btn btn-pri" data-comparativa>Mándamela</button></div>`;
-  const promoOrg=`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-blanco" data-organiza>${ic('i-chat')}Que lo organicen</button></div>`;
-  const promoNeg=`<div class="promo-feed claro"><div><h3>¿Tienes un salón o das un servicio?</h3><p>Publícalo gratis y recibe clientes por WhatsApp. Verifícate o destácate para salir primero.</p></div><a class="btn btn-pri" href="${mio?'#/panel':'#/para-negocios'}">${mio?'Ver mi negocio':'Conoce los planes'}</a></div>`;
+  cab.innerHTML=`<h2>${filtrando?l.length+' de '+base.length+' salones':base.length+' salones'} <span>en Morelia</span></h2><div class="der">${filtrando?'<button class="lnk" data-limpiar style="min-height:44px">Limpiar filtros</button>':''}<a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>`;
   let h='';
-  lista.forEach((s,i)=>{h+=tarjeta(s);if(i===7)h+=promoOrg;if(i===15)h+=promoComp});
-  if(lista.length&&lista.length<8)h+=promoOrg;
-  if(lista.length&&lista.length<16)h+=promoComp;
-  if(lista.length)h+=promoNeg;
-  if(!l.length)h=`<div class="vacio">${picado(56,'#F7F6F3')}<h3>Ningún salón cumple todo</h3><p>Quita un filtro, o déjanos buscar por ti: te mandamos opciones por WhatsApp.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn btn-rosa" data-asesoria>Búsquenlo por mí</button><button class="btn btn-sec" data-limpiar>Quitar filtros</button></div></div>`;
+  lista.forEach((s,i)=>{h+=tarjeta(s);if(i===5)h+=promoOrg();if(i===13)h+=promoGuias()});
+  if(lista.length&&lista.length<6)h+=promoOrg();
+  if(lista.length&&lista.length<14)h+=promoGuias();
+  if(lista.length)h+=promoNeg();
+  if(!l.length)h=`<div class="vacio">${picado(56,'#F7F6F3')}<h3>Ningún salón cumple todo</h3><p>Quita un filtro, o escríbenos y lo buscamos por ti.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn btn-wa" data-buscar-por-mi>${ic('i-chat')}Búsquenlo por mí</button><button class="btn btn-sec" data-limpiar>Quitar filtros</button></div></div>`;
   if(sinPrecio)h=`<div class="aviso-precio"><span>${sinPrecio} salón${sinPrecio>1?'es':''} más cumple${sinPrecio>1?'n':''} todo pero no publica${sinPrecio>1?'n':''} precio.</span><button class="lnk" style="min-height:44px" data-presup0>Mostrarlos</button></div>`+h;
   $('#feed').innerHTML=h;
   $('#feed-wrap').classList.toggle('con-mapa',conMapa);
@@ -800,37 +1013,42 @@ function pintarFeed(){
   montarTarjetas($('#bloque-dest'));montarTarjetas($('#feed'));montarPins($('#mapa-lado'));
   $$('[data-limpiar]').forEach(b=>b.onclick=limpiar);
   $$('[data-presup0]').forEach(b=>b.onclick=()=>{busq.presup=0;refrescarBarra()});
+  $$('[data-buscar-por-mi]').forEach(b=>b.onclick=()=>{const f=[busq.inv?busq.inv+' invitados':'',busq.presup?presTxt():'',busq.zona?'zona '+busq.zona:'',filt.tipo,filt.turno?TURNOS.find(t=>t[0]===filt.turno)[1].toLowerCase():''].concat(AMEN.filter(a=>filt[a[0]]).map(a=>a[1].toLowerCase())).filter(Boolean).join(', ');waEquipo('asesoria','No encontré salón con esto: '+f+'. ¿Me ayudan a buscar?')});
+  $$('[data-rapido]').forEach(b=>b.onclick=()=>{const [k,v]=b.dataset.rapido.split('|');if(k==='tipo')filt.tipo=filt.tipo===v?'':v;else if(k==='turno')filt.turno=filt.turno===v?'':v;else filt[v]=filt[v]?0:1;refrescarBarra()});
 }
 function refrescarBarra(){const b=$('#barra');if(!b)return;const y=scrollY;b.outerHTML=vBarra('salones');montarBarra();pintarFeed();window.scrollTo(0,y)}
 
 function vServicios(cat){
-  const c=CATS.find(x=>x[0]===cat)||CATS[1];const l=ordenar(PROV.filter(p=>p.cat===c[0]));
+  const c=CATS.find(x=>x[0]===cat)||CATS[1];const l=ordenar(provDe(c[0]));
+  const g=GUIAS.find(x=>x[0]===({banquete:'banquetes',meseros:'meseros'}[c[0]]||'ofertas'));
+  let h='';l.forEach((s,i)=>{h+=tarjeta(s);if(i===2)h+=`<div class="promo-feed rosa"><div><h3>${g[1]}</h3><p>${g[2]} Te la mandamos gratis por WhatsApp.</p></div><button class="btn btn-pri" data-guia="${g[0]}">${ic('i-chat')}Recíbela gratis</button></div>`});
   return vBarra(c[0])+`<div class="cont">${vAyuda()}
     <div class="sec-h"><h2>${c[1]} <span>en Morelia</span></h2><a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>
-    <div class="feed" id="feed">${l.map(tarjeta).join('')}
-      <div class="promo-feed claro"><div><h3>¿Das servicio de ${c[1].toLowerCase()}?</h3><p>Publícate gratis y recibe clientes por WhatsApp.</p></div><a class="btn btn-pri" href="#/para-negocios">Conoce los planes</a></div></div></div>`;
+    <div class="feed" id="feed">${h}
+      <div class="promo-feed claro"><div><h3>¿Das servicio de ${c[1].toLowerCase()}?</h3><p>Publícate gratis en 3 pasos y recibe clientes por WhatsApp.</p></div><a class="btn btn-pri" href="#/para-negocios">Publicar gratis</a></div></div></div>
+    <div class="flotante"><button class="btn btn-rosa f-org" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button></div>`;
 }
 
-function slidesHTML(s,max){const n=Math.min(max,s.fotos.length||s.nFotos||5);let h='';for(let i=0;i<n;i++)h+=`<div class="slide">${s.fotos[i]?`<img src="${s.fotos[i]}" alt="Foto ${i+1} de ${esc(s.n)}" loading="lazy">`:ilus(s,i)}</div>`;return {h,n}}
-function tagsDe(s,plano){const v=verificado(s),p=plano?' plano':'',t=[];
+function slidesHTML(s,max){const n=Math.min(max,s.fotos.length||s.nFotos||5);let h='';for(let i=0;i<n;i++){const src=imgSegura(s.fotos[i]);h+=`<div class="slide">${src?`<img src="${src}" alt="Foto ${i+1} de ${esc(s.n)}" loading="lazy" decoding="async">`:ilus(s,i)}</div>`}return {h,n}}
+function tagsDe(s,plano){if(lanz())return '';const v=verificado(s),p=plano?' plano':'',t=[];
   if(s.ad)t.push(`<span class="tag tag-dest${p}">Destacado</span>`);
   if(v)t.push(`<span class="tag tag-ver${p}">${ic('i-escudo')}Verificado</span>`);else if(s.nuevo)t.push(`<span class="tag tag-nuevo${p}">Nuevo</span>`);
   return plano?t.join(''):(t[0]||'')}
 function tarjeta(s){
-  const sl=slidesHTML(s,5),ruta=s.prov?'proveedor':'salon';
+  const sl=slidesHTML(s,5),ruta=s.prov?'proveedor':'salon',ppi=!s.prov&&s.p&&busq.inv?Math.round(s.p/busq.inv):0;
   return `<article class="tarjeta" data-id="${s.id}" data-ruta="${ruta}">
     <div class="foto"><div class="slides" data-slides>${sl.h}</div><div class="tags">${tagsDe(s)}</div>
       <button class="fav" data-fav="${s.id}" aria-pressed="${!!guard[s.id]}" aria-label="Guardar ${esc(s.n)}">${ic('i-corazon')}</button>
       ${sl.n>1?`<button class="fl izq" data-paso-foto="-1" aria-label="Foto anterior">${ic('i-izq')}</button><button class="fl der" data-paso-foto="1" aria-label="Foto siguiente">${ic('i-der')}</button><div class="puntos" aria-hidden="true">${'<u></u>'.repeat(sl.n).replace('<u>','<u class="on">')}</div>`:''}</div>
     <div class="t-cuerpo"><a class="t-nombre" href="#/${ruta}/${s.id}">${esc(s.n)}</a>
-      <span class="t-meta">${s.prov?CATS.find(c=>c[0]===s.cat)[1]+' · '+s.z:s.tipo+' · '+s.z}</span>
-      ${s.prov?'':`<span class="t-meta">${s.min} a ${s.max} personas</span>`}
-      ${s.p?`<span class="t-precio">${precioLargo(s)}</span>`:`<span class="t-precio"><b>Precio a cotizar</b></span><button class="t-pedir" data-pedir-precio="${s.id}">Te conseguimos el precio</button>`}
+      <span class="t-meta">${s.prov?catNombre(s.cat)+' · '+esc(s.z):esc(s.tipo)+' · '+esc(s.z)}</span>
+      ${s.prov?'':`<span class="t-meta">${s.min?s.min+' a ':'Hasta '}${s.max} personas</span>`}
+      ${s.p?`<span class="t-precio">${precioLargo(s)}</span>${ppi?`<span class="t-ppi">≈ ${fmt.format(ppi)} por invitado</span>`:''}`:`<span class="t-precio"><b>Precio a cotizar</b></span><button class="t-pedir" data-pedir-precio="${s.id}">Te conseguimos el precio</button>`}
       <button class="t-wa" data-wa="${s.id}" aria-label="Escribir por WhatsApp a ${esc(s.n)}">${ic('i-chat','i-l')}</button></div></article>`;
 }
 function mapa(l,sinNota){
   const calles=`<svg class="calles" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 Q30 40 50 46 T100 44" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M48 0 Q44 30 50 50 T54 100" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M0 74 L100 64M0 20 L100 28" stroke="#fff" stroke-width="1.4" fill="none"/><path d="M20 0 L30 100M78 0 L70 100" stroke="#fff" stroke-width="1.2" fill="none"/><ellipse cx="42" cy="60" rx="9" ry="5" fill="#DCE8D4"/><ellipse cx="80" cy="84" rx="12" ry="7" fill="#DCE8D4"/><path d="M60 0 Q66 20 62 40" stroke="#CFE0EA" stroke-width="3" fill="none"/></svg>`;
-  return `<div class="mapa">${calles}${l.map(s=>`<button class="pin" style="left:${s.x}%;top:${s.y}%" data-pin="${s.id}" aria-label="${esc(s.n)}, ${precioCorto(s)}">${precioCorto(s)}</button>`).join('')}${sinNota?'':'<span class="mapa-nota">Mapa de ejemplo · real: OpenStreetMap</span>'}</div>`;
+  return `<div class="mapa">${calles}${l.map(s=>`<button class="pin" style="left:${+s.x}%;top:${+s.y}%" data-pin="${s.id}" aria-label="${esc(s.n)}, ${precioCorto(s)}">${precioCorto(s)}</button>`).join('')}${sinNota?'':'<span class="mapa-nota">Mapa de ejemplo · real: OpenStreetMap</span>'}</div>`;
 }
 
 /* ---------- Ficha ---------- */
@@ -838,37 +1056,40 @@ const resumenFiesta=()=>[fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',fies
 const botonFiesta=()=>{const r=resumenFiesta();return `<button class="mi-fiesta" data-mi-fiesta>${ic('i-cal','i-s')}<span>${r?'Tu mensaje dirá: '+esc(r)+' · cambiar':'Agregar fecha e invitados al mensaje (opcional)'}</span></button>`};
 function vFicha(id){
   const s=porId(id);if(!s)return `<div class="cont pagina"><div class="pag-cab"><h1>Esta ficha ya no está publicada.</h1><p><a class="lnk" href="#/">Ver todos los salones</a></p></div></div>`;
-  const v=verificado(s),sl=slidesHTML(s,12),total=sl.n;
+  const v=lanz()?null:verificado(s),sl=slidesHTML(s,20),total=sl.n;
   const fav=`data-fav="${s.id}" aria-pressed="${!!guard[s.id]}"`;
-  const fotoG=i=>`<button class="g" data-galeria aria-label="Ver fotos">${s.fotos[i]?`<img src="${s.fotos[i]}" alt="">`:(s.fotos.length&&i>=s.fotos.length?'':ilus(s,i))}</button>`;
-  const cat=s.prov?CATS.find(c=>c[0]===s.cat)[1]:'';
-  const sim=s.prov?ordenar(PROV.filter(x=>x.cat===s.cat&&x.id!==s.id)):ordenar(todos().filter(x=>x.id!==s.id&&Math.abs(x.max-s.max)<=100)).slice(0,8);
-  const inc=s.inc&&s.inc.length?s.inc:['[INCLUYE 1]','[INCLUYE 2]','[INCLUYE 3]','[INCLUYE 4]'];
+  const nMos=s.propio?Math.min(5,s.fotos.length):5,clsMos=nMos>=5?'':nMos===4||nMos===3?' m3':nMos===2?' m2':' m1';
+  const fotoG=i=>{const src=imgSegura(s.fotos[i]);return `<button class="g" data-galeria="${s.id}" data-i="${i}" aria-label="Ver foto ${i+1} en grande">${src?`<img src="${src}" alt="" decoding="async">`:ilus(s,i)}</button>`};
+  const cat=s.prov?catNombre(s.cat):'';
+  const sim=s.prov?ordenar(provDe(s.cat).filter(x=>x.id!==s.id)):ordenar(todos().filter(x=>x.id!==s.id&&Math.abs(x.max-s.max)<=100)).slice(0,8);
+  const inc=s.inc&&s.inc.length?s.inc:(s.propio?[]:['[INCLUYE 1]','[INCLUYE 2]','[INCLUYE 3]','[INCLUYE 4]']);
+  const ppiInv=busq.inv||fiesta.inv||s.max,ppi=!s.prov&&s.p&&ppiInv?Math.round(s.p/ppiInv):0;
   const precioDato=s.p?`<b>${precioFicha(s)}</b>`:`<b>A cotizar</b><br><button class="lnk" data-pedir-precio="${s.id}">Te lo conseguimos</button>`;
-  const datos=s.prov?`<div class="dato"><small>Servicio</small><b>${cat}</b></div><div class="dato"><small>Precio</small>${precioDato}</div><div class="dato"><small>Atiende</small><b>${s.z}</b></div><div class="dato"><small>Anticipo</small><b>[ANTICIPO]</b></div>`
-    :`<div class="dato"><small>Capacidad</small><b>${s.min} a ${s.max}</b></div><div class="dato"><small>Renta</small>${precioDato}</div><div class="dato"><small>Estacionamiento</small><b>${s.est?s.est+' lugares':s.a.est?'Sí':'En la calle'}</b></div><div class="dato"><small>Horario</small><b>${esc(s.horario)||'[HORARIO]'}</b></div>`;
-  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis con opciones parecidas.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">${ic('i-chat')}Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
+  const datos=s.prov?`<div class="dato"><small>Servicio</small><b>${cat}</b></div><div class="dato"><small>Precio</small>${precioDato}</div><div class="dato"><small>Atiende</small><b>${esc(s.z)}</b></div><div class="dato"><small>Contacto</small><b>WhatsApp</b></div>`
+    :`<div class="dato"><small>Capacidad</small><b>${s.min?s.min+' a ':'Hasta '}${s.max}</b></div><div class="dato"><small>Renta</small>${precioDato}</div><div class="dato"><small>Estacionamiento</small><b>${s.est?s.est+' lugares':s.a.est?'Sí':'En la calle'}</b></div><div class="dato"><small>Horario</small><b>${esc(s.horario)||turnoTxt(s)||'Pregúntale'}</b></div>`;
+  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">${ic('i-chat')}Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
+  const tags=tagsDe(s,true);
   return `<div class="ficha">
-    <div class="ficha-galeria"><div class="foto"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
-      <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
+    <div class="ficha-galeria"><div class="foto" data-abrir-galeria="${s.id}" role="button" tabindex="0" aria-label="Ver fotos en grande"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
+      <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir="${s.id}" aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
     <div class="cont">
-      <div class="ficha-top-d"><a class="btn btn-sec" href="${s.prov?'#/servicios/'+s.cat:'#/'}" style="min-height:44px">${ic('i-izq')}${s.prov?cat:'Salones'}</a><div style="display:flex;gap:4px"><button class="btn btn-texto" data-compartir style="min-height:44px">${ic('i-compartir')}Compartir</button><button class="btn btn-texto" ${fav} data-fav-txt style="min-height:44px">${ic('i-corazon')}${guard[s.id]?'Guardado':'Guardar'}</button></div></div>
-      <div class="mosaico">${[0,1,2,3,4].map(fotoG).join('')}<button class="btn ver-todas" data-galeria>Ver las ${total} fotos</button></div>
+      <div class="ficha-top-d"><a class="btn btn-sec" href="${s.prov?'#/servicios/'+s.cat:'#/'}" style="min-height:44px">${ic('i-izq')}${s.prov?cat:'Salones'}</a><div style="display:flex;gap:4px"><button class="btn btn-texto" data-compartir="${s.id}" style="min-height:44px">${ic('i-compartir')}Compartir</button><button class="btn btn-texto" ${fav} data-fav-txt style="min-height:44px">${ic('i-corazon')}${guard[s.id]?'Guardado':'Guardar'}</button></div></div>
+      <div class="mosaico${clsMos}">${[...Array(Math.max(1,nMos)).keys()].map(fotoG).join('')}<button class="btn ver-todas" data-galeria="${s.id}" data-i="0">${ic('i-foto')}Ver ${total>1?'las '+total+' fotos':'la foto'}</button></div>
       <div class="ficha-grid"><div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px">${tagsDe(s,true)}${s.ad||v||s.nuevo?`<button class="lnk-gris" data-que-es style="min-height:28px">¿Qué significa?</button>`:''}</div>
-        <h1>${esc(s.n)}</h1><p class="donde">${s.prov?cat+' · '+s.z:s.tipo+' · Zona '+zonaTxt(s.z)}</p>
+        ${tags?`<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px">${tags}<button class="lnk-gris" data-que-es style="min-height:28px">¿Qué significa?</button></div>`:''}
+        <h1>${esc(s.n)}</h1><p class="donde">${s.prov?cat+' · '+esc(s.z):esc(s.tipo)+' · Zona '+esc(zonaTxt(s.z))}</p>
         <div class="datos">${datos}</div>
         <div class="solo-m">${botonFiesta()}</div>
         ${s.prov?'':`<section class="ficha-sec"><h2>Lo que tiene</h2><div class="amen">${AMEN.map(a=>{const si=!!s.a[a[0]];return `<div class="${si?'':'no'}">${ic(a[2],'i-l')}${a[1]}${si?'':'<span class="sr"> (no tiene)</span>'}</div>`}).join('')}</div></section>
-        <section class="ficha-sec"><h2>Qué incluye la renta</h2><ul class="lista-inc">${inc.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`}
-        <section class="ficha-sec"><h2>Sobre ${s.prov?'el servicio':'el lugar'}</h2><p class="desc">${esc(s.desc)||'[DESCRIPCIÓN QUE ESCRIBE EL DUEÑO]'}</p>
-          <p class="nota" style="margin-top:14px">${v?`Datos del negocio, verificados por nuestro equipo el ${fechaLarga(v)}.`:'Datos que publicó el negocio. Todavía no los verificamos.'} Confirma precio y fecha antes de apartar.</p></section>
-        ${s.prov?'':`<section class="ficha-sec"><h2>Fiestas que recibe</h2><div class="fila-chips">${s.ev.map(e=>`<span class="chip" style="cursor:default;box-shadow:none;background:var(--bg-2)">${EVENTOS[e]}</span>`).join('')||'<span class="nota">El salón no lo indicó.</span>'}</div></section>
-        <section class="ficha-sec"><h2>Ubicación aproximada</h2><div style="height:240px;border-radius:var(--r-l);overflow:hidden">${mapa([s],true)}</div><p class="nota" style="margin-top:8px">Zona ${zonaTxt(s.z)}. La dirección exacta te la da el salón.</p></section>`}
+        ${inc.length?`<section class="ficha-sec"><h2>Qué incluye la renta</h2><ul class="lista-inc">${inc.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`:''}`}
+        <section class="ficha-sec"><h2>Sobre ${s.prov?'el servicio':'el lugar'}</h2><p class="desc">${esc(s.desc)||(s.propio?'El negocio todavía no escribe su descripción. Pregúntale lo que necesites por WhatsApp.':'[DESCRIPCIÓN QUE ESCRIBE EL DUEÑO]')}</p>
+          <p class="nota" style="margin-top:14px">${v?`Datos verificados por nuestro equipo el ${fechaLarga(v)}.`:'Datos que publicó el negocio.'} Confirma precio y fecha antes de apartar.</p></section>
+        ${s.prov?'':`${s.ev.length?`<section class="ficha-sec"><h2>Fiestas que recibe</h2><div class="fila-chips">${s.ev.map(e=>`<span class="chip" style="cursor:default;box-shadow:none;background:var(--bg-2)">${EVENTOS[e]}</span>`).join('')}</div></section>`:''}
+        <section class="ficha-sec"><h2>Ubicación aproximada</h2><div style="height:240px;border-radius:var(--r-l);overflow:hidden">${mapa([s],true)}</div><p class="nota" style="margin-top:8px">Zona ${esc(zonaTxt(s.z))}. La dirección exacta te la da el salón.</p></section>`}
         <div class="solo-m">${ayuda}</div>
-        ${s.cliente?'':`<div class="reclamar"><span>¿Este es tu ${s.prov?'negocio':'salón'}? Reclama tu ficha gratis y verifícala.</span><button class="lnk" data-reclamar="${s.id}" style="min-height:44px">Reclamar ficha</button></div>`}
+        ${s.cliente?'':`<div class="reclamar"><span>¿Es tu ${s.prov?'negocio':'salón'}? Adminístralo gratis: cambia fotos y precios cuando quieras.</span><button class="lnk" data-reclamar="${s.id}" style="min-height:44px">Es mío</button></div>`}
       </div>
-      <aside><div class="contacto"><div><span class="nota">${s.prov?'Precio':'Renta'}</span><div class="precio">${precioFicha(s)}</div>${s.p?`<span class="nota">Precio de referencia. ${s.prov?'El proveedor':'El salón'} confirma fecha y total.</span>`:`<button class="lnk" data-pedir-precio="${s.id}" style="min-height:36px;color:var(--rosa);text-decoration:underline">Te conseguimos el precio</button>`}</div>
+      <aside><div class="contacto"><div><span class="nota">${s.prov?'Precio':'Renta'}</span><div class="precio">${precioFicha(s)}</div>${s.p?`<span class="nota">${ppi?`≈ ${fmt.format(ppi)} por invitado con ${ppiInv}. `:''}Precio de referencia; ${s.prov?'el proveedor':'el salón'} confirma fecha y total.</span>`:`<button class="lnk" data-pedir-precio="${s.id}" style="min-height:36px;color:var(--rosa);text-decoration:underline">Te conseguimos el precio</button>`}</div>
         <button class="btn btn-wa btn-bloque" data-wa="${s.id}">${ic('i-chat')}Escribir por WhatsApp</button>
         <button class="btn btn-borde btn-bloque" data-tel="${s.id}">${ic('i-tel')}Llamar</button>
         ${botonFiesta()}
@@ -876,118 +1097,149 @@ function vFicha(id){
         <div class="solo-d">${ayuda}</div></aside></div>
       ${sim.length>=4?`<section class="ficha-sec"><h2>${s.prov?'Otros de '+cat.toLowerCase():'Salones parecidos'}</h2><div class="carr">${sim.map(tarjeta).join('')}</div></section>`:''}
     </div>
-    <div class="barra-m"><div class="cont"><div class="p"><b>${precioFicha(s)}</b><span>${s.prov?s.z:s.min+' a '+s.max+' personas'}</span></div><button class="btn-ic borde" style="width:50px;height:50px" data-tel="${s.id}" aria-label="Llamar">${ic('i-tel')}</button><button class="btn btn-wa" data-wa="${s.id}">${ic('i-chat')}WhatsApp</button></div></div>
+    <div class="barra-m"><div class="cont"><div class="p"><b>${precioFicha(s)}</b><span>${s.prov?esc(s.z):(s.min?s.min+' a ':'Hasta ')+s.max+' personas'}</span></div><button class="btn-ic borde" style="width:50px;height:50px" data-tel="${s.id}" aria-label="Llamar">${ic('i-tel')}</button><button class="btn btn-wa" data-wa="${s.id}">${ic('i-chat')}WhatsApp</button></div></div>
   </div>`;
 }
 
-/* ---------- Páginas interiores ---------- */
+/* ---------- Organizamos tu fiesta: tres planes (bajo, medio recomendado, alto) ---------- */
+// Precios piloto por validar (CLAUDE.md §3). El del medio debe verse como el más conveniente. No decir «el más elegido» hasta medirlo.
+const PLANES_ORG=[
+ {id:'Día del evento',lema:'Tú planeas. Nosotros cuidamos que el día salga perfecto.',precio:4900,items:['Llamada previa y cronograma del día','Coordinadora durante la fiesta (hasta 8 horas)','Recibimos y acomodamos a los proveedores','Resolvemos lo que surja ese día']},
+ {id:'Organización completa',top:true,lema:'Te acompañamos de principio a fin y tú solo eliges.',precio:9900,antes:'Todo lo del Día del evento, más:',items:['Te proponemos salón y proveedores a tu medida','Comparamos al menos 3 opciones por proveedor','Presupuesto y calendario de pagos claros','Negociamos y apartamos por ti','2 visitas contigo a salones','Seguimiento por WhatsApp cada semana']},
+ {id:'Todo incluido',lema:'Una fiesta de revista sin mover un dedo.',precio:19900,antes:'Todo lo de Organización completa, más:',items:['Diseño de decoración y concepto de la fiesta','Invitaciones digitales y confirmación de invitados','Visitas ilimitadas y ensayo','Equipo de 3 personas el día de la fiesta','Atención prioritaria los 7 días']}];
+const COMPARA_ORG=[['Coordinación el día de la fiesta','8 horas','Todo el evento','Todo el evento, 3 personas'],['Cronograma del día','si','si','si'],['Propuesta de salón y proveedores','no','si','si'],['Comparativa de 3 opciones por proveedor','no','si','si'],['Presupuesto y calendario de pagos','no','si','si'],['Negociamos y apartamos por ti','no','si','si'],['Visitas a salones','no','2','Ilimitadas'],['Diseño de decoración','no','no','si'],['Invitaciones y confirmaciones','no','no','si'],['Atención','Por WhatsApp','Cada semana','Prioritaria, 7 días']];
+const celda=v=>v==='si'?`<span class="si">${ic('i-check')}<span class="sr">Sí</span></span>`:v==='no'?'<span class="no-c" aria-label="No">—</span>':esc(v);
 function vOrganizamos(){
-  const paq=[['Coordinación del día','$3,500 a $6,000','Tú contratas todo; nosotros cuidamos que el día salga bien.',['Llamada previa y cronograma','Coordinación presencial durante la fiesta','Contacto con proveedores ese día']],
-    ['Organización parcial','$6,000 a $10,000','Te ayudamos a elegir y coordinar lo más importante.',['Todo lo de coordinación del día','Elegir salón y 2 o 3 proveedores','Cotizaciones comparables','Seguimiento cada semana']],
-    ['Servicio completo','$12,000 a $18,000','Nos encargamos de la planeación de principio a fin.',['Todo lo de organización parcial','Todos los proveedores y la decoración','Visitas contigo','Equipo de apoyo el día de la fiesta']]];
   return `<div class="cont pagina">
-  <div class="pag-cab"><span class="eyebrow">Organizamos tu fiesta</span><h1>Tú nos cuentas tu fiesta. Nosotros nos encargamos.</h1><p>Una persona de nuestro equipo te acompaña con el salón, los proveedores y el día del evento. Tú le pagas directo a cada proveedor; nosotros solo cobramos el servicio.</p>
-    <div class="acciones"><button class="btn btn-wa" data-wa-nosotros>${ic('i-chat')}Escríbenos por WhatsApp</button><button class="btn btn-sec" data-organiza-form>Que me escriban ustedes</button></div></div>
-  <h2 class="titulo-sec">Así funciona.</h2>
-  <div class="tres"><div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Nos cuentas tu fiesta</h3><p>Por WhatsApp, en una plática corta: tipo de fiesta, fecha, invitados y presupuesto.</p></div>
-    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Te proponemos opciones</h3><p>Salones y proveedores que te quedan, con precios comparables.</p></div>
-    <div class="paso"><span class="n" style="--c:var(--azul)">3</span><h3>Nosotros coordinamos</h3><p>Hablamos con los proveedores y estamos contigo el día de la fiesta.</p></div></div>
-  <section class="seccion"><h2 class="titulo-sec">Paquetes.</h2><div class="tres">${paq.map((p,i)=>`<div class="card-b${i===1?' marcado':''}"><h3>${p[0]}</h3><div class="precio">${p[1]}</div><p>${p[2]}</p><ul>${p[3].map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn ${i===1?'btn-pri':'btn-sec'}" data-organiza data-paquete="${p[0]}">Lo quiero</button></div>`).join('')}</div>
-  <p class="nota" style="margin-top:12px">Precios piloto. El alcance de cada paquete se acuerda por escrito antes de empezar.</p></section>
-  <section class="seccion"><div class="form-caja"><div><h2 class="titulo-sec">¿Prefieres que te escribamos?</h2><p class="nota" style="margin-top:6px;font-size:16px">Déjanos tu WhatsApp y te contactamos para platicar de tu fiesta, sin compromiso.</p></div>
-  ${formCorto('fo-p','Que me contacten','Acepto que me contacten por WhatsApp para organizar mi fiesta.')}</div></section></div>`;
+  <div class="pag-cab"><span class="eyebrow">Organizamos tu fiesta</span><h1>Tu fiesta, organizada por quienes conocen todo Morelia.</h1><p>Conocemos los salones y los servicios de la ciudad. Nos cuentas lo que sueñas y lo hacemos realidad: tú disfrutas, nosotros nos encargamos.</p>
+    <div class="acciones"><button class="btn btn-wa" data-organiza>${ic('i-chat')}Platiquemos por WhatsApp</button><a class="btn btn-sec" href="#planes-org">Ver planes</a></div></div>
+  <div class="cuatro">
+    <div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Nos cuentas tu fiesta</h3><p>Por WhatsApp: tipo de fiesta, fecha, invitados y presupuesto.</p></div>
+    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Eliges tu plan</h3><p>Te explicamos qué incluye cada uno según tu fiesta.</p></div>
+    <div class="paso"><span class="n" style="--c:var(--verde)">3</span><h3>Te damos opciones</h3><p>Salones y proveedores que te quedan, con precios comparables.</p></div>
+    <div class="paso"><span class="n" style="--c:var(--azul)">4</span><h3>Disfrutas tu fiesta</h3><p>Coordinamos todo y estamos contigo ese día.</p></div></div>
+  <section class="seccion" id="planes-org"><span class="eyebrow">Planes</span><h2 class="titulo-sec" style="margin-top:4px">Elige cuánto quieres que hagamos por ti.</h2>
+    <div class="planes">${PLANES_ORG.map(p=>`<div class="pl${p.top?' top':''}">${p.top?'<span class="insignia">Recomendado</span>':''}
+      <h3>${p.id}</h3><p class="lema">${p.lema}</p>
+      <div class="monto"><small>desde</small> ${fmt.format(p.precio)}</div>
+      ${p.antes?`<p class="antes">${p.antes}</p>`:''}
+      <ul>${p.items.map(x=>`<li>${ic('i-check')}<span>${x}</span></li>`).join('')}</ul>
+      <button class="btn ${p.top?'btn-rosa':'btn-pri'}" data-plan="${p.id}">${ic('i-chat')}Quiero este plan</button></div>`).join('')}</div>
+    <p class="nota" style="margin-top:14px">Precio por organizar la fiesta, para hasta 150 invitados. Al salón y a los proveedores les pagas directo tú: nosotros no cobramos comisión. El alcance se acuerda por escrito antes de empezar. Precios piloto.</p></section>
+  <section class="seccion"><h2 class="titulo-sec">Compara los planes.</h2>
+    <div class="tabla-wrap"><table class="tabla-comp"><thead><tr><th scope="col"><span class="sr">Qué incluye</span></th>${PLANES_ORG.map(p=>`<th scope="col"${p.top?' class="col-top"':''}>${p.id}<small>${fmt.format(p.precio)}</small></th>`).join('')}</tr></thead>
+    <tbody>${COMPARA_ORG.map(r=>`<tr><th scope="row">${r[0]}</th>${r.slice(1).map((v,i)=>`<td${i===1?' class="col-top"':''}>${celda(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>
+  <section class="seccion"><div class="valor-caja"><h3>¿Por qué el plan del medio?</h3><p>Por ${fmt.format(PLANES_ORG[1].precio-PLANES_ORG[0].precio)} más que el Día del evento ya no buscas, comparas ni negocias tú: te llevamos de la mano desde elegir el salón hasta el último invitado. Es el que te recomendamos si quieres tranquilidad total sin pagar el Todo incluido.</p></div></section>
+  <section class="seccion"><h2 class="titulo-sec">Preguntas frecuentes.</h2><div class="faq">
+    <details><summary>¿Cuánto tiempo antes los contrato?${ic('i-mas')}</summary><p>Lo ideal es de 2 a 4 meses antes. Para el Día del evento, con 3 semanas basta.</p></details>
+    <details><summary>¿Ustedes cobran comisión a los salones?${ic('i-mas')}</summary><p>No. Al salón y a los proveedores les pagas directo. Solo cobramos el plan que elijas.</p></details>
+    <details><summary>¿Mi fiesta es de más de 150 invitados?${ic('i-mas')}</summary><p>Escríbenos y te mandamos el precio a tu medida.</p></details>
+    <details><summary>¿Puedo empezar con un plan y cambiar a otro?${ic('i-mas')}</summary><p>Sí, pagas solo la diferencia.</p></details></div></section>
+  <section class="seccion"><div class="promo-feed oscuro"><div><h3>Platiquemos de tu fiesta.</h3><p>Sin compromiso. Te contestamos por WhatsApp al ${WA_EQUIPO_TXT}.</p></div><button class="btn btn-blanco" data-organiza>${ic('i-chat')}Escribir por WhatsApp</button></div></section></div>`;
+}
+function vGuias(){
+  return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Gratis por WhatsApp</span><h1>Guías para que tu fiesta salga bien y te cueste menos.</h1><p>Toca la que quieras y te la mandamos a tu WhatsApp. Sin registrarte.</p></div>
+  <div class="guias-grid">${GUIAS.map(guiaCard).join('')}</div></div>`;
 }
 function vParaNegocios(){
-  const plan=(cls,ico,t,que,items,btn,interes)=>`<div class="plan ${cls}"><h3>${ic(ico)}${t}</h3><p class="que">${que}</p><ul>${items.map(x=>`<li>${ic('i-check')}${x}</li>`).join('')}</ul><button class="btn ${cls==='dest'?'btn-blanco':interes?'btn-pri':'btn-sec'}" ${interes?`data-plan="${interes}"`:'data-empezar'}>${btn}</button></div>`;
+  const tiene=misDueno().length>0;
   return `<div class="cont pagina">
-  <div class="pag-cab"><span class="eyebrow">Para salones y proveedores</span><h1>Más familias de Morelia escribiéndote por WhatsApp.</h1><p>Publica tu negocio gratis. Verifícate para que confíen más en ti, o destácate para salir primero.</p>
-    <div class="acciones"><a class="btn btn-pri" href="${mio?'#/panel':'#/panel/editar?paso=1'}">${mio?'Ir a mi negocio':'Publicar gratis'}</a></div></div>
+  <div class="pag-cab"><span class="eyebrow">Para salones y servicios de Morelia</span><h1>Si haces fiestas en Morelia, tienes que estar aquí.</h1><p>Aquí buscan las familias que van a celebrar. Publica tu negocio gratis en 3 pasos y recibe sus mensajes directo en tu WhatsApp, sin comisiones.</p>
+    <div class="acciones"><a class="btn btn-pri" href="${tiene?'#/panel':'#/panel/nuevo'}">${tiene?'Ir a mis negocios':'Publicar mi negocio gratis'}</a><button class="btn btn-sec" data-subir>${ic('i-chat')}Que me lo suban por WhatsApp</button></div></div>
   <div class="tres">
-    ${plan('','i-tienda','Ficha gratis','Para empezar a recibir clientes.',['Fotos, capacidad, precio y lo que tienes','Las familias te escriben directo a tu WhatsApp','Sin comisión por tus reservas'],'Publicar gratis',null)}
-    ${plan('','i-escudo','Verificado','Para que las familias confíen en ti.',['Confirmamos tus datos con una llamada o visita','Etiqueta «Verificado» en tu ficha','Apareces antes que los negocios sin verificar'],'Quiero verificarme','verificacion')}
-    ${plan('dest','i-estrella','Destacado','Para salir primero.',['Apareces en «Destacados en Morelia», arriba del inicio','Sales entre los primeros de tu categoría','Reporte de cuántas familias te contactaron'],'Quiero destacarme','destacado')}
-  </div>
-  <p class="nota" style="margin-top:12px">Te mandamos precios y detalles por WhatsApp. Nunca cobramos comisión por tus reservas.</p>
-  <section class="seccion"><h2 class="titulo-sec">Cómo funciona.</h2>
-  <div class="cuatro">
-    <div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Llena tu ficha</h3><p>Datos, capacidad, precio, fotos y lo que tiene tu negocio.</p></div>
-    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Publícala</h3><p>Aparece de inmediato con la etiqueta «Nuevo».</p></div>
-    <div class="paso"><span class="n" style="--c:var(--verde)">3</span><h3>Verifícate</h3><p>Confirmamos tus datos y ganas «Verificado».</p></div>
-    <div class="paso"><span class="n" style="--c:var(--azul)">4</span><h3>Recibe clientes</h3><p>Te escriben a tu WhatsApp con su fecha y número de invitados.</p></div></div></section></div>`;
+    <div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Tu negocio y tu WhatsApp</h3><p>Nombre, tipo, zona y el número donde quieres recibir clientes.</p></div>
+    <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Tus precios</h3><p>Capacidad y precio de renta, o precio de tu servicio.</p></div>
+    <div class="paso"><span class="n" style="--c:var(--azul)">3</span><h3>Tus fotos</h3><p>Desde tu celular. Las acomodamos para que se vean profesionales.</p></div></div>
+  <section class="seccion"><h2 class="titulo-sec">Por qué estar aquí.</h2>
+  <div class="cuatro" style="margin-top:16px">
+    <div class="card-b"><h3>${ic('i-chat')} Clientes directo</h3><p>Te escriben a tu WhatsApp con su fecha e invitados. Sin intermediarios.</p></div>
+    <div class="card-b"><h3>${ic('i-dinero')} Sin comisión</h3><p>Lo que cobras es tuyo. No tocamos tus pagos ni tus anticipos.</p></div>
+    <div class="card-b"><h3>${ic('i-tienda')} Varios negocios</h3><p>¿Tienes dos salones o también pasteles? Súbelos todos en una sola cuenta.</p></div>
+    <div class="card-b"><h3>${ic('i-compartir')} Tu propia página</h3><p>Un enlace y un código QR para tus redes, tu WhatsApp y tu local.</p></div></div></section>
+  <section class="seccion"><h2 class="titulo-sec">Preguntas frecuentes.</h2><div class="faq">
+    <details><summary>¿Cuánto cuesta?${ic('i-mas')}</summary><p>${lanz()?'Nada. Durante el lanzamiento todo es gratis. Más adelante habrá opciones para salir primero, siempre opcionales; tu ficha básica seguirá siendo gratis.':'Tu ficha es gratis. Si quieres salir primero o verificarte, escríbenos y te explicamos las opciones.'}</p></details>
+    <details><summary>¿Puedo subir varios salones o servicios?${ic('i-mas')}</summary><p>Sí. Desde «Mis negocios» agregas los que tengas y los editas por separado.</p></details>
+    <details><summary>¿Quién puede cambiar mi ficha?${ic('i-mas')}</summary><p>Solo tú, entrando con un código que te llega por WhatsApp, y nuestro equipo cuando nos pides ayuda.</p></details>
+    <details><summary>No tengo tiempo, ¿me ayudan?${ic('i-mas')}</summary><p>Claro. Mándanos fotos, precios y datos por WhatsApp y nosotros lo subimos por ti.</p></details></div></section>
+  <section class="seccion"><div class="promo-feed oscuro"><div><h3>¿Dudas? Te ayudamos.</h3><p>Escríbenos al ${WA_EQUIPO_TXT}. Te contestamos nosotros, no un robot.</p></div><button class="btn btn-blanco" data-soporte>${ic('i-chat')}Escribir por WhatsApp</button></div></section></div>`;
 }
 function vComoOrdenamos(){
+  if(lanz())return `<div class="cont pagina">
+  <div class="pag-cab"><span class="eyebrow">Transparencia</span><h1>Cómo ordenamos los resultados.</h1><p>Durante el lanzamiento nadie paga por aparecer. Todos los negocios están en igualdad.</p></div>
+  <div class="tres"><div class="card-b"><h3>1. Que te quede</h3><p>Si nos dices cuántos invitados, primero salen los lugares donde caben, empezando por los más cercanos a tu número.</p></div>
+  <div class="card-b"><h3>2. Fichas completas</h3><p>Después, los que publican precio, más fotos y una buena descripción.</p></div>
+  <div class="card-b"><h3>3. Tú decides</h3><p>Puedes ordenar por precio, por precio por invitado o por capacidad.</p></div></div></div>`;
   return `<div class="cont pagina">
   <div class="pag-cab"><span class="eyebrow">Transparencia</span><h1>Cómo ordenamos y qué significan las etiquetas.</h1><p>Estas son las reglas, sin letra chiquita.</p></div>
   <h2 class="titulo-sec">El orden.</h2>
-  <div class="tres"><div class="card-b"><h3>1. Destacados</h3><p>Negocios que pagan una cuota mensual para aparecer primero y en la fila «Destacados en Morelia». Rotan entre ellos.</p></div>
+  <div class="tres"><div class="card-b"><h3>1. Destacados</h3><p>Negocios que pagan para aparecer primero y en la fila «Destacados en Morelia». Rotan entre ellos.</p></div>
   <div class="card-b"><h3>2. Verificados</h3><p>Negocios cuyos datos confirmamos por llamada o visita en los últimos 3 meses.</p></div>
   <div class="card-b"><h3>3. Todos los demás</h3><p>Dentro de cada grupo, primero los que mejor le quedan a tus invitados y las fichas más completas.</p></div></div>
   <section class="seccion"><h2 class="titulo-sec">Las etiquetas.</h2>
   <div class="etiquetas-lista">
     <div class="etiqueta-fila"><span><span class="tag tag-dest plano">Destacado</span></span><p><b style="color:var(--texto)">Es publicidad.</b> El negocio paga para aparecer entre los primeros. No significa que sea mejor ni que lo recomendemos.</p></div>
-    <div class="etiqueta-fila"><span><span class="tag tag-ver plano">${ic('i-escudo')}Verificado</span></span><p>Confirmamos por llamada o visita que el negocio existe y que sus datos son ciertos. Dura 3 meses y se renueva con una nueva revisión. No garantiza el resultado de tu fiesta.</p></div>
-    <div class="etiqueta-fila"><span><span class="tag tag-nuevo plano">Nuevo</span></span><p>El negocio se publicó hace poco y todavía no lo verificamos. Los datos son los que él escribió.</p></div>
+    <div class="etiqueta-fila"><span><span class="tag tag-ver plano">${ic('i-escudo')}Verificado</span></span><p>Confirmamos por llamada o visita que el negocio existe y que sus datos son ciertos. Dura 3 meses.</p></div>
+    <div class="etiqueta-fila"><span><span class="tag tag-nuevo plano">Nuevo</span></span><p>Se publicó hace poco y todavía no lo verificamos.</p></div>
   </div></section></div>`;
 }
 function vGuardados(){
-  const l=todos().concat(PROV).filter(s=>guard[s.id]);
-  return `<div class="cont pagina"><div class="pag-cab"><h1>Tus guardados.</h1><p>Se guardan solo en este navegador. Mándatelos por WhatsApp para no perderlos.</p>
-  ${l.length?`<div class="acciones"><button class="btn btn-rosa" data-mandar-lista>${ic('i-chat')}Mándame mi lista por WhatsApp</button><button class="btn btn-sec" data-asesoria>Ayúdame a elegir entre estos</button></div>`:''}</div>
-  <div class="feed" id="feed-g">${l.length?l.map(tarjeta).join(''):`<div class="vacio">${ic('i-corazon','i-l')}<h3>Todavía no guardas nada</h3><p>Toca el corazón en cualquier salón o proveedor para tenerlo a la mano aquí.</p><a class="btn btn-pri" href="#/">Ver salones</a></div>`}</div></div>`;
+  const l=guardadosLista(),sal=l.filter(s=>!s.prov);
+  const filaComp=(t,f)=>`<tr><th scope="row">${t}</th>${sal.map(s=>`<td>${f(s)}</td>`).join('')}</tr>`;
+  const comp=sal.length>=2?`<section class="seccion" style="margin-top:32px"><h2 class="titulo-sec">Compáralos lado a lado.</h2><div class="tabla-wrap"><table class="tabla-comp"><thead><tr><th scope="col"><span class="sr">Dato</span></th>${sal.map(s=>`<th scope="col"><a href="#/salon/${s.id}">${esc(s.n)}</a></th>`).join('')}</tr></thead><tbody>
+    ${filaComp('Zona',s=>esc(s.z))}${filaComp('Capacidad',s=>(s.min?s.min+' a ':'Hasta ')+s.max)}${filaComp('Renta',s=>precioFicha(s))}${filaComp('Por invitado',s=>s.p?'≈ '+fmt.format(Math.round(s.p/(busq.inv||fiesta.inv||s.max)))+'<small>con '+(busq.inv||fiesta.inv||s.max)+'</small>':'—')}${filaComp('Horario',s=>turnoTxt(s)||'—')}
+    ${AMEN.slice(0,6).map(a=>filaComp(a[1],s=>celda(s.a[a[0]]?'si':'no'))).join('')}
+    ${filaComp('',s=>`<button class="btn btn-wa" data-wa="${s.id}" style="min-height:40px;padding:0 14px;font-size:14.5px">${ic('i-chat')}Escribir</button>`)}</tbody></table></div></section>`:'';
+  return `<div class="cont pagina"><div class="pag-cab"><h1>Tus guardados.</h1><p>${l.length?'Compáralos, compártelos con tu familia o pídenos ayuda para elegir.':'Se guardan en este navegador.'}</p>
+  ${l.length?`<div class="acciones"><button class="btn btn-wa" data-wa-lista>${ic('i-chat')}Ayúdenme a elegir</button><button class="btn btn-sec" data-compartir-lista>${ic('i-compartir')}Compartir mi lista</button></div>`:''}</div>
+  <div class="feed" id="feed-g">${l.length?l.map(tarjeta).join(''):`<div class="vacio">${ic('i-corazon','i-l')}<h3>Todavía no guardas nada</h3><p>Toca el corazón en cualquier salón o servicio para tenerlo a la mano y compararlo.</p><a class="btn btn-pri" href="#/">Ver salones</a></div>`}</div>${comp}</div>`;
 }
 function vPie(){
   const ideas={'Por capacidad':[[50,'Para 50 personas','Reuniones'],[80,'Para 80 personas','Fiestas familiares'],[100,'Para 100 personas','Lo más buscado'],[150,'Para 150 personas','Bodas y XV'],[200,'Para 200 personas','Fiestas grandes'],[300,'Para 300 personas','Haciendas']].map(x=>['#/salones?inv='+x[0],x[1],x[2]]),
-    'Por tipo de fiesta':EVENTOS.slice(0,6).map(e=>['#/',e,'Salones que la reciben']),
+    'Por tipo de lugar':TIPOS.map(t=>['#/salones?tipo='+encodeURIComponent(t),t,'En Morelia']),
     'Por zona':ZONAS.map(z=>['#/salones?zona='+encodeURIComponent(z[0]),z[0],z[1]])};
   const tabs=Object.keys(ideas);
   return `<div class="cont"><h2>Ideas para tu fiesta</h2><div class="pie-tabs" role="tablist">${tabs.map((t,i)=>`<button class="pie-tab" role="tab" aria-selected="${i===0}" data-tab="${t}">${t}</button>`).join('')}</div>
   ${tabs.map((t,i)=>`<div class="ideas" data-panel="${t}"${i?' hidden':''}>${ideas[t].map(x=>`<a href="${x[0]}">${x[1]}<span>${x[2]}</span></a>`).join('')}</div>`).join('')}
-  <div class="pie-cols"><div><h3>Para tu fiesta</h3><button data-asesoria>Ayúdame a elegir</button><a href="#/organizamos">Organizamos tu fiesta</a><button data-comparativa>Comparativa del mes</button></div><div><h3>Negocios</h3><a href="#/para-negocios">Publica tu negocio gratis</a><a href="#/para-negocios">Verificado y destacado</a><a href="#/panel">Mi negocio</a></div><div><h3>Ayuda</h3><a href="#/como-ordenamos">Cómo ordenamos y etiquetas</a><a href="#/guardados">Tus guardados</a></div><div><h3>Legal</h3><a href="#/">Aviso de privacidad</a><a href="#/">Términos</a><a href="#/equipo">Equipo (interno)</a></div></div>
-  <div class="pie-legal"><span class="logo" style="font-size:16px;min-height:0">${picado(22,'#F7F6F3')}Mil y Una Fiestas</span><span>Directorio sin comisiones.</span></div></div>`;
+  <div class="pie-cols"><div><h3>Para tu fiesta</h3><a href="#/organizamos">Organizamos tu fiesta</a><button data-asesoria>Asesoría gratis</button><a href="#/guias">Guías gratis</a><a href="#/guardados">Tus guardados</a></div><div><h3>Negocios</h3><a href="#/para-negocios">Publica tu negocio gratis</a><a href="#/panel">Mis negocios</a><button data-soporte>Ayuda para negocios</button></div><div><h3>Contacto</h3><button data-organiza>WhatsApp ${WA_EQUIPO_TXT}</button><a href="#/como-ordenamos">Cómo ordenamos</a></div><div><h3>Legal</h3><a href="#/">Aviso de privacidad</a><a href="#/">Términos</a><a href="#/equipo">Equipo (interno)</a></div></div>
+  <div class="pie-legal"><span class="logo" style="font-size:16px;min-height:0">${picado(22,'#F7F6F3')}Mil y Una Fiestas</span><span>Todos los salones y servicios de Morelia. Sin comisiones.</span></div></div>`;
 }
 
 /* ===================================================================
-   PANEL INTERNO DEL EQUIPO: prospectos (familias y negocios)
+   MIS NEGOCIOS (dueños): varios negocios por cuenta, alta en 3 pasos
    =================================================================== */
-const EJEMPLO_P=[
-  {id:'e1',fecha:'2026-10-11T10:12:00',fuente:'asesoria',nombre:'[Ejemplo] Familia A',wa:'443 000 0001',fiesta:{ev:'Primera comunión',inv:'80 a 150',presup:'$5,000 a $10,000',zona:'Sur',fecha:'2026-12-05'},estado:'Nuevo',ejemplo:true},
-  {id:'e2',fecha:'2026-10-10T18:40:00',fuente:'organizacion',nombre:'[Ejemplo] Familia B',wa:'443 000 0002',fiesta:{ev:'XV años',inv:'150 a 250',paquete:'Organización parcial',fecha:'2027-03-20'},estado:'Contactado',ejemplo:true},
-  {id:'e3',fecha:'2026-10-10T12:05:00',fuente:'precio',nombre:'',wa:'443 000 0003',salon:'Quinta Ejemplo El Ahuehuete',fiesta:{inv:150},estado:'Propuesta enviada',ejemplo:true}];
-const ESTADOS=['Nuevo','Contactado','Propuesta enviada','Cliente','No interesado'];
-const cuando=f=>new Date(f).toLocaleString('es-MX',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-function vEquipo(t){
-  const fam=prospectos.concat(EJEMPLO_P),sem=fam.filter(p=>Math.abs(HOY-new Date(p.fecha))/864e5<=7);
-  const porF=k=>fam.filter(p=>p.fuente===k).length;
-  const lead=p=>{const f=p.fiesta||{};const det=[f.ev,f.inv?f.inv+' invitados':'',f.presup,f.zona,f.fecha?fechaLarga(f.fecha):'',f.paquete,p.salon?'Salón: '+p.salon:''].filter(Boolean).join(' · ');
-    return `<div class="lead"><div><span class="fuente ${p.fuente}">${FUENTES[p.fuente]||p.fuente}</span>${p.ejemplo?'<span class="fuente ejemplo">Ejemplo</span>':''}<div style="margin-top:6px"><b>${esc(p.nombre||'Sin nombre')}</b> · ${esc(p.wa)}</div><span class="q">${cuando(p.fecha)}</span></div>
-      <div class="q">${esc(det)||'Sin detalles'}</div>
-      <div><label class="sr" for="st-${p.id}">Estado</label><select class="input" id="st-${p.id}" data-estado="${p.id}">${ESTADOS.map(e=>`<option${p.estado===e?' selected':''}>${e}</option>`).join('')}</select></div>
-      <div><button class="btn btn-wa" style="min-height:44px" data-wa-lead="${esc(p.nombre||'')}">${ic('i-chat')}Escribirle</button></div></div>`};
-  const INT={verificacion:'Quiere verificarse',destacado:'Quiere destacarse',reclamar:'Reclamó su ficha'};
-  const neg=negocios.map(n=>`<div class="lead"><div><span class="fuente">${INT[n.interes]}</span><div style="margin-top:6px"><b>${esc(n.negocio||'Negocio')}</b> · ${esc(n.wa)}</div><span class="q">${cuando(n.fecha)}</span></div><div class="q">${esc(n.nombre||'')}</div><div><select class="input" aria-label="Estado">${['Nuevo','Contactado','Cerrado','No interesado'].map(e=>`<option>${e}</option>`).join('')}</select></div><div><button class="btn btn-wa" style="min-height:44px" data-wa-lead="">${ic('i-chat')}Escribirle</button></div></div>`).join('');
-  return `<div class="cont pagina"><div class="pag-cab" style="margin-bottom:24px"><span class="eyebrow">Panel interno · solo equipo</span><h1>Prospectos.</h1><p>Familias que dejaron su WhatsApp y negocios interesados. En la página real esto vive detrás de una contraseña.</p></div>
-  <div class="kpis"><div class="kpi"><b>${sem.length}</b><span>familias esta semana</span></div><div class="kpi"><b>${porF('organizacion')}</b><span>quieren que organicemos</span></div><div class="kpi"><b>${porF('asesoria')+porF('precio')+porF('post_contacto')}</b><span>pidieron ayuda o precio</span></div><div class="kpi"><b>${negocios.length}</b><span>negocios interesados</span></div></div>
-  <p class="nota" style="margin-top:10px">Cuenta lo que dejaste en esta maqueta, más 3 filas de ejemplo.</p>
-  <div class="tabs" role="tablist"><a class="tab" role="tab" aria-selected="${t==='familias'}" href="#/equipo?t=familias">Familias (${fam.length})</a><a class="tab" role="tab" aria-selected="${t==='negocios'}" href="#/equipo?t=negocios">Negocios (${negocios.length})</a></div>
-  <div class="leads">${t==='negocios'?(neg||'<p class="nota" style="padding:16px 0">Aún no hay negocios interesados. Prueba «Quiero verificarme» en la página para negocios.</p>'):fam.map(lead).join('')}</div></div>`;
+const rutaWiz=(ctx,id,paso)=>(ctx==='equipo'?'#/equipo/ficha':'#/panel/editar')+'?id='+encodeURIComponent(id)+'&paso='+paso;
+function pasosDe(m,ctx){const p=[['negocio','Tu negocio'],['precio',m.clase==='servicio'?'Precio':'Capacidad y precio'],['fotos','Fotos']];if(ctx==='equipo')p.push(['aprob','Aprobación del dueño']);return p}
+const extrasDe=m=>m.clase==='servicio'?[['desc','Descripción']]:[['tiene','Lo que tiene'],['desc','Descripción']];
+function completo(m){const sal=m.clase!=='servicio',it=[!!m.n,!!m.z,waValido(m.wa),m.pTipo==='cotizar'||+m.p>0,m.fotos.length>=1,m.fotos.length>=5,(m.desc||'').length>=80];
+  if(sal)it.push(!!m.tipo,+m.max>0,Object.keys(m.a||{}).length>=3,(m.inc||[]).length>=2,(m.turno||[]).length>0);
+  return Math.round(it.filter(Boolean).length/it.length*100)}
+function primerExtra(m){if(m.clase!=='servicio'&&Object.keys(m.a||{}).length<3)return 'tiene';return 'desc'}
+const pillEstado=e=>e==='publicado'?'<span class="pill ok">Publicado</span>':e==='pausado'?'<span class="pill pau">Pausado</span>':'<span class="pill bor">Borrador</span>';
+const miniFoto=m=>{const f=imgSegura(m.fotos[0]);return `<div class="mini">${f?`<img src="${f}" alt="">`:ilus(publico(m),0)}</div>`};
+const msjSemana=n=>clics.filter(c=>c.negocio===n&&(Date.now()-new Date(c.f))/864e5<=7).length;
+function vPanel(){
+  const l=misDueno();
+  if(!l.length)return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Mis negocios</span><h1>Publica tu negocio en 3 pasos.</h1><p>Tu negocio y WhatsApp, tus precios y tus fotos. Gratis${lanz()?' durante el lanzamiento':''}.</p><div class="acciones"><a class="btn btn-pri" href="#/panel/nuevo">Publicar mi negocio</a><button class="btn btn-sec" data-subir>${ic('i-chat')}Que me lo suban por WhatsApp</button></div></div></div>`;
+  const fila=m=>{const s=publico(m),pc=completo(m),e=m.estado;
+    return `<article class="neg">${miniFoto(m)}
+      <div class="neg-info"><div class="quien"><b class="neg-n">${esc(m.n||'Sin nombre')}</b>${pillEstado(e)}</div><span class="nota">${s.prov?catNombre(m.cat):esc(m.tipo||'Salón')} · ${esc(s.z)}</span>
+        <div class="medidor" style="margin-top:10px;max-width:260px"><i style="width:${pc}%"></i></div><span class="nota">Ficha ${pc}% completa${e==='publicado'?' · '+msjSemana(m.n)+' mensajes esta semana':''}</span></div>
+      <div class="acc">
+        ${e==='borrador'?`<a class="btn btn-pri" href="${rutaWiz('dueño',m.id,'negocio')}">Terminar y publicar</a><button class="btn btn-texto" data-borrar-neg="${m.id}">Borrar</button>`:`<a class="btn btn-sec" href="${rutaWiz('dueño',m.id,'negocio')}">${ic('i-lapiz')}Editar</a>${pc<100?`<a class="btn btn-sec" href="${rutaWiz('dueño',m.id,primerExtra(m))}">${ic('i-chispa')}Mejorar</a>`:''}`}
+        ${e==='publicado'?`<a class="btn btn-sec" href="#/${s.prov?'proveedor':'salon'}/${m.id}">${ic('i-ojo')}Ver</a><button class="btn btn-sec" data-compartir="${m.id}">${ic('i-compartir')}Compartir</button>`:''}
+        ${e!=='borrador'?`<button class="btn btn-texto" data-pausar="${m.id}">${e==='publicado'?'Pausar':'Volver a publicar'}</button>`:''}</div></article>`};
+  return `<div class="cont pagina"><div class="pag-cab" style="margin-bottom:20px"><span class="eyebrow">Mis negocios</span><h1 style="font-size:clamp(1.875rem,5vw,2.75rem)">Tus negocios en Mil y Una Fiestas.</h1>
+    <div class="acciones"><a class="btn btn-pri" href="#/panel/nuevo">${ic('i-mas')}Agregar otro negocio</a></div></div>
+  <div class="tablero2"><div class="neg-lista">${l.map(fila).join('')}</div>
+    <aside style="display:flex;flex-direction:column;gap:12px">
+      ${lanz()?`<div class="caja verde"><h3>${ic('i-chispa')}Todo gratis</h3><p class="nota">Durante el lanzamiento no pagas nada. Solo mantén tus precios y fotos al día.</p></div>`:`<div class="caja borde"><h3>${ic('i-estrella')}Sal primero</h3><p class="nota">Pregúntanos por verificación y destacados.</p><button class="btn btn-sec" data-soporte style="align-self:flex-start">Preguntar</button></div>`}
+      <div class="caja"><h3>${ic('i-info')}Consejo</h3><p class="nota">Las familias filtran por precio y capacidad. Si los pones, apareces en más búsquedas.</p></div>
+      <div class="caja oscura"><h3>${ic('i-chat')}¿Necesitas ayuda?</h3><p class="nota">Te ayudamos a subir fotos, cambiar precios o lo que necesites.</p><button class="btn btn-blanco" data-soporte style="align-self:flex-start">Escribir por WhatsApp</button></div>
+      <p class="nota">${ic('i-candado','i-s')} En la página real entras con un código que te llega por WhatsApp. Solo tú y nuestro equipo pueden editar tus negocios.</p></aside></div></div>`;
 }
 
-/* ===================================================================
-   PANEL DEL NEGOCIO (alta de ficha)
-   =================================================================== */
-const PASOS=['Lo básico','Capacidad y precio','Fotos','Lo que tiene','Descripción','Contacto','Revisar y publicar'];
-let borrador=null,avisoPeso=false;
-const nuevoBorrador=()=>({n:'',tipo:'',z:'',dir:'',min:'',max:'',pTipo:'desde',p:'',pHasta:'',fotos:[],a:{},est:'',ev:[],desc:'',inc:[],horario:'',resp:'',wa:'',tel:'',ok1:false,ok2:false,estado:'borrador',verSolicitada:false});
-function guardarBorrador(){const d=Object.assign({},borrador);delete d._e;if(!ls.set('myuf-mi-salon',d)&&!avisoPeso){avisoPeso=true;toast('Tus fotos pesan mucho para guardarse en este navegador.','No cierres la página hasta publicar.')}mio=d}
-function validar(p,b){const e={};
-  if(p===1){if(!b.n.trim())e.n='Escribe el nombre de tu salón';if(!b.tipo)e.tipo='Elige el tipo de espacio';if(!b.z)e.z='Elige la zona'}
-  if(p===2){if(!(+b.max>0))e.max='¿Cuántas personas caben como máximo?';if(+b.min&&+b.max&&+b.min>+b.max)e.min='El mínimo no puede ser mayor que el máximo';if(b.pTipo!=='cotizar'&&!(+b.p>0))e.p='Escribe el precio o elige «Prefiero cotizar»';if(b.pTipo==='rango'&&!(+b.pHasta>+b.p))e.pHasta='Debe ser mayor que el precio inicial'}
-  if(p===3){if(b.fotos.length<1)e.fotos='Sube al menos una foto'}
-  if(p===6){if(!/^\d{10}$/.test(String(b.wa).replace(/\D/g,'')))e.wa='Escribe tu WhatsApp a 10 dígitos';if(!b.resp.trim())e.resp='¿Con quién hablamos?'}
-  if(p===7){if(!b.ok1)e.ok1='Necesitamos esta confirmación';if(!b.ok2)e.ok2='Necesitamos esta confirmación'}
-  return e}
-function completo(b){const it=[!!b.n,!!b.tipo,!!b.z,+b.max>0,b.pTipo==='cotizar'||+b.p>0,b.fotos.length>=1,b.fotos.length>=5,Object.keys(b.a).length>=3,(b.desc||'').length>=80,(b.inc||[]).length>=2,!!b.horario,/^\d{10}$/.test(String(b.wa||'').replace(/\D/g,''))];return Math.round(it.filter(Boolean).length/it.length*100)}
-const vistaPrevia=b=>tarjeta(publico(b));
+/* --- Alta y edición: 3 pasos obligatorios; lo demás, opcional y después --- */
+let wizErr={};
 function zonaSelector(sel,attr){
   const R=100,cx=170,cy=112,ang={Norte:[225,315],Oriente:[315,405],Sur:[45,115],Suroeste:[115,170],Poniente:[170,225]};
   const pt=(a,r)=>[cx+r*Math.cos(a*Math.PI/180),cy+r*.95*Math.sin(a*Math.PI/180)];
@@ -996,84 +1248,151 @@ function zonaSelector(sel,attr){
   g+=`<circle cx="${cx}" cy="${cy}" r="36" fill="${sel==='Centro'?'#D6007A':'#E8E6E1'}" stroke="#fff" stroke-width="3" ${attr}="Centro"/><text x="${cx}" y="${cy+4}" text-anchor="middle" style="fill:${sel==='Centro'?'#fff':''}">Centro</text>`;
   return `<svg class="zonas-mapa" viewBox="60 2 220 220" role="img" aria-label="Mapa de zonas de Morelia por salidas de la ciudad">${g}</svg>`;
 }
-function vWizard(p){
-  if(!borrador)borrador=mio?JSON.parse(JSON.stringify(mio)):nuevoBorrador();
-  const b=borrador,e=b._e||{};delete b._e;
-  const err=k=>e[k]?`<span class="err" role="alert">${e[k]}</span>`:'';const mal=k=>e[k]?' mal':'';
-  let cuerpo='',titulo='',intro='';
-  if(p===1){titulo='Empecemos por lo básico.';intro='Así te van a encontrar las familias.';
-    cuerpo=`<div class="campo"><label for="w-n">Nombre del salón</label><input class="input${mal('n')}" id="w-n" data-b="n" value="${esc(b.n)}" placeholder="Ej. Jardín Las Rosas" maxlength="60" autocomplete="organization">${err('n')}</div>
-    <div class="campo"><span class="lbl">Tipo de espacio</span><div class="fila-chips">${TIPOS.map(t=>`<button type="button" class="chip" data-tipo-b="${t}" aria-pressed="${b.tipo===t}">${t}</button>`).join('')}</div>${err('tipo')}</div>
-    <div class="campo"><span class="lbl">¿En qué zona de Morelia está?</span><span class="ayuda">Toca tu zona en el mapa. En la página real la calculamos sola con tu ubicación.</span>${zonaSelector(b.z,'data-zona-b')}<div class="fila-chips">${ZONAS.map(z=>`<button type="button" class="chip" data-zona-b="${z[0]}" aria-pressed="${b.z===z[0]}">${z[0]}</button>`).join('')}</div>${err('z')}</div>
-    <div class="campo"><label for="w-dir">Dirección</label><input class="input" id="w-dir" data-b="dir" value="${esc(b.dir)}" placeholder="Calle, número y colonia" autocomplete="street-address"><span class="ayuda">En la página solo mostramos la zona. La dirección la usamos para verificarte.</span></div>`}
-  if(p===2){titulo='¿Cuántos caben y cuánto cuesta?';intro='Es lo primero que buscan las familias. Un precio claro te trae más mensajes que «cotización».';
-    cuerpo=`<div class="par"><div class="campo"><label for="w-min">Mínimo de personas</label><input class="input${mal('min')}" id="w-min" data-b="min" inputmode="numeric" value="${esc(b.min)}" placeholder="Ej. 50">${err('min')}</div><div class="campo"><label for="w-max">Máximo de personas</label><input class="input${mal('max')}" id="w-max" data-b="max" inputmode="numeric" value="${esc(b.max)}" placeholder="Ej. 150">${err('max')}</div></div>
-    <div class="campo"><span class="lbl">¿Cómo quieres mostrar el precio de renta?</span><div class="opciones">${[['desde','Precio desde','«Desde $8,000 por evento»'],['rango','Rango de precio','«$8,000 a $12,000 por evento»'],['cotizar','Prefiero cotizar','No apareces cuando filtran por precio']].map(o=>`<button type="button" class="op" data-ptipo="${o[0]}" aria-pressed="${b.pTipo===o[0]}"><span>${o[1]}<small>${o[2]}</small></span>${b.pTipo===o[0]?ic('i-check'):''}</button>`).join('')}</div></div>
-    ${b.pTipo!=='cotizar'?`<div class="par"><div class="campo"><label for="w-p">${b.pTipo==='rango'?'Desde':'Precio desde'} (MXN)</label><input class="input${mal('p')}" id="w-p" data-b="p" inputmode="numeric" value="${esc(b.p)}" placeholder="Ej. 8000">${err('p')}</div>${b.pTipo==='rango'?`<div class="campo"><label for="w-ph">Hasta (MXN)</label><input class="input${mal('pHasta')}" id="w-ph" data-b="pHasta" inputmode="numeric" value="${esc(b.pHasta)}" placeholder="Ej. 12000">${err('pHasta')}</div>`:''}</div>`:''}`}
-  if(p===3){titulo='Sube tus mejores fotos.';intro='Las fichas con 5 fotos o más llaman más la atención. La primera es la portada.';
-    cuerpo=`<div class="fotos-grid">${b.fotos.map((f,i)=>`<div class="foto-item"><img src="${f}" alt="Foto ${i+1}">${i===0?'<span class="portada">Portada</span>':''}<div class="acc">${i?`<button type="button" data-portada="${i}" aria-label="Hacer portada la foto ${i+1}">${ic('i-estrella')}</button>`:''}<button type="button" data-quitar="${i}" aria-label="Quitar la foto ${i+1}">${ic('i-basura')}</button></div></div>`).join('')}
-      ${b.fotos.length<20?`<button type="button" class="subir${b.fotos.length?'':' grande'}" data-subir>${ic('i-foto','i-l')}${b.fotos.length?'Agregar más':'Elegir fotos de tu celular o computadora'}<small>${b.fotos.length} de 20</small></button>`:''}</div>${err('fotos')}
-      <div class="aviso-caja">${ic('i-ojo')}<span>Sube solo fotos de tu salón, tomadas por ti o con permiso. No uses fotos de otras páginas: las revisamos al verificarte.</span></div>`}
-  if(p===4){titulo='¿Qué tiene tu salón?';intro='Con esto te encuentran las familias cuando filtran. Marca solo lo que de verdad tienes.';
-    cuerpo=`<div class="grid-checks">${AMEN.map(a=>`<label class="check"><input type="checkbox" data-am="${a[0]}"${b.a[a[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(a[2])}${a[1]}</span></label>`).join('')}</div>
-    ${b.a.est?`<div class="campo" style="max-width:320px"><label for="w-est">¿Cuántos lugares de estacionamiento?</label><input class="input" id="w-est" data-b="est" inputmode="numeric" value="${esc(b.est)}" placeholder="Ej. 30"></div>`:''}
-    <div class="campo"><span class="lbl">¿Qué fiestas recibes?</span><span class="ayuda">Te ayuda a aparecer en búsquedas como «salón para XV años en Morelia».</span><div class="fila-chips" style="margin-top:6px">${EVENTOS.map((ev,i)=>`<button type="button" class="chip" data-ev="${i}" aria-pressed="${b.ev.includes(i)}">${ev}</button>`).join('')}</div></div>`}
-  if(p===5){titulo='Cuéntales cómo es.';intro='Escríbelo como se lo platicarías a una familia que te visita.';
-    cuerpo=`<div class="campo"><label for="w-desc">Descripción</label><textarea class="input" id="w-desc" data-b="desc" maxlength="1000" placeholder="Qué hace especial a tu salón, cómo es el espacio, qué fiestas se hacen mejor ahí…">${esc(b.desc)}</textarea><span class="ayuda" data-cuenta-desc>${b.desc.length} de 1000 · recomendamos 80 o más</span></div>
-    <div class="campo"><label for="w-inc">¿Qué incluye la renta?</label><div class="agregar"><input class="input" id="w-inc" placeholder="Ej. Mesas y sillas para 150" maxlength="60"><button type="button" class="btn btn-sec" data-agregar style="flex:none">Agregar</button></div>
-      <div class="lista-edit">${b.inc.map((x,i)=>`<span class="item-edit">${esc(x)}<button type="button" data-quitar-inc="${i}" aria-label="Quitar ${esc(x)}">${ic('i-cerrar','i-s')}</button></span>`).join('')}</div></div>
-    <div class="campo"><label for="w-hor">Horario para eventos</label><input class="input" id="w-hor" data-b="horario" value="${esc(b.horario)}" placeholder="Ej. 2:00 p. m. a 2:00 a. m."></div>`}
-  if(p===6){titulo='¿Cómo te contactan?';intro='Los botones de WhatsApp y llamar de tu ficha llevan a estos números.';
-    cuerpo=`<div class="campo"><label for="w-resp">Nombre de quien atiende</label><input class="input${mal('resp')}" id="w-resp" data-b="resp" value="${esc(b.resp)}" autocomplete="name">${err('resp')}</div>
-    <div class="dos-col"><div class="campo"><label for="w-wa">WhatsApp del salón</label><input class="input${mal('wa')}" id="w-wa" data-b="wa" type="tel" inputmode="tel" value="${esc(b.wa)}" placeholder="443 123 4567" autocomplete="tel">${err('wa')}</div><div class="campo"><label for="w-tel">Teléfono para llamadas <span class="opc">(opcional)</span></label><input class="input" id="w-tel" data-b="tel" type="tel" inputmode="tel" value="${esc(b.tel)}"></div></div>
-    <p class="nota">En la página real entras con un código que te mandamos por WhatsApp, así solo tú puedes editar tu negocio.</p>`}
-  if(p===7){titulo='Así se verá tu salón.';intro='Revisa que todo esté bien. Puedes cambiarlo cuando quieras.';
-    const pc=completo(b),falta=[b.fotos.length<5?'sube 5 fotos o más':'',Object.keys(b.a).length<3?'marca lo que tiene tu salón':'',b.desc.length<80?'escribe una descripción más larga':'',b.inc.length<2?'agrega qué incluye la renta':'',!b.horario?'pon tu horario':''].filter(Boolean);
-    cuerpo=`<div style="max-width:380px" class="sin-click">${vistaPrevia(b)}</div>
-    <div class="caja"><div style="display:flex;justify-content:space-between;gap:12px"><b>Tu ficha está ${pc}% completa</b><span class="nota">${pc<100?'Más completa, más arriba':'¡Excelente!'}</span></div><div class="medidor"><i style="width:${pc}%"></i></div>${falta.length?`<div class="nota">Para mejorarla: ${falta.join(', ')}.</div>`:''}</div>
-    <div class="aviso-caja">${ic('i-escudo')}<span><b>Tu salón aparece en cuanto lo publiques, con la etiqueta «Nuevo».</b> Después puedes pedir que te verifiquemos para ganar «Verificado» y aparecer antes.</span></div>
-    <div><label class="check"><input type="checkbox" data-okb="ok1"${b.ok1?' checked':''}><span>Las fotos son de mi salón y tengo derecho a usarlas.</span></label>${err('ok1')}
-    <label class="check"><input type="checkbox" data-okb="ok2"${b.ok2?' checked':''}><span>Los datos son ciertos y acepto los <a class="lnk" href="#/">términos</a> y el <a class="lnk" href="#/">aviso de privacidad</a>.</span></label>${err('ok2')}</div>`}
-  const pct=Math.round(p/PASOS.length*100);
-  return `<div class="wiz-prog"><div class="cont"><div class="meta"><span>Paso ${p} de ${PASOS.length} · <b>${PASOS[p-1]}</b></span><a class="lnk" href="#/panel" style="font-size:13.5px;min-height:32px;display:inline-flex;align-items:center">Guardar y salir</a></div><div class="barra-p"><i style="width:${pct}%"></i></div>
-    <div class="wiz-pasos">${PASOS.map((t,i)=>`<button type="button" data-ir-paso="${i+1}"${i+1===p?' aria-current="step"':''} class="${i+1<p?'hecho':''}">${i+1<p?'✓ ':''}${t}</button>`).join('')}</div></div></div>
-  <div class="cont wiz"><div><h2>${titulo}</h2><p class="intro">${intro}</p><form class="wiz-form" id="wiz-form" novalidate onsubmit="return false">${cuerpo}</form>
-    <div class="wiz-pie"><div class="cont">${p>1?`<button type="button" class="btn btn-texto" data-ir-paso="${p-1}">Atrás</button>`:'<span></span>'}<button type="button" class="btn btn-pri" data-siguiente>${p===7?(mio&&mio.estado==='publicado'?'Guardar cambios':'Publicar mi salón'):'Siguiente'}</button></div></div></div>
-    <aside class="vista"><div class="etq">${ic('i-ojo','i-s')}Así te ven las familias</div><div id="vista-prev" class="sin-click">${vistaPrevia(b)}</div></aside></div>`;
+function validarPaso(m,paso,ctx){const e={},sal=m.clase!=='servicio';
+  if(paso==='negocio'){if(!m.n.trim())e.n='Escribe el nombre del negocio';if(sal&&!m.tipo)e.tipo='Elige el tipo de lugar';if(!m.z)e.z='Elige la zona';if(!waValido(m.wa))e.wa='Escribe el WhatsApp a 10 dígitos'}
+  if(paso==='precio'){if(sal){if(!(+m.max>0))e.max='¿Cuántas personas caben como máximo?';if(+m.min&&+m.max&&+m.min>+m.max)e.min='El mínimo no puede ser mayor que el máximo'}
+    if(m.pTipo!=='cotizar'&&!(+m.p>0))e.p='Escribe el precio o elige «Prefiero cotizar»';if(m.pTipo==='rango'&&!(+m.pHasta>+m.p))e.pHasta='Debe ser mayor que el precio inicial'}
+  if(paso==='fotos'){if(m.fotos.length<1)e.fotos='Sube al menos una foto';if(ctx==='dueño'&&!m.ok)e.ok='Necesitamos esta confirmación para publicar'}
+  if(paso==='aprob'){const a=m.aprob||{};if(!(a.nombre||'').trim())e.ap_nombre='¿Quién es el dueño?';if(!waValido(a.wa))e.ap_wa='WhatsApp del dueño a 10 dígitos';if(!a.medio)e.ap_medio='¿Cómo lo aprobó?';if(!a.fecha)e.ap_fecha='¿Cuándo?';if(!a.ok)e.ap_ok='Sin aprobación del dueño no se publica'}
+  return e}
+function vWizard(ctx,id,paso){
+  const m=mis.find(x=>x.id===id&&(ctx==='equipo'||x.origen==='dueño'));const volver=ctx==='equipo'?'#/equipo?t=fichas':'#/panel';
+  if(!m)return `<div class="cont pagina"><div class="pag-cab"><h1>No encontramos ese negocio.</h1><p><a class="lnk" href="${volver}">Volver</a></p></div></div>`;
+  const P=pasosDe(m,ctx),X=extrasDe(m),esExtra=X.some(x=>x[0]===paso);if(!P.some(p=>p[0]===paso)&&!esExtra)paso='negocio';
+  const e=wizErr;wizErr={};const err=k=>e[k]?`<span class="err" role="alert">${e[k]}</span>`:'',mal=k=>e[k]?' mal':'';
+  const sal=m.clase!=='servicio',a=m.aprob||{};let titulo='',intro='',cuerpo='';
+  if(paso==='negocio'){titulo=ctx==='equipo'?'Datos del negocio.':'Tu negocio y tu WhatsApp.';intro='Con esto ya pueden encontrarte y escribirte.';
+    const zonasOp=sal?ZONAS.map(z=>z[0]):['Toda Morelia'].concat(ZONAS.map(z=>z[0]));
+    cuerpo=`<div class="campo"><span class="lbl">¿Qué ofreces?</span><div class="fila-chips">${OFRECE.map(o=>`<button type="button" class="chip" data-ofrece="${o[0]}" aria-pressed="${(sal?'salones':m.cat)===o[0]}">${ic(o[2])}${o[1]}</button>`).join('')}</div></div>
+    <div class="campo"><label for="w-n">Nombre del negocio</label><input class="input${mal('n')}" id="w-n" data-b="n" value="${esc(m.n)}" maxlength="60" placeholder="${sal?'Ej. Jardín Las Rosas':'Ej. Pasteles Doña Lupe'}" autocomplete="organization">${err('n')}</div>
+    ${sal?`<div class="campo"><span class="lbl">Tipo de lugar</span><div class="fila-chips">${TIPOS.map(t=>`<button type="button" class="chip" data-tipo-b="${t}" aria-pressed="${m.tipo===t}">${t}</button>`).join('')}</div>${err('tipo')}</div>`:''}
+    <div class="campo"><span class="lbl">${sal?'¿En qué zona de Morelia está?':'¿Dónde das servicio?'}</span>${sal?zonaSelector(m.z,'data-zona-b'):''}<div class="fila-chips">${zonasOp.map(z=>`<button type="button" class="chip" data-zona-b="${z}" aria-pressed="${m.z===z}">${z}</button>`).join('')}</div>${err('z')}</div>
+    <div class="dos-col"><div class="campo"><label for="w-wa">WhatsApp ${ctx==='equipo'?'del negocio':'donde recibes clientes'}</label><input class="input${mal('wa')}" id="w-wa" data-b="wa" type="tel" inputmode="tel" maxlength="16" value="${esc(m.wa)}" placeholder="443 123 4567" autocomplete="tel">${err('wa')}</div>
+      <div class="campo"><label for="w-resp">¿Quién atiende? <span class="opc">(opcional)</span></label><input class="input" id="w-resp" data-b="resp" maxlength="40" value="${esc(m.resp)}" autocomplete="name"></div></div>
+    ${sal?`<div class="campo"><label for="w-dir">Dirección <span class="opc">(opcional)</span></label><input class="input" id="w-dir" data-b="dir" maxlength="120" value="${esc(m.dir)}" placeholder="Calle, número y colonia" autocomplete="street-address"><span class="ayuda">No la mostramos, solo la zona. Nos sirve para ubicarte en el mapa.</span></div>`:''}`}
+  if(paso==='precio'){titulo=sal?'¿Cuántos caben y cuánto cuesta?':'¿Cuánto cuesta tu servicio?';intro='Es lo primero que buscan las familias. Con precio apareces cuando filtran por presupuesto.';
+    const ops=sal?[['desde','Precio desde','«Desde $8,000 por evento»'],['rango','Rango de precio','«$8,000 a $12,000 por evento»'],['cotizar','Prefiero cotizar','No apareces cuando filtran por precio']]:[['desde','Precio desde','«Desde $3,000»'],['cotizar','Prefiero cotizar','Te escriben para pedirte precio']];
+    cuerpo=`${sal?`<div class="par"><div class="campo"><label for="w-min">Mínimo de personas <span class="opc">(opc.)</span></label><input class="input${mal('min')}" id="w-min" data-b="min" data-num inputmode="numeric" value="${esc(m.min)}" placeholder="Ej. 50">${err('min')}</div><div class="campo"><label for="w-max">Máximo de personas</label><input class="input${mal('max')}" id="w-max" data-b="max" data-num inputmode="numeric" value="${esc(m.max)}" placeholder="Ej. 150">${err('max')}</div></div>`:''}
+    <div class="campo"><span class="lbl">¿Cómo quieres mostrar el precio?</span><div class="opciones">${ops.map(o=>`<button type="button" class="op" data-ptipo="${o[0]}" aria-pressed="${m.pTipo===o[0]}"><span>${o[1]}<small>${o[2]}</small></span>${m.pTipo===o[0]?ic('i-check'):''}</button>`).join('')}</div></div>
+    ${m.pTipo!=='cotizar'?`<div class="par"><div class="campo"><label for="w-p">${m.pTipo==='rango'?'Desde':'Precio desde'} (MXN)</label><input class="input${mal('p')}" id="w-p" data-b="p" data-num inputmode="numeric" value="${esc(m.p)}" placeholder="${sal?'Ej. 8000':'Ej. 3000'}">${err('p')}</div>${m.pTipo==='rango'?`<div class="campo"><label for="w-ph">Hasta (MXN)</label><input class="input${mal('pHasta')}" id="w-ph" data-b="pHasta" data-num inputmode="numeric" value="${esc(m.pHasta)}" placeholder="Ej. 12000">${err('pHasta')}</div>`:''}</div>
+    ${sal?'':`<div class="campo"><span class="lbl">El precio es…</span><div class="fila-chips">${UNIDADES.map(u=>`<button type="button" class="chip" data-unidad="${u[0]}" aria-pressed="${(m.u||'')===u[0]}">${u[1]}</button>`).join('')}</div></div>`}`:''}`}
+  if(paso==='fotos'){titulo='Tus mejores fotos.';intro='Horizontales y con buena luz se ven mejor. La primera es la portada. Las acomodamos solas para que todo se vea parejo.';
+    cuerpo=`<div class="fotos-grid">${m.fotos.map((f,i)=>`<div class="foto-item"><img src="${imgSegura(f)}" alt="Foto ${i+1}">${i===0?'<span class="portada">Portada</span>':''}<div class="acc">${i?`<button type="button" data-portada="${i}" aria-label="Hacer portada la foto ${i+1}">${ic('i-estrella')}</button>`:''}<button type="button" data-quitar="${i}" aria-label="Quitar la foto ${i+1}">${ic('i-basura')}</button></div></div>`).join('')}
+      ${m.fotos.length<20?`<button type="button" class="subir${m.fotos.length?'':' grande'}" data-subir-foto>${ic('i-foto','i-l')}${m.fotos.length?'Agregar más':'Elegir fotos del celular o la computadora'}<small>${m.fotos.length} de 20 · JPG, PNG o WebP</small></button>`:''}</div>${err('fotos')}
+      ${ctx==='dueño'?`<div><label class="check"><input type="checkbox" data-okb="ok"${m.ok?' checked':''}><span>Las fotos son de mi negocio (o tengo permiso) y los datos son ciertos. Acepto los <a class="lnk" href="#/">términos</a> y el <a class="lnk" href="#/">aviso de privacidad</a>.</span></label>${err('ok')}</div>`:''}
+      <div class="aviso-caja">${ic('i-candado')}<span>Al subirlas les quitamos los datos ocultos (como la ubicación GPS del celular) y las hacemos más ligeras para que carguen rápido.</span></div>`}
+  if(paso==='aprob'){titulo='Aprobación del dueño.';intro='Solo publicamos negocios cuyo dueño aceptó aparecer con estos datos y fotos. Queda registrado.';
+    cuerpo=`<div class="dos-col"><div class="campo"><label for="ap-n">Nombre del dueño</label><input class="input${mal('ap_nombre')}" id="ap-n" data-ap="nombre" maxlength="60" value="${esc(a.nombre)}">${err('ap_nombre')}</div><div class="campo"><label for="ap-wa">WhatsApp del dueño</label><input class="input${mal('ap_wa')}" id="ap-wa" data-ap="wa" type="tel" inputmode="tel" maxlength="16" value="${esc(a.wa)}">${err('ap_wa')}</div></div>
+    <div class="campo"><span class="lbl">¿Cómo lo aprobó?</span><div class="fila-chips">${['WhatsApp','Llamada','Visita','En persona'].map(x=>`<button type="button" class="chip" data-medio="${x}" aria-pressed="${a.medio===x}">${x}</button>`).join('')}</div>${err('ap_medio')}</div>
+    <div class="dos-col"><div class="campo"><label for="ap-f">Fecha</label><input class="input${mal('ap_fecha')}" id="ap-f" data-ap="fecha" type="date" value="${esc(a.fecha||new Date().toISOString().slice(0,10))}">${err('ap_fecha')}</div><div class="campo"><label for="ap-nota">Evidencia <span class="opc">(opcional)</span></label><input class="input" id="ap-nota" data-ap="nota" maxlength="140" value="${esc(a.nota)}" placeholder="Ej. captura del chat guardada"></div></div>
+    <div><label class="check"><input type="checkbox" data-apok="ok"${a.ok?' checked':''}><span>El dueño aprobó publicar estos datos y fotos.</span></label>${err('ap_ok')}
+    <label class="check"><input type="checkbox" data-apok="acceso"${a.acceso?' checked':''}><span>Darle acceso para editar su negocio (le llega un código por WhatsApp).</span></label></div>`}
+  if(paso==='tiene'){titulo='¿Qué tiene tu lugar?';intro='Opcional. Con esto apareces cuando las familias filtran.';
+    cuerpo=`<div class="campo"><span class="lbl">Horario de fiestas</span><div class="fila-chips">${TURNOS.map(t=>`<button type="button" class="chip" data-turno-b="${t[0]}" aria-pressed="${(m.turno||[]).includes(t[0])}">${t[1]}</button>`).join('')}</div></div>
+    <div class="grid-checks">${AMEN.map(x=>`<label class="check"><input type="checkbox" data-am="${x[0]}"${m.a[x[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(x[2])}${x[1]}</span></label>`).join('')}</div>
+    ${m.a.est?`<div class="campo" style="max-width:320px"><label for="w-est">¿Cuántos lugares de estacionamiento?</label><input class="input" id="w-est" data-b="est" data-num inputmode="numeric" value="${esc(m.est)}" placeholder="Ej. 30"></div>`:''}
+    <div class="campo"><label for="w-hor">Horario exacto <span class="opc">(opcional)</span></label><input class="input" id="w-hor" data-b="horario" maxlength="60" value="${esc(m.horario)}" placeholder="Ej. 2:00 p. m. a 2:00 a. m."></div>
+    <div class="campo"><span class="lbl">¿Qué fiestas recibes?</span><div class="fila-chips">${EVENTOS.map((ev,i)=>`<button type="button" class="chip" data-ev="${i}" aria-pressed="${m.ev.includes(i)}">${ev}</button>`).join('')}</div></div>`}
+  if(paso==='desc'){titulo='Cuéntales cómo es.';intro='Opcional. Escríbelo como se lo platicarías a una familia.';
+    cuerpo=`<div class="campo"><label for="w-desc">Descripción</label><textarea class="input" id="w-desc" data-b="desc" maxlength="1000" placeholder="Qué lo hace especial, cómo es, qué fiestas salen mejor…">${esc(m.desc)}</textarea><span class="ayuda" data-cuenta-desc>${(m.desc||'').length} de 1000 · recomendamos 80 o más</span></div>
+    <div class="campo"><label for="w-inc">${sal?'¿Qué incluye la renta?':'¿Qué incluye tu servicio?'}</label><div class="agregar"><input class="input" id="w-inc" placeholder="${sal?'Ej. Mesas y sillas para 150':'Ej. Pastel de 3 pisos'}" maxlength="60"><button type="button" class="btn btn-sec" data-agregar style="flex:none">Agregar</button></div>
+      <div class="lista-edit">${m.inc.map((x,i)=>`<span class="item-edit">${esc(x)}<button type="button" data-quitar-inc="${i}" aria-label="Quitar ${esc(x)}">${ic('i-cerrar','i-s')}</button></span>`).join('')}</div></div>`}
+  const idx=P.findIndex(p=>p[0]===paso),ultimo=idx===P.length-1,publicado=m.estado==='publicado';
+  const prog=esExtra?`<div class="meta"><span>Opcional · <b>Mejora tu ficha</b></span><a class="lnk" href="${volver}" style="font-size:13.5px;min-height:32px;display:inline-flex;align-items:center">Volver</a></div>`
+    :`<div class="meta"><span>Paso ${idx+1} de ${P.length} · <b>${P[idx][1]}</b></span><a class="lnk" href="${volver}" style="font-size:13.5px;min-height:32px;display:inline-flex;align-items:center">Guardar y salir</a></div><div class="barra-p"><i style="width:${Math.round((idx+1)/P.length*100)}%"></i></div>
+      <div class="wiz-pasos">${P.map((t,i)=>`<button type="button" data-ir-paso="${t[0]}"${i===idx?' aria-current="step"':''} class="${i<idx?'hecho':''}">${i<idx?'✓ ':''}${t[1]}</button>`).join('')}</div>`;
+  const btnFin=esExtra?`<button type="button" class="btn btn-pri" data-guardar-extra>Guardar</button>`:ultimo?`<button type="button" class="btn btn-pri" data-publicar>${publicado?'Guardar cambios':'Publicar'}</button>`:`<button type="button" class="btn btn-pri" data-siguiente>Siguiente</button>`;
+  return `<div class="wiz-prog"><div class="cont">${prog}</div></div>
+  <div class="cont wiz"><div>
+    ${ctx==='dueño'&&paso==='negocio'&&!publicado?`<div class="ayuda-sub">${ic('i-chat')}<span>¿Sin tiempo? <button type="button" class="lnk" data-subir>Mándanos tus datos por WhatsApp</button> y lo subimos por ti.</span></div>`:''}
+    <h2>${titulo}</h2><p class="intro">${intro}</p><form class="wiz-form" id="wiz-form" novalidate>${cuerpo}</form>
+    <div class="wiz-pie"><div class="cont">${esExtra?`<a class="btn btn-texto" href="${volver}">Cancelar</a>`:idx>0?`<button type="button" class="btn btn-texto" data-ir-paso="${P[idx-1][0]}">Atrás</button>`:`<a class="btn btn-texto" href="${volver}">Cancelar</a>`}${btnFin}</div></div></div>
+    <aside class="vista"><div class="etq">${ic('i-ojo','i-s')}Así te ven las familias</div><div id="vista-prev" class="sin-click">${tarjeta(publico(m))}</div></aside></div>`;
 }
-function vPanel(){
-  if(!mio)return `<div class="cont pagina"><div class="pag-cab"><span class="eyebrow">Mi negocio</span><h1>Todavía no tienes un negocio publicado.</h1><p>Súbelo tú mismo en unos 10 minutos. Es gratis.</p><div class="acciones"><a class="btn btn-pri" href="#/panel/editar?paso=1">Publicar mi salón</a><a class="btn btn-sec" href="#/para-negocios">Ver planes</a></div></div></div>`;
-  const m=mio,pub=m.estado==='publicado',pausado=m.estado==='pausado',pc=completo(m);
-  const verEstado=m.verFecha?`<span class="estado" style="--c:var(--verde)">Verificado hasta ${fechaLarga(new Date(new Date(m.verFecha+'T12:00').getTime()+VIGENCIA*864e5).toISOString().slice(0,10))}</span>`:m.verSolicitada?'<span class="estado" style="--c:var(--amarillo)">Solicitud enviada · te escribimos por WhatsApp</span>':'<span class="estado" style="--c:var(--borde)">Sin verificar</span>';
-  return `<div class="cont pagina"><div class="pag-cab" style="margin-bottom:24px"><span class="eyebrow">Mi negocio</span><h1 style="font-size:clamp(1.875rem,5vw,2.75rem)">${esc(m.n||'Mi salón')}</h1></div>
-  <div class="tablero">
-    <div><div class="sin-click">${vistaPrevia(m)}</div>
-      <div class="par" style="margin-top:16px"><a class="btn btn-sec" href="#/panel/editar?paso=1">${ic('i-lapiz')}Editar</a>${pub?`<a class="btn btn-sec" href="#/salon/mio">${ic('i-ojo')}Ver ficha</a>`:`<a class="btn btn-sec" href="#/panel/editar?paso=7">${ic('i-ojo')}Revisar</a>`}</div></div>
-    <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
-      <div class="caja"><h3>Estado</h3>
-        ${pub?'<span class="estado" style="--c:var(--verde)">Publicado · ya aparece en los resultados</span>':pausado?'<span class="estado" style="--c:var(--borde)">Pausado · no aparece en los resultados</span>':'<span class="estado" style="--c:var(--amarillo)">Borrador · todavía no se publica</span>'}
-        ${pub||pausado?`<button class="btn btn-sec" data-pausar style="align-self:flex-start">${pub?ic('i-pausa')+'Pausar mi salón':ic('i-check')+'Volver a publicar'}</button>`:`<a class="btn btn-pri" href="#/panel/editar?paso=1" style="align-self:flex-start">Terminar mi ficha</a>`}</div>
-      <div class="caja borde"><h3>${ic('i-escudo')}Verificación</h3>${verEstado}
-        <p class="nota">Confirmamos por llamada o visita que tus datos son ciertos. Ganas la etiqueta «Verificado» por 3 meses y apareces antes que los negocios sin verificar.</p>
-        ${!m.verSolicitada&&!m.verFecha?`<button class="btn btn-pri" data-solicitar-ver style="align-self:flex-start"${pub?'':' disabled'}>Quiero verificarme</button>`:''}
-        ${m.verSolicitada&&!m.verFecha?`<button class="lnk-gris" data-simular-ver style="align-self:flex-start">Simular que ya te verificamos (solo maqueta)</button>`:''}</div>
-      <div class="caja oscura"><h3>${ic('i-estrella')}Destacado</h3><p class="nota">Sal en «Destacados en Morelia», arriba del inicio, y entre los primeros de tu categoría. Mensual y cancelable.</p><button class="btn btn-blanco" data-destacar style="align-self:flex-start">Quiero destacarme</button></div>
-      <div class="caja"><h3>Contactos</h3><p style="font-size:28px;font-weight:700;letter-spacing:-.03em">0 <span class="nota" style="font-size:15px;font-weight:400;letter-spacing:0">esta semana</span></p><p class="nota">Aquí ves cada vez que una familia te escribe o te llama desde Mil y Una Fiestas.</p></div>
-      <div class="caja"><h3>Tu ficha está ${pc}% completa</h3><div class="medidor"><i style="width:${pc}%"></i></div>
-        <div class="pendientes">
-          <div class="${m.fotos.length>=5?'ok':''}">${ic(m.fotos.length>=5?'i-check':'i-foto')}${m.fotos.length>=5?m.fotos.length+' fotos':'Sube al menos 5 fotos (llevas '+m.fotos.length+')'}</div>
-          <div class="${(m.desc||'').length>=80?'ok':''}">${ic((m.desc||'').length>=80?'i-check':'i-lapiz')}${(m.desc||'').length>=80?'Descripción lista':'Escribe una descripción de 80 letras o más'}</div>
-          <div class="${m.pTipo!=='cotizar'?'ok':''}">${ic(m.pTipo!=='cotizar'?'i-check':'i-dinero')}${m.pTipo!=='cotizar'?'Precio publicado':'Publica un precio para aparecer cuando filtran por precio'}</div></div></div>
-      <div class="caja"><h3>Comparte tu ficha</h3><div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="qr">[CÓDIGO QR]</div><div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:8px"><p class="nota">Ponlo en tu Instagram o Facebook, o imprímelo para tu salón.</p><button class="btn btn-pri" data-copiar style="align-self:flex-start">${ic('i-compartir')}Copiar enlace</button></div></div></div>
-    </div></div></div>`;
+
+/* ===================================================================
+   PANEL DEL EQUIPO: fichas (socio y administrador), prospectos y ajustes (solo administrador)
+   En la maqueta el acceso es de muestra. En la real: Supabase Auth + permisos por rol en la base de datos.
+   =================================================================== */
+const ROLES={admin:{n:'Administrador',puede:['fichas','prospectos','ajustes'],borrar:true,verificar:true},socio:{n:'Socio · fichas',puede:['fichas'],borrar:false,verificar:false}};
+const puede=t=>sesion&&ROLES[sesion.rol].puede.includes(t);
+function bitacora(accion,m){const b=ls.get('myuf-bitacora',[]);b.unshift({f:new Date().toISOString(),quien:sesion?sesion.nombre:'Dueño',accion,neg:m?m.n||'Sin nombre':''});ls.set('myuf-bitacora',b.slice(0,200))}
+const cuando=f=>new Date(f).toLocaleString('es-MX',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+function vLogin(){
+  return `<div class="cont pagina"><div class="login caja borde" style="padding:28px">
+    <span class="eyebrow">${ic('i-candado','i-s')} Panel del equipo</span><h1 style="font-size:28px;font-weight:700;letter-spacing:-.03em;margin-top:4px">Entra con tu WhatsApp.</h1>
+    <p class="nota" style="font-size:15px">Te mandamos un código de 6 dígitos. Sin contraseñas que se olvidan.</p>
+    <form class="form" id="f-login" novalidate>
+      <div class="campo"><label for="lg-wa">Tu WhatsApp</label><input class="input" id="lg-wa" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="10 dígitos"></div>
+      <div class="campo" id="lg-paso2" hidden><label for="lg-cod">Código</label><input class="input" id="lg-cod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 dígitos"><span class="ayuda">Maqueta: escribe cualquier número de 6 dígitos.</span></div>
+      <div class="campo" id="lg-rol" hidden><span class="lbl">Entrar como (solo maqueta)</span><div class="opciones"><button type="button" class="op" data-rol="admin" aria-pressed="true"><span>Leo · Administrador<small>Todo: fichas, prospectos, ajustes y borrar</small></span></button><button type="button" class="op" data-rol="socio" aria-pressed="false"><span>Socio · Fichas<small>Sube y edita fichas de negocios aprobados</small></span></button></div></div>
+      <button class="btn btn-pri btn-bloque" type="submit" id="lg-btn">Mandar código</button></form>
+    <div class="aviso-caja">${ic('i-info')}<span><b>Esto es una maqueta:</b> aquí no hay seguridad real. En la página real el código llega de verdad, la sesión caduca y la base de datos solo deja a cada rol ver y cambiar lo suyo.</span></div></div></div>`;
 }
+function vEquipo(t){
+  if(!puede(t))t='fichas';
+  const r=ROLES[sesion.rol];
+  const tabs=[['fichas','Fichas'],['prospectos','Prospectos'],['ajustes','Ajustes']].filter(x=>puede(x[0]));
+  let cuerpo='';
+  if(t==='fichas'){
+    const q=(sesionBusca||'').toLowerCase(),l=mis.filter(m=>(!q||(m.n||'').toLowerCase().includes(q))&&(!sesionEstado||m.estado===sesionEstado));
+    const k=e=>mis.filter(m=>m.estado===e).length;
+    const fila=m=>{const s=publico(m),a=m.aprob;
+      return `<article class="neg">${miniFoto(m)}<div class="neg-info"><div class="quien"><b class="neg-n">${esc(m.n||'Sin nombre')}</b>${pillEstado(m.estado)}<span class="pill ${m.origen==='equipo'?'eq':'du'}">${m.origen==='equipo'?'Equipo':'Dueño'}</span>${m.verFecha?'<span class="pill ok">Verificado</span>':''}</div>
+        <span class="nota">${s.prov?catNombre(m.cat):esc(m.tipo||'Salón')} · ${esc(s.z)} · WhatsApp ${esc(waBonito(m.wa))||'—'}</span>
+        <span class="nota">${a&&a.ok?`Aprobó ${esc(a.nombre)} por ${esc(a.medio)} el ${fechaLarga(a.fecha)}`:m.origen==='dueño'?'Lo publicó el dueño':'Falta la aprobación del dueño'} · Cambió ${cuando(m.actualizado)}</span></div>
+        <div class="acc"><a class="btn btn-sec" href="${rutaWiz('equipo',m.id,'negocio')}">${ic('i-lapiz')}Editar</a>
+          ${m.estado==='publicado'?`<a class="btn btn-sec" href="#/${s.prov?'proveedor':'salon'}/${m.id}">${ic('i-ojo')}Ver</a><button class="btn btn-texto" data-pausar="${m.id}">Pausar</button>`:m.estado==='pausado'?`<button class="btn btn-texto" data-pausar="${m.id}">Publicar</button>`:''}
+          ${r.verificar&&m.estado==='publicado'&&!m.verFecha?`<button class="btn btn-texto" data-verificar="${m.id}">Registrar verificación</button>`:''}
+          ${r.borrar?`<button class="btn btn-texto" data-eliminar="${m.id}" style="color:var(--error)">Eliminar</button>`:''}</div></article>`};
+    cuerpo=`<div class="kpis" style="margin-top:20px"><div class="kpi"><b>${k('publicado')}</b><span>publicadas</span></div><div class="kpi"><b>${k('borrador')}</b><span>borradores</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='equipo').length}</b><span>subidas por el equipo</span></div><div class="kpi"><b>${mis.filter(m=>m.origen==='dueño').length}</b><span>subidas por dueños</span></div></div>
+    <div class="herr"><a class="btn btn-pri" href="#/equipo/nueva">${ic('i-mas')}Subir negocio aprobado</a><input class="input" type="search" id="eq-busca" placeholder="Buscar por nombre" value="${esc(sesionBusca)}" aria-label="Buscar fichas" style="max-width:320px;min-height:48px">
+      <div class="fila-chips">${[['','Todas'],['publicado','Publicadas'],['borrador','Borradores'],['pausado','Pausadas']].map(x=>`<button type="button" class="chip" data-eq-estado="${x[0]}" aria-pressed="${sesionEstado===x[0]}">${x[1]}</button>`).join('')}</div></div>
+    <div class="neg-lista" style="margin-top:16px">${l.length?l.map(fila).join(''):`<div class="vacio"><h3>${mis.length?'Nada coincide':'Todavía no hay fichas'}</h3><p>Sube el primer negocio que ya te dio su aprobación.</p></div>`}</div>
+    <p class="nota" style="margin-top:12px">Además hay ${EJ.length+PROV.length} negocios de ejemplo que no se editan.</p>`}
+  if(t==='prospectos'){
+    const sem=clics.filter(c=>(Date.now()-new Date(c.f))/864e5<=7),porF={};sem.forEach(c=>porF[c.fuente]=(porF[c.fuente]||0)+1);
+    const top=Object.entries(porF).sort((a,b)=>b[1]-a[1]),max=top.length?top[0][1]:1;
+    const EJ_P=[{id:'e1',fecha:'2026-10-11T10:12:00',tipo:'familia',nombre:'[Ejemplo] Familia A',wa:'4430000001',quiere:'Organizar su fiesta',fiesta:'XV años · 20 de marzo · 150 invitados',estado:'Nuevo',ejemplo:true},{id:'e2',fecha:'2026-10-10T18:40:00',tipo:'familia',nombre:'[Ejemplo] Familia B',wa:'4430000002',quiere:'Ayuda para elegir',fiesta:'Primera comunión · 80 invitados · Sur',estado:'Contactado',ejemplo:true},{id:'e3',fecha:'2026-10-10T12:05:00',tipo:'negocio',nombre:'[Ejemplo] Salón C',wa:'4430000003',quiere:'Que le suban su negocio',fiesta:'',estado:'Propuesta enviada',ejemplo:true}];
+    const ESTADOS=['Nuevo','Contactado','Propuesta enviada','Cliente','No interesado'];
+    const lista=prospectos.concat(EJ_P);
+    cuerpo=`<p class="nota" style="margin-top:16px;font-size:15px">Las familias y los negocios te escriben directo al WhatsApp ${WA_EQUIPO_TXT}. Registra aquí a cada uno para darle seguimiento y no perder a nadie.</p>
+    <div class="dos-col" style="margin-top:16px;align-items:start"><div class="caja borde"><h3>De dónde llegan los mensajes · 7 días</h3>${top.length?`<div class="barras">${top.map(([f,n])=>`<div><span>${esc(fuenteTxt(f))}</span><i style="width:${Math.max(6,n/max*100)}%"></i><b>${n}</b></div>`).join('')}</div>`:'<p class="nota">Todavía no hay clics. Toca cualquier botón de WhatsApp de la página y aparece aquí.</p>'}<p class="nota">Solo contamos clics, sin datos de la persona.</p></div>
+    <form class="caja" id="f-pros" novalidate><h3>${ic('i-mas')}Agregar prospecto</h3>
+      <div class="par"><div class="campo"><label for="pr-n">Nombre</label><input class="input" id="pr-n" maxlength="60"></div><div class="campo"><label for="pr-wa">WhatsApp</label><input class="input" id="pr-wa" type="tel" inputmode="tel" maxlength="16"></div></div>
+      <div class="par"><div class="campo"><label for="pr-t">Es</label><select class="input" id="pr-t"><option value="familia">Familia</option><option value="negocio">Negocio</option></select></div><div class="campo"><label for="pr-q">Quiere</label><select class="input" id="pr-q">${Object.values(FUENTE_TXT).concat(['Una guía']).map(x=>`<option>${x}</option>`).join('')}</select></div></div>
+      <div class="campo"><label for="pr-f">Su fiesta o nota <span class="opc">(opcional)</span></label><input class="input" id="pr-f" maxlength="140" placeholder="XV años · 20 de marzo · 150 invitados"></div>
+      <button class="btn btn-pri" type="submit" style="align-self:flex-start">Guardar</button></form></div>
+    <div class="leads">${lista.map(p=>`<div class="lead"><div><span class="fuente">${esc(p.quiere||FUENTE_TXT[p.fuente]||'')}</span><span class="fuente">${p.tipo==='negocio'?'Negocio':'Familia'}</span>${p.ejemplo?'<span class="fuente ejemplo">Ejemplo</span>':''}<div style="margin-top:6px"><b>${esc(p.nombre||'Sin nombre')}</b> · ${esc(waBonito(p.wa))}</div><span class="q">${cuando(p.fecha)}</span></div>
+      <div class="q">${esc(typeof p.fiesta==='string'?p.fiesta:'')||'Sin detalles'}</div>
+      <div><select class="input" data-estado="${esc(p.id)}" aria-label="Estado">${ESTADOS.map(e=>`<option${p.estado===e?' selected':''}>${e}</option>`).join('')}</select></div>
+      <div><button class="btn btn-wa" style="min-height:44px" data-wa-lead="${esc(soloDig(p.wa))}" data-nombre="${esc(p.nombre||'')}">${ic('i-chat')}Escribirle</button></div></div>`).join('')}</div>`}
+  if(t==='ajustes'){
+    const b=ls.get('myuf-bitacora',[]);
+    cuerpo=`<div class="dos-col" style="margin-top:20px;align-items:start">
+      <div class="caja borde"><h3>Modo de la página</h3><div class="opciones">
+        <button type="button" class="op" data-modo="lanzamiento" aria-pressed="${lanz()}"><span>Lanzamiento<small>Todo gratis. Sin etiquetas de Verificado ni Destacado. Orden por lo que mejor le queda a la familia.</small></span>${lanz()?ic('i-check'):''}</button>
+        <button type="button" class="op" data-modo="planes" aria-pressed="${!lanz()}"><span>Con verificados y destacados<small>Se ven las etiquetas, la fila de Destacados y el orden pagado (siempre marcado).</small></span>${!lanz()?ic('i-check'):''}</button></div></div>
+      <div class="caja borde"><h3>Equipo y permisos</h3>
+        <div class="pendientes"><div>${ic('i-usuario')}<span><b>Leo</b> · Administrador · todo</span></div><div>${ic('i-usuario')}<span><b>Socio</b> · Fichas · sube y edita; no borra ni ve prospectos</span></div></div>
+        <button class="btn btn-sec" data-invitar style="align-self:flex-start">${ic('i-mas')}Invitar a alguien</button>
+        <p class="nota">WhatsApp del equipo: ${WA_EQUIPO_TXT}.</p></div></div>
+    <section class="seccion" style="margin-top:28px"><h2 class="titulo-sec" style="font-size:22px">Registro de cambios</h2><p class="nota">Quién hizo qué y cuándo. En la real no se puede borrar.</p>
+      <div class="bitacora">${b.length?b.slice(0,30).map(x=>`<div><span class="q">${cuando(x.f)}</span><span><b>${esc(x.quien)}</b> ${esc(x.accion)}${x.neg?' · '+esc(x.neg):''}</span></div>`).join(''):'<p class="nota">Sin cambios todavía.</p>'}</div></section>`}
+  return `<div class="cont pagina"><div class="pag-cab" style="margin-bottom:8px"><span class="eyebrow">Panel interno · solo equipo</span><h1 style="font-size:clamp(1.875rem,5vw,2.75rem)">Hola, ${esc(sesion.nombre)}.</h1>
+    <div class="quien" style="margin-top:12px"><span class="pill eq">${ic('i-candado','i-s')}${r.n}</span><button class="btn btn-texto" data-salir style="min-height:40px">${ic('i-salir')}Salir</button></div></div>
+  <div class="tabs" role="tablist">${tabs.map(x=>`<a class="tab" role="tab" aria-selected="${t===x[0]}" href="#/equipo?t=${x[0]}">${x[1]}</a>`).join('')}</div>${cuerpo}</div>`;
+}
+let sesionBusca='',sesionEstado='';
 
 /* ===================================================================
    CAPAS (hojas)
    =================================================================== */
-function abrirCapa(html,label){$('#capa').innerHTML=`<div class="velo" data-velo><div class="hoja" role="dialog" aria-modal="true" aria-label="${label}">${html}</div></div>`;document.body.style.overflow='hidden';
-  $$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);const v=$('#capa [data-velo]');v.onclick=e=>{if(e.target===v)cerrarCapa()};montarComunes($('#capa'))}
-function cerrarCapa(){$('#capa').innerHTML='';document.body.style.overflow='';$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'))}
+let capaFoco=null;
+function abrirCapa(html,label){capaFoco=document.activeElement;$('#capa').innerHTML=`<div class="velo" data-velo><div class="hoja" role="dialog" aria-modal="true" aria-label="${esc(label)}">${html}</div></div>`;document.body.style.overflow='hidden';
+  $$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);const v=$('#capa [data-velo]');v.onclick=e=>{if(e.target===v)cerrarCapa()};montarComunes($('#capa'));const f=$('#capa [data-cerrar]');if(f)f.focus()}
+function cerrarCapa(){const habia=!!$('#capa').innerHTML;$('#capa').innerHTML='';document.body.style.overflow='';$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'));lbTeclas=null;
+  if(habia&&capaFoco&&document.contains(capaFoco))capaFoco.focus({preventScroll:true});capaFoco=null}
 const cab=t=>`<div class="hoja-top"><button class="btn-ic" data-cerrar aria-label="Cerrar">${ic('i-cerrar')}</button><h3>${t}</h3><span style="width:44px"></span></div>`;
 const ctlInv=()=>`<div class="stepper"><button type="button" class="btn-ic borde" data-inv="-10" aria-label="Menos invitados">${ic('i-menos')}</button><span class="n${busq.inv?'':' vacio-n'}" aria-live="polite">${busq.inv||'Cualquier cantidad'}</span><button type="button" class="btn-ic borde" data-inv="10" aria-label="Más invitados">${ic('i-mas')}</button></div><div class="fila-chips" style="margin-top:14px"><button type="button" class="chip" data-inv-set="0" aria-pressed="${!busq.inv}">No sé aún</button>${[50,80,100,150,200,300].map(n=>`<button type="button" class="chip" data-inv-set="${n}" aria-pressed="${busq.inv===n}">${n}</button>`).join('')}</div>`;
 const ctlPresup=()=>`<div class="opciones">${PRESUP.map(p=>`<button type="button" class="op" data-presup="${p[0]}" aria-pressed="${busq.presup===p[0]}">${p[1]}${busq.presup===p[0]?ic('i-check'):''}</button>`).join('')}</div><p class="nota" style="margin-top:10px">Solo la renta del salón.</p>`;
@@ -1103,118 +1422,47 @@ function hojaBusca(){
   $('#capa [data-ver]').onclick=()=>{cerrarCapa();irFeed()};
 }
 function hojaFiltros(){
-  const cuerpo=()=>`<section class="grupo"><h4>Lo que debe tener</h4><div class="grid-checks" style="margin-top:8px">${AMEN.map(a=>`<label class="check"><input type="checkbox" data-am="${a[0]}"${filt[a[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(a[2])}${a[1]}</span></label>`).join('')}</div></section>
-    <section class="grupo"><h4>Tipo de espacio</h4><div class="fila-chips" style="margin-top:12px">${[''].concat(TIPOS).map(t=>`<button type="button" class="chip" data-tipo="${t}" aria-pressed="${filt.tipo===t}">${t||'Todos'}</button>`).join('')}</div></section>
-    <section class="grupo"><h4>Ordenar por</h4><div class="opciones" style="margin-top:12px">${[['recomendados','Recomendados'],['precio','Menor precio'],['capacidad','Mayor capacidad']].map(o=>`<button type="button" class="op" data-orden="${o[0]}" aria-pressed="${orden===o[0]}">${o[1]}${orden===o[0]?ic('i-check'):''}</button>`).join('')}</div></section>
-    <section class="grupo"><h4>Confianza</h4><label class="check"><input type="checkbox" data-am="ver"${filt.ver?' checked':''}><span>Solo verificados por nuestro equipo</span></label></section>`;
+  const cuerpo=()=>`<section class="grupo"><h4>Tipo de lugar</h4><div class="fila-chips" style="margin-top:12px">${[''].concat(TIPOS).map(t=>`<button type="button" class="chip" data-tipo="${t}" aria-pressed="${filt.tipo===t}">${t||'Todos'}</button>`).join('')}</div></section>
+    <section class="grupo"><h4>Horario</h4><div class="fila-chips" style="margin-top:12px">${[['','Cualquiera']].concat(TURNOS).map(t=>`<button type="button" class="chip" data-turno="${t[0]}" aria-pressed="${filt.turno===t[0]}">${t[1]}</button>`).join('')}</div></section>
+    <section class="grupo"><h4>Lo que debe tener</h4><div class="grid-checks" style="margin-top:8px">${AMEN.map(a=>`<label class="check"><input type="checkbox" data-am="${a[0]}"${filt[a[0]]?' checked':''}><span style="display:flex;gap:10px;align-items:center">${ic(a[2])}${a[1]}</span></label>`).join('')}</div></section>
+    <section class="grupo"><h4>Ordenar por</h4><div class="opciones" style="margin-top:12px">${[['recomendados','Lo que mejor me queda'],['precio','Menor precio de renta'],['ppi','Menor precio por invitado'],['capacidad','Mayor capacidad']].map(o=>`<button type="button" class="op" data-orden="${o[0]}" aria-pressed="${orden===o[0]}">${o[1]}${orden===o[0]?ic('i-check'):''}</button>`).join('')}</div></section>
+    ${lanz()?'':`<section class="grupo"><h4>Confianza</h4><label class="check"><input type="checkbox" data-am="ver"${filt.ver?' checked':''}><span>Solo verificados por nuestro equipo</span></label></section>`}`;
   abrirCapa(cab('Filtros')+`<div class="hoja-cuerpo" data-c>${cuerpo()}</div><div class="hoja-pie"><button class="btn btn-texto" data-quitar>Quitar todo</button><button class="btn btn-pri" data-ver></button></div>`,'Filtros');
   const c=$('#capa [data-c]');const cuenta=()=>{$('#capa [data-ver]').textContent='Ver '+todos().filter(s=>cumple(s)).length+' salones'};
-  const m=()=>{$$('[data-tipo]',c).forEach(b=>b.onclick=()=>{filt.tipo=b.dataset.tipo;re()});$$('[data-orden]',c).forEach(b=>b.onclick=()=>{orden=b.dataset.orden;re()});$$('[data-am]',c).forEach(i=>i.onchange=()=>{filt[i.dataset.am]=i.checked?1:0;cuenta()})};
+  const m=()=>{$$('[data-tipo]',c).forEach(b=>b.onclick=()=>{filt.tipo=b.dataset.tipo;re()});$$('[data-turno]',c).forEach(b=>b.onclick=()=>{filt.turno=b.dataset.turno;re()});$$('[data-orden]',c).forEach(b=>b.onclick=()=>{orden=b.dataset.orden;re()});$$('[data-am]',c).forEach(i=>i.onchange=()=>{filt[i.dataset.am]=i.checked?1:0;cuenta()})};
   const re=()=>{const y=c.scrollTop;c.innerHTML=cuerpo();c.scrollTop=y;m();cuenta()};
   m();cuenta();
   $('#capa [data-quitar]').onclick=()=>{limpiarFiltros();orden='recomendados';re()};
   $('#capa [data-ver]').onclick=()=>{cerrarCapa();irFeed()};
 }
-/* --- Contacto directo con el negocio: un toque --- */
-function mensaje(s){const inv=fiesta.inv||busq.inv;return 'Hola, los encontré en Mil y Una Fiestas. Busco '+(s.prov?CATS.find(c=>c[0]===s.cat)[1].toLowerCase():'salón')+' para '+(fiesta.ev?fiesta.ev.toLowerCase():'una fiesta')+(fiesta.fecha?' el '+fechaLarga(fiesta.fecha):'')+(inv?' para '+inv+' personas':'')+'. ¿Me dan informes?'}
-let yaOfrecido=false;
-function enviarWA(id){const s=porId(id);
-  // Real: location.href='/c/'+id+'?canal=whatsapp' → registra el contacto y abre wa.me con el texto
-  toast('Abriendo WhatsApp de '+s.n+'…','«'+mensaje(s)+'»');
-  // Al volver, ofrecemos ayuda UNA sola vez y sin bloquear nada
-  if(!yaOfrecido){yaOfrecido=true;setTimeout(()=>{if(!$('#capa .velo'))toast('¿Te ayudamos a comparar opciones?','Gratis, por WhatsApp.',['Sí, ayúdame',()=>hojaAsesoria('post_contacto')])},5600)}}
 function hojaFiesta(alCerrar){
   const d=Object.assign({},fiesta);if(!d.inv&&busq.inv)d.inv=busq.inv;
   abrirCapa(cab('Tu fiesta')+`<div class="hoja-cuerpo"><p class="nota">Todo es opcional. Lo agregamos a tu mensaje para que te contesten más rápido.</p>
     <div class="campo"><span class="lbl">¿Qué vas a celebrar?</span><div class="fila-chips">${EVENTOS.map(e=>`<button type="button" class="chip" data-evf="${e}" aria-pressed="${d.ev===e}">${e}</button>`).join('')}</div></div>
-    <div class="par"><div class="campo"><label for="f2">Fecha</label><input class="input" id="f2" type="date" value="${d.fecha||''}" data-wf="fecha"></div><div class="campo"><label for="f3">Invitados</label><input class="input" id="f3" inputmode="numeric" value="${d.inv||''}" data-wf="inv"></div></div></div>
+    <div class="par"><div class="campo"><label for="f2">Fecha</label><input class="input" id="f2" type="date" value="${esc(d.fecha||'')}" data-wf="fecha"></div><div class="campo"><label for="f3">Invitados</label><input class="input" id="f3" inputmode="numeric" maxlength="4" value="${esc(d.inv||'')}" data-wf="inv"></div></div></div>
     <div class="hoja-pie"><button class="btn btn-texto" data-borrar-f>Borrar</button><button class="btn btn-pri" data-listo>Listo</button></div>`,'Tu fiesta');
-  $$('#capa [data-wf]').forEach(i=>i.oninput=i.onchange=()=>{d[i.dataset.wf]=i.value});
+  $$('#capa [data-wf]').forEach(i=>i.oninput=i.onchange=()=>{d[i.dataset.wf]=i.dataset.wf==='inv'?soloDig(i.value).slice(0,4):i.value});
   $$('#capa [data-evf]').forEach(b=>b.onclick=()=>{d.ev=d.ev===b.dataset.evf?'':b.dataset.evf;$$('#capa [data-evf]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.evf===d.ev))});
   $('#capa [data-borrar-f]').onclick=()=>{fiesta={ev:'',fecha:'',inv:''};ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
   $('#capa [data-listo]').onclick=()=>{fiesta=d;ls.set('myuf-mi-fiesta',fiesta);cerrarCapa();alCerrar&&alCerrar()};
 }
-
-/* --- Captura de prospectos: siempre a cambio de algo útil; lo mínimo es el WhatsApp --- */
-function formCorto(id,boton,consent){
-  return `<form class="form" id="${id}" novalidate>
-    <div class="campo"><label for="${id}-wa">Tu WhatsApp</label><input class="input" id="${id}-wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="10 dígitos" required></div>
-    <div class="campo"><label for="${id}-n">Tu nombre <span class="opc">(opcional)</span></label><input class="input" id="${id}-n" autocomplete="given-name"></div>
-    <label class="check"><input type="checkbox" required><span>${consent} <a class="lnk" href="#/">Aviso de privacidad</a>.</span></label>
-    <button class="btn btn-pri btn-bloque" type="submit">${boton}</button></form>`;
-}
-function leerCorto(f){const wa=$('input[type=tel]',f),ck=$('input[type=checkbox]',f),n=$('input[autocomplete=given-name]',f);
-  if(!/^\d{10}$/.test(wa.value.replace(/\D/g,''))){wa.focus();toast('Escribe tu WhatsApp a 10 dígitos');return null}
-  if(!ck.checked){ck.focus();toast('Falta aceptar el aviso de privacidad');return null}
-  return {wa:wa.value.trim(),nombre:n?n.value.trim():''}}
-function listo(msg,extra){$('#capa .hoja-cuerpo').innerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo!</b><p style="margin-top:4px">${msg}</p></div></div>${extra||''}<button class="btn btn-sec btn-bloque" data-fin>Seguir viendo salones</button>`;const p=$('#capa .hoja-pie');if(p)p.remove();$('#capa [data-fin]').onclick=cerrarCapa;montarComunes($('#capa'))}
 const chipsSel=(attr,opciones,sel)=>`<div class="fila-chips">${opciones.map(o=>`<button type="button" class="chip" ${attr}="${o}" aria-pressed="${sel===o}">${o}</button>`).join('')}</div>`;
 function marcarUno(attr){$$(`#capa [${attr}]`).forEach(b=>b.onclick=()=>{const on=b.getAttribute('aria-pressed')!=='true';$$(`#capa [${attr}]`).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed',on)})}
 const elegido=attr=>{const b=$(`#capa [${attr}][aria-pressed="true"]`);return b?b.getAttribute(attr):''};
-
-// 1) «Ayúdame a elegir»: asesoría gratis. Es el prospecto más valioso: trae su fiesta completa.
+// Asesoría gratis: todo opcional; el botón abre WhatsApp con lo que haya elegido
 function hojaAsesoria(fuente){
   const invSel=busq.inv?(busq.inv<=80?'Hasta 80':busq.inv<=150?'80 a 150':busq.inv<=250?'150 a 250':'Más de 250'):'';
   const preSel=busq.presup?(busq.presup<=5000?'Hasta $5,000':busq.presup<=10000?'$5,000 a $10,000':'Más de $10,000'):'';
-  abrirCapa(cab('Te ayudamos a elegir')+`<div class="hoja-cuerpo">
-    <div><h2 class="gr">Dinos qué buscas y te mandamos opciones por WhatsApp.</h2><p class="nota" style="margin-top:6px;font-size:15px">Gratis y sin compromiso. Todo es opcional menos tu WhatsApp.</p></div>
+  abrirCapa(cab('Asesoría gratis')+`<div class="hoja-cuerpo">
+    <div><h2 class="gr">Te mandamos opciones a tu medida.</h2><p class="nota" style="margin-top:6px;font-size:15px">Todo es opcional. Toca el botón verde y nos llega tu mensaje por WhatsApp.</p></div>
     <div class="campo"><span class="lbl">¿Qué vas a celebrar?</span>${chipsSel('data-a-ev',EVENTOS.slice(0,7),fiesta.ev)}</div>
     <div class="campo"><span class="lbl">¿Cuántos invitados?</span>${chipsSel('data-a-inv',['Hasta 80','80 a 150','150 a 250','Más de 250'],invSel)}</div>
     <div class="campo"><span class="lbl">¿Cuánto quieres gastar en el salón?</span>${chipsSel('data-a-pre',['Hasta $5,000','$5,000 a $10,000','Más de $10,000','No sé'],preSel)}</div>
-    <div class="campo"><label for="a-f">¿Cuándo es? <span class="opc">(opcional)</span></label><input class="input" id="a-f" type="date" value="${fiesta.fecha||''}"></div>
-    ${formCorto('fa','Mándame opciones','Acepto que Mil y Una Fiestas me escriba por WhatsApp para ayudarme con mi fiesta.')}</div>`,'Te ayudamos a elegir');
+    <div class="campo"><label for="a-f">¿Cuándo es?</label><input class="input" id="a-f" type="date" value="${esc(fiesta.fecha||'')}"></div></div>
+    <div class="hoja-pie"><span class="nota">Sin registrarte</span><button class="btn btn-wa" data-a-enviar>${ic('i-chat')}Pedir por WhatsApp</button></div>`,'Asesoría gratis');
   ['data-a-ev','data-a-inv','data-a-pre'].forEach(marcarUno);
-  $('#fa').onsubmit=e=>{e.preventDefault();const c=leerCorto(e.target);if(!c)return;
-    guardarProspecto(fuente||'asesoria',Object.assign(c,{fiesta:{ev:elegido('data-a-ev'),inv:elegido('data-a-inv'),presup:elegido('data-a-pre'),zona:busq.zona,fecha:$('#a-f').value}}));
-    listo('Te escribimos por WhatsApp con opciones para tu fiesta. (En la maqueta no se envía nada.)',`<div class="caja" style="gap:8px"><b>¿Y si mejor lo organizamos nosotros?</b><p class="nota">Nos encargamos del salón, los proveedores y el día del evento.</p><a class="lnk" href="#/organizamos" data-cerrar-al-ir>Ver paquetes</a></div>`)};
-}
-// 2) «Lo organizamos por ti»: venta directa del servicio
-function hojaOrganiza(paquete){
-  abrirCapa(cab('Lo organizamos por ti')+`<div class="hoja-cuerpo">
-    <div><h2 class="gr">Nos cuentas tu fiesta y nosotros nos encargamos.</h2><p class="nota" style="margin-top:6px;font-size:15px">Salón, proveedores y el día del evento.${paquete?' Paquete: <b>'+esc(paquete)+'</b>.':''}</p></div>
-    <button class="btn btn-wa btn-bloque" data-wa-nosotros>${ic('i-chat')}Escríbenos por WhatsApp</button>
-    <div class="separa">o te escribimos nosotros</div>
-    ${formCorto('fo','Que me contacten','Acepto que me contacten por WhatsApp para organizar mi fiesta.')}
-    <a class="lnk" href="#/organizamos" data-cerrar-al-ir style="align-self:center;min-height:44px;display:inline-flex;align-items:center">Ver paquetes y precios</a></div>`,'Lo organizamos por ti');
-  $('#fo').onsubmit=e=>{e.preventDefault();const c=leerCorto(e.target);if(!c)return;guardarProspecto('organizacion',Object.assign(c,{fiesta:{ev:fiesta.ev,inv:fiesta.inv||busq.inv,paquete:paquete||''}}));listo('Te escribimos por WhatsApp para platicar de tu fiesta. (En la maqueta no se envía nada.)')};
-}
-// 3) «Te conseguimos el precio»: para los salones que no publican precio
-function hojaPrecio(id){const s=porId(id);
-  abrirCapa(cab('Te conseguimos el precio')+`<div class="hoja-cuerpo">
-    <div><h2 class="gr">Le pedimos el precio a ${esc(s.n)} por ti.</h2><p class="nota" style="margin-top:6px;font-size:15px">Te lo mandamos por WhatsApp junto con 2 opciones parecidas que sí publican precio.</p></div>
-    <div class="par"><div class="campo"><label for="pp-f">Fecha <span class="opc">(opcional)</span></label><input class="input" id="pp-f" type="date" value="${fiesta.fecha||''}"></div><div class="campo"><label for="pp-i">Invitados <span class="opc">(opcional)</span></label><input class="input" id="pp-i" inputmode="numeric" value="${fiesta.inv||busq.inv||''}"></div></div>
-    ${formCorto('fp','Consíganme el precio','Acepto que Mil y Una Fiestas me escriba por WhatsApp con el precio y opciones.')}</div>`,'Te conseguimos el precio');
-  $('#fp').onsubmit=e=>{e.preventDefault();const c=leerCorto(e.target);if(!c)return;guardarProspecto('precio',Object.assign(c,{salon:s.n,fiesta:{fecha:$('#pp-f').value,inv:$('#pp-i').value}}));listo('Le pedimos el precio y te lo mandamos por WhatsApp. (En la maqueta no se envía nada.)')};
-}
-// 4) Comparativa del mes
-function hojaComparativa(){
-  abrirCapa(cab('Te ayudamos a decidir')+`<div class="hoja-cuerpo">
-    <div><h2 class="gr">La comparativa de ${MES_ACTUAL}, gratis en tu WhatsApp.</h2>
-    <ul class="lista-ok" style="margin-top:14px"><li>${ic('i-check')}Los salones con mejor precio por invitado</li><li>${ic('i-check')}Qué incluye cada uno, lado a lado</li><li>${ic('i-check')}Proveedores recomendados</li></ul></div>
-    ${formCorto('fc','Mándamela','Acepto que me escriban por WhatsApp para enviarme la comparativa.')}</div>`,'Te ayudamos a decidir');
-  $('#fc').onsubmit=e=>{e.preventDefault();const c=leerCorto(e.target);if(!c)return;guardarProspecto('comparativa',c);listo('Te la mandamos por WhatsApp. (En la maqueta no se envía nada.)')};
-}
-// 5) Guardados por WhatsApp
-function hojaLista(){const l=todos().concat(PROV).filter(s=>guard[s.id]);
-  abrirCapa(cab('Tu lista por WhatsApp')+`<div class="hoja-cuerpo"><div><h2 class="gr">Te mandamos tus ${l.length} guardados para que no los pierdas.</h2><p class="nota" style="margin-top:6px;font-size:15px">Con precio, capacidad y el contacto de cada uno.</p></div>
-    ${formCorto('fl','Mándamela','Acepto que me escriban por WhatsApp para enviarme mi lista.')}</div>`,'Tu lista por WhatsApp');
-  $('#fl').onsubmit=e=>{e.preventDefault();const c=leerCorto(e.target);if(!c)return;guardarProspecto('guardados',Object.assign(c,{salon:l.map(s=>s.n).join(', ')}));listo('Te mandamos tu lista por WhatsApp. (En la maqueta no se envía nada.)')};
-}
-// 6) Negocios: verificación, destacado o reclamar ficha
-function hojaNegocio(interes,salonId){
-  const t={verificacion:['Quiero verificarme','Te escribimos para agendar la llamada o visita y te mandamos los detalles.'],destacado:['Quiero destacarme','Te mandamos por WhatsApp cómo funciona y el precio.'],reclamar:['Reclama tu ficha','Confirmamos que eres el dueño y te damos acceso para editarla.']}[interes];
-  const s=salonId?porId(salonId):null;
-  abrirCapa(cab(t[0])+`<div class="hoja-cuerpo"><div><h2 class="gr">${t[0]}${s?': '+esc(s.n):''}</h2><p class="nota" style="margin-top:6px;font-size:15px">${t[1]}</p></div>
-    <form class="form" id="fn" novalidate>
-      <div class="campo"><label for="fn-neg">Nombre del negocio</label><input class="input" id="fn-neg" value="${s?esc(s.n):mio?esc(mio.n):''}" required></div>
-      <div class="campo"><label for="fn-wa">Tu WhatsApp</label><input class="input" id="fn-wa" type="tel" inputmode="tel" placeholder="10 dígitos" required></div>
-      <div class="campo"><label for="fn-n">Tu nombre <span class="opc">(opcional)</span></label><input class="input" id="fn-n" autocomplete="given-name"></div>
-      <label class="check"><input type="checkbox" required><span>Acepto que me contacten por WhatsApp. <a class="lnk" href="#/">Aviso de privacidad</a>.</span></label>
-      <button class="btn btn-pri btn-bloque" type="submit">Enviar</button></form></div>`,t[0]);
-  $('#fn').onsubmit=e=>{e.preventDefault();if(!$('#fn-neg').value.trim()){$('#fn-neg').focus();toast('Escribe el nombre del negocio');return}const c=leerCorto(e.target);if(!c)return;
-    guardarNegocio(interes,{negocio:$('#fn-neg').value.trim(),wa:c.wa,nombre:c.nombre});
-    if(interes==='verificacion'&&mio){mio.verSolicitada=true;ls.set('myuf-mi-salon',mio)}
-    listo('Te escribimos por WhatsApp. (En la maqueta no se envía nada.)');const fin=$('#capa [data-fin]');fin.textContent='Listo';fin.onclick=()=>{cerrarCapa();if(ruta().a[0]==='panel')render()}};
+  $('#capa [data-a-enviar]').onclick=()=>{const f=$('#a-f').value;const d=[elegido('data-a-ev'),elegido('data-a-inv')?elegido('data-a-inv')+' invitados':'',elegido('data-a-pre')&&elegido('data-a-pre')!=='No sé'?'salón '+elegido('data-a-pre').toLowerCase():'',busq.zona?'zona '+busq.zona:'',f?fechaLarga(f):''].filter(Boolean).join(' · ');
+    waEquipo(fuente||'asesoria','¿Me ayudan a elegir salón y proveedores?'+(d?' Mi fiesta: '+d+'.':''));cerrarCapa()};
 }
 function hojaQueEs(){
   abrirCapa(cab('Las etiquetas')+`<div class="hoja-cuerpo" style="gap:12px">
@@ -1224,17 +1472,50 @@ function hojaQueEs(){
     <a class="lnk" href="#/como-ordenamos" data-cerrar-al-ir>Ver cómo ordenamos los resultados</a></div>`,'Las etiquetas');
 }
 function hojaMenu(){
+  const tiene=misDueno().length>0;
   abrirCapa(cab('Menú')+`<div class="hoja-cuerpo" style="gap:20px">
     <div style="display:grid;gap:10px"><button class="btn btn-rosa btn-bloque" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button>
-    <button class="btn btn-sec btn-bloque" data-asesoria>${ic('i-chispa')}Asesoría gratis: ayúdame a elegir</button></div>
+    <button class="btn btn-sec btn-bloque" data-asesoria>${ic('i-chispa')}Asesoría gratis</button></div>
     <nav class="menu-lista">
-    <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Organizamos tu fiesta</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados</a><a href="#/como-ordenamos" data-cerrar-al-ir>${ic('i-info','i-l')}Cómo ordenamos y etiquetas</a></nav>
-    <a class="btn btn-sec btn-bloque" href="${mio?'#/panel':'#/para-negocios'}" data-cerrar-al-ir>${ic('i-tienda')}${mio?'Mi negocio':'¿Tienes un negocio? Publícalo'}</a></div>`,'Menú');
+    <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Planes de organización</a><a href="#/guias" data-cerrar-al-ir>${ic('i-chat','i-l')}Guías gratis</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados</a></nav>
+    <a class="btn btn-sec btn-bloque" href="${tiene?'#/panel':'#/para-negocios'}" data-cerrar-al-ir>${ic('i-tienda')}${tiene?'Mis negocios':'¿Tienes un negocio? Publícalo gratis'}</a></div>`,'Menú');
 }
 function mapaCompleto(){
-  const l=ordenar(todos().filter(s=>cumple(s)));
+  const l=ordenar(todos().filter(s=>cumple(s)));capaFoco=document.activeElement;
   $('#capa').innerHTML=`<div class="mapa-completo" role="dialog" aria-modal="true" aria-label="Mapa de salones"><div class="top"><button class="btn-ic" data-cerrar aria-label="Cerrar mapa">${ic('i-izq')}</button><b>${l.length} salones</b></div><div style="flex:1;position:relative">${mapa(l)}</div><button class="btn btn-pri flotante" data-cerrar>${ic('i-lista')}Lista</button></div>`;
   document.body.style.overflow='hidden';$$('#capa [data-cerrar]').forEach(b=>b.onclick=cerrarCapa);montarPins($('#capa'));
+}
+/* --- Galería a pantalla completa: deslizar, flechas, teclado, miniaturas, zoom --- */
+let lbTeclas=null;
+function abrirGaleria(id,i0){
+  const s=porId(id);if(!s)return;const n=Math.max(1,Math.min(20,s.fotos.length||s.nFotos||5));let h='',th='';
+  for(let k=0;k<n;k++){const src=imgSegura(s.fotos[k]);h+=`<figure class="lb-slide">${src?`<img src="${src}" alt="Foto ${k+1} de ${esc(s.n)}" draggable="false">`:`<div class="lb-ilus">${ilus(s,k)}</div>`}</figure>`;th+=`<button class="lb-th" data-lb-ir="${k}" aria-label="Ir a la foto ${k+1}">${src?`<img src="${src}" alt="">`:ilus(s,k)}</button>`}
+  capaFoco=document.activeElement;
+  $('#capa').innerHTML=`<div class="lb" role="dialog" aria-modal="true" aria-label="Fotos de ${esc(s.n)}">
+    <div class="lb-top"><button class="lb-btn" data-lb-cerrar aria-label="Cerrar">${ic('i-cerrar','i-l')}</button><span class="lb-cont" aria-live="polite"></span><button class="lb-btn" data-lb-compartir aria-label="Compartir">${ic('i-compartir','i-l')}</button></div>
+    <div class="lb-pista">${h}</div>
+    ${n>1?`<button class="lb-flecha izq" data-lb-paso="-1" aria-label="Foto anterior">${ic('i-izq','i-l')}</button><button class="lb-flecha der" data-lb-paso="1" aria-label="Foto siguiente">${ic('i-der','i-l')}</button>`:''}
+    <div class="lb-pie">${n>1?`<div class="lb-ths">${th}</div>`:''}<div class="lb-cta"><span><b>${esc(s.n)}</b><small>${precioFicha(s)}</small></span><button class="btn btn-wa" data-wa="${s.id}">${ic('i-chat')}WhatsApp</button></div></div></div>`;
+  document.body.style.overflow='hidden';
+  const pista=$('.lb-pista'),cont=$('.lb-cont'),ths=$$('.lb-th');
+  const actual=()=>Math.round(pista.scrollLeft/pista.clientWidth);
+  const marcar=()=>{const k=actual();cont.textContent=(k+1)+' de '+n;ths.forEach((t,j)=>t.setAttribute('aria-current',j===k?'true':'false'));const t=ths[k];if(t)t.scrollIntoView({block:'nearest',inline:'center'});
+    $$('.lb-flecha.izq').forEach(b=>b.disabled=k===0);$$('.lb-flecha.der').forEach(b=>b.disabled=k===n-1)};
+  const ir=(k,suave)=>{$$('.lb-slide.zoom').forEach(z=>z.classList.remove('zoom'));pista.scrollTo({left:k*pista.clientWidth,behavior:suave?'smooth':'auto'})};
+  ir(Math.min(n-1,i0||0));marcar();requestAnimationFrame(()=>{ir(Math.min(n-1,i0||0));marcar()});
+  let tm;pista.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(marcar,60)},{passive:true});
+  $$('[data-lb-paso]').forEach(b=>b.onclick=()=>ir(Math.max(0,Math.min(n-1,actual()+ +b.dataset.lbPaso)),true));
+  ths.forEach(t=>t.onclick=()=>ir(+t.dataset.lbIr,true));
+  $$('.lb-slide').forEach(f=>f.ondblclick=e=>{const r=f.getBoundingClientRect();f.style.setProperty('--ox',((e.clientX-r.left)/r.width*100)+'%');f.style.setProperty('--oy',((e.clientY-r.top)/r.height*100)+'%');f.classList.toggle('zoom')});
+  $('[data-lb-cerrar]').onclick=cerrarCapa;$('[data-lb-compartir]').onclick=()=>compartir(s);
+  montarComunes($('#capa'));
+  lbTeclas=e=>{if(e.key==='ArrowRight')ir(Math.min(n-1,actual()+1),true);else if(e.key==='ArrowLeft')ir(Math.max(0,actual()-1),true)};
+  $('[data-lb-cerrar]').focus();
+  const re=()=>ir(actual());window.addEventListener('resize',re,{once:true});
+}
+function hojaConfirmar(titulo,texto,boton,fn){
+  abrirCapa(cab(titulo)+`<div class="hoja-cuerpo"><p style="font-size:16px">${texto}</p></div><div class="hoja-pie"><button class="btn btn-texto" data-cerrar>Cancelar</button><button class="btn btn-pri" data-confirmar style="background:var(--error)">${boton}</button></div>`,titulo);
+  $('#capa [data-confirmar]').onclick=()=>{cerrarCapa();fn()};
 }
 function irFeed(){const a=ruta().a;if(a.length&&a[0]!=='salones'){location.hash='#/';return}refrescarBarra();const c=$('#feed-cab');if(c)window.scrollTo(0,Math.max(0,c.getBoundingClientRect().top+scrollY-200))}
 function limpiar(){busq={inv:null,presup:0,zona:''};limpiarFiltros();orden='recomendados';if(location.hash.includes('?'))location.hash='#/';else refrescarBarra()}
@@ -1247,13 +1528,19 @@ function montarComunes(c){
   const on=(sel,fn)=>$$(sel,c).forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();fn(b)});
   on('[data-asesoria]',()=>hojaAsesoria());
   on('[data-organiza]',b=>waOrganiza(b.dataset.paquete));
-  on('[data-organiza-form]',()=>hojaOrganiza());
-  on('[data-comparativa]',()=>hojaComparativa());
-  on('[data-pedir-precio]',b=>hojaPrecio(b.dataset.pedirPrecio));
+  on('[data-guia]',b=>waGuia(b.dataset.guia));
+  on('[data-pedir-precio]',b=>waPrecio(b.dataset.pedirPrecio));
   on('[data-wa]',b=>enviarWA(b.dataset.wa));
-  on('[data-wa-nosotros]',()=>toast('Abriendo WhatsApp de Mil y Una Fiestas…','«Hola, quiero que me ayuden a organizar mi fiesta.»'));
-  on('[data-plan]',b=>hojaNegocio(b.dataset.plan));
-  on('[data-reclamar]',b=>hojaNegocio('reclamar',b.dataset.reclamar));
+  on('[data-tel]',b=>llamar(b.dataset.tel));
+  on('[data-plan]',b=>waPlan(b.dataset.plan));
+  on('[data-reclamar]',b=>waReclamar(b.dataset.reclamar));
+  on('[data-soporte]',waSoporte);
+  on('[data-subir]',waSubir);
+  on('[data-galeria]',b=>abrirGaleria(b.dataset.galeria,+b.dataset.i||0));
+  on('[data-compartir]',b=>compartir(porId(b.dataset.compartir)));
+  on('[data-que-es]',hojaQueEs);
+  on('[data-wa-lista]',waLista);
+  on('[data-compartir-lista]',compartirLista);
   $$('[data-cerrar-al-ir]',c).forEach(a=>a.addEventListener('click',()=>setTimeout(cerrarCapa,0)));
 }
 function montarTarjetas(c){
@@ -1264,7 +1551,7 @@ function montarTarjetas(c){
   $$('[data-fav]',c).forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.fav;if(guard[id])delete guard[id];else guard[id]=1;ls.set('myuf-guardados',guard);
     $$(`[data-fav="${id}"]`).forEach(x=>{x.setAttribute('aria-pressed',!!guard[id]);if(x.hasAttribute('data-fav-txt'))x.innerHTML=ic('i-corazon')+(guard[id]?'Guardado':'Guardar')});actualizarGuardNav();
     const n=Object.keys(guard).length;
-    if(guard[id]&&n===3)toast('Ya tienes 3 guardados','¿Te los mandamos por WhatsApp?',['Sí',()=>hojaLista()]);else toast(guard[id]?'Guardado en este navegador':'Quitado de guardados')});
+    if(guard[id]&&n===3)toast('Ya tienes 3 guardados','Compáralos lado a lado o pídenos ayuda.',['Comparar',()=>{location.hash='#/guardados'}]);else toast(guard[id]?'Guardado':'Quitado de guardados')});
   $$('.tarjeta',c).forEach(t=>{if(t.closest('.sin-click'))return;t.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.hash='#/'+t.dataset.ruta+'/'+t.dataset.id})});
   montarComunes(c);
 }
@@ -1275,8 +1562,8 @@ function montarPins(c){
     const card=$(`#feed [data-id="${id}"]`)||$(`#bloque-dest [data-id="${id}"]`);
     if(card&&c.id==='mapa-lado'){$$('.tarjeta.resalta').forEach(t=>t.classList.remove('resalta'));card.classList.add('resalta');card.scrollIntoView({behavior:'smooth',block:'center'});return}
     if(c.classList&&c.classList.contains('ficha'))return;
-    const mm=$('.mapa-mini',p.parentNode);if(mm)mm.remove();
-    p.parentNode.insertAdjacentHTML('beforeend',`<a class="mapa-mini" href="#/salon/${id}"><span class="f">${s.fotos[0]?`<img src="${s.fotos[0]}" alt="" style="width:100%;height:100%;object-fit:cover">`:ilus(s,0)}</span><span style="min-width:0"><b style="display:block">${esc(s.n)}</b><span class="nota">${s.min} a ${s.max} personas · ${s.z}</span><br><span style="font-size:15px">${precioLargo(s)}</span></span></a>`);
+    const mm=$('.mapa-mini',p.parentNode);if(mm)mm.remove();const f=imgSegura(s.fotos[0]);
+    p.parentNode.insertAdjacentHTML('beforeend',`<a class="mapa-mini" href="#/salon/${s.id}"><span class="f">${f?`<img src="${f}" alt="" style="width:100%;height:100%;object-fit:cover">`:ilus(s,0)}</span><span style="min-width:0"><b style="display:block">${esc(s.n)}</b><span class="nota">${s.min?s.min+' a ':'Hasta '}${s.max} personas · ${esc(s.z)}</span><br><span style="font-size:15px">${precioLargo(s)}</span></span></a>`);
   });
 }
 function montarBarra(){
@@ -1285,6 +1572,7 @@ function montarBarra(){
   $$('[data-ir-feed]').forEach(b=>b.onclick=()=>{cerrarCapa();irFeed()});
   $$('[data-filtros]').forEach(b=>b.onclick=hojaFiltros);
 }
+function cambiarEstado(id){const m=mis.find(x=>x.id===id);if(!m)return;m.estado=m.estado==='publicado'?'pausado':'publicado';m.actualizado=new Date().toISOString();guardarMis();bitacora(m.estado==='publicado'?'Publicó':'Pausó',m);render();toast(m.estado==='publicado'?'Publicado otra vez':'Pausado: ya no aparece en la página')}
 function montar(r){
   $$('.pie-tab').forEach(b=>b.onclick=()=>{$$('.pie-tab').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.tab)});
   $$('[data-menu]').forEach(b=>b.onclick=hojaMenu);
@@ -1293,59 +1581,75 @@ function montar(r){
   if($('#feed-wrap')){pintarFeed();$('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}}
   else if($('#feed'))montarTarjetas($('#feed'));
   if($('#feed-g'))montarTarjetas($('#feed-g'));
-  $$('[data-mandar-lista]').forEach(b=>b.onclick=hojaLista);
   if($('.ficha')){const f=$('.ficha');montarTarjetas(f);montarPins(f);
     const refrescar=()=>{$$('[data-mi-fiesta]').forEach(b=>{b.outerHTML=botonFiesta()});$$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescar))};
     $$('[data-mi-fiesta]').forEach(b=>b.onclick=()=>hojaFiesta(refrescar));
-    $$('[data-tel]').forEach(b=>b.onclick=()=>toast('Llamando a '+porId(b.dataset.tel).n+'…','En la página real se registra el contacto y se abre el teléfono.'));
-    $$('[data-compartir]').forEach(b=>b.onclick=()=>toast('En la página real se abre el menú de compartir del teléfono.'));
-    $$('[data-galeria]').forEach(b=>b.onclick=()=>toast('En la página real se abre la galería a pantalla completa.'));
-    $$('[data-que-es]').forEach(b=>b.onclick=hojaQueEs);
+    $$('[data-abrir-galeria]').forEach(g=>{const abrir=()=>{const sl=$('[data-slides]',g);abrirGaleria(g.dataset.abrirGaleria,Math.round(sl.scrollLeft/sl.clientWidth))};g.onclick=abrir;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir()}}});
   }
-  $$('[data-empezar]').forEach(b=>b.onclick=()=>{location.hash=mio?'#/panel':'#/panel/editar?paso=1'});
-  const fop=$('#fo-p');if(fop)fop.onsubmit=e=>{e.preventDefault();const c=leerCorto(fop);if(!c)return;guardarProspecto('organizacion',c);fop.outerHTML=`<div class="ok-caja">${ic('i-check','i-l')}<div><b>¡Listo!</b><p style="margin-top:4px">Te escribimos por WhatsApp para platicar de tu fiesta. (En la maqueta no se envía nada.)</p></div></div>`};
-  if($('.tablero')){
-    $$('[data-pausar]').forEach(b=>b.onclick=()=>{mio.estado=mio.estado==='publicado'?'pausado':'publicado';ls.set('myuf-mi-salon',mio);render();toast(mio.estado==='publicado'?'Tu salón aparece otra vez':'Tu salón está pausado')});
-    $$('[data-copiar]').forEach(b=>b.onclick=()=>toast('Enlace copiado (ejemplo): milyunafiestas.mx/salon/tu-salon'));
-    $$('[data-solicitar-ver]').forEach(b=>b.onclick=()=>hojaNegocio('verificacion'));
-    $$('[data-simular-ver]').forEach(b=>b.onclick=()=>{mio.verFecha=HOY.toISOString().slice(0,10);ls.set('myuf-mi-salon',mio);render();toast('Tu salón ya muestra «Verificado» por 3 meses')});
-    $$('[data-destacar]').forEach(b=>b.onclick=()=>hojaNegocio('destacado'));
-  }
-  if($('.leads')){$$('[data-estado]').forEach(sel=>sel.onchange=()=>{const p=prospectos.find(x=>x.id===sel.dataset.estado);if(p){p.estado=sel.value;ls.set('myuf-prospectos',prospectos)}toast('Estado: '+sel.value)});
-    $$('[data-wa-lead]').forEach(b=>b.onclick=()=>toast('Abriendo WhatsApp…','«Hola '+(b.dataset.waLead||'')+', te escribimos de Mil y Una Fiestas por tu fiesta.»'))}
-  if($('#wiz-form'))montarWizard(+r.q.paso||1);
+  $$('[data-pausar]').forEach(b=>b.onclick=()=>cambiarEstado(b.dataset.pausar));
+  $$('[data-borrar-neg]').forEach(b=>b.onclick=()=>hojaConfirmar('Borrar borrador','¿Borrar este borrador? No se puede deshacer.','Borrar',()=>{mis=mis.filter(m=>m.id!==b.dataset.borrarNeg);guardarMis();render()}));
+  // Equipo
+  const fl=$('#f-login');if(fl){let paso=1,rol='admin';
+    $$('[data-rol]').forEach(b=>b.onclick=()=>{rol=b.dataset.rol;$$('[data-rol]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+    fl.onsubmit=e=>{e.preventDefault();if(paso===1){if(!waValido($('#lg-wa').value)){toast('Escribe tu WhatsApp a 10 dígitos');$('#lg-wa').focus();return}paso=2;$('#lg-paso2').hidden=false;$('#lg-rol').hidden=false;$('#lg-btn').textContent='Entrar';$('#lg-cod').focus();toast('Código enviado (maqueta)');return}
+      if(!/^\d{6}$/.test($('#lg-cod').value)){toast('El código tiene 6 dígitos');$('#lg-cod').focus();return}
+      sesion={rol,nombre:rol==='admin'?'Leo':'Socio',desde:new Date().toISOString()};ls.set('myuf-sesion-equipo',sesion);bitacora('Entró al panel');render()}}
+  $$('[data-salir]').forEach(b=>b.onclick=()=>{bitacora('Salió del panel');sesion=null;try{localStorage.removeItem('myuf-sesion-equipo')}catch(e){}location.hash='#/'});
+  const eb=$('#eq-busca');if(eb){eb.oninput=()=>{sesionBusca=eb.value.slice(0,60);const p=eb.selectionStart;render();const n=$('#eq-busca');n.focus();n.setSelectionRange(p,p)}}
+  $$('[data-eq-estado]').forEach(b=>b.onclick=()=>{sesionEstado=b.dataset.eqEstado;render()});
+  $$('[data-verificar]').forEach(b=>b.onclick=()=>{const m=mis.find(x=>x.id===b.dataset.verificar);m.verFecha=HOY.toISOString().slice(0,10);guardarMis();bitacora('Registró verificación',m);render();toast('Verificación registrada',lanz()?'Se verá cuando actives el modo con verificados.':'')});
+  $$('[data-eliminar]').forEach(b=>b.onclick=()=>{if(!sesion||!ROLES[sesion.rol].borrar)return;const m=mis.find(x=>x.id===b.dataset.eliminar);hojaConfirmar('Eliminar ficha','¿Eliminar «'+esc(m.n||'Sin nombre')+'»? Deja de aparecer en la página.','Eliminar',()=>{bitacora('Eliminó',m);mis=mis.filter(x=>x!==m);guardarMis();render()})});
+  $$('[data-modo]').forEach(b=>b.onclick=()=>{MODO=b.dataset.modo;ls.set('myuf-modo',MODO);bitacora('Cambió el modo a «'+(lanz()?'Lanzamiento':'Con verificados y destacados')+'»');render();toast('Modo cambiado')});
+  $$('[data-invitar]').forEach(b=>b.onclick=()=>toast('En la página real le llega una invitación por WhatsApp con su rol.'));
+  const fp=$('#f-pros');if(fp)fp.onsubmit=e=>{e.preventDefault();if(!waValido($('#pr-wa').value)){toast('WhatsApp a 10 dígitos');$('#pr-wa').focus();return}
+    prospectos.unshift({id:'p'+Date.now(),fecha:new Date().toISOString(),tipo:$('#pr-t').value,nombre:$('#pr-n').value.trim().slice(0,60),wa:soloDig($('#pr-wa').value),quiere:$('#pr-q').value,fiesta:$('#pr-f').value.trim().slice(0,140),estado:'Nuevo'});ls.set('myuf-prospectos',prospectos);render();toast('Prospecto guardado')};
+  $$('[data-estado]').forEach(sel=>sel.onchange=()=>{const p=prospectos.find(x=>x.id===sel.dataset.estado);if(p){p.estado=sel.value;ls.set('myuf-prospectos',prospectos)}toast('Estado: '+sel.value)});
+  $$('[data-wa-lead]').forEach(b=>b.onclick=()=>{const d=b.dataset.waLead;if(d.length!==10||d.startsWith('443000')){toast('Prospecto de ejemplo','Con uno real se abre su WhatsApp.');return}const w=window.open('https://wa.me/52'+d+'?text='+encodeURIComponent('Hola '+(b.dataset.nombre||'')+', te escribimos de Mil y Una Fiestas.'),'_blank');if(w)w.opener=null});
+  if($('#wiz-form')){const ctx=r.a[0]==='equipo'?'equipo':'dueño';montarWizard(ctx,r.q.id,r.q.paso||'negocio')}
 }
-function montarWizard(p){
-  const b=borrador,f=$('#wiz-form');
-  const prev=()=>{const v=$('#vista-prev');if(v)v.innerHTML=vistaPrevia(b)};
-  const re=()=>{const y=scrollY;$('#app').innerHTML=vWizard(p);window.scrollTo(0,y);montarWizard(p)};
-  $$('[data-b]',f).forEach(i=>i.oninput=i.onchange=()=>{b[i.dataset.b]=i.value;if(i.dataset.b==='desc')$('[data-cuenta-desc]').textContent=i.value.length+' de 1000 · recomendamos 80 o más';guardarBorrador();prev()});
-  $$('[data-tipo-b]',f).forEach(x=>x.onclick=()=>{b.tipo=x.dataset.tipoB;guardarBorrador();re()});
-  $$('[data-zona-b]',f).forEach(x=>x.onclick=()=>{b.z=x.getAttribute('data-zona-b');guardarBorrador();re()});
-  $$('[data-ptipo]',f).forEach(x=>x.onclick=()=>{b.pTipo=x.dataset.ptipo;guardarBorrador();re()});
-  $$('[data-am]',f).forEach(x=>x.onchange=()=>{if(x.checked)b.a[x.dataset.am]=1;else delete b.a[x.dataset.am];guardarBorrador();if(x.dataset.am==='est')re();else prev()});
-  $$('[data-ev]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.ev;b.ev=b.ev.includes(i)?b.ev.filter(v=>v!==i):b.ev.concat(i);x.setAttribute('aria-pressed',b.ev.includes(i));guardarBorrador()});
-  $$('[data-okb]',f).forEach(x=>x.onchange=()=>{b[x.dataset.okb]=x.checked;guardarBorrador()});
+function montarWizard(ctx,id,paso){
+  const m=mis.find(x=>x.id===id);if(!m)return;const f=$('#wiz-form');f.onsubmit=e=>e.preventDefault();
+  const guardar=()=>{m.actualizado=new Date().toISOString();guardarMis()};
+  const prev=()=>{const v=$('#vista-prev');if(v)v.innerHTML=tarjeta(publico(m))};
+  const re=()=>{const y=scrollY;$('#app').innerHTML=vWizard(ctx,id,paso);window.scrollTo(0,y);montar(ruta())};
+  $$('[data-b]',f).forEach(i=>i.oninput=i.onchange=()=>{let v=i.value;if(i.hasAttribute('data-num')){v=soloDig(v).slice(0,7);if(i.value!==v)i.value=v}m[i.dataset.b]=v;if(i.dataset.b==='desc')$('[data-cuenta-desc]').textContent=v.length+' de 1000 · recomendamos 80 o más';guardar();prev()});
+  $$('[data-ofrece]',f).forEach(x=>x.onclick=()=>{const k=x.dataset.ofrece;if(k==='salones'){m.clase='salon';m.cat='salones';if(m.z==='Toda Morelia')m.z=''}else{m.clase='servicio';m.cat=k}if(m.pTipo==='rango'&&m.clase==='servicio')m.pTipo='desde';guardar();re()});
+  $$('[data-tipo-b]',f).forEach(x=>x.onclick=()=>{m.tipo=x.dataset.tipoB;guardar();re()});
+  $$('[data-zona-b]',f).forEach(x=>x.onclick=()=>{m.z=x.getAttribute('data-zona-b');guardar();re()});
+  $$('[data-ptipo]',f).forEach(x=>x.onclick=()=>{m.pTipo=x.dataset.ptipo;guardar();re()});
+  $$('[data-unidad]',f).forEach(x=>x.onclick=()=>{m.u=x.dataset.unidad;guardar();re()});
+  $$('[data-am]',f).forEach(x=>x.onchange=()=>{if(x.checked)m.a[x.dataset.am]=1;else delete m.a[x.dataset.am];guardar();if(x.dataset.am==='est')re();else prev()});
+  $$('[data-turno-b]',f).forEach(x=>x.onclick=()=>{const t=x.dataset.turnoB;m.turno=(m.turno||[]).includes(t)?m.turno.filter(v=>v!==t):(m.turno||[]).concat(t);x.setAttribute('aria-pressed',m.turno.includes(t));guardar()});
+  $$('[data-ev]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.ev;m.ev=m.ev.includes(i)?m.ev.filter(v=>v!==i):m.ev.concat(i);x.setAttribute('aria-pressed',m.ev.includes(i));guardar()});
+  $$('[data-okb]',f).forEach(x=>x.onchange=()=>{m.ok=x.checked;guardar()});
+  $$('[data-ap]',f).forEach(i=>i.oninput=i.onchange=()=>{m.aprob=m.aprob||{};m.aprob[i.dataset.ap]=i.dataset.ap==='wa'?i.value.slice(0,16):i.value.slice(0,140);if(!m.aprob.fecha)m.aprob.fecha=new Date().toISOString().slice(0,10);guardar()});
+  $$('[data-medio]',f).forEach(x=>x.onclick=()=>{m.aprob=m.aprob||{fecha:new Date().toISOString().slice(0,10)};m.aprob.medio=x.dataset.medio;guardar();re()});
+  $$('[data-apok]',f).forEach(x=>x.onchange=()=>{m.aprob=m.aprob||{};if(!m.aprob.fecha)m.aprob.fecha=new Date().toISOString().slice(0,10);m.aprob[x.dataset.apok]=x.checked;guardar()});
   const ag=$('[data-agregar]',f);
-  if(ag){const add=()=>{const v=$('#w-inc').value.trim();if(!v)return;b.inc.push(v);guardarBorrador();re();$('#w-inc').focus()};ag.onclick=add;$('#w-inc').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}}}
-  $$('[data-quitar-inc]',f).forEach(x=>x.onclick=()=>{b.inc.splice(+x.dataset.quitarInc,1);guardarBorrador();re()});
-  $$('[data-subir]',f).forEach(x=>x.onclick=()=>{const a=$('#archivo');a.value='';a.onchange=async()=>{const files=Array.from(a.files).slice(0,20-b.fotos.length);if(!files.length)return;toast('Preparando '+files.length+' foto'+(files.length>1?'s':'')+'…');for(const fl of files){try{b.fotos.push(await reducir(fl,1200,.78))}catch(err){toast('No pudimos leer '+fl.name)}}guardarBorrador();re()};a.click()});
-  $$('[data-quitar]',f).forEach(x=>x.onclick=()=>{b.fotos.splice(+x.dataset.quitar,1);guardarBorrador();re()});
-  $$('[data-portada]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.portada;b.fotos.unshift(b.fotos.splice(i,1)[0]);guardarBorrador();re();toast('Nueva portada')});
-  $$('[data-ir-paso]').forEach(x=>x.onclick=()=>{location.hash='#/panel/editar?paso='+x.dataset.irPaso});
-  $$('[data-siguiente]').forEach(x=>x.onclick=()=>{
-    const e=validar(p,b);
-    if(Object.keys(e).length){b._e=e;re();const m=$('.mal,.err');if(m)m.scrollIntoView({behavior:'smooth',block:'center'});return}
-    if(p<7){location.hash='#/panel/editar?paso='+(p+1);return}
-    for(let k=1;k<7;k++){const ek=validar(k,b);if(Object.keys(ek).length){b._e=ek;toast('Falta completar: '+PASOS[k-1]);location.hash='#/panel/editar?paso='+k;return}}
-    const primera=b.estado!=='publicado';b.estado='publicado';guardarBorrador();borrador=null;location.hash='#/panel';
-    setTimeout(()=>toast(primera?'¡Publicado! Tu salón ya aparece como «Nuevo».':'Cambios guardados'),300)});
+  if(ag){const add=()=>{const v=$('#w-inc').value.trim().slice(0,60);if(!v||m.inc.length>=20)return;m.inc.push(v);guardar();re();$('#w-inc').focus()};ag.onclick=add;$('#w-inc').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}}}
+  $$('[data-quitar-inc]',f).forEach(x=>x.onclick=()=>{m.inc.splice(+x.dataset.quitarInc,1);guardar();re()});
+  // Fotos: solo imágenes, máximo 15 MB cada una; se recodifican (quita GPS y datos ocultos) y se achican
+  $$('[data-subir-foto]',f).forEach(x=>x.onclick=()=>{const a=$('#archivo');a.value='';a.onchange=async()=>{const files=Array.from(a.files).slice(0,20-m.fotos.length);if(!files.length)return;let malas=0;toast('Preparando '+files.length+' foto'+(files.length>1?'s':'')+'…');
+    for(const fl of files){if(!/^image\/(jpeg|png|webp|heic|heif)$/.test(fl.type)||fl.size>15e6){malas++;continue}try{const u=await reducir(fl,1400,.78);if(imgSegura(u))m.fotos.push(u);else malas++}catch(err){malas++}}
+    guardar();re();if(malas)toast(malas+' archivo'+(malas>1?'s':'')+' no se pudo usar','Solo fotos JPG, PNG o WebP de hasta 15 MB.')};a.click()});
+  $$('[data-quitar]',f).forEach(x=>x.onclick=()=>{m.fotos.splice(+x.dataset.quitar,1);guardar();re()});
+  $$('[data-portada]',f).forEach(x=>x.onclick=()=>{const i=+x.dataset.portada;m.fotos.unshift(m.fotos.splice(i,1)[0]);guardar();re();toast('Nueva portada')});
+  const P=pasosDe(m,ctx);
+  $$('[data-ir-paso]').forEach(x=>x.onclick=()=>{location.hash=rutaWiz(ctx,id,x.dataset.irPaso)});
+  $$('[data-siguiente]').forEach(x=>x.onclick=()=>{const e=validarPaso(m,paso,ctx);if(Object.keys(e).length){wizErr=e;re();const q=$('.mal,.err');if(q)q.scrollIntoView({behavior:'smooth',block:'center'});return}
+    const i=P.findIndex(p=>p[0]===paso);location.hash=rutaWiz(ctx,id,P[i+1][0])});
+  $$('[data-guardar-extra]').forEach(x=>x.onclick=()=>{guardar();bitacora('Mejoró la ficha',m);location.hash=ctx==='equipo'?'#/equipo?t=fichas':'#/panel';setTimeout(()=>toast('Guardado'),300)});
+  $$('[data-publicar]').forEach(x=>x.onclick=()=>{
+    for(const p of P){const e=validarPaso(m,p[0],ctx);if(Object.keys(e).length){wizErr=e;toast('Falta completar: '+p[1]);if(p[0]===paso)re();else location.hash=rutaWiz(ctx,id,p[0]);return}}
+    const primera=m.estado!=='publicado';m.estado='publicado';guardar();bitacora(primera?'Publicó':'Guardó cambios',m);
+    location.hash=ctx==='equipo'?'#/equipo?t=fichas':'#/panel';
+    setTimeout(()=>toast(primera?'¡Publicado! Ya aparece en la página.':'Cambios guardados',primera&&ctx==='dueño'?'Cuando quieras, mejora tu ficha con lo que tiene y una descripción.':''),300)});
 }
 function reducir(file,max,q){return new Promise((ok,mal)=>{const r=new FileReader();r.onerror=mal;r.onload=()=>{const im=new Image();im.onerror=mal;im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(file)})}
 
 document.addEventListener('click',e=>{if(!document.contains(e.target))return;if($('.pop')&&!e.target.closest('.pop')&&!e.target.closest('[data-seg]')){$$('.pop').forEach(p=>p.remove());$$('.seg.on').forEach(s=>s.classList.remove('on'))}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarCapa()});
-window.addEventListener('hashchange',()=>{if(!location.hash.startsWith('#/panel/editar'))borrador=null;render()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarCapa();else if(lbTeclas)lbTeclas(e)});
+window.addEventListener('hashchange',()=>{const r=ruta();if(r.a[0]==='equipo'&&r.a[1]==='ficha'&&!sesion){location.replace('#/equipo');return}render()});
 let anchoPrevio=innerWidth;window.addEventListener('resize',()=>{if((anchoPrevio<1024)!==(innerWidth<1024)&&$('#mapa-lado'))pintarFeed();anchoPrevio=innerWidth});
 render();
 })();
