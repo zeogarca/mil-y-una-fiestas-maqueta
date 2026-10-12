@@ -866,8 +866,12 @@ function registrarClic(fuente,negocio){clics.unshift({f:new Date().toISOString()
 // Si en 1.5 s la página sigue a la vista (no tiene la app), se abre wa.me como respaldo.
 const esMovil=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
 function irWhatsApp(num,texto){const t=encodeURIComponent(texto),web='https://wa.me/'+(num||'')+'?text='+t;
-  if(esMovil){location.href='whatsapp://send?'+(num?'phone='+num+'&':'')+'text='+t;const ini=Date.now();setTimeout(()=>{if(document.visibilityState==='visible'&&Date.now()-ini<2500)location.href=web},1500);return}
-  const w=window.open(web,'_blank');if(w)w.opener=null;else location.href=web}
+  // Nunca se cambia la página: si WhatsApp no abrió (no está instalado), se ofrece la versión web en otra pestaña
+  if(esMovil){let salio=false;const marca=()=>{salio=true};
+    window.addEventListener('pagehide',marca,{once:true});document.addEventListener('visibilitychange',marca,{once:true});
+    location.href='whatsapp://send?'+(num?'phone='+num+'&':'')+'text='+t;
+    setTimeout(()=>{if(!salio&&document.visibilityState==='visible')toast('¿No se abrió WhatsApp?','Puedes abrirlo en la web.',['Abrir',()=>{const w=window.open(web,'_blank');if(w)w.opener=null}])},3000);return}
+  const w=window.open(web,'_blank');if(w)w.opener=null;else toast('Tu navegador bloqueó la ventana de WhatsApp','Permite ventanas emergentes para esta página.')}
 function abrirWA(num,texto,fuente,negocio){registrarClic(fuente,negocio);irWhatsApp(num,texto)}
 const waEquipo=(fuente,texto)=>abrirWA(WA_EQUIPO,'Hola, Mil y Una Fiestas. '+texto,fuente);
 function contextoFiesta(extra){const inv=fiesta.inv||busq.inv;return [fiesta.ev,fiesta.fecha?fechaLarga(fiesta.fecha):'',inv?inv+' invitados':'',busq.zona?'zona '+busq.zona:''].concat(extra||[]).filter(Boolean).join(' · ')}
