@@ -162,7 +162,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 /* Los dos servicios que dejan dinero, al frente: organización (pago) y asesoría (capta el número) */
 .servicio{margin-top:16px;display:grid;gap:10px}
 @media (min-width:768px){.servicio{grid-template-columns:1.35fr 1fr;gap:16px;margin-top:24px}}
-.srv{border-radius:var(--r-l);padding:20px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.srv{margin-top:16px;border-radius:var(--r-l);padding:20px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
 @media (min-width:768px){.srv{padding:28px 32px;justify-content:space-between}}
 .srv.org{background:var(--texto);color:#fff}
 .srv.ase{background:var(--rosa-2);color:var(--rosa-3)}
@@ -174,12 +174,13 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .srv.org p{color:#C7C7CC}
 .srv .btns{display:flex;gap:8px;align-items:center;width:100%}
 .srv .lnk-b{white-space:nowrap}
-.flotante .f-org{display:none}
-.flotante.con-org .f-org{display:inline-flex}
 .srv .btns .btn{flex:1 1 auto;min-height:48px}
 @media (min-width:768px){.srv .btns .btn{flex:0 1 auto}}
 .srv.org .lnk-b{color:#fff;font-size:14.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:48px;padding:0 6px}
 /* En celular, la asesoría va compacta para no empujar los salones hacia abajo */
+@media (min-width:768px){.srv.ase{margin-top:24px;padding:16px 16px 16px 28px}}
+.srv.ase{flex-direction:row;align-items:center;padding:14px 16px;gap:12px}.srv.ase h2{font-size:16.5px;margin-top:0}.srv.ase .btns{width:auto;flex:none}.srv.ase>div:first-child{flex:1}
+@media (min-width:768px){.srv.ase h2{font-size:19px}}
 @media (max-width:767px){.srv.ase{flex-direction:row;align-items:center;padding:14px 16px;gap:12px}.srv.ase h2{font-size:16.5px;margin-top:0}.srv.ase p,.srv.ase .eti{display:none}.srv.ase .btns{width:auto;flex:none}.srv.ase>div:first-child{flex:1}}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:24px;padding-bottom:12px;flex-wrap:wrap}
 .sec-h h2{font-size:19px;font-weight:700;letter-spacing:-.02em}
@@ -189,6 +190,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .carr{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--lado) 4px;margin:0 calc(var(--lado)*-1);scroll-padding:0 var(--lado)}
 .carr::-webkit-scrollbar{display:none}
 .carr>*{scroll-snap-align:start}
+.carr .slides{overflow:hidden;overscroll-behavior-x:auto}
+.carr .fl,.carr .puntos{display:none}
 @media (min-width:600px){.carr{grid-auto-columns:calc((100% - 32px)/2.3)}}
 @media (min-width:1024px){.carr{grid-auto-columns:calc((100% - 60px)/4);gap:20px;padding:0;margin:0}}
 .feed-wrap{display:grid;grid-template-columns:1fr}
@@ -666,6 +669,13 @@ function guardarProspecto(fuente,datos){
   // Real: INSERT en «prospectos» (Supabase) + aviso al equipo por WhatsApp
   return p;
 }
+// Un toque: abre WhatsApp con el mensaje armado (paquete, salón e invitados si ya los sabemos). Al escribirnos, ya tenemos su número.
+function waOrganiza(paquete){
+  const r=ruta(),s=(r.a[0]==='salon'||r.a[0]==='proveedor')?todos().concat(PROV).find(x=>x.id===r.a[1]):null;
+  const extra=[paquete?'el paquete «'+paquete+'»':'',s?'en '+s.n:'',busq.inv?'para '+busq.inv+' invitados':''].filter(Boolean).join(', ');
+  toast('Abriendo WhatsApp de Mil y Una Fiestas…','«Hola, quiero que me ayuden a organizar mi fiesta'+(extra?' ('+extra+')':'')+'.»');
+  // Real: registrar el clic (fuente «organizacion») y abrir https://wa.me/52XXXXXXXXXX?text=…
+}
 function guardarNegocio(interes,datos){const p=Object.assign({id:'n'+Date.now(),fecha:new Date().toISOString(),interes,estado:'Nuevo'},datos);negocios.unshift(p);ls.set('myuf-prospectos-negocio',negocios);return p}
 
 /* ===================================================================
@@ -711,10 +721,12 @@ function render(){
   else {html=vFeed();barra=true}
   $('#nav').innerHTML=vNav(act);
   $('#nav').classList.toggle('sin-linea',barra);
+  const catsX=($('.cats')||{}).scrollLeft||0;
   $('#app').innerHTML=html;
   $('#pie').innerHTML=pie?vPie():'';$('#pie').hidden=!pie;
   window.scrollTo(0,0);
   montar(r);
+  const cs=$('.cats');if(cs){cs.scrollLeft=catsX;const a=$('[aria-current]',cs);if(a){const ca=cs.getBoundingClientRect(),aa=a.getBoundingClientRect();if(aa.left<ca.left||aa.right>ca.right)cs.scrollLeft+=aa.left-ca.left-16}}
 }
 function aplicarQuery(q){if(q.inv)busq.inv=+q.inv;if(q.presup)busq.presup=+q.presup;if(q.zona)busq.zona=q.zona;AMEN.forEach(a=>{if(q[a[0]])filt[a[0]]=1});if(q.ver)filt.ver=1}
 
@@ -751,18 +763,15 @@ function vBarra(actual){
     ${vCats(actual)}</div></div>`;
 }
 // Bloque principal de negocio: ayuda gratis (capta el número) + organización (lo que deja dinero)
-const vAyuda=()=>`<section class="servicio" aria-label="Nuestros servicios">
-  <div class="srv org"><div><span class="eti">${ic('i-organiza')}Organizamos tu fiesta</span><h2>Tú disfrutas. Nosotros nos encargamos de todo.</h2><p>Salón, banquete, música, decoración y el día del evento, coordinados por nuestro equipo en Morelia.</p></div>
-    <div class="btns"><button class="btn btn-rosa" data-organiza>Quiero que la organicen</button><a class="lnk-b" href="#/organizamos">Ver paquetes</a></div></div>
-  <div class="srv ase"><div><span class="eti">${ic('i-chispa')}Asesoría gratis</span><h2>¿No sabes cuál elegir? Te asesoramos gratis.</h2><p>Dinos qué buscas y te mandamos por WhatsApp opciones a tu medida.</p></div>
-    <div class="btns"><button class="btn btn-pri" data-asesoria>Ayúdame a elegir</button></div></div></section>`;
+const vAyuda=()=>`<section class="srv ase" aria-label="Asesoría gratis"><div><h2>¿No sabes cuál elegir? Te asesoramos gratis.</h2></div>
+    <div class="btns"><button class="btn btn-pri" data-asesoria>Ayúdame a elegir</button></div></section>`;
 function vFeed(){
   return vBarra('salones')+`<div class="cont">
     ${vAyuda()}
     <div id="bloque-dest"></div>
     <div class="sec-h" id="feed-cab"></div>
     <div class="feed-wrap" id="feed-wrap"><div><div class="feed" id="feed"></div></div><aside class="mapa-lado" id="mapa-lado" aria-label="Mapa"></aside></div></div>
-    <div class="flotante"><button class="btn btn-pri" id="btn-mapa">${ic('i-mapa')}Mapa</button><button class="btn btn-rosa f-org" data-organiza>${ic('i-organiza')}Organizamos tu fiesta</button></div>`;
+    <div class="flotante"><button class="btn btn-pri" id="btn-mapa">${ic('i-mapa')}Mapa</button><button class="btn btn-rosa f-org" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button></div>`;
 }
 function pintarFeed(){
   const cab=$('#feed-cab');if(!cab)return;
@@ -775,7 +784,7 @@ function pintarFeed(){
   const sinPrecio=busq.presup?base.filter(s=>cumple(s,'presup')&&!s.p).length:0;
   cab.innerHTML=`<h2>${filtrando?l.length+' salones':'Todos los salones'} <span>en Morelia</span></h2><div class="der">${filtrando?'<button class="lnk" data-limpiar style="min-height:44px">Limpiar filtros</button>':''}<a class="lnk-gris" href="#/como-ordenamos">Cómo ordenamos</a></div>`;
   const promoComp=`<div class="promo-feed rosa"><div><h3>¿Te ayudamos a decidir?</h3><p>Te mandamos gratis por WhatsApp la comparativa de ${MES_ACTUAL}: los salones con mejor precio por invitado.</p></div><button class="btn btn-pri" data-comparativa>Mándamela</button></div>`;
-  const promoOrg=`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-blanco" data-organiza>Que lo organicen</button></div>`;
+  const promoOrg=`<div class="promo-feed oscuro"><div><h3>¿Quieres que alguien más lo organice por ti?</h3><p>Nos cuentas tu fiesta y nosotros nos encargamos del salón, los proveedores y el día del evento.</p></div><button class="btn btn-blanco" data-organiza>${ic('i-chat')}Que lo organicen</button></div>`;
   const promoNeg=`<div class="promo-feed claro"><div><h3>¿Tienes un salón o das un servicio?</h3><p>Publícalo gratis y recibe clientes por WhatsApp. Verifícate o destácate para salir primero.</p></div><a class="btn btn-pri" href="${mio?'#/panel':'#/para-negocios'}">${mio?'Ver mi negocio':'Conoce los planes'}</a></div>`;
   let h='';
   lista.forEach((s,i)=>{h+=tarjeta(s);if(i===7)h+=promoOrg;if(i===15)h+=promoComp});
@@ -838,7 +847,7 @@ function vFicha(id){
   const precioDato=s.p?`<b>${precioFicha(s)}</b>`:`<b>A cotizar</b><br><button class="lnk" data-pedir-precio="${s.id}">Te lo conseguimos</button>`;
   const datos=s.prov?`<div class="dato"><small>Servicio</small><b>${cat}</b></div><div class="dato"><small>Precio</small>${precioDato}</div><div class="dato"><small>Atiende</small><b>${s.z}</b></div><div class="dato"><small>Anticipo</small><b>[ANTICIPO]</b></div>`
     :`<div class="dato"><small>Capacidad</small><b>${s.min} a ${s.max}</b></div><div class="dato"><small>Renta</small>${precioDato}</div><div class="dato"><small>Estacionamiento</small><b>${s.est?s.est+' lugares':s.a.est?'Sí':'En la calle'}</b></div><div class="dato"><small>Horario</small><b>${esc(s.horario)||'[HORARIO]'}</b></div>`;
-  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis con opciones parecidas.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
+  const ayuda=`<div class="ayuda-ficha"><b style="font-size:16px">¿Te organizamos la fiesta${s.prov?'':' aquí'}?</b><p>Nos encargamos del ${s.prov?'servicio':'salón'}, los proveedores y el día del evento. ¿Aún no te decides? Te asesoramos gratis con opciones parecidas.</p><div class="btns"><button class="btn btn-rosa" data-organiza style="min-height:44px">${ic('i-chat')}Quiero que la organicen</button><button class="lnk-gris" data-asesoria style="color:var(--rosa-3);min-height:44px">Asesoría gratis</button></div></div>`;
   return `<div class="ficha">
     <div class="ficha-galeria"><div class="foto"><div class="slides" data-slides>${sl.h}</div><span class="contador" data-cont>1 / ${total}</span></div>
       <div class="acciones"><a class="btn-ic blanco" href="${s.prov?'#/servicios/'+s.cat:'#/'}" aria-label="Volver">${ic('i-izq')}</a><div><button class="btn-ic blanco" data-compartir aria-label="Compartir">${ic('i-compartir')}</button><button class="btn-ic blanco fav" ${fav} aria-label="Guardar">${ic('i-corazon')}</button></div></div></div>
@@ -878,7 +887,7 @@ function vOrganizamos(){
     ['Servicio completo','$12,000 a $18,000','Nos encargamos de la planeación de principio a fin.',['Todo lo de organización parcial','Todos los proveedores y la decoración','Visitas contigo','Equipo de apoyo el día de la fiesta']]];
   return `<div class="cont pagina">
   <div class="pag-cab"><span class="eyebrow">Organizamos tu fiesta</span><h1>Tú nos cuentas tu fiesta. Nosotros nos encargamos.</h1><p>Una persona de nuestro equipo te acompaña con el salón, los proveedores y el día del evento. Tú le pagas directo a cada proveedor; nosotros solo cobramos el servicio.</p>
-    <div class="acciones"><button class="btn btn-wa" data-wa-nosotros>${ic('i-chat')}Escríbenos por WhatsApp</button><button class="btn btn-sec" data-organiza>Que me escriban ustedes</button></div></div>
+    <div class="acciones"><button class="btn btn-wa" data-wa-nosotros>${ic('i-chat')}Escríbenos por WhatsApp</button><button class="btn btn-sec" data-organiza-form>Que me escriban ustedes</button></div></div>
   <h2 class="titulo-sec">Así funciona.</h2>
   <div class="tres"><div class="paso"><span class="n" style="--c:var(--rosa)">1</span><h3>Nos cuentas tu fiesta</h3><p>Por WhatsApp, en una plática corta: tipo de fiesta, fecha, invitados y presupuesto.</p></div>
     <div class="paso"><span class="n" style="--c:#9A6B00">2</span><h3>Te proponemos opciones</h3><p>Salones y proveedores que te quedan, con precios comparables.</p></div>
@@ -1216,7 +1225,7 @@ function hojaQueEs(){
 }
 function hojaMenu(){
   abrirCapa(cab('Menú')+`<div class="hoja-cuerpo" style="gap:20px">
-    <div style="display:grid;gap:10px"><button class="btn btn-rosa btn-bloque" data-organiza>${ic('i-organiza')}Organizamos tu fiesta</button>
+    <div style="display:grid;gap:10px"><button class="btn btn-rosa btn-bloque" data-organiza>${ic('i-chat')}Organizamos tu fiesta</button>
     <button class="btn btn-sec btn-bloque" data-asesoria>${ic('i-chispa')}Asesoría gratis: ayúdame a elegir</button></div>
     <nav class="menu-lista">
     <a href="#/" data-cerrar-al-ir>${ic('i-salon','i-l')}Salones</a><a href="#/servicios" data-cerrar-al-ir>${ic('i-proveedor','i-l')}Servicios</a><a href="#/organizamos" data-cerrar-al-ir>${ic('i-organiza','i-l')}Organizamos tu fiesta</a><a href="#/guardados" data-cerrar-al-ir>${ic('i-corazon','i-l')}Guardados</a><a href="#/como-ordenamos" data-cerrar-al-ir>${ic('i-info','i-l')}Cómo ordenamos y etiquetas</a></nav>
@@ -1237,7 +1246,8 @@ function actualizarGuardNav(){const n=Object.keys(guard).length,g=$('[data-nav-g
 function montarComunes(c){
   const on=(sel,fn)=>$$(sel,c).forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();fn(b)});
   on('[data-asesoria]',()=>hojaAsesoria());
-  on('[data-organiza]',b=>hojaOrganiza(b.dataset.paquete));
+  on('[data-organiza]',b=>waOrganiza(b.dataset.paquete));
+  on('[data-organiza-form]',()=>hojaOrganiza());
   on('[data-comparativa]',()=>hojaComparativa());
   on('[data-pedir-precio]',b=>hojaPrecio(b.dataset.pedirPrecio));
   on('[data-wa]',b=>enviarWA(b.dataset.wa));
@@ -1280,11 +1290,7 @@ function montar(r){
   $$('[data-menu]').forEach(b=>b.onclick=hojaMenu);
   montarComunes(document);
   if($('#barra'))montarBarra();
-  if($('#feed-wrap')){pintarFeed();$('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}
-    // «Organizamos tu fiesta» flota junto a Mapa en cuanto su tarjeta sale de la pantalla: siempre a un toque
-    const srv=$('.srv.org'),fl=$('.flotante');
-    if(srv&&fl&&'IntersectionObserver' in window)new IntersectionObserver(([e])=>fl.classList.toggle('con-org',!e.isIntersecting)).observe(srv);
-    else if(fl)fl.classList.add('con-org')}
+  if($('#feed-wrap')){pintarFeed();$('#btn-mapa').onclick=()=>{if(innerWidth>=1024){conMapa=!conMapa;pintarFeed()}else mapaCompleto()}}
   else if($('#feed'))montarTarjetas($('#feed'));
   if($('#feed-g'))montarTarjetas($('#feed-g'));
   $$('[data-mandar-lista]').forEach(b=>b.onclick=hojaLista);
